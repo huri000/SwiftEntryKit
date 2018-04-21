@@ -84,12 +84,12 @@ public struct EKAttributes {
     public var exitAnimation = Animation.fade
     
     // Describes how the previous entry pops when a new entry is pushed
-    public var rollOutAdditionalAnimation: Animation? = Animation(duration: 0.6, types: [.scale(scale: 0.8)])
+    public var rollOutAdditionalAnimation: Animation? = Animation(duration: 0.6, types: [.scale])
     
     // Context presentation level
     public var level = WindowLevel.aboveStatusBar
     
-    // TODO: Shadow
+    // TODO: Add Shadow
     public var shadow: Shadow!
     
     // MARK: - User Interaction
@@ -102,4 +102,3 @@ public struct EKAttributes {
     // Triggered when the user taps te entry
     public var contentInteraction = UserInteraction.dismiss
 }
-

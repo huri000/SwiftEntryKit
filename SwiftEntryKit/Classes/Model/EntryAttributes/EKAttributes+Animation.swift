@@ -12,25 +12,15 @@ public extension EKAttributes {
     
     public struct Animation {
         
-        public enum AnimationType {
-            case fade
-            case scale(scale: CGFloat)
-            case translation
-            
-            var isTranslation: Bool {
-                return value == AnimationType.translation.value
+        public struct AnimationType: OptionSet {
+            public let rawValue: UInt
+            public init(rawValue: UInt) {
+                self.rawValue = rawValue
             }
             
-            var value: Int {
-                switch self {
-                case .fade:
-                    return 0
-                case .scale(scale: _):
-                    return 1
-                case .translation:
-                    return 2
-                }
-            }
+            public static var fade = AnimationType(rawValue: 1)
+            public static var scale = AnimationType(rawValue: 2)
+            public static var translation = AnimationType(rawValue: 4)
         }
         
         public var duration: TimeInterval
@@ -43,7 +33,7 @@ public extension EKAttributes {
         }
         
         public static var scale: Animation {
-            return Animation(duration: 0.3, types: [.scale(scale: 0.8)])
+            return Animation(duration: 0.3, types: [.scale])
         }
         
         public static var translation: Animation {
@@ -51,7 +41,7 @@ public extension EKAttributes {
         }
         
         public var containsTranslation: Bool {
-            return types.contains { $0.isTranslation }
+            return types.contains(.translation)
         }
         
         public init(duration: TimeInterval = 0.3, types: [AnimationType] = [.translation]) {

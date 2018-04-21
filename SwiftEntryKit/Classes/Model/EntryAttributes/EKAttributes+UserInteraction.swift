@@ -16,12 +16,17 @@ public extension EKAttributes {
         
         public enum Default {
             case absorbTouches
+            case delayExit
             case dismissEntry
             case disabled // Dims it unresponsive
         }
         
         var isResponsive: Bool {
             return defaultAction != .disabled
+        }
+        
+        var isDelayExit: Bool {
+            return defaultAction == .delayExit
         }
         
         public var defaultAction: Default
@@ -42,6 +47,10 @@ public extension EKAttributes {
         
         public static var absorbTouches: UserInteraction {
             return UserInteraction(defaultAction: .absorbTouches)
+        }
+        
+        public static var delayExit: UserInteraction {
+            return UserInteraction(defaultAction: .delayExit)
         }
     }
 }

@@ -61,6 +61,7 @@ class ViewController: UIViewController {
         attributes.location = .top
         attributes.shape = .stretched
         attributes.level = .belowStatusBar
+        attributes.contentInteraction = .absorbTouches
         attributes.visibleDuration = .infinity
         attributes.rollOutAdditionalAnimation = nil
         attributes.contentBackground = .color(color: .pinky)
@@ -77,6 +78,7 @@ class ViewController: UIViewController {
         attributes.location = .top
         attributes.shape = .stretched
         attributes.level = .aboveStatusBar
+        attributes.contentInteraction = .absorbTouches
         attributes.contentBackground = .color(color: .greenGrass)
         attributes.rollOutAdditionalAnimation = nil
         
@@ -152,6 +154,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             var attributes = EKAttributes.bottomFloating
             attributes.contentBackground = .color(color: .redish)
+            attributes.contentInteraction.defaultAction = .delayExit
             showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
         case 2:
             showNotificationMessage(attributes: .topStretched, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")

@@ -24,6 +24,7 @@ class EKScrollView: UIScrollView {
     private var inConstraint: NSLayoutConstraint!
     
     private var attributes: EKAttributes!
+    private var contentView: UIView!
     
     // MARK: Lifecyce
     required init?(coder aDecoder: NSCoder) {
@@ -38,8 +39,8 @@ class EKScrollView: UIScrollView {
     
     // MARK: Setup
     func setup(with contentView: UIView, attributes: EKAttributes) {
-        
         self.attributes = attributes
+        self.contentView = contentView
         
         // Layout the content view inside the scroll view
         addSubview(contentView)
@@ -151,15 +152,11 @@ class EKScrollView: UIScrollView {
         outDispatchWorkItem?.cancel()
         if let rollOutAnimation = attributes.rollOutAdditionalAnimation, rollOut {
             UIView.animate(withDuration: rollOutAnimation.duration, delay: 0, options: [.curveEaseOut], animations: {
-                for type in rollOutAnimation.types {
-                    switch type {
-                    case .scale(scale: let scale):
-                        self.transform = CGAffineTransform(scaleX: scale, y: scale)
-                    case .fade:
-                        self.alpha = 0
-                    case .translation:
-                        break
-                    }
+                if rollOutAnimation.types.contains(.scale) {
+                    self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                }
+                if rollOutAnimation.types.contains(.fade) {
+                    self.alpha = 0
                 }
             }, completion: nil)
         }
@@ -171,6 +168,14 @@ class EKScrollView: UIScrollView {
         }, completion: { finished in
             self.removeFromSuperview()
         })
+    }
+    
+    private func scheduleAnimateOut() {
+        outDispatchWorkItem?.cancel()
+        outDispatchWorkItem = DispatchWorkItem { [weak self] in
+            self?.animateOut(rollOut: false)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + attributes.entranceAnimation.duration + attributes.visibleDuration, execute: outDispatchWorkItem)
     }
     
     private func animateIn() {
@@ -186,12 +191,7 @@ class EKScrollView: UIScrollView {
     
         entryDelegate?.changeToActive(withAttributes: attributes)
 
-        // Change to inactive state
-        outDispatchWorkItem = DispatchWorkItem { [weak self] in
-            self?.animateOut(rollOut: false)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + attributes.entranceAnimation.duration + attributes.visibleDuration, execute: outDispatchWorkItem)
+        scheduleAnimateOut()
     }
     
     // MARK: Tap Gesture Handler
@@ -203,5 +203,27 @@ class EKScrollView: UIScrollView {
         default:
             attributes.contentInteraction.customActions.forEach { $0() }
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if attributes.contentInteraction.isDelayExit {
+            outDispatchWorkItem?.cancel()
+        }
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
+            self.contentView?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }, completion: nil)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if attributes.contentInteraction.isDelayExit {
+            scheduleAnimateOut()
+        }
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
+            self.contentView?.transform = .identity
+        }, completion: nil)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchesEnded(touches, with: event)
     }
 }
