@@ -16,8 +16,9 @@ class ViewController: UIViewController {
         Message(title: "Floating Bottom Entry", subtitle: "This is a floating bottom entry, this entry animates bottom-up, you can set margin and round corners for that entry"),
         Message(title: "Stretched Top Entry", subtitle: "This is a stretched top entry. This entry animates top-down, leaves no side margins. Also leaves  empty space outside the safe area"),
         Message(title: "Stretched Bottom Entry", subtitle: "This is a stretched bottom entry. This entry animates bottom-up, leaves no side margins. Also leaves empty space outside the safe area"),
-        Message(title: "Status Bar Note", subtitle: "This note comes from above and positioned in a window below the status bar level"),
-        Message(title: "Status Bar Processing Note", subtitle: "This note comes from above and positioned in a window below the status bar level. It indicates that something is being calculated at the background"),
+        Message(title: "Note", subtitle: "This note comes from above and positioned in a window below the status bar level"),
+        Message(title: "Processing Note", subtitle: "This note comes from above and positioned in a window below the status bar level. It indicates that something is being calculated at the background"),
+        Message(title: "Status Bar Message", subtitle: "This note comes from above and positioned in a window below the status bar level. It indicates that something is being calculated at the background"),
         Message(title: "Custom Alert", subtitle: "This is a custom view that is positioned at the bottom")
         ]
     
@@ -29,6 +30,10 @@ class ViewController: UIViewController {
         setupTableView()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+    }
+    
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.register(EntryTableViewCell.self, forCellReuseIdentifier: String(describing: EntryTableViewCell.self))
@@ -37,10 +42,10 @@ class ViewController: UIViewController {
         tableView.fillSuperview()
     }
 
-    private func showNote(shape: EKAttributes.Shape, location: EKAttributes.Location) {
+    private func showNote() {
         var attributes = EKAttributes.default
-        attributes.location = location
-        attributes.shape = shape
+        attributes.location = .top
+        attributes.shape = .stretched
         attributes.level = .belowStatusBar
         attributes.contentBackground = .color(color: .satCyan)
         attributes.rollOutAdditionalAnimation = nil
@@ -51,10 +56,10 @@ class ViewController: UIViewController {
         show(view: contentView, attributes: attributes)
     }
     
-    private func showProcessingNote(shape: EKAttributes.Shape, location: EKAttributes.Location) {
+    private func showProcessingNote() {
         var attributes = EKAttributes.default
-        attributes.location = location
-        attributes.shape = shape
+        attributes.location = .top
+        attributes.shape = .stretched
         attributes.level = .belowStatusBar
         attributes.visibleDuration = .infinity
         attributes.rollOutAdditionalAnimation = nil
@@ -63,6 +68,33 @@ class ViewController: UIViewController {
         let labelContent = EKProperty.LabelContent(text: "Waiting for the goodies to arrive!", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .white))
         
         let contentView = EKProcessingNoteMessageView(with: labelContent, activityIndicator: .white)
+        show(view: contentView, attributes: attributes)
+    }
+    
+    private func showStatusBarMessage() {
+        var attributes = EKAttributes.default
+        attributes.ignoreSafeArea = true
+        attributes.location = .top
+        attributes.shape = .stretched
+        attributes.level = .aboveStatusBar
+        attributes.contentBackground = .color(color: .greenGrass)
+        attributes.rollOutAdditionalAnimation = nil
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.maxY
+        
+        let contentView: UIView
+        if statusBarHeight > 20 {
+            let leading = EKProperty.LabelContent(text: "My 🧠", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 12), color: .white))
+            let trailing = EKProperty.LabelContent(text: "Wonders!", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 12), color: .white))
+            contentView = EKXStatusBarMessageView(leading: leading, trailing: trailing)
+        } else {
+            let labelContent = EKProperty.LabelContent(text: "My 🧠 is doing some thinking...", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 12), color: .white))
+            let noteView = EKNoteMessageView(with: labelContent)
+            noteView.verticalOffset = 0
+            noteView.set(.height, of: statusBarHeight)
+            contentView = noteView
+        }
+        
         show(view: contentView, attributes: attributes)
     }
     
@@ -126,10 +158,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             showNotificationMessage(attributes: .bottomStretched, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
         case 4:
-            showNote(shape: .stretched, location: .top)
+            showNote()
         case 5:
-            showProcessingNote(shape: .stretched, location: .top)
+            showProcessingNote()
         case 6:
+            showStatusBarMessage()
+        case 7:
             showCustomNotificationMessage()
         default:
             fatalError()

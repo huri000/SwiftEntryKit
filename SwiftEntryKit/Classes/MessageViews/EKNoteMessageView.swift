@@ -20,6 +20,7 @@ public class EKNoteMessageView: UIView {
         didSet {
             horizontalConstrainsts.first.constant = horizontalOffset
             horizontalConstrainsts.second.constant = -horizontalOffset
+            layoutIfNeeded()
         }
     }
     
@@ -27,6 +28,7 @@ public class EKNoteMessageView: UIView {
         didSet {
             verticalConstrainsts.first.constant = verticalOffset
             verticalConstrainsts.second.constant = -verticalOffset
+            layoutIfNeeded()
         }
     }
     

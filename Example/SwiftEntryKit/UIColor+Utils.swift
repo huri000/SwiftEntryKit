@@ -40,5 +40,5 @@ extension UIColor {
     static let darkText = UIColor(rgb: 0x212121)
     static let redish = UIColor(rgb: 0xFF5252)
     static let darkSubText = UIColor(rgb: 0x757575)
-    
+    static let greenGrass = UIColor(rgb: 0x4CAF50)
 }

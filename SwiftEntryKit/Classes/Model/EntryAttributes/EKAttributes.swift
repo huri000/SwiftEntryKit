@@ -67,6 +67,9 @@ public struct EKAttributes {
     // Describes the share of the context
     public var shape = Shape.stretched
     
+    // Signals the presentor to consider / ignore safe area. Can be used to present the message outside the safe area margins
+    public var ignoreSafeArea = false
+    
     // Describes the context background
     public var contentBackground = BackgroundStyle.visualEffect(style: .light)
     

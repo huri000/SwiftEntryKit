@@ -37,7 +37,7 @@ public class EKWindowProvider {
         return entryWindow?.rootViewController as? EKRootViewController
     }
     
-    static var safeAreaInset: UIEdgeInsets {
+    static var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return EKWindowProvider.shared.entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
         } else {

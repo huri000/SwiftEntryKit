@@ -46,8 +46,6 @@ class EKScrollView: UIScrollView {
         contentView.layoutToSuperview(.left, .right, .top, .bottom)
         contentView.layoutToSuperview(.width, .height)
         
-        let safeAreaInsets = EKWindowProvider.safeAreaInset
-        
         // Determine the layout entrance type according to the entry type
         let messageBottomInSuperview: NSLayoutAttribute
         let messageTopInSuperview: NSLayoutAttribute
@@ -56,7 +54,9 @@ class EKScrollView: UIScrollView {
         
         // Define a spacer to catch top / bottom offsets
         var spacerView: UIView!
-        if safeAreaInsets.top > 0 || safeAreaInsets.bottom > 0 {
+        let safeAreaInsets = EKWindowProvider.safeAreaInsets
+
+        if !attributes.ignoreSafeArea && safeAreaInsets.hasVerticalInsets {
             spacerView = UIView()
             addSubview(spacerView)
             spacerView.set(.height, of: safeAreaInsets.top)
@@ -68,7 +68,11 @@ class EKScrollView: UIScrollView {
             messageBottomInSuperview = .top
             messageTopInSuperview = .bottom
             
-            inOffset = safeAreaInsets.top
+            if attributes.ignoreSafeArea {
+                inOffset = -safeAreaInsets.top
+            } else {
+                inOffset = safeAreaInsets.top
+            }
             switch attributes.shape {
             case .floating(info: let info):
                 inOffset += info.verticalOffset

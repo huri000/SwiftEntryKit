@@ -61,10 +61,12 @@ public class EKContainerView: UIView {
             backgroundView.layoutToSuperview(axis: .horizontally)
             var topInset: CGFloat = 0
             var bottomInset: CGFloat = 0
-            if attributes.location.isTop {
-                topInset = -EKWindowProvider.safeAreaInset.top
-            } else {
-                bottomInset = EKWindowProvider.safeAreaInset.bottom
+            if !attributes.ignoreSafeArea {
+                if attributes.location.isTop {
+                    topInset = -EKWindowProvider.safeAreaInsets.top
+                } else {
+                    bottomInset = EKWindowProvider.safeAreaInsets.bottom
+                }
             }
             backgroundView.layoutToSuperview(.top, offset: topInset)
             backgroundView.layoutToSuperview(.bottom, offset: bottomInset)
