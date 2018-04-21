@@ -22,6 +22,8 @@ DerivedData
 # Bundler
 .bundle
 
+Pods/
+
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
 # Carthage/Checkouts
 
@@ -34,4 +36,3 @@ Carthage/Build
 # Note: if you ignore the Pods directory, make sure to uncomment
 # `pod install` in .travis.yml
 #
-# Pods/
