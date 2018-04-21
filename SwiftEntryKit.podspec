@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-s.description = 'SwiftEntryKit offers you a simple and reliable way to present notification enties inside your App.'
+s.description = 'SwiftEntryKit offers you a simple way to present notification entries or popups inside your iOS application.'
 
   s.homepage         = 'https://github.com/huri000/SwiftEntryKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
