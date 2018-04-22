@@ -31,15 +31,18 @@ public struct Options {
     }
     
     /** Describes the scrolling behavior of the entry */
-    public var scroll = Scroll.enabled
+    public var scroll = Scroll.edgeCrossingDisabled
     
     /**
      Whether the entry should override the previous entry that is currently presented.
      If 'true', the previous entry disappears immediately leaving vacant space to the current entry.
      If 'false', the previous entry rolls out animatedly.
      
-     - note:
-     See *rollOutAdditionalAnimation* and *exitAnimation* for exit animation.
+     - note: See *rollOutAdditionalAnimation* and *exitAnimation* for exit animation.
      */
     public var overridesPreviousEntry = false
+    
+    /** Signals the presentor to consider or ignore safe area.
+     Can be used to present content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
+    public var ignoreSafeArea = false
 }

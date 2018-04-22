@@ -235,7 +235,9 @@ extension EKScrollView: UIScrollViewDelegate {
         guard let scrollAttribute = attributes?.options.scroll, scrollAttribute.isEdgeCrossingDisabled else {
             return
         }
-        if contentOffset.y < 0 {
+        if attributes.location.isTop && contentOffset.y < 0 {
+            contentOffset.y = 0
+        } else if !attributes.location.isTop && scrollView.bounds.maxY > scrollView.contentSize.height {
             contentOffset.y = 0
         }
     }

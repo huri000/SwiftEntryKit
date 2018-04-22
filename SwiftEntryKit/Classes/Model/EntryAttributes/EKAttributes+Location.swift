@@ -10,8 +10,13 @@ import Foundation
 
 public extension EKAttributes {
 
+    /** The location of the entry. */
     public enum Location {
+        
+        /** The entry appears at the top of the screen. */
         case top
+        
+        /** The entry appears at the bottom of the screen. */
         case bottom
         
         var isTop: Bool {

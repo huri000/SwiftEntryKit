@@ -50,43 +50,37 @@ public struct EKAttributes {
         return attributes
     }
     
-    // Gives default attributes - Can be changed
+    /** Default attributes - Can be mutated according to the hosting application theme */
     public static var `default` = EKAttributes()
-    
-    // Counts the active entries. When 0 - no entry is currently / about to be presented.
-    public internal(set) static var count: UInt = 0
-    public static var isEmpty: Bool {
-        return count == 0
-    }
     
     // MARK: - Layout Presentation, Positioning and Animation
     
-    // Describes the location of the context. Whether it comes from the top / bottom of the screen
+    /** The location of the entry at the sceeen */
     public var location = Location.top
     
-    // Describes the share of the context
+    /** The shape of the entry */
     public var shape = Shape.stretched
     
-    // Signals the presentor to consider / ignore safe area. Can be used to present the message outside the safe area margins
-    public var ignoreSafeArea = false
-    
-    // Describes the context background
+    /** Describes the entry's background appearance while it shows */
     public var contentBackground = BackgroundStyle.visualEffect(style: .light)
     
-    // Describes the backgruond outside the context
+    /** Describes the background appearance while the entry shows */
     public var background = BackgroundStyle.color(color: .clear)
     
-    // Describe how long the context is visible before it is dismissed
+    /** Describes how long the entry is visible before it is dismissed */
     public var visibleDuration: TimeInterval = 4 // Use .infinity for infinate duration
     
     // Describes how the entry animates in and out
     public var entranceAnimation = Animation.fade
     public var exitAnimation = Animation.fade
     
-    // Describes how the previous entry pops when a new entry is pushed
+    /** Describes how the previous entry pops when a new entry is pushed
+
+     - note: This animation is applied additionally to *exitAnimation* which is the default
+     */
     public var rollOutAdditionalAnimation: Animation? = Animation(duration: 0.6, types: [.scale])
     
-    // Context presentation level
+    /** Entry presentation level */
     public var level = WindowLevel.aboveStatusBar
     
     // TODO: Add Shadow
@@ -101,6 +95,8 @@ public struct EKAttributes {
     // Describes what happens when the user interacts the content, dismisses the content by default
     // Triggered when the user taps te entry
     public var contentInteraction = UserInteraction.dismiss
+    
+    // MARK: Additional Options
     
     /** Additional options that could be applied to an *EKAttributes* instance */
     public var options = Options()
