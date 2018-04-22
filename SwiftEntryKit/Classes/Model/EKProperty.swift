@@ -1,5 +1,5 @@
 //
-//  CommonModel.swift
+//  EKProperty.swift
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 4/19/18.
@@ -11,8 +11,8 @@ import UIKit
 public struct EKProperty {
     
     public struct ButtonContent {
-        let label: LabelContent
-        let backgroundColor: UIColor
+        public let label: LabelContent
+        public let backgroundColor: UIColor
         
         public init(label: LabelContent, backgroundColor: UIColor) {
             self.label = label
@@ -21,8 +21,8 @@ public struct EKProperty {
     }
     
     public struct LabelContent {
-        let text: String
-        let style: Label
+        public let text: String
+        public let style: Label
         
         public init(text: String, style: Label) {
             self.text = text

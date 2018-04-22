@@ -60,6 +60,7 @@ class EKRootViewController: UIViewController {
         isResponsive = attributes.backgroundInteraction.isResponsive
     }
 
+    // Removes last entry - can keep the window 'ON' if necessary
     func removeLastEntry(keepWindow: Bool) {
         if lastAttributes.options.overridesPreviousEntry {
             lastEntry?.removePromptly()
@@ -68,6 +69,7 @@ class EKRootViewController: UIViewController {
         }
     }
     
+    // Rolls out last entry - animatedly
     func rollOutLastEntry() {
         lastEntry?.animateOut(rollOut: true)
     }

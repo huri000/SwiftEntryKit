@@ -26,7 +26,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "EntryKit Sample App"
         setupTableView()
     }
     
@@ -74,7 +73,7 @@ class ViewController: UIViewController {
     
     private func showStatusBarMessage() {
         var attributes = EKAttributes.default
-        attributes.ignoreSafeArea = true
+        attributes.options.ignoreSafeArea = true
         attributes.location = .top
         attributes.shape = .stretched
         attributes.level = .aboveStatusBar

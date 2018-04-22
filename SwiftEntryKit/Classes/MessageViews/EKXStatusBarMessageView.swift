@@ -11,6 +11,7 @@ import QuickLayout
 
 public class EKXStatusBarMessageView: UIView {
     
+    // MARK: Props
     private let leadingLabel = UILabel()
     private let trailingLabel = UILabel()
     

@@ -61,7 +61,7 @@ class EKScrollView: UIScrollView {
         var spacerView: UIView!
         let safeAreaInsets = EKWindowProvider.safeAreaInsets
 
-        if !attributes.ignoreSafeArea && safeAreaInsets.hasVerticalInsets {
+        if !attributes.options.ignoreSafeArea && safeAreaInsets.hasVerticalInsets {
             spacerView = UIView()
             addSubview(spacerView)
             spacerView.set(.height, of: safeAreaInsets.top)
@@ -73,7 +73,7 @@ class EKScrollView: UIScrollView {
             messageBottomInSuperview = .top
             messageTopInSuperview = .bottom
             
-            if attributes.ignoreSafeArea {
+            if attributes.options.ignoreSafeArea {
                 inOffset = -safeAreaInsets.top
             } else {
                 inOffset = safeAreaInsets.top
@@ -157,7 +157,7 @@ class EKScrollView: UIScrollView {
         if EKAttributes.count > 0 {
             EKAttributes.count -= 1
         }
-        if !keepWindow && EKAttributes.isEmpty {
+        if !keepWindow && !EKAttributes.isPresenting {
             EKWindowProvider.shared.state = .main
         }
     }

@@ -11,6 +11,7 @@ import QuickLayout
 
 public class EKNoteMessageView: UIView {
     
+    // MARK: Props
     private let label = UILabel()
     
     private var horizontalConstrainsts: QLAxisConstraints!

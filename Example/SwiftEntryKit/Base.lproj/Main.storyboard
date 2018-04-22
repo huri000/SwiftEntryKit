@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--SwiftEntryKit-->
+        <!--EntryKit Sample App-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SwiftEntryKit_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="SwiftEntryKit" id="coN-y3-4zm">
+                    <navigationItem key="navigationItem" title="EntryKit Sample App" id="coN-y3-4zm">
                         <barButtonItem key="rightBarButtonItem" title="Compose" id="IX0-qK-RAk">
                             <connections>
                                 <segue destination="hAa-pE-SAe" kind="show" id="WMZ-op-Cyq"/>
