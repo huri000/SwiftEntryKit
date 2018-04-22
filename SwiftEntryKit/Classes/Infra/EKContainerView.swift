@@ -31,18 +31,16 @@ public class EKContainerView: UIView {
         didSet {
             oldValue?.removeFromSuperview()
             addSubview(contentView)
-            
-            let insets: CGFloat
-            switch content.attributes.shape {
-            case .stretched:
-                insets = 0
-            case .floating(info: let info):
-                insets = info.horizontalOffset
-                contentView.layer.cornerRadius = info.cornerRadius
-            }
             contentView.clipsToBounds = true
             contentView.layoutToSuperview(axis: .vertically)
-            contentView.layoutToSuperview(axis: .horizontally, offset: insets)
+            contentView.layoutToSuperview(axis: .horizontally)
+            
+            switch content.attributes.shape {
+            case .floating(info: let info):
+                contentView.layer.cornerRadius = info.cornerRadius
+            default:
+                break
+            }
             
             applyBackgroundToContentView()
         }

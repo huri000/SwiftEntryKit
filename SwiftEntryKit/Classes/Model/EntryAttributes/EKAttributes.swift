@@ -98,7 +98,10 @@ public struct EKAttributes {
     // Triggered when the user begin touch interaction with the bsckground
     public var backgroundInteraction = UserInteraction.disabled
     
-    // Describes what happens when the user interacts the content, pismisses the content by default
+    // Describes what happens when the user interacts the content, dismisses the content by default
     // Triggered when the user taps te entry
     public var contentInteraction = UserInteraction.dismiss
+    
+    /** Additional options that could be applied to an *EKAttributes* instance */
+    public var options = Options()
 }

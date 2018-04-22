@@ -34,6 +34,7 @@ class EKScrollView: UIScrollView {
     init(withEntryDelegate entryDelegate: EntryScrollViewDelegate) {
         self.entryDelegate = entryDelegate
         super.init(frame: .zero)
+        delegate = self
         setupAttributes()
     }
     
@@ -42,6 +43,9 @@ class EKScrollView: UIScrollView {
         self.attributes = attributes
         self.contentView = contentView
         
+        // Enable / disable scroll
+        isScrollEnabled = attributes.options.scroll.isLooselyEnabled
+                
         // Layout the content view inside the scroll view
         addSubview(contentView)
         contentView.layoutToSuperview(.left, .right, .top, .bottom)
@@ -102,7 +106,17 @@ class EKScrollView: UIScrollView {
         // Layout the scroll view itself according to the entry type
         outConstraint = layout(messageTopInSuperview, to: messageBottomInSuperview, of: superview!, offset: outOffset, priority: .must)
         inConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
-        layoutToSuperview(axis: .horizontally)
+        
+        // Layout the scroll view horizontally
+        let horizontalInsets: CGFloat
+        switch attributes.shape {
+        case .stretched:
+            horizontalInsets = 0
+        case .floating(info: let info):
+            horizontalInsets = info.horizontalOffset
+            contentView.layer.cornerRadius = info.cornerRadius
+        }
+        layoutToSuperview(axis: .horizontally, offset: horizontalInsets)
         
         animateIn()
         
@@ -138,18 +152,21 @@ class EKScrollView: UIScrollView {
         superview?.layoutIfNeeded()
     }
     
-    override func removeFromSuperview() {
+    func removeFromSuperview(keepWindow: Bool) {
         super.removeFromSuperview()
         if EKAttributes.count > 0 {
             EKAttributes.count -= 1
         }
-        if EKAttributes.isEmpty {
+        if !keepWindow && EKAttributes.isEmpty {
             EKWindowProvider.shared.state = .main
         }
     }
     
     func animateOut(rollOut: Bool) {
+        
         outDispatchWorkItem?.cancel()
+        entryDelegate?.changeToInactive(withAttributes: attributes)
+        
         if let rollOutAnimation = attributes.rollOutAdditionalAnimation, rollOut {
             UIView.animate(withDuration: rollOutAnimation.duration, delay: 0, options: [.curveEaseOut], animations: {
                 if rollOutAnimation.types.contains(.scale) {
@@ -161,12 +178,10 @@ class EKScrollView: UIScrollView {
             }, completion: nil)
         }
         
-        entryDelegate?.changeToInactive(withAttributes: attributes)
-
         UIView.animate(withDuration: attributes.exitAnimation.duration, delay: 0.1, options: [.beginFromCurrentState], animations: {
             self.changeToInactiveState()
         }, completion: { finished in
-            self.removeFromSuperview()
+            self.removeFromSuperview(keepWindow: false)
         })
     }
     
@@ -194,6 +209,13 @@ class EKScrollView: UIScrollView {
         scheduleAnimateOut()
     }
     
+    // Removes the view promptly - DOES NOT animate out
+    func removePromptly(keepWindow: Bool = true) {
+        outDispatchWorkItem?.cancel()
+        entryDelegate?.changeToInactive(withAttributes: attributes)
+        removeFromSuperview(keepWindow: keepWindow)
+    }
+    
     // MARK: Tap Gesture Handler
     @objc func tapGestureRecognized() {
         switch attributes.contentInteraction.defaultAction {
@@ -204,26 +226,44 @@ class EKScrollView: UIScrollView {
             attributes.contentInteraction.customActions.forEach { $0() }
         }
     }
+}
+
+// MARK: UIScrollViewDelegate
+extension EKScrollView: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let scrollAttribute = attributes?.options.scroll, scrollAttribute.isEdgeCrossingDisabled else {
+            return
+        }
+        if contentOffset.y < 0 {
+            contentOffset.y = 0
+        }
+    }
+}
+
+// MARK: UIResponder
+extension EKScrollView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if attributes.contentInteraction.isDelayExit {
             outDispatchWorkItem?.cancel()
         }
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
-            self.contentView?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-        }, completion: nil)
+        //        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
+        //            self.contentView?.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        //        }, completion: nil)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if attributes.contentInteraction.isDelayExit {
             scheduleAnimateOut()
         }
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
-            self.contentView?.transform = .identity
-        }, completion: nil)
+        //        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
+        //            self.contentView?.transform = .identity
+        //        }, completion: nil)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesEnded(touches, with: event)
     }
+
 }

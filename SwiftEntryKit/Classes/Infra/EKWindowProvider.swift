@@ -30,7 +30,7 @@ public class EKWindowProvider {
         guard let rootVC = rootVC else {
             return
         }
-        rootVC.animateOutLastEntry()
+        rootVC.rollOutLastEntry()
     }
         
     var rootVC: EKRootViewController? {

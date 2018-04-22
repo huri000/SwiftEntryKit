@@ -50,8 +50,8 @@ class EKRootViewController: UIViewController {
     func configure(entryView: UIView, attributes: EKAttributes) {
         
         lastAttributes = attributes
-    
-        animateOutLastEntry()
+        
+        removeLastEntry(keepWindow: true)
         
         let entryScrollView = EKScrollView(withEntryDelegate: self)
         view.addSubview(entryScrollView)
@@ -60,16 +60,26 @@ class EKRootViewController: UIViewController {
         isResponsive = attributes.backgroundInteraction.isResponsive
     }
 
-    func animateOutLastEntry() {
-        if let lastEntry = lastEntry {
-            lastEntry.animateOut(rollOut: true)
+    func removeLastEntry(keepWindow: Bool) {
+        if lastAttributes.options.overridesPreviousEntry {
+            lastEntry?.removePromptly()
+        } else {
+            rollOutLastEntry()
         }
     }
+    
+    func rollOutLastEntry() {
+        lastEntry?.animateOut(rollOut: true)
+    }
+}
+
+// MARK: UIResponder
+extension EKRootViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch lastAttributes.backgroundInteraction.defaultAction {
         case .dismissEntry:
-            animateOutLastEntry()
+            rollOutLastEntry()
             fallthrough
         default:
             lastAttributes.backgroundInteraction.customActions.forEach { $0() }
@@ -79,6 +89,7 @@ class EKRootViewController: UIViewController {
 
 // MARK: EntryScrollViewDelegate
 extension EKRootViewController: EntryScrollViewDelegate {
+    
     func changeToActive(withAttributes attributes: EKAttributes) {
         changeBackground(to: attributes.background, duration: attributes.entranceAnimation.duration)
     }
