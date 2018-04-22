@@ -15,9 +15,9 @@ protocol EntryScrollViewDelegate: class {
 
 class EKScrollView: UIScrollView {
     
+    // MARK: Props
     private weak var entryDelegate: EntryScrollViewDelegate!
     
-    // MARK: Props
     private var outDispatchWorkItem: DispatchWorkItem!
     
     private var outConstraint: NSLayoutConstraint!
@@ -26,7 +26,7 @@ class EKScrollView: UIScrollView {
     private var attributes: EKAttributes!
     private var contentView: UIView!
     
-    // MARK: Lifecyce
+    // MARK: Setup
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -34,38 +34,36 @@ class EKScrollView: UIScrollView {
     init(withEntryDelegate entryDelegate: EntryScrollViewDelegate) {
         self.entryDelegate = entryDelegate
         super.init(frame: .zero)
-        delegate = self
         setupAttributes()
     }
     
-    // MARK: Setup
     func setup(with contentView: UIView, attributes: EKAttributes) {
         self.attributes = attributes
         self.contentView = contentView
         
         // Enable / disable scroll
         isScrollEnabled = attributes.options.scroll.isLooselyEnabled
-                
-        // Layout the content view inside the scroll view
-        addSubview(contentView)
-        contentView.layoutToSuperview(.left, .right, .top, .bottom)
-        contentView.layoutToSuperview(.width, .height)
         
         // Determine the layout entrance type according to the entry type
         let messageBottomInSuperview: NSLayoutAttribute
         let messageTopInSuperview: NSLayoutAttribute
         var inOffset: CGFloat = 0
         var outOffset: CGFloat = 0
+
+        var totalEntryHeight: CGFloat = 0
         
         // Define a spacer to catch top / bottom offsets
         var spacerView: UIView!
         let safeAreaInsets = EKWindowProvider.safeAreaInsets
+        let ignoreSafeArea = attributes.options.ignoreSafeArea
 
-        if !attributes.options.ignoreSafeArea && safeAreaInsets.hasVerticalInsets {
+        if !ignoreSafeArea && safeAreaInsets.hasVerticalInsets {
             spacerView = UIView()
             addSubview(spacerView)
             spacerView.set(.height, of: safeAreaInsets.top)
             spacerView.layoutToSuperview(.width, .centerX)
+            
+            totalEntryHeight += safeAreaInsets.top
         }
         
         switch attributes.location {
@@ -73,7 +71,7 @@ class EKScrollView: UIScrollView {
             messageBottomInSuperview = .top
             messageTopInSuperview = .bottom
             
-            if attributes.options.ignoreSafeArea {
+            if ignoreSafeArea {
                 inOffset = -safeAreaInsets.top
             } else {
                 inOffset = safeAreaInsets.top
@@ -103,6 +101,11 @@ class EKScrollView: UIScrollView {
             spacerView?.layout(.top, to: .bottom, of: self)
         }
         
+        // Layout the content view inside the scroll view
+        addSubview(contentView)
+        contentView.layoutToSuperview(.left, .right, .top, .bottom)
+        contentView.layoutToSuperview(.width, .height)
+        
         // Layout the scroll view itself according to the entry type
         outConstraint = layout(messageTopInSuperview, to: messageBottomInSuperview, of: superview!, offset: outOffset, priority: .must)
         inConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
@@ -114,7 +117,6 @@ class EKScrollView: UIScrollView {
             horizontalInsets = 0
         case .floating(info: let info):
             horizontalInsets = info.horizontalOffset
-            contentView.layer.cornerRadius = info.cornerRadius
         }
         layoutToSuperview(axis: .horizontally, offset: horizontalInsets)
         
@@ -128,6 +130,8 @@ class EKScrollView: UIScrollView {
         alwaysBounceVertical = true
         bounces = true
         showsVerticalScrollIndicator = false
+        isPagingEnabled = true
+        delegate = self
     }
     
     private func setupTapGestureRecognizer() {
@@ -267,5 +271,4 @@ extension EKScrollView {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesEnded(touches, with: event)
     }
-
 }
