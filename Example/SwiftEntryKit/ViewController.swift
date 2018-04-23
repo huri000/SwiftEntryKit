@@ -72,13 +72,8 @@ class ViewController: UIViewController {
     }
     
     private func showStatusBarMessage() {
-        var attributes = EKAttributes.default
-        attributes.location = .top
-        attributes.frame = .full
-        attributes.level = .aboveStatusBar
-        attributes.contentInteraction = .absorbTouches
+        var attributes = EKAttributes.statusBar        
         attributes.contentBackground = .color(color: .greenGrass)
-        attributes.options.safeAreaBehavior = .overriden
         attributes.options.exitBehavior = .animated(animation: nil)
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.maxY
@@ -99,7 +94,7 @@ class ViewController: UIViewController {
         show(view: contentView, attributes: attributes)
     }
     
-    private func showNotificationMessage(attributes: EKAttributes = .topStretched, textColor: UIColor, imageName: String) {
+    private func showNotificationMessage(attributes: EKAttributes = .topToast, textColor: UIColor, imageName: String) {
         
         let title = EKProperty.LabelContent(text: "SHOPPING DISCOUNT", style: EKProperty.Label(font: UIFont.boldSystemFont(ofSize: 16), color: textColor))
         let description = EKProperty.LabelContent(text: "50% discount until midnight at Luzius Bakery", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: textColor))
@@ -121,7 +116,7 @@ class ViewController: UIViewController {
             EKWindowProvider.shared.dismiss()
         }
         
-        var attributes = EKAttributes.bottomFloating
+        var attributes = EKAttributes.bottomFloat
         attributes.visibleDuration = .infinity
         attributes.background = .color(color: .dimmedBackground)
         attributes.backgroundInteraction = .dismiss
@@ -147,18 +142,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0:
-            var attributes = EKAttributes.topFloating
+            var attributes = EKAttributes.topFloat
             attributes.contentBackground = .color(color: .satCyan)
             showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
         case 1:
-            var attributes = EKAttributes.bottomFloating
+            var attributes = EKAttributes.bottomFloat
             attributes.contentBackground = .color(color: .redish)
             attributes.contentInteraction.defaultAction = .delayExit
             showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
         case 2:
-            showNotificationMessage(attributes: .topStretched, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
+            showNotificationMessage(attributes: .topToast, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
         case 3:
-            showNotificationMessage(attributes: .bottomStretched, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
+            showNotificationMessage(attributes: .bottomToast, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
         case 4:
             showNote()
         case 5:

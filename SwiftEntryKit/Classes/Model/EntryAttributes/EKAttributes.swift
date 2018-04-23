@@ -10,51 +10,7 @@ import Foundation
 import UIKit
 
 public struct EKAttributes {
-
-    private static var stretched: EKAttributes {
-        var attributes = EKAttributes()
-        attributes.frame = .full
-        attributes.options.safeAreaBehavior = .empty(fillSafeArea: true)
-        attributes.level = .aboveStatusBar
-        attributes.options.exitBehavior = .animated(animation: nil)
-        return attributes
-    }
-    
-    private static var floating: EKAttributes {
-        var attributes = EKAttributes()
-        attributes.frame = .float
-        attributes.options.safeAreaBehavior = .empty(fillSafeArea: false)
-        attributes.level = .aboveStatusBar
-        return attributes
-    }
-    
-    public static var topFloating: EKAttributes {
-        var attributes = floating
-        attributes.location = .top
-        return attributes
-    }
-    
-    public static var bottomFloating: EKAttributes {
-        var attributes = floating
-        attributes.location = .bottom
-        return attributes
-    }
-    
-    public static var bottomStretched: EKAttributes {
-        var attributes = stretched
-        attributes.location = .bottom
-        return attributes
-    }
-    
-    public static var topStretched: EKAttributes {
-        var attributes = stretched
-        attributes.location = .top
-        return attributes
-    }
-    
-    /** Default attributes - Can be mutated according to the hosting application theme */
-    public static var `default` = EKAttributes()
-    
+        
     // MARK: - Layout Presentation, Positioning and Animation
     
     /** The location of the entry inside the screen */
@@ -75,11 +31,6 @@ public struct EKAttributes {
     // Describes how the entry animates in and out
     public var entranceAnimation = Animation.fade
     public var exitAnimation = Animation.fade
-    
-    /** Describes how the previous entry pops when a new entry is pushed
-
-     - note: This animation is applied additionally to *exitAnimation* which is the default
-     */
     
     /** Entry presentation level */
     public var level = WindowLevel.aboveStatusBar
