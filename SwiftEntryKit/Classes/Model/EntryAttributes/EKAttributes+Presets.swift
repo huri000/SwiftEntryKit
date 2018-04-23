@@ -42,28 +42,28 @@ public extension EKAttributes {
     /** Preset for top float entry */
     public static var topFloat: EKAttributes {
         var attributes = float
-        attributes.location = .top
+        attributes.position = .top
         return attributes
     }
     
     /** Preset for bottom float entry */
     public static var bottomFloat: EKAttributes {
         var attributes = float
-        attributes.location = .bottom
+        attributes.position = .bottom
         return attributes
     }
     
     /** Preset for bottom toast entry */
     public static var bottomToast: EKAttributes {
         var attributes = toast
-        attributes.location = .bottom
+        attributes.position = .bottom
         return attributes
     }
     
     /** Preset for top toast entry */
     public static var topToast: EKAttributes {
         var attributes = toast
-        attributes.location = .top
+        attributes.position = .top
         return attributes
     }
 }

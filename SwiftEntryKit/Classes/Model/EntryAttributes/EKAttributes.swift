@@ -11,9 +11,12 @@ import UIKit
 
 public struct EKAttributes {
     
-    /** The location of the entry inside the screen */
-    public var location = Location.top
+    /** Entry presentation level */
+    public var level = WindowLevel.aboveStatusBar
     
+    /** The position of the entry inside the screen */
+    public var position = Position.top
+
     /** The frame attributes of the entry */
     public var frame = Frame()
     
@@ -23,15 +26,12 @@ public struct EKAttributes {
     /** Describes the background appearance while the entry shows */
     public var background = BackgroundStyle.color(color: .clear)
     
-    /** Describes how long the entry is visible before it is dismissed */
-    public var visibleDuration: TimeInterval = 4 // Use .infinity for infinate duration
+    /** Describes how long the entry is displayed before it is dismissed */
+    public var displayDuration: TimeInterval = 4 // Use .infinity for infinate duration
     
     // Describes how the entry animates in and out
     public var entranceAnimation = Animation.fade
     public var exitAnimation = Animation.fade
-    
-    /** Entry presentation level */
-    public var level = WindowLevel.aboveStatusBar
     
     // TODO: Add Shadow
     public var shadow: Shadow!

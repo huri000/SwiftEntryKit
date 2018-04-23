@@ -67,7 +67,7 @@ public class EKContainerView: UIView {
             
             var topInset: CGFloat = 0
             var bottomInset: CGFloat = 0
-            if attributes.location.isTop {
+            if attributes.position.isTop {
                 topInset = -EKWindowProvider.safeAreaInsets.top
             } else {
                 bottomInset = EKWindowProvider.safeAreaInsets.bottom

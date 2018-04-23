@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		14A40C63208B7AA800B79474 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* ComposeViewController.swift */; };
+		14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */; };
+		14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */; };
+		14C894FE208E7DDE003D8CE3 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FD208E7DDE003D8CE3 /* Font.swift */; };
+		14C89500208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FF208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift */; };
+		14C89502208E83AA003D8CE3 /* WindowLevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C89501208E83AA003D8CE3 /* WindowLevelTableViewCell.swift */; };
+		14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */; };
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* ViewController.swift */; };
 		14F36801208B585E001E8F56 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */; };
@@ -34,6 +40,12 @@
 /* Begin PBXFileReference section */
 		05385903DACAE3FCA44909E1 /* Pods-SwiftEntryKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKit_Example/Pods-SwiftEntryKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewCell.swift; sourceTree = "<group>"; };
+		14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
+		14C894FD208E7DDE003D8CE3 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		14C894FF208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		14C89501208E83AA003D8CE3 /* WindowLevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLevelTableViewCell.swift; sourceTree = "<group>"; };
+		14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDurationTableViewCell.swift; sourceTree = "<group>"; };
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
@@ -77,6 +89,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		14C894F3208E70A4003D8CE3 /* Composition */ = {
+			isa = PBXGroup;
+			children = (
+				14A40C62208B7AA800B79474 /* ComposeViewController.swift */,
+				14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */,
+				14C894FF208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift */,
+				14C89501208E83AA003D8CE3 /* WindowLevelTableViewCell.swift */,
+				14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */,
+			);
+			path = Composition;
+			sourceTree = "<group>";
+		};
+		14C894FC208E7DD0003D8CE3 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */,
+				14C894FD208E7DDE003D8CE3 /* Font.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		19E182478A85E3C07278EE0F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,10 +147,11 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				14F367FE208B585E001E8F56 /* ViewController.swift */,
-				14A40C62208B7AA800B79474 /* ComposeViewController.swift */,
+				14C894F3208E70A4003D8CE3 /* Composition */,
 				14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */,
+				14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */,
 				14F36802208B5B3B001E8F56 /* MessageData.swift */,
-				14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */,
+				14C894FC208E7DD0003D8CE3 /* Utils */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -364,10 +398,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */,
+				14C89500208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift in Sources */,
 				14F36800208B585E001E8F56 /* ViewController.swift in Sources */,
 				14A40C63208B7AA800B79474 /* ComposeViewController.swift in Sources */,
+				14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				14C894FE208E7DDE003D8CE3 /* Font.swift in Sources */,
+				14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */,
+				14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */,
 				14F36801208B585E001E8F56 /* EntryTableViewCell.swift in Sources */,
+				14C89502208E83AA003D8CE3 /* WindowLevelTableViewCell.swift in Sources */,
 				14F36803208B5B3B001E8F56 /* MessageData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

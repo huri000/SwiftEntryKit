@@ -1,5 +1,5 @@
 //
-//  EKAttributes+Location.swift
+//  EKAttributes+Position.swift
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 4/21/18.
@@ -10,8 +10,8 @@ import Foundation
 
 public extension EKAttributes {
 
-    /** The location of the entry. */
-    public enum Location {
+    /** The position of the entry. */
+    public enum Position {
         
         /** The entry appears at the top of the screen. */
         case top

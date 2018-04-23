@@ -66,7 +66,7 @@ class EKScrollView: UIScrollView {
             totalEntryHeight += safeAreaInsets.top
         }
         
-        switch attributes.location {
+        switch attributes.position {
         case .top:
             messageBottomInSuperview = .top
             messageTopInSuperview = .bottom
@@ -194,7 +194,7 @@ class EKScrollView: UIScrollView {
         outDispatchWorkItem = DispatchWorkItem { [weak self] in
             self?.animateOut(rollOut: false)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + attributes.entranceAnimation.duration + attributes.visibleDuration, execute: outDispatchWorkItem)
+        DispatchQueue.main.asyncAfter(deadline: .now() + attributes.entranceAnimation.duration + attributes.displayDuration, execute: outDispatchWorkItem)
     }
     
     private func animateIn() {
@@ -239,9 +239,9 @@ extension EKScrollView: UIScrollViewDelegate {
         guard let scrollAttribute = attributes?.options.scroll, scrollAttribute.isEdgeCrossingDisabled else {
             return
         }
-        if attributes.location.isTop && contentOffset.y < 0 {
+        if attributes.position.isTop && contentOffset.y < 0 {
             contentOffset.y = 0
-        } else if !attributes.location.isTop && scrollView.bounds.maxY > scrollView.contentSize.height {
+        } else if !attributes.position.isTop && scrollView.bounds.maxY > scrollView.contentSize.height {
             contentOffset.y = 0
         }
     }

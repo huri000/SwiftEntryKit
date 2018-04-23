@@ -45,19 +45,7 @@
                     <view key="view" contentMode="scaleToFill" id="pqE-zB-oBo">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QVu-Sz-hUD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="QVu-Sz-hUD" secondAttribute="trailing" id="46a-aJ-U3k"/>
-                            <constraint firstItem="zT4-fx-ydB" firstAttribute="top" secondItem="QVu-Sz-hUD" secondAttribute="bottom" id="SIa-Uv-mmi"/>
-                            <constraint firstItem="QVu-Sz-hUD" firstAttribute="leading" secondItem="pqE-zB-oBo" secondAttribute="leading" id="nqf-Lq-tME"/>
-                            <constraint firstItem="QVu-Sz-hUD" firstAttribute="top" secondItem="DSG-Fp-vjt" secondAttribute="bottom" id="tcV-OC-Ozp"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CjF-WE-dXu" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -43,7 +43,7 @@ class ViewController: UIViewController {
 
     private func showNote() {
         var attributes = EKAttributes.default
-        attributes.location = .top
+        attributes.position = .top
         attributes.frame = .full
         attributes.level = .belowStatusBar
         attributes.contentBackground = .color(color: .satCyan)
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
         var attributes = EKAttributes.topToast
         attributes.level = .belowStatusBar
         attributes.contentInteraction = .absorbTouches
-        attributes.visibleDuration = .infinity
+        attributes.displayDuration = .infinity
         attributes.options.exitBehavior = .animated(animation: nil)
         attributes.contentBackground = .color(color: .pinky)
         
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
         }
         
         var attributes = EKAttributes.bottomFloat
-        attributes.visibleDuration = .infinity
+        attributes.displayDuration = .infinity
         attributes.background = .color(color: .dimmedBackground)
         attributes.backgroundInteraction = .dismiss
         attributes.contentInteraction = .absorbTouches
