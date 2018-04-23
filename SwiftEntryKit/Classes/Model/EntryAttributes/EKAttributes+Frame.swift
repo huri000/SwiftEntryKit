@@ -10,14 +10,43 @@ import UIKit
 
 public extension EKAttributes {
     
+    /** Describes the frame of the entry. It's limitations, width and offset from the anchor (top / bottom of the screen) */
     public struct Frame {
+        
+        /** Describes the width constraint of the entry */
+        public enum WidthConstraint {
+            
+            /** Ratio constraint to screen width */
+            case ratio(value: CGFloat)
+            
+            /** Offset from each side of the screen */
+            case offset(value: CGFloat)
+        }
+        
+        /** The width constraint of the entry */
+        public var widthConstraint: WidthConstraint
+        
+        /** The vertical offset from the top or bottom anchor */
         public var verticalOffset: CGFloat
-        public var horizontalOffset: CGFloat
+        
+        /** Corner radio of the entry */
         public var cornerRadius: CGFloat
         
-        public init(verticalOffset: CGFloat = 10, horizontalOffset: CGFloat = 16, cornerRadius: CGFloat = 10) {
+        var hasVerticalOffset: Bool {
+            return verticalOffset > 0
+        }
+        
+        public static var full: Frame {
+            return Frame(verticalOffset: 0, widthConstraint: .offset(value: 0), cornerRadius: 0)
+        }
+        
+        public static var float: Frame {
+            return Frame(verticalOffset: 10, widthConstraint: .offset(value: 20), cornerRadius: 10)
+        }
+        
+        public init(verticalOffset: CGFloat = 10, widthConstraint: WidthConstraint = .offset(value: 20), cornerRadius: CGFloat = 10) {
             self.verticalOffset = verticalOffset
-            self.horizontalOffset = horizontalOffset
+            self.widthConstraint = widthConstraint
             self.cornerRadius = cornerRadius
         }
     }

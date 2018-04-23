@@ -49,9 +49,9 @@ class EKRootViewController: UIViewController {
     // MARK: Setup
     func configure(entryView: UIView, attributes: EKAttributes) {
         
-        lastAttributes = attributes
-        
         removeLastEntry(keepWindow: true)
+
+        lastAttributes = attributes
         
         let entryScrollView = EKScrollView(withEntryDelegate: self)
         view.addSubview(entryScrollView)
@@ -62,7 +62,10 @@ class EKRootViewController: UIViewController {
 
     // Removes last entry - can keep the window 'ON' if necessary
     func removeLastEntry(keepWindow: Bool) {
-        if lastAttributes.options.overridesPreviousEntry {
+        guard let attributes = lastAttributes else {
+            return
+        }
+        if attributes.options.exitBehavior.isOverriden {
             lastEntry?.removePromptly()
         } else {
             rollOutLastEntry()

@@ -13,15 +13,17 @@ public struct EKAttributes {
 
     private static var stretched: EKAttributes {
         var attributes = EKAttributes()
-        attributes.shape = .stretched
+        attributes.frame = .full
+        attributes.options.safeAreaBehavior = .empty(fillSafeArea: true)
         attributes.level = .aboveStatusBar
-        attributes.rollOutAdditionalAnimation = nil
+        attributes.options.exitBehavior = .animated(animation: nil)
         return attributes
     }
     
     private static var floating: EKAttributes {
         var attributes = EKAttributes()
-        attributes.shape = .floating(info: EKAttributes.Frame())
+        attributes.frame = .float
+        attributes.options.safeAreaBehavior = .empty(fillSafeArea: false)
         attributes.level = .aboveStatusBar
         return attributes
     }
@@ -55,11 +57,11 @@ public struct EKAttributes {
     
     // MARK: - Layout Presentation, Positioning and Animation
     
-    /** The location of the entry at the sceeen */
+    /** The location of the entry inside the screen */
     public var location = Location.top
     
-    /** The shape of the entry */
-    public var shape = Shape.stretched
+    /** The frame attributes of the entry */
+    public var frame = Frame()
     
     /** Describes the entry's background appearance while it shows */
     public var contentBackground = BackgroundStyle.visualEffect(style: .light)
@@ -78,13 +80,15 @@ public struct EKAttributes {
 
      - note: This animation is applied additionally to *exitAnimation* which is the default
      */
-    public var rollOutAdditionalAnimation: Animation? = Animation(duration: 0.6, types: [.scale])
     
     /** Entry presentation level */
     public var level = WindowLevel.aboveStatusBar
     
     // TODO: Add Shadow
     public var shadow: Shadow!
+    
+    // TODO: Add corners
+    public var corners: Corners!
     
     // MARK: - User Interaction
     

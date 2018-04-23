@@ -44,10 +44,10 @@ class ViewController: UIViewController {
     private func showNote() {
         var attributes = EKAttributes.default
         attributes.location = .top
-        attributes.shape = .stretched
+        attributes.frame = .full
         attributes.level = .belowStatusBar
         attributes.contentBackground = .color(color: .satCyan)
-        attributes.rollOutAdditionalAnimation = nil
+        attributes.options.exitBehavior = .animated(animation: nil)
 
         let labelContent = EKProperty.LabelContent(text: "Pssst! I have something to tell you...", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .white))
         let contentView = EKNoteMessageView(with: labelContent)
@@ -58,11 +58,11 @@ class ViewController: UIViewController {
     private func showProcessingNote() {
         var attributes = EKAttributes.default
         attributes.location = .top
-        attributes.shape = .stretched
+        attributes.frame = .full
         attributes.level = .belowStatusBar
         attributes.contentInteraction = .absorbTouches
         attributes.visibleDuration = .infinity
-        attributes.rollOutAdditionalAnimation = nil
+        attributes.options.exitBehavior = .animated(animation: nil)
         attributes.contentBackground = .color(color: .pinky)
         
         let labelContent = EKProperty.LabelContent(text: "Waiting for the goodies to arrive!", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .white))
@@ -73,13 +73,13 @@ class ViewController: UIViewController {
     
     private func showStatusBarMessage() {
         var attributes = EKAttributes.default
-        attributes.options.ignoreSafeArea = true
         attributes.location = .top
-        attributes.shape = .stretched
+        attributes.frame = .full
         attributes.level = .aboveStatusBar
         attributes.contentInteraction = .absorbTouches
         attributes.contentBackground = .color(color: .greenGrass)
-        attributes.rollOutAdditionalAnimation = nil
+        attributes.options.safeAreaBehavior = .overriden
+        attributes.options.exitBehavior = .animated(animation: nil)
         
         let statusBarHeight = UIApplication.shared.statusBarFrame.maxY
         
@@ -126,7 +126,7 @@ class ViewController: UIViewController {
         attributes.background = .color(color: .dimmedBackground)
         attributes.backgroundInteraction = .dismiss
         attributes.contentInteraction = .absorbTouches
-        attributes.shape = .floating(info: EKAttributes.Frame(cornerRadius: 20))
+        attributes.frame = EKAttributes.Frame(verticalOffset: 10, widthConstraint: .offset(value: 20), cornerRadius: 20)
         
         let contentView = EKPopUpMessageView(with: message)
         contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)

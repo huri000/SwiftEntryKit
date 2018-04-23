@@ -11,6 +11,7 @@ import Foundation
 // TODO: Add shadow
 public extension EKAttributes {
     public struct Shadow { }
+    public struct Corners { }
 }
 
 

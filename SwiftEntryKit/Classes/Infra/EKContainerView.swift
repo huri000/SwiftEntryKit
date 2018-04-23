@@ -26,7 +26,19 @@ public class EKContainerView: UIView {
             contentView = content.view
         }
     }
+    
+    var attributes: EKAttributes {
+        return content.attributes
+    }
 
+    public init() {
+        super.init(frame: UIScreen.main.bounds)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var contentView: UIView! {
         didSet {
             oldValue?.removeFromSuperview()
@@ -35,13 +47,8 @@ public class EKContainerView: UIView {
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
             
-            switch content.attributes.shape {
-            case .floating(info: let info):
-                contentView.layer.cornerRadius = info.cornerRadius
-            default:
-                break
-            }
-            
+            contentView.layer.cornerRadius = attributes.frame.cornerRadius
+
             applyBackgroundToContentView()
         }
     }
@@ -53,22 +60,22 @@ public class EKContainerView: UIView {
         let backgroundView = EKBackgroundView()
         backgroundView.background = attributes.contentBackground
         
-        switch attributes.shape {
-        case .stretched:
+        switch attributes.options.safeAreaBehavior {
+        case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea:
             insertSubview(backgroundView, at: 0)
             backgroundView.layoutToSuperview(axis: .horizontally)
+            
             var topInset: CGFloat = 0
             var bottomInset: CGFloat = 0
-            if !attributes.options.ignoreSafeArea {
-                if attributes.location.isTop {
-                    topInset = -EKWindowProvider.safeAreaInsets.top
-                } else {
-                    bottomInset = EKWindowProvider.safeAreaInsets.bottom
-                }
+            if attributes.location.isTop {
+                topInset = -EKWindowProvider.safeAreaInsets.top
+            } else {
+                bottomInset = EKWindowProvider.safeAreaInsets.bottom
             }
+            
             backgroundView.layoutToSuperview(.top, offset: topInset)
             backgroundView.layoutToSuperview(.bottom, offset: bottomInset)
-        case .floating(info: _):
+        default:
             contentView.insertSubview(backgroundView, at: 0)
             backgroundView.fillSuperview()
         }

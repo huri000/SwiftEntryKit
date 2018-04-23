@@ -55,9 +55,9 @@ class EKScrollView: UIScrollView {
         // Define a spacer to catch top / bottom offsets
         var spacerView: UIView!
         let safeAreaInsets = EKWindowProvider.safeAreaInsets
-        let ignoreSafeArea = attributes.options.ignoreSafeArea
+        let overrideSafeArea = attributes.options.safeAreaBehavior.isOverriden
 
-        if !ignoreSafeArea && safeAreaInsets.hasVerticalInsets {
+        if !overrideSafeArea && safeAreaInsets.hasVerticalInsets {
             spacerView = UIView()
             addSubview(spacerView)
             spacerView.set(.height, of: safeAreaInsets.top)
@@ -71,17 +71,13 @@ class EKScrollView: UIScrollView {
             messageBottomInSuperview = .top
             messageTopInSuperview = .bottom
             
-            if ignoreSafeArea {
+            if overrideSafeArea {
                 inOffset = -safeAreaInsets.top
             } else {
                 inOffset = safeAreaInsets.top
             }
-            switch attributes.shape {
-            case .floating(info: let info):
-                inOffset += info.verticalOffset
-            default:
-                break
-            }
+            
+            inOffset += attributes.frame.verticalOffset
             outOffset = -safeAreaInsets.top
             
             spacerView?.layout(.bottom, to: .top, of: self)
@@ -90,13 +86,7 @@ class EKScrollView: UIScrollView {
             messageBottomInSuperview = .bottom
             messageTopInSuperview = .top
             
-            inOffset = -safeAreaInsets.bottom
-            switch attributes.shape {
-            case .floating(info: let info):
-                inOffset -= info.verticalOffset
-            default:
-                break
-            }
+            inOffset = -safeAreaInsets.bottom - attributes.frame.verticalOffset
             
             spacerView?.layout(.top, to: .bottom, of: self)
         }
@@ -110,15 +100,14 @@ class EKScrollView: UIScrollView {
         outConstraint = layout(messageTopInSuperview, to: messageBottomInSuperview, of: superview!, offset: outOffset, priority: .must)
         inConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
         
-        // Layout the scroll view horizontally
-        let horizontalInsets: CGFloat
-        switch attributes.shape {
-        case .stretched:
-            horizontalInsets = 0
-        case .floating(info: let info):
-            horizontalInsets = info.horizontalOffset
+        // Layout the scroll view horizontally inside the screen
+        switch attributes.frame.widthConstraint {
+        case .offset(value: let value):
+            layoutToSuperview(axis: .horizontally, offset: value)
+        case .ratio(value: let ratio):
+            layoutToSuperview(.centerX)
+            layoutToSuperview(.width, ratio: ratio)
         }
-        layoutToSuperview(axis: .horizontally, offset: horizontalInsets)
         
         animateIn()
         
@@ -171,15 +160,17 @@ class EKScrollView: UIScrollView {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
-        if let rollOutAnimation = attributes.rollOutAdditionalAnimation, rollOut {
-            UIView.animate(withDuration: rollOutAnimation.duration, delay: 0, options: [.curveEaseOut], animations: {
-                if rollOutAnimation.types.contains(.scale) {
-                    self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                }
-                if rollOutAnimation.types.contains(.fade) {
-                    self.alpha = 0
-                }
-            }, completion: nil)
+        if case .animated(animation: let animation) = attributes.options.exitBehavior, rollOut {
+            if let animation = animation {
+                UIView.animate(withDuration: animation.duration, delay: 0, options: [.curveEaseOut], animations: {
+                    if animation.types.contains(.scale) {
+                        self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+                    }
+                    if animation.types.contains(.fade) {
+                        self.alpha = 0
+                    }
+                }, completion: nil)
+            }
         }
         
         UIView.animate(withDuration: attributes.exitAnimation.duration, delay: 0.1, options: [.beginFromCurrentState], animations: {

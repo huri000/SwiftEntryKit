@@ -32,20 +32,56 @@ public extension EKAttributes {
             }
         }
         
+        /** Describes safe area relation */
+        public enum SafeAreaBehavior {
+            
+            /** Entry overrides safe area */
+            case overriden
+            
+            /** The entry shows outs. But can optionally be colored */
+            case empty(fillSafeArea: Bool)
+            
+            public var isOverriden: Bool {
+                switch self {
+                case .overriden:
+                    return true
+                default:
+                    return false
+                }
+            }
+        }
+        
+        /** Describes the previous entry's behavior when the current entry shows */
+        public enum ExitBehavior {
+            
+            /** Overrides the previous entry - The previous entry disappears promptly when the current one shows */
+            case overriden
+            
+            /** Animate the previous entry - The previous entry rolls out when the current one shows.
+             
+             - note: This animation is applied additionally to *exitAnimation* which is the default exit animation
+             */
+            case animated(animation: Animation?)
+            
+            public var isOverriden: Bool {
+                switch self {
+                case .overriden:
+                    return true
+                default:
+                    return false
+                }
+            }
+        }
+        
+        /** Describes the previous entry behaviour when the current entry shows
+         */
+        public var exitBehavior = ExitBehavior.animated(animation: Animation(duration: 0.6, types: [.scale]))
+        
         /** Describes the scrolling behavior of the entry */
         public var scroll = Scroll.edgeCrossingDisabled
         
-        /**
-         Whether the entry should override the previous entry that is currently presented.
-         If 'true', the previous entry disappears immediately leaving vacant space to the current entry.
-         If 'false', the previous entry rolls out animatedly.
-         
-         - note: See *rollOutAdditionalAnimation* and *exitAnimation* for exit animation.
-         */
-        public var overridesPreviousEntry = false
-        
-        /** Signals the presentor to consider or ignore safe area.
+        /** Signals the presentor to overriden or ignore safe area.
          Can be used to present content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
-        public var ignoreSafeArea = false
+        public var safeAreaBehavior = SafeAreaBehavior.empty(fillSafeArea: true)
     }
 }
