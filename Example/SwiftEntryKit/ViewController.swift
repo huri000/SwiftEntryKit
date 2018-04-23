@@ -56,9 +56,7 @@ class ViewController: UIViewController {
     }
     
     private func showProcessingNote() {
-        var attributes = EKAttributes.default
-        attributes.location = .top
-        attributes.frame = .full
+        var attributes = EKAttributes.topToast
         attributes.level = .belowStatusBar
         attributes.contentInteraction = .absorbTouches
         attributes.visibleDuration = .infinity

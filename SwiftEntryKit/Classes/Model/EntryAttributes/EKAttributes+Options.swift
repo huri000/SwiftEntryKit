@@ -83,5 +83,8 @@ public extension EKAttributes {
         /** Signals the presentor to overriden or ignore safe area.
          Can be used to present content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
         public var safeAreaBehavior = SafeAreaBehavior.empty(fillSafeArea: true)
+        
+        /** Haptic notification feedback. */
+        public var useHapticFeedback = true
     }
 }

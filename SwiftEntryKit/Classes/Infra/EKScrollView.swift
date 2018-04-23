@@ -111,6 +111,8 @@ class EKScrollView: UIScrollView {
         
         animateIn()
         
+        makeHapticFeedback()
+        
         setupTapGestureRecognizer()
     }
 
@@ -130,6 +132,13 @@ class EKScrollView: UIScrollView {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
         tapGestureRecognizer.numberOfTapsRequired = 1
         addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    private func makeHapticFeedback() {
+        guard #available(iOS 10.0, *) else {
+            return
+        }
+        HapticFeedbackGenerator.notification(type: .success)
     }
     
     // MARK: State Change / Animations

@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 public struct EKAttributes {
-        
-    // MARK: - Layout Presentation, Positioning and Animation
     
     /** The location of the entry inside the screen */
     public var location = Location.top
@@ -50,7 +48,7 @@ public struct EKAttributes {
     // Describes what happens when the user interacts the content, dismisses the content by default
     // Triggered when the user taps te entry
     public var contentInteraction = UserInteraction.dismiss
-    
+
     // MARK: Additional Options
     
     /** Additional options that could be applied to an *EKAttributes* instance */
