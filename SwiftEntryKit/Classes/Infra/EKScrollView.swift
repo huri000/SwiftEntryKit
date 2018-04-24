@@ -126,7 +126,7 @@ class EKScrollView: UIScrollView {
     }
     
     private func setupTapGestureRecognizer() {
-        guard attributes.contentInteraction.isResponsive else {
+        guard attributes.entryInteraction.isResponsive else {
             return
         }
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
@@ -189,12 +189,13 @@ class EKScrollView: UIScrollView {
         })
     }
     
-    private func scheduleAnimateOut() {
+    private func scheduleAnimateOut(withDelay delay: TimeInterval? = nil) {
         outDispatchWorkItem?.cancel()
         outDispatchWorkItem = DispatchWorkItem { [weak self] in
             self?.animateOut(rollOut: false)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + attributes.entranceAnimation.duration + attributes.displayDuration, execute: outDispatchWorkItem)
+        let delay = attributes.entranceAnimation.duration + (delay ?? attributes.displayDuration)
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: outDispatchWorkItem)
     }
     
     private func animateIn() {
@@ -222,12 +223,12 @@ class EKScrollView: UIScrollView {
     
     // MARK: Tap Gesture Handler
     @objc func tapGestureRecognized() {
-        switch attributes.contentInteraction.defaultAction {
+        switch attributes.entryInteraction.defaultAction {
         case .dismissEntry:
             animateOut(rollOut: true)
             fallthrough
         default:
-            attributes.contentInteraction.customActions.forEach { $0() }
+            attributes.entryInteraction.customActions.forEach { $0() }
         }
     }
 }
@@ -251,7 +252,7 @@ extension EKScrollView: UIScrollViewDelegate {
 extension EKScrollView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if attributes.contentInteraction.isDelayExit {
+        if attributes.entryInteraction.isDelayExit {
             outDispatchWorkItem?.cancel()
         }
         //        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
@@ -260,7 +261,7 @@ extension EKScrollView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if attributes.contentInteraction.isDelayExit {
+        if attributes.entryInteraction.isDelayExit {
             scheduleAnimateOut()
         }
         //        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {

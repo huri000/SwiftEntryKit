@@ -32,7 +32,7 @@ public extension EKAttributes {
         /** Corner radio of the entry */
         public var cornerRadius: CGFloat
         
-        var hasVerticalOffset: Bool {
+        public var hasVerticalOffset: Bool {
             return verticalOffset > 0
         }
         

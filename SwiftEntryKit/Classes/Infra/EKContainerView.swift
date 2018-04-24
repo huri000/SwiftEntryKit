@@ -58,7 +58,7 @@ public class EKContainerView: UIView {
         let attributes = content.attributes
         
         let backgroundView = EKBackgroundView()
-        backgroundView.background = attributes.contentBackground
+        backgroundView.background = attributes.entryBackground
         
         switch attributes.options.safeAreaBehavior {
         case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea:

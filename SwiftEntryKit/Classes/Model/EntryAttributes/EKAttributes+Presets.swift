@@ -17,7 +17,7 @@ public extension EKAttributes {
         var attributes = EKAttributes()
         attributes.frame = .full
         attributes.options.safeAreaBehavior = .empty(fillSafeArea: true)
-        attributes.level = .aboveStatusBar
+        attributes.windowLevel = .aboveStatusBar
         attributes.options.exitBehavior = .animated(animation: nil)
         return attributes
     }
@@ -27,15 +27,7 @@ public extension EKAttributes {
         var attributes = EKAttributes()
         attributes.frame = .float
         attributes.options.safeAreaBehavior = .empty(fillSafeArea: false)
-        attributes.level = .aboveStatusBar
-        return attributes
-    }
-    
-    /** Preset for status bar entry - appears on top of the status bar */
-    public static var statusBar: EKAttributes {
-        var attributes = topToast
-        attributes.contentInteraction = .absorbTouches
-        attributes.options.safeAreaBehavior = .overriden
+        attributes.windowLevel = .aboveStatusBar
         return attributes
     }
     
@@ -64,6 +56,14 @@ public extension EKAttributes {
     public static var topToast: EKAttributes {
         var attributes = toast
         attributes.position = .top
+        return attributes
+    }
+    
+    /** Preset for status bar entry - appears on top of the status bar */
+    public static var statusBar: EKAttributes {
+        var attributes = topToast
+        attributes.entryInteraction = .absorbTouches
+        attributes.options.safeAreaBehavior = .overriden
         return attributes
     }
 }

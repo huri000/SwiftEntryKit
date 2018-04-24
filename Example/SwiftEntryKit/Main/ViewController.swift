@@ -11,26 +11,69 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    private let dataSource = [
-        Message(title: "Floating Top Entry", subtitle: "This is a floating top entry, this entry animates top-down, you can set margin and round corners for that entry"),
-        Message(title: "Floating Bottom Entry", subtitle: "This is a floating bottom entry, this entry animates bottom-up, you can set margin and round corners for that entry"),
-        Message(title: "Stretched Top Entry", subtitle: "This is a stretched top entry. This entry animates top-down, leaves no side margins. Also leaves  empty space outside the safe area"),
-        Message(title: "Stretched Bottom Entry", subtitle: "This is a stretched bottom entry. This entry animates bottom-up, leaves no side margins. Also leaves empty space outside the safe area"),
-        Message(title: "Note", subtitle: "This note comes from above and positioned in a window below the status bar level"),
-        Message(title: "Processing Note", subtitle: "This note comes from above and positioned in a window below the status bar level. It indicates that something is being calculated at the background"),
-        Message(title: "Status Bar Message", subtitle: "This note comes from above and positioned in a window below the status bar level. It indicates that something is being calculated at the background"),
-        Message(title: "Custom Alert", subtitle: "This is a custom view that is positioned at the bottom")
-        ]
-    
+    private var dataSource: [EntryAttributesDescription] = []
     private let tableView = UITableView()
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupDataSource()
         setupTableView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+    }
+    
+    // MARK: Setup
+    private func setupDataSource() {
+        var attributes = EKAttributes.topFloat
+        attributes.entryBackground = .color(color: .satCyan)
+        var description = EntryAttributesDescription(with: attributes, title: "Top Floating Banner")
+        dataSource.append(description)
+        
+        description = EntryAttributesDescription(with: .topToast, title: "Top Toast")
+        dataSource.append(description)
+        
+        attributes = EKAttributes.bottomFloat
+        attributes.entryBackground = .color(color: .redish)
+        attributes.entryInteraction = .delayExit(by: 3)
+        description = EntryAttributesDescription(with: attributes, title: "Bottom Floating Banner")
+        dataSource.append(description)
+
+        description = EntryAttributesDescription(with: .bottomToast, title: "Bottom Toast")
+        dataSource.append(description)
+        
+        attributes = EKAttributes.topToast
+        attributes.windowLevel = .belowStatusBar
+        attributes.entryBackground = .color(color: .satCyan)
+        attributes.options.exitBehavior = .animated(animation: nil)
+        description = EntryAttributesDescription(with: attributes, title: "Top Single Line Note")
+        dataSource.append(description)
+        
+        attributes = EKAttributes.topToast
+        attributes.windowLevel = .belowStatusBar
+        attributes.entryInteraction = .absorbTouches
+        attributes.displayDuration = .infinity
+        attributes.options.exitBehavior = .animated(animation: nil)
+        attributes.entryBackground = .color(color: .pinky)
+        description = EntryAttributesDescription(with: attributes, title: "Top Single Line Processing Note (Infinate Duration)")
+        dataSource.append(description)
+        
+        attributes = EKAttributes.statusBar
+        attributes.entryBackground = .color(color: .greenGrass)
+        attributes.options.exitBehavior = .animated(animation: nil)
+        description = EntryAttributesDescription(with: attributes, title: "Status Bar Temporary Cover")
+        dataSource.append(description)
+        
+        attributes = EKAttributes.bottomFloat
+        attributes.displayDuration = .infinity
+        attributes.screenBackground = .color(color: .dimmedBackground)
+        attributes.screenInteraction = .dismiss
+        attributes.entryInteraction = .absorbTouches
+        attributes.frame = EKAttributes.Frame(verticalOffset: 10, widthConstraint: .offset(value: 20), cornerRadius: 20)
+        description = EntryAttributesDescription(with: attributes, title: "Bottom Floating Custom View")
+        dataSource.append(description)
     }
     
     private func setupTableView() {
@@ -41,39 +84,23 @@ class ViewController: UIViewController {
         tableView.fillSuperview()
     }
 
-    private func showNote() {
-        var attributes = EKAttributes.default
-        attributes.position = .top
-        attributes.frame = .full
-        attributes.level = .belowStatusBar
-        attributes.contentBackground = .color(color: .satCyan)
-        attributes.options.exitBehavior = .animated(animation: nil)
-
+    // MARK: Entry Samples
+    
+    private func showNote(attributes: EKAttributes) {
         let labelContent = EKProperty.LabelContent(text: "Pssst! I have something to tell you...", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .white))
         let contentView = EKNoteMessageView(with: labelContent)
         
         show(view: contentView, attributes: attributes)
     }
     
-    private func showProcessingNote() {
-        var attributes = EKAttributes.topToast
-        attributes.level = .belowStatusBar
-        attributes.contentInteraction = .absorbTouches
-        attributes.displayDuration = .infinity
-        attributes.options.exitBehavior = .animated(animation: nil)
-        attributes.contentBackground = .color(color: .pinky)
-        
+    private func showProcessingNote(attributes: EKAttributes) {
         let labelContent = EKProperty.LabelContent(text: "Waiting for the goodies to arrive!", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .white))
         
         let contentView = EKProcessingNoteMessageView(with: labelContent, activityIndicator: .white)
         show(view: contentView, attributes: attributes)
     }
     
-    private func showStatusBarMessage() {
-        var attributes = EKAttributes.statusBar        
-        attributes.contentBackground = .color(color: .greenGrass)
-        attributes.options.exitBehavior = .animated(animation: nil)
-        
+    private func showStatusBarMessage(attributes: EKAttributes) {
         let statusBarHeight = UIApplication.shared.statusBarFrame.maxY
         
         let contentView: UIView
@@ -92,8 +119,7 @@ class ViewController: UIViewController {
         show(view: contentView, attributes: attributes)
     }
     
-    private func showNotificationMessage(attributes: EKAttributes = .topToast, textColor: UIColor, imageName: String) {
-        
+    private func showNotificationMessage(attributes: EKAttributes, textColor: UIColor, imageName: String) {
         let title = EKProperty.LabelContent(text: "SHOPPING DISCOUNT", style: EKProperty.Label(font: UIFont.boldSystemFont(ofSize: 16), color: textColor))
         let description = EKProperty.LabelContent(text: "50% discount until midnight at Luzius Bakery", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: textColor))
         let time = EKProperty.LabelContent(text: "20:59", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 12), color: textColor))
@@ -105,7 +131,7 @@ class ViewController: UIViewController {
         show(view: contentView, attributes: attributes)
     }
     
-    private func showCustomNotificationMessage() {
+    private func showCustomNotificationMessage(attributes: EKAttributes) {
         let title = EKProperty.LabelContent(text: "Awesome!", style: EKProperty.Label(font: UIFont.boldSystemFont(ofSize: 26), color: .darkText))
         let description = EKProperty.LabelContent(text: "You are using SwiftEntryKit, and this is a customized alert view that is floating at the bottom.", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 16), color: .darkSubText))
         let button = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "Got it!", style: EKProperty.Label(font: UIFont.boldSystemFont(ofSize: 16), color: .white)), backgroundColor: .amber)
@@ -113,13 +139,6 @@ class ViewController: UIViewController {
         let message = EKPopUpMessage(title: title, description: description, button: button, image: image) {
             EKWindowProvider.shared.dismiss()
         }
-        
-        var attributes = EKAttributes.bottomFloat
-        attributes.displayDuration = .infinity
-        attributes.background = .color(color: .dimmedBackground)
-        attributes.backgroundInteraction = .dismiss
-        attributes.contentInteraction = .absorbTouches
-        attributes.frame = EKAttributes.Frame(verticalOffset: 10, widthConstraint: .offset(value: 20), cornerRadius: 20)
         
         let contentView = EKPopUpMessageView(with: message)
         contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
@@ -138,28 +157,24 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let attributes = dataSource[indexPath.row].attributes
         switch indexPath.row {
         case 0:
-            var attributes = EKAttributes.topFloat
-            attributes.contentBackground = .color(color: .satCyan)
             showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
         case 1:
-            var attributes = EKAttributes.bottomFloat
-            attributes.contentBackground = .color(color: .redish)
-            attributes.contentInteraction.defaultAction = .delayExit
-            showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
+            showNotificationMessage(attributes: attributes, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
         case 2:
-            showNotificationMessage(attributes: .topToast, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
+            showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
         case 3:
-            showNotificationMessage(attributes: .bottomToast, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
+            showNotificationMessage(attributes: attributes, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
         case 4:
-            showNote()
+            showNote(attributes: attributes)
         case 5:
-            showProcessingNote()
+            showProcessingNote(attributes: attributes)
         case 6:
-            showStatusBarMessage()
+            showStatusBarMessage(attributes: attributes)
         case 7:
-            showCustomNotificationMessage()
+            showCustomNotificationMessage(attributes: attributes)
         default:
             fatalError()
         }
@@ -171,7 +186,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EntryTableViewCell.self), for: indexPath) as! EntryTableViewCell
-        cell.message = dataSource[indexPath.row]
+        cell.attributesDescription = dataSource[indexPath.row]
         return cell
     }
     

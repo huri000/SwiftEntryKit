@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14333AE3208FA09E00DCFC7B /* AttributesDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14333AE2208FA09E00DCFC7B /* AttributesDescription.swift */; };
 		14A40C63208B7AA800B79474 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* ComposeViewController.swift */; };
 		14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */; };
 		14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		05385903DACAE3FCA44909E1 /* Pods-SwiftEntryKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKit_Example/Pods-SwiftEntryKit_Example.release.xcconfig"; sourceTree = "<group>"; };
+		14333AE2208FA09E00DCFC7B /* AttributesDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesDescription.swift; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
@@ -89,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		149B2B57208F0C22007C829F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				14F367FE208B585E001E8F56 /* ViewController.swift */,
+				14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */,
+				14333AE2208FA09E00DCFC7B /* AttributesDescription.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		14C894F3208E70A4003D8CE3 /* Composition */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,9 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				14F367FE208B585E001E8F56 /* ViewController.swift */,
+				149B2B57208F0C22007C829F /* Main */,
 				14C894F3208E70A4003D8CE3 /* Composition */,
-				14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */,
 				14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */,
 				14F36802208B5B3B001E8F56 /* MessageData.swift */,
 				14C894FC208E7DD0003D8CE3 /* Utils */,
@@ -405,6 +416,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				14C894FE208E7DDE003D8CE3 /* Font.swift in Sources */,
 				14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */,
+				14333AE3208FA09E00DCFC7B /* AttributesDescription.swift in Sources */,
 				14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */,
 				14F36801208B585E001E8F56 /* EntryTableViewCell.swift in Sources */,
 				14C89502208E83AA003D8CE3 /* WindowLevelTableViewCell.swift in Sources */,

@@ -19,7 +19,7 @@ public extension EKAttributes {
         /** The entry appears at the bottom of the screen. */
         case bottom
         
-        var isTop: Bool {
+        public var isTop: Bool {
             return self == .top
         }
     }

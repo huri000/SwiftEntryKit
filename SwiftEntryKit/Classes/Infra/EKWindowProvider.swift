@@ -63,7 +63,7 @@ public class EKWindowProvider {
         } else {
             entryVC = rootVC!
         }
-        entryWindow.windowLevel = attributes.level.value
+        entryWindow.windowLevel = attributes.windowLevel.value
         entryVC.configure(entryView: messageView, attributes: attributes)
     }
     

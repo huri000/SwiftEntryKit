@@ -57,7 +57,7 @@ class EKRootViewController: UIViewController {
         view.addSubview(entryScrollView)
         entryScrollView.setup(with: entryView, attributes: attributes)
         
-        isResponsive = attributes.backgroundInteraction.isResponsive
+        isResponsive = attributes.screenInteraction.isResponsive
     }
 
     // Removes last entry - can keep the window 'ON' if necessary
@@ -82,12 +82,12 @@ class EKRootViewController: UIViewController {
 extension EKRootViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        switch lastAttributes.backgroundInteraction.defaultAction {
+        switch lastAttributes.screenInteraction.defaultAction {
         case .dismissEntry:
             rollOutLastEntry()
             fallthrough
         default:
-            lastAttributes.backgroundInteraction.customActions.forEach { $0() }
+            lastAttributes.screenInteraction.customActions.forEach { $0() }
         }
     }
 }
@@ -96,7 +96,7 @@ extension EKRootViewController {
 extension EKRootViewController: EntryScrollViewDelegate {
     
     func changeToActive(withAttributes attributes: EKAttributes) {
-        changeBackground(to: attributes.background, duration: attributes.entranceAnimation.duration)
+        changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.duration)
     }
     
     func changeToInactive(withAttributes attributes: EKAttributes) {
