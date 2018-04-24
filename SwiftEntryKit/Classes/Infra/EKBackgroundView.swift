@@ -13,12 +13,13 @@ class EKBackgroundView: UIView {
     // MARK: Props
     private let visualEffectView: UIVisualEffectView
     private let imageView: UIImageView
+    private let gradientView: GradientView
     
     // MARK: Setup
     init() {
         imageView = UIImageView()
         visualEffectView = UIVisualEffectView(effect: nil)
-
+        gradientView = GradientView()
         super.init(frame: UIScreen.main.bounds)
         
         addSubview(imageView)
@@ -27,6 +28,9 @@ class EKBackgroundView: UIView {
         
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
+        
+        addSubview(gradientView)
+        gradientView.fillSuperview()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,6 +44,7 @@ class EKBackgroundView: UIView {
                 return
             }
             
+            var gradient: EKAttributes.BackgroundStyle.Gradient?
             var backgroundEffect: UIBlurEffect?
             var backgroundColor: UIColor = .clear
             var backgroundImage: UIImage?
@@ -47,6 +52,8 @@ class EKBackgroundView: UIView {
             switch background {
             case .color(color: let color):
                 backgroundColor = color
+            case .gradient(gradient: let value):
+                gradient = value
             case .image(image: let image):
                 backgroundImage = image
             case .visualEffect(style: let style):
@@ -55,6 +62,7 @@ class EKBackgroundView: UIView {
                 break
             }
         
+            gradientView.gradient = gradient
             visualEffectView.effect = backgroundEffect
             self.layer.backgroundColor = backgroundColor.cgColor
             imageView.image = backgroundImage

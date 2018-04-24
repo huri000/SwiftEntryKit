@@ -28,7 +28,8 @@ class ViewController: UIViewController {
     // MARK: Setup
     private func setupDataSource() {
         var attributes = EKAttributes.topFloat
-        attributes.entryBackground = .color(color: .satCyan)
+        let gradient = EKAttributes.BackgroundStyle.Gradient(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1))
+        attributes.entryBackground = .gradient(gradient: gradient) // .color(color: .satCyan)
         var description = EntryAttributesDescription(with: attributes, title: "Top Floating Banner")
         dataSource.append(description)
         
@@ -65,7 +66,7 @@ class ViewController: UIViewController {
         attributes.options.exitBehavior = .animated(animation: nil)
         description = EntryAttributesDescription(with: attributes, title: "Status Bar Temporary Cover")
         dataSource.append(description)
-        
+        awakeFromNib()
         attributes = EKAttributes.bottomFloat
         attributes.displayDuration = .infinity
         attributes.screenBackground = .color(color: .dimmedBackground)

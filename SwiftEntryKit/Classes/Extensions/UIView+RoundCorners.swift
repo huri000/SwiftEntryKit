@@ -7,9 +7,9 @@
 
 import Foundation
 
-public extension UIRectCorner {
-    public static let top: UIRectCorner = [.topLeft, .topRight]
-    public static let bottom: UIRectCorner = [.bottomLeft, .bottomRight]
+extension UIRectCorner {
+    static let top: UIRectCorner = [.topLeft, .topRight]
+    static let bottom: UIRectCorner = [.bottomLeft, .bottomRight]
 }
 
 extension UIView {

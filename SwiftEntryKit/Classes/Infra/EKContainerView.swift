@@ -30,14 +30,6 @@ public class EKContainerView: UIView {
     var attributes: EKAttributes {
         return content.attributes
     }
-
-    public init() {
-        super.init(frame: UIScreen.main.bounds)
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     private var contentView: UIView! {
         didSet {
@@ -46,21 +38,18 @@ public class EKContainerView: UIView {
             contentView.clipsToBounds = true
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
-                        
+            
             applyBackgroundToContentView()
         }
     }
+
+    // MARK: Setup
+    public init() {
+        super.init(frame: UIScreen.main.bounds)
+    }
     
-    private func applyRoundCorners() {
-        switch attributes.roundCorners {
-        case .all(radius: let radius):
-            contentView.layer.cornerRadius = radius
-        case .bottom(radius: let radius), .top(radius: let radius):
-            let corners = attributes.roundCorners.cornerValues
-            contentView.roundCorners(by: corners.value, radius: radius)
-        case .none:
-            break
-        }
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     public override func layoutSubviews() {
@@ -68,6 +57,19 @@ public class EKContainerView: UIView {
         applyRoundCorners()
     }
     
+    
+    // Apply round corners
+    private func applyRoundCorners() {
+        switch attributes.roundCorners {
+        case .all(radius: let radius), .bottom(radius: let radius), .top(radius: let radius):
+            let corners = attributes.roundCorners.cornerValues
+            contentView.roundCorners(by: corners.value, radius: radius)
+        case .none:
+            break
+        }
+    }
+
+    // Apply background
     private func applyBackgroundToContentView() {
         
         let attributes = content.attributes
