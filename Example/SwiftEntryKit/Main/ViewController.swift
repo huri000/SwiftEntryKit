@@ -71,7 +71,8 @@ class ViewController: UIViewController {
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
-        attributes.frame = EKAttributes.Frame(verticalOffset: 10, widthConstraint: .offset(value: 20), cornerRadius: 20)
+        attributes.roundCorners = .all(radius: 25)
+        attributes.positionConstraints = EKAttributes.PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
         description = EntryAttributesDescription(with: attributes, title: "Bottom Floating Custom View")
         dataSource.append(description)
     }

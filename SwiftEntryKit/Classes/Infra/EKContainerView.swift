@@ -46,11 +46,26 @@ public class EKContainerView: UIView {
             contentView.clipsToBounds = true
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
-            
-            contentView.layer.cornerRadius = attributes.frame.cornerRadius
-
+                        
             applyBackgroundToContentView()
         }
+    }
+    
+    private func applyRoundCorners() {
+        switch attributes.roundCorners {
+        case .all(radius: let radius):
+            contentView.layer.cornerRadius = radius
+        case .bottom(radius: let radius), .top(radius: let radius):
+            let corners = attributes.roundCorners.cornerValues
+            contentView.roundCorners(by: corners.value, radius: radius)
+        case .none:
+            break
+        }
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        applyRoundCorners()
     }
     
     private func applyBackgroundToContentView() {

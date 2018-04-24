@@ -15,7 +15,7 @@ public extension EKAttributes {
     /** Toast preset - The frame fills margins and safe area is filled with background view */
     public static var toast: EKAttributes {
         var attributes = EKAttributes()
-        attributes.frame = .full
+        attributes.positionConstraints = .full
         attributes.options.safeAreaBehavior = .empty(fillSafeArea: true)
         attributes.windowLevel = .aboveStatusBar
         attributes.options.exitBehavior = .animated(animation: nil)
@@ -25,7 +25,8 @@ public extension EKAttributes {
     /** Float preset - The frame margined and safe area is left cleared */
     public static var float: EKAttributes {
         var attributes = EKAttributes()
-        attributes.frame = .float
+        attributes.positionConstraints = .float
+        attributes.roundCorners = .all(radius: 10)
         attributes.options.safeAreaBehavior = .empty(fillSafeArea: false)
         attributes.windowLevel = .aboveStatusBar
         return attributes

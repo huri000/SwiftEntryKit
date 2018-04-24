@@ -24,7 +24,7 @@ class EntryAttributesDescription {
     }
     
     var type: String {
-        if attributes.frame.hasVerticalOffset {
+        if attributes.positionConstraints.hasVerticalOffset {
             return "float"
         } else {
             return "toast"

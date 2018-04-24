@@ -21,7 +21,7 @@ public struct EKAttributes {
     public var displayDuration: TimeInterval = 4 // Use .infinity for infinate duration
     
     /** The frame attributes of the entry */
-    public var frame = Frame()
+    public var positionConstraints = PositionConstraints()
     
     /** Describes the entry's background appearance while it shows */
     public var entryBackground = BackgroundStyle.visualEffect(style: .light)
@@ -51,6 +51,5 @@ public struct EKAttributes {
     // TODO: Add Shadow
     public var shadow: Shadow!
     
-    // TODO: Add corners
-    public var corners: Corners!
+    public var roundCorners = RoundCorners.none
 }

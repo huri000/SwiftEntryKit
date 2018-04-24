@@ -11,10 +11,10 @@ import UIKit
 public extension EKAttributes {
     
     /** Describes the frame of the entry. It's limitations, width and offset from the anchor (top / bottom of the screen) */
-    public struct Frame {
+    public struct PositionConstraints {
         
         /** Describes the width constraint of the entry */
-        public enum WidthConstraint {
+        public enum Width {
             
             /** Ratio constraint to screen width */
             case ratio(value: CGFloat)
@@ -24,30 +24,26 @@ public extension EKAttributes {
         }
         
         /** The width constraint of the entry */
-        public var widthConstraint: WidthConstraint
+        public var width: Width
         
         /** The vertical offset from the top or bottom anchor */
         public var verticalOffset: CGFloat
-        
-        /** Corner radio of the entry */
-        public var cornerRadius: CGFloat
         
         public var hasVerticalOffset: Bool {
             return verticalOffset > 0
         }
         
-        public static var full: Frame {
-            return Frame(verticalOffset: 0, widthConstraint: .offset(value: 0), cornerRadius: 0)
+        public static var full: PositionConstraints {
+            return PositionConstraints(verticalOffset: 0, width: .offset(value: 0))
         }
         
-        public static var float: Frame {
-            return Frame(verticalOffset: 10, widthConstraint: .offset(value: 20), cornerRadius: 10)
+        public static var float: PositionConstraints {
+            return PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
         }
         
-        public init(verticalOffset: CGFloat = 10, widthConstraint: WidthConstraint = .offset(value: 20), cornerRadius: CGFloat = 10) {
+        public init(verticalOffset: CGFloat = 10, width: Width = .offset(value: 20)) {
             self.verticalOffset = verticalOffset
-            self.widthConstraint = widthConstraint
-            self.cornerRadius = cornerRadius
+            self.width = width
         }
     }
 }

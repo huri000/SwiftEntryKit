@@ -77,7 +77,7 @@ class EKScrollView: UIScrollView {
                 inOffset = safeAreaInsets.top
             }
             
-            inOffset += attributes.frame.verticalOffset
+            inOffset += attributes.positionConstraints.verticalOffset
             outOffset = -safeAreaInsets.top
             
             spacerView?.layout(.bottom, to: .top, of: self)
@@ -86,7 +86,7 @@ class EKScrollView: UIScrollView {
             messageBottomInSuperview = .bottom
             messageTopInSuperview = .top
             
-            inOffset = -safeAreaInsets.bottom - attributes.frame.verticalOffset
+            inOffset = -safeAreaInsets.bottom - attributes.positionConstraints.verticalOffset
             
             spacerView?.layout(.top, to: .bottom, of: self)
         }
@@ -101,7 +101,7 @@ class EKScrollView: UIScrollView {
         inConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
         
         // Layout the scroll view horizontally inside the screen
-        switch attributes.frame.widthConstraint {
+        switch attributes.positionConstraints.width {
         case .offset(value: let value):
             layoutToSuperview(axis: .horizontally, offset: value)
         case .ratio(value: let ratio):
