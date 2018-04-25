@@ -53,7 +53,7 @@ class CustomEntryViewController: UIViewController {
         let title = EKProperty.LabelContent(text: "TEST!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .black))
         let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .black))
         let time = EKProperty.LabelContent(text: "12:00", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .black))
-        let image = UIImage(named: "ic_shopping_cart_dark_32pt")!
+        let image = UIImage(named: "ic_info_outline")!
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image)
         let contentView = EKNotificationMessageView(with: content)
         

@@ -119,13 +119,13 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		14C894F3208E70A4003D8CE3 /* Composition */ = {
+		14C894F3208E70A4003D8CE3 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				14A40C62208B7AA800B79474 /* CustomEntryViewController.swift */,
 				14D18CCB2090F53D0019AE7F /* Cells */,
 			);
-			path = Composition;
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		14C894FC208E7DD0003D8CE3 /* Utils */ = {
@@ -196,7 +196,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				149B2B57208F0C22007C829F /* Main */,
-				14C894F3208E70A4003D8CE3 /* Composition */,
+				14C894F3208E70A4003D8CE3 /* Custom */,
 				14C894FC208E7DD0003D8CE3 /* Utils */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,

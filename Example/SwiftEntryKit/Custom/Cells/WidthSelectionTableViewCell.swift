@@ -13,17 +13,19 @@ class WidthSelectionTableViewCell: SelectionTableViewCell {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Entry Width Constraint"
         descriptionValue = "Describes the entry width constraint"
-        insertSegments(by: ["Offset", "Ratio", "Constant"])
+        insertSegments(by: ["Stretch", "20pts Offset", "90% Screen"])
         selectSegment()
     }
     
     private func selectSegment() {
         switch attributesWrapper.attributes.positionConstraints.width {
-        case .offset(value: _):
-            segmentedControl.selectedSegmentIndex = 0
+        case .offset(value: let value):
+            if value == 0 {
+                segmentedControl.selectedSegmentIndex = 0
+            } else {
+                segmentedControl.selectedSegmentIndex = 1
+            }
         case .ratio(value: _):
-            segmentedControl.selectedSegmentIndex = 1
-        case .constant(value: _):
             segmentedControl.selectedSegmentIndex = 2
         default:
             break
@@ -33,11 +35,11 @@ class WidthSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.positionConstraints.width = .offset(value: 20)
+            attributesWrapper.attributes.positionConstraints.width = .offset(value: 0)
         case 1:
-            attributesWrapper.attributes.positionConstraints.width = .ratio(value: 0.9)
+            attributesWrapper.attributes.positionConstraints.width = .offset(value: 20)
         case 2:
-            attributesWrapper.attributes.positionConstraints.width = .constant(value: 300)
+            attributesWrapper.attributes.positionConstraints.width = .ratio(value: 0.9)
         default:
             break
         }

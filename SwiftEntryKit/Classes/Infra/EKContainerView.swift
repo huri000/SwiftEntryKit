@@ -31,7 +31,7 @@ public class EKContainerView: UIView {
         return content.attributes
     }
     
-    private var shadowLayer: CALayer!
+    private var shadowView: UIView!
     
     private var contentView: UIView! {
         didSet {
@@ -41,11 +41,11 @@ public class EKContainerView: UIView {
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
             
+            applyDropShadow()
+
             applyBackgroundToContentView()
             
             applyRoundCorners()
-
-            applyDropShadow()
         }
     }
 
@@ -61,7 +61,6 @@ public class EKContainerView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         applyRoundCorners()
-        shadowLayer?.frame = bounds
     }
     
     // Apply round corners
@@ -76,14 +75,15 @@ public class EKContainerView: UIView {
     
     // Apply drop shadow
     private func applyDropShadow() {
-        shadowLayer?.removeFromSuperlayer()
+        shadowView?.removeFromSuperview()
         switch attributes.shadow {
         case .active(with: let value):
-            shadowLayer = CALayer()
-            layer.addSublayer(shadowLayer)
-            shadowLayer.applyDropShadow(withOffset: value.offset, opacity: value.opacity, radius: value.radius, color: value.color)
+//            shadowView = UIView()
+//            insertSubview(shadowView, at: 0)
+//            shadowView.fillSuperview()
+            applyDropShadow(withOffset: value.offset, opacity: value.opacity, radius: value.radius, color: value.color)
         case .none:
-            shadowLayer = nil
+            shadowView = nil
         }
     }
 
