@@ -14,7 +14,7 @@ class RoundCornersSelectionTableViewCell: SelectionTableViewCell {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Round Corners"
         descriptionValue = "Round corners around the entry"
-        insertSegments(by: ["Off", "On"])
+        insertSegments(by: ["None", "Top", "Bottom", "All"])
         selectSegment()
     }
     

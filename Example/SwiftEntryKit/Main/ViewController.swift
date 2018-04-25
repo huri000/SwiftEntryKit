@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = EKColor.BlueGray.c700
         setupDataSource()
         setupTableView()
     }

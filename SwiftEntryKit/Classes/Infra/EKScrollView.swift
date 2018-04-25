@@ -100,6 +100,22 @@ class EKScrollView: UIScrollView {
         outConstraint = layout(messageTopInSuperview, to: messageBottomInSuperview, of: superview!, offset: outOffset, priority: .must)
         inConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
         
+        // Setup width, height and maximum width
+        setupLayoutConstraints()
+        
+        // Animate in
+        animateIn()
+        
+        // Generate haptic feedback
+        makeHapticFeedback()
+        
+        // Setup tap gesture
+        setupTapGestureRecognizer()
+    }
+    
+    // Setup layout constraints
+    private func setupLayoutConstraints() {
+        
         // Layout the scroll view horizontally inside the screen
         switch attributes.positionConstraints.width {
         case .offset(value: let offset):
@@ -113,6 +129,18 @@ class EKScrollView: UIScrollView {
             break
         }
         
+        // Layout the height
+        switch attributes.positionConstraints.height {
+        case .offset(value: let offset):
+            layoutToSuperview(.height, offset: -offset)
+        case .ratio(value: let ratio):
+            layoutToSuperview(.height, ratio: ratio)
+        case .constant(value: let constant):
+            set(.height, of: constant)
+        case .unspecified:
+            break
+        }
+        
         switch attributes.positionConstraints.maximumWidth {
         case .offset(value: let offset):
             layout(to: .left, of: superview!, relation: .greaterThanOrEqual, offset: offset)
@@ -122,20 +150,11 @@ class EKScrollView: UIScrollView {
             layout(to: .width, of: superview!, relation: .lessThanOrEqual, ratio: ratio)
         case .constant(value: let constant):
             // TODO: Add relation to QuickLayout
-//            set(.width, of: constant, relation: .lessThanOrEqual)
+            //            set(.width, of: constant, relation: .lessThanOrEqual)
             break
         case .unspecified:
             break
         }
-        
-        // Animate in
-        animateIn()
-        
-        // Generate haptic feedback
-        makeHapticFeedback()
-        
-        // Setup tap gesture
-        setupTapGestureRecognizer()
     }
 
     private func setupAttributes() {

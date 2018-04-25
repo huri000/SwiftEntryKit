@@ -11,6 +11,9 @@ import UIKit
 
 public struct EKAttributes {
     
+    /** Init with default attributes */
+    public init() {}
+    
     /** Entry presentation window level */
     public var windowLevel = WindowLevel.aboveStatusBar
     
@@ -29,7 +32,6 @@ public struct EKAttributes {
     /** Describes the background appearance while the entry shows */
     public var screenBackground = BackgroundStyle.color(color: .clear)
     
-    
     // Describes what happens when the user interacts the background, passes touchss forward by default
     // Triggered when the user begin touch interaction with the bsckground
     public var screenInteraction = UserInteraction.disabled
@@ -38,11 +40,6 @@ public struct EKAttributes {
     // Triggered when the user taps te entry
     public var entryInteraction = UserInteraction.dismiss
 
-    // MARK: Additional Options
-    
-    /** Additional options that could be applied to an *EKAttributes* instance */
-    public var options = Options()
-    
     /** Shadow */
     public var shadow = Shadow.none
     
@@ -52,4 +49,7 @@ public struct EKAttributes {
     // Describes how the entry animates in and out
     public var entranceAnimation = Animation.fade
     public var exitAnimation = Animation.fade
+    
+    /** Additional options that could be applied to an *EKAttributes* instance */
+    public var options = Options()
 }

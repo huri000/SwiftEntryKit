@@ -42,3 +42,18 @@ extension UIColor {
     static let darkSubText = UIColor(rgb: 0x757575)
     static let greenGrass = UIColor(rgb: 0x4CAF50)
 }
+
+public struct EKColor {
+    public struct BlueGray {
+        public static let c50 = UIColor(rgb: 0xeceff1)
+        public static let c100 = UIColor(rgb: 0xcfd8dc)
+        public static let c200 = UIColor(rgb: 0xb0bec5)
+        public static let c300 = UIColor(rgb: 0x90a4ae)
+        public static let c400 = UIColor(rgb: 0x78909c)
+        public static let c500 = UIColor(rgb: 0x607d8b)
+        public static let c600 = UIColor(rgb: 0x546e7a)
+        public static let c700 = UIColor(rgb: 0x455a64)
+        public static let c800 = UIColor(rgb: 0x37474f)
+        public static let c900 = UIColor(rgb: 0x263238)
+    }
+}

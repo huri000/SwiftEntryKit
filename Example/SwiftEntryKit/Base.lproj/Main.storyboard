@@ -50,7 +50,11 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Custom" id="uMb-FP-a2v">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Zvk-BE-qQ1"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="e2Q-Yz-Q9Z"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="e2Q-Yz-Q9Z">
+                            <connections>
+                                <action selector="play" destination="hAa-pE-SAe" id="SjT-9Z-CQC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>

@@ -41,6 +41,8 @@ public class EKContainerView: UIView {
             
             applyBackgroundToContentView()
             
+            applyRoundCorners()
+
             applyDropShadow()
         }
     }

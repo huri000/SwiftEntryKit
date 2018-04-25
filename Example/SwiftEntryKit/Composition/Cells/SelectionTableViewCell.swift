@@ -62,6 +62,7 @@ class SelectionTableViewCell: SelectionBaseCell {
     
     private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
+        titleLabel.textColor = EKColor.BlueGray.c900
         titleLabel.font = Font.HelveticaNeue.bold.with(size: 18)
         titleLabel.layoutToSuperview(.top, offset: 20)
         titleLabel.layoutToSuperview(axis: .horizontally, offset: 20)
@@ -69,6 +70,7 @@ class SelectionTableViewCell: SelectionBaseCell {
     
     private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
+        descriptionLabel.textColor = EKColor.BlueGray.c800
         descriptionLabel.font = Font.HelveticaNeue.light.with(size: 15)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 10)
@@ -77,6 +79,9 @@ class SelectionTableViewCell: SelectionBaseCell {
     
     private func setupSegmentedControl() {
         contentView.addSubview(segmentedControl)
+        segmentedControl.tintColor = UIColor(rgb: 0x37474f)
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: Font.HelveticaNeue.light.with(size: 15)], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: Font.HelveticaNeue.medium.with(size: 15)], for: .selected)
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         segmentedControl.layout(.top, to: .bottom, of: descriptionLabel, offset: 10)
         segmentedControl.layoutToSuperview(axis: .horizontally, offset: 20)

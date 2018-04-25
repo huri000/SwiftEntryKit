@@ -33,7 +33,7 @@ public extension EKAttributes {
         }
         
         /** Describes the width constraint of the entry */
-        public enum Width {
+        public enum Edge {
             
             /** Ratio constraint to screen width */
             case ratio(value: CGFloat)
@@ -49,10 +49,13 @@ public extension EKAttributes {
         }
         
         /** The maximum width constraint of the entry */
-        public var maximumWidth: Width
+        public var maximumWidth: Edge
 
         /** The width constraint of the entry */
-        public var width: Width
+        public var width: Edge
+        
+        /** The height constraint of the entry */
+        public var height: Edge
         
         /** The vertical offset from the top or bottom anchor */
         public var verticalOffset: CGFloat
@@ -72,9 +75,10 @@ public extension EKAttributes {
             return PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
         }
         
-        public init(verticalOffset: CGFloat = 10, width: Width = .offset(value: 20), maximumWidth: Width = .unspecified) {
+        public init(verticalOffset: CGFloat = 10, width: Edge = .offset(value: 20), height: Edge = .unspecified, maximumWidth: Edge = .unspecified) {
             self.verticalOffset = verticalOffset
             self.width = width
+            self.height = height
             self.maximumWidth = maximumWidth
         }
     }

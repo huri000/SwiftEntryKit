@@ -44,7 +44,7 @@ class UserInteractionSelectionTableViewCell: SelectionTableViewCell {
         titleValue = "\(focusValue) User Interaction"
         descriptionValue = "The \(focusValue) user interaction"
         
-        insertSegments(by: ["Absorb Touchs", "Delay Exit", "Dismiss Entry", "Transfer Touchs"])
+        insertSegments(by: ["Absorb", "Delay", "Dismiss", "Transfer"])
         selectSegment()
     }
     

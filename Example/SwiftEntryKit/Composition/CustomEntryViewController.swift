@@ -13,7 +13,7 @@ class CustomEntryViewController: UIViewController {
     
     private let tableView = UITableView()
     
-    private let attributesWrapper = EntryAttributeWrapper(with: EKAttributes.default)
+    private let attributesWrapper = EntryAttributeWrapper(with: EKAttributes())
     
     struct Cells {
         static let cells = [PositionSelectionTableViewCell.self,
@@ -27,7 +27,9 @@ class CustomEntryViewController: UIViewController {
                             UserInteractionSelectionTableViewCell.self,
                             HapticFeedbackSelectionTableViewCell.self,
                             PopBehaviorSelectionTableViewCell.self,
-                            ScrollSelectionTableViewCell.self]
+                            ScrollSelectionTableViewCell.self,
+                            SafeAreaSelectionTableViewCell.self,
+                            WidthSelectionTableViewCell.self]
     }
     
     override func viewDidLoad() {
@@ -43,6 +45,21 @@ class CustomEntryViewController: UIViewController {
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         Cells.cells.forEach { tableView.register($0, forCellReuseIdentifier: $0.className) }
         tableView.fillSuperview()
+        
+        
+    }
+    
+    @IBAction func play() {
+        let title = EKProperty.LabelContent(text: "TEST!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .black))
+        let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .black))
+        let time = EKProperty.LabelContent(text: "12:00", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .black))
+        let image = UIImage(named: "ic_shopping_cart_dark_32pt")!
+        let content = EKNotificationMessage(title: title, description: description, time: time, image: image)
+        let contentView = EKNotificationMessageView(with: content)
+        
+        let containerView = EKContainerView()
+        containerView.content = EKContainerView.Content(view: contentView, attributes: attributesWrapper.attributes)
+        EKWindowProvider.shared.state = .message(view: containerView, attributes: attributesWrapper.attributes)
     }
 }
 
@@ -54,8 +71,10 @@ extension CustomEntryViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell: SelectionBaseCell
         cell = selectionCell(by: Cells.cells[indexPath.row].className, and: indexPath)
+        
         switch indexPath.row {
         case 0...4:
             cell.configure(attributesWrapper: attributesWrapper)
@@ -71,7 +90,7 @@ extension CustomEntryViewController: UITableViewDelegate, UITableViewDataSource 
         case 8:
             let cell = cell as! UserInteractionSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .entry)
-        case 9, 10, 11:
+        case 9, 10, 11, 12, 13:
             cell.configure(attributesWrapper: attributesWrapper)
         default:
             fatalError()
