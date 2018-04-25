@@ -10,19 +10,24 @@ import Foundation
 import UIKit
 
 public extension EKAttributes {
-    
-    /** Shadow attributes */
-    public struct Shadow {
-        public var radius: CGFloat
-        public var opacity: CGFloat
-        public var color: UIColor
-        public var offset: CGPoint
+
+    public enum Shadow {
+        case none
+        case active(with: Value)
         
-        public init(color: UIColor = .black, opacity: CGFloat, radius: CGFloat, offset: CGPoint) {
-            self.color = color
-            self.radius = radius
-            self.offset = offset
-            self.opacity = opacity
+        /** Shadow attributes */
+        public struct Value {
+            public var radius: CGFloat
+            public var opacity: Float
+            public var color: UIColor
+            public var offset: CGSize
+            
+            public init(color: UIColor = .black, opacity: Float, radius: CGFloat, offset: CGSize) {
+                self.color = color
+                self.radius = radius
+                self.offset = offset
+                self.opacity = opacity
+            }
         }
     }
     

@@ -48,8 +48,9 @@ public struct EKAttributes {
     /** Additional options that could be applied to an *EKAttributes* instance */
     public var options = Options()
     
-    // TODO: Add Shadow
-    public var shadow: Shadow!
+    /** Shadow */
+    public var shadow = Shadow.none
     
+    /** Round corners */
     public var roundCorners = RoundCorners.none
 }

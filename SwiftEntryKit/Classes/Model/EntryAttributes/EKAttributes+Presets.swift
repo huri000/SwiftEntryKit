@@ -16,7 +16,7 @@ public extension EKAttributes {
     public static var toast: EKAttributes {
         var attributes = EKAttributes()
         attributes.positionConstraints = .full
-        attributes.options.safeAreaBehavior = .empty(fillSafeArea: true)
+        attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.windowLevel = .aboveStatusBar
         attributes.options.exitBehavior = .animated(animation: nil)
         return attributes
@@ -27,7 +27,7 @@ public extension EKAttributes {
         var attributes = EKAttributes()
         attributes.positionConstraints = .float
         attributes.roundCorners = .all(radius: 10)
-        attributes.options.safeAreaBehavior = .empty(fillSafeArea: false)
+        attributes.positionConstraints.safeArea = .empty(fillSafeArea: false)
         attributes.windowLevel = .aboveStatusBar
         return attributes
     }
@@ -64,7 +64,7 @@ public extension EKAttributes {
     public static var statusBar: EKAttributes {
         var attributes = topToast
         attributes.entryInteraction = .absorbTouches
-        attributes.options.safeAreaBehavior = .overriden
+        attributes.positionConstraints.safeArea = .overriden
         return attributes
     }
 }

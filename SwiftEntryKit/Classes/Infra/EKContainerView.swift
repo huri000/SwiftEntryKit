@@ -40,6 +40,8 @@ public class EKContainerView: UIView {
             contentView.layoutToSuperview(axis: .horizontally)
             
             applyBackgroundToContentView()
+            
+            applyDropShadow()
         }
     }
 
@@ -57,13 +59,22 @@ public class EKContainerView: UIView {
         applyRoundCorners()
     }
     
-    
     // Apply round corners
     private func applyRoundCorners() {
         switch attributes.roundCorners {
         case .all(radius: let radius), .bottom(radius: let radius), .top(radius: let radius):
             let corners = attributes.roundCorners.cornerValues
             contentView.roundCorners(by: corners.value, radius: radius)
+        case .none:
+            break
+        }
+    }
+    
+    // Apply drop shadow
+    private func applyDropShadow() {
+        switch attributes.shadow {
+        case .active(with: let value):
+            applyDropShadow(withOffset: value.offset, opacity: value.opacity, radius: value.radius, color: value.color)
         case .none:
             break
         }
@@ -77,7 +88,7 @@ public class EKContainerView: UIView {
         let backgroundView = EKBackgroundView()
         backgroundView.background = attributes.entryBackground
         
-        switch attributes.options.safeAreaBehavior {
+        switch attributes.positionConstraints.safeArea {
         case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea:
             insertSubview(backgroundView, at: 0)
             backgroundView.layoutToSuperview(axis: .horizontally)

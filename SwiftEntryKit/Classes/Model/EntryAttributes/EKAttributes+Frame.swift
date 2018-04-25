@@ -13,6 +13,25 @@ public extension EKAttributes {
     /** Describes the frame of the entry. It's limitations, width and offset from the anchor (top / bottom of the screen) */
     public struct PositionConstraints {
         
+        /** Describes safe area relation */
+        public enum SafeArea {
+            
+            /** Entry overrides safe area */
+            case overriden
+            
+            /** The entry shows outs. But can optionally be colored */
+            case empty(fillSafeArea: Bool)
+            
+            public var isOverriden: Bool {
+                switch self {
+                case .overriden:
+                    return true
+                default:
+                    return false
+                }
+            }
+        }
+        
         /** Describes the width constraint of the entry */
         public enum Width {
             
@@ -21,13 +40,25 @@ public extension EKAttributes {
             
             /** Offset from each side of the screen */
             case offset(value: CGFloat)
+            
+            /** Constant width */
+            case constant(value: CGFloat)
+            
+            /** Unspecified maximum width */
+            case unspecified
         }
         
+        /** The maximum width constraint of the entry */
+        public var maximumWidth: Width
+
         /** The width constraint of the entry */
         public var width: Width
         
         /** The vertical offset from the top or bottom anchor */
         public var verticalOffset: CGFloat
+        
+        /** Can be used to present content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
+        public var safeArea = SafeArea.empty(fillSafeArea: true)
         
         public var hasVerticalOffset: Bool {
             return verticalOffset > 0
@@ -41,9 +72,10 @@ public extension EKAttributes {
             return PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
         }
         
-        public init(verticalOffset: CGFloat = 10, width: Width = .offset(value: 20)) {
+        public init(verticalOffset: CGFloat = 10, width: Width = .offset(value: 20), maximumWidth: Width = .unspecified) {
             self.verticalOffset = verticalOffset
             self.width = width
+            self.maximumWidth = maximumWidth
         }
     }
 }

@@ -55,7 +55,7 @@ class EKScrollView: UIScrollView {
         // Define a spacer to catch top / bottom offsets
         var spacerView: UIView!
         let safeAreaInsets = EKWindowProvider.safeAreaInsets
-        let overrideSafeArea = attributes.options.safeAreaBehavior.isOverriden
+        let overrideSafeArea = attributes.positionConstraints.safeArea.isOverriden
 
         if !overrideSafeArea && safeAreaInsets.hasVerticalInsets {
             spacerView = UIView()
@@ -102,17 +102,39 @@ class EKScrollView: UIScrollView {
         
         // Layout the scroll view horizontally inside the screen
         switch attributes.positionConstraints.width {
-        case .offset(value: let value):
-            layoutToSuperview(axis: .horizontally, offset: value)
+        case .offset(value: let offset):
+            layoutToSuperview(axis: .horizontally, offset: offset, priority: .must)
         case .ratio(value: let ratio):
             layoutToSuperview(.centerX)
-            layoutToSuperview(.width, ratio: ratio)
+            layoutToSuperview(.width, ratio: ratio, priority: .must)
+        case .constant(value: let constant):
+            set(.width, of: constant, priority: .must)
+        case .unspecified:
+            break
         }
         
+        switch attributes.positionConstraints.maximumWidth {
+        case .offset(value: let offset):
+            layout(to: .left, of: superview!, relation: .greaterThanOrEqual, offset: offset)
+            layout(to: .right, of: superview!, relation: .lessThanOrEqual, offset: -offset)
+        case .ratio(value: let ratio):
+            layoutToSuperview(.centerX)
+            layout(to: .width, of: superview!, relation: .lessThanOrEqual, ratio: ratio)
+        case .constant(value: let constant):
+            // TODO: Add relation to QuickLayout
+//            set(.width, of: constant, relation: .lessThanOrEqual)
+            break
+        case .unspecified:
+            break
+        }
+        
+        // Animate in
         animateIn()
         
+        // Generate haptic feedback
         makeHapticFeedback()
         
+        // Setup tap gesture
         setupTapGestureRecognizer()
     }
 
@@ -122,6 +144,7 @@ class EKScrollView: UIScrollView {
         bounces = true
         showsVerticalScrollIndicator = false
         isPagingEnabled = true
+        
         delegate = self
     }
     

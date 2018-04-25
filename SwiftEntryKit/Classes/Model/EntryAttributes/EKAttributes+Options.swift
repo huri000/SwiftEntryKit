@@ -32,25 +32,6 @@ public extension EKAttributes {
             }
         }
         
-        /** Describes safe area relation */
-        public enum SafeAreaBehavior {
-            
-            /** Entry overrides safe area */
-            case overriden
-            
-            /** The entry shows outs. But can optionally be colored */
-            case empty(fillSafeArea: Bool)
-            
-            public var isOverriden: Bool {
-                switch self {
-                case .overriden:
-                    return true
-                default:
-                    return false
-                }
-            }
-        }
-        
         /** Describes the previous entry's behavior when the current entry shows */
         public enum ExitBehavior {
             
@@ -78,11 +59,8 @@ public extension EKAttributes {
         public var exitBehavior = ExitBehavior.animated(animation: Animation(duration: 0.6, types: [.scale]))
         
         /** Describes the scrolling behavior of the entry */
-        public var scroll = Scroll.edgeCrossingDisabled
+        public var scroll = Scroll.enabled
         
-        /** Signals the presentor to overriden or ignore safe area.
-         Can be used to present content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
-        public var safeAreaBehavior = SafeAreaBehavior.empty(fillSafeArea: true)
         
         /** Haptic notification feedback. */
         public var useHapticFeedback = true
