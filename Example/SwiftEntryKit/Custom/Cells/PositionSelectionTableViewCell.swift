@@ -13,7 +13,7 @@ class PositionSelectionTableViewCell: SelectionTableViewCell {
     
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
-        titleValue = "Position on Screen"
+        titleValue = "Position"
         descriptionValue = "The position of the entry inside the screen"
         insertSegments(by: ["Top", "Bottom"])
         selectSegment()

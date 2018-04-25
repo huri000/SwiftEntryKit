@@ -13,7 +13,7 @@ class WindowLevelTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Window Level"
-        descriptionValue = "The window level of the entry"
+        descriptionValue = "Where the entry should be presented in the application window hierarchy"
         insertSegments(by: ["Above status bar", "Below status bar"])
         selectSegment()
     }

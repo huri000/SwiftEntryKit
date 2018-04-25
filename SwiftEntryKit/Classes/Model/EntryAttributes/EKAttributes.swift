@@ -34,7 +34,7 @@ public struct EKAttributes {
     
     // Describes what happens when the user interacts the background, passes touchss forward by default
     // Triggered when the user begin touch interaction with the bsckground
-    public var screenInteraction = UserInteraction.disabled
+    public var screenInteraction = UserInteraction.forward
     
     // Describes what happens when the user interacts the content, dismisses the content by default
     // Triggered when the user taps te entry

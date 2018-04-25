@@ -12,8 +12,8 @@ import SwiftEntryKit
 class ShadowSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
-        titleValue = "Shadow"
-        descriptionValue = "The shadow around the entry"
+        titleValue = "Drop Shadow"
+        descriptionValue = "A drop shadow effect that can be applied to the entry"
         insertSegments(by: ["Off", "On"])
         selectSegment()
     }

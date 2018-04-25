@@ -39,10 +39,8 @@ class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
     
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
-        
-        let focusValue = focus.rawValue.capitalized
-        titleValue = "\(focusValue) Background Style"
-        descriptionValue = "The \(focusValue) background style"
+        titleValue = "\(focus.rawValue.capitalized) Background Style"
+        descriptionValue = "The style of the \(focus.rawValue)'s background can be one of the following options"
         
         insertSegments(by: ["Clear", "Blur", "Gradient", "Color"])
         selectSegment()

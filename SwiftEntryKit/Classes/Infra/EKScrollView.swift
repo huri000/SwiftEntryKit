@@ -177,7 +177,7 @@ class EKScrollView: UIScrollView {
     }
     
     private func makeHapticFeedback() {
-        guard #available(iOS 10.0, *) else {
+        guard #available(iOS 10.0, *), attributes.options.useHapticFeedback else {
             return
         }
         HapticFeedbackGenerator.notification(type: .success)

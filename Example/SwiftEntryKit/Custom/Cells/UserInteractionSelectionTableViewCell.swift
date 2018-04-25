@@ -39,12 +39,10 @@ class UserInteractionSelectionTableViewCell: SelectionTableViewCell {
     
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
+        titleValue = "\(focus.rawValue.capitalized) User Interaction"
+        descriptionValue = "Describes what happens when the user taps the \(focus.rawValue). The touch can be absorbed, delay the exit, be forwarded to the window below, or dismiss the entry."
         
-        let focusValue = focus.rawValue.capitalized
-        titleValue = "\(focusValue) User Interaction"
-        descriptionValue = "The \(focusValue) user interaction"
-        
-        insertSegments(by: ["Absorb", "Delay", "Dismiss", "Transfer"])
+        insertSegments(by: ["Absorb", "Delay", "Forward", "Dismiss"])
         selectSegment()
     }
     
@@ -54,7 +52,7 @@ class UserInteractionSelectionTableViewCell: SelectionTableViewCell {
             segmentedControl.selectedSegmentIndex = 0
         case .delayExit(by: _):
             segmentedControl.selectedSegmentIndex = 1
-        case .disabled:
+        case .forward:
             segmentedControl.selectedSegmentIndex = 2
         case .dismissEntry:
             segmentedControl.selectedSegmentIndex = 3
@@ -68,7 +66,7 @@ class UserInteractionSelectionTableViewCell: SelectionTableViewCell {
         case 1:
             interactionAction = .delayExit(by: 4)
         case 2:
-            interactionAction = .disabled
+            interactionAction = .forward
         case 3:
             interactionAction = .dismissEntry
         default:

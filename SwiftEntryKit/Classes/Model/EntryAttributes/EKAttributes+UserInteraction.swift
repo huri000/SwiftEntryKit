@@ -18,12 +18,12 @@ public extension EKAttributes {
             case absorbTouches
             case delayExit(by: TimeInterval)
             case dismissEntry
-            case disabled // Dims it unresponsive
+            case forward // Pass the touch to the next responder
         }
         
         var isResponsive: Bool {
             switch defaultAction {
-            case .disabled:
+            case .forward:
                 return false
             default:
                 return true
@@ -51,8 +51,8 @@ public extension EKAttributes {
             return UserInteraction(defaultAction: .dismissEntry)
         }
         
-        public static var disabled: UserInteraction {
-            return UserInteraction(defaultAction: .disabled)
+        public static var forward: UserInteraction {
+            return UserInteraction(defaultAction: .forward)
         }
         
         public static var absorbTouches: UserInteraction {

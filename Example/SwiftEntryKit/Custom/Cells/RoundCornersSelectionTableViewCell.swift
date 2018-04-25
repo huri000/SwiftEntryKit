@@ -13,7 +13,7 @@ class RoundCornersSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Round Corners"
-        descriptionValue = "Round corners around the entry"
+        descriptionValue = "The entry's corners can be rounded in the following manner"
         insertSegments(by: ["None", "Top", "Bottom", "All"])
         selectSegment()
     }

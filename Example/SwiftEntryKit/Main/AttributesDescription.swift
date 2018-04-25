@@ -82,8 +82,8 @@ class EntryAttributesDescription {
             desc += "delays the entry dismissal by \(time)s"
         case .dismissEntry:
             desc += "dismiss the entry immediately"
-        case .disabled:
-            desc += "are disabled - touchs go through into the lower level window"
+        case .forward:
+            desc += "touchs go through into the lower level window"
         }
         return desc
     }

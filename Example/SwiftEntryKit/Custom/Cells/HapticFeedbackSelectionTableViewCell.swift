@@ -13,7 +13,7 @@ class HapticFeedbackSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Notification Haptic Feedback"
-        descriptionValue = "Generate notification haptic feedback once the entry shows"
+        descriptionValue = "Generate a haptic feedback once the entry shows"
         insertSegments(by: ["Off", "On"])
         selectSegment()
     }

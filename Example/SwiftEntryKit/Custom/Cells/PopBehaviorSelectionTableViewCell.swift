@@ -11,7 +11,7 @@ import Foundation
 class PopBehaviorSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
-        titleValue = "Entry Pop Behavior"
+        titleValue = "Pop Behavior"
         descriptionValue = "Specifies how the entry pops out as the next entry is pushed in"
         insertSegments(by: ["Overriden", "Animated"])
         selectSegment()

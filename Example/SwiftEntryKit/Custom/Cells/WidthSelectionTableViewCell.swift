@@ -12,7 +12,7 @@ class WidthSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Entry Width Constraint"
-        descriptionValue = "Describes the entry width constraint"
+        descriptionValue = "Describes the entry's width inside the screen"
         insertSegments(by: ["Stretch", "20pts Offset", "90% Screen"])
         selectSegment()
     }
