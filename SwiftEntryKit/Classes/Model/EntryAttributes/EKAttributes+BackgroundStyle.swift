@@ -28,6 +28,6 @@ public extension EKAttributes {
         case color(color: UIColor)
         case gradient(gradient: Gradient)
         case image(image: UIImage)
-        case none
+        case clear
     }
 }

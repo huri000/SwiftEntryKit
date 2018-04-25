@@ -67,13 +67,23 @@ class ViewController: UIViewController {
         attributes.options.popBehavior = .animated(animation: nil)
         description = EntryAttributesDescription(with: attributes, title: "Status Bar Temporary Cover")
         dataSource.append(description)
-        awakeFromNib()
+
         attributes = EKAttributes.bottomFloat
         attributes.displayDuration = .infinity
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
         attributes.roundCorners = .all(radius: 25)
+        attributes.positionConstraints = EKAttributes.PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
+        description = EntryAttributesDescription(with: attributes, title: "Bottom Floating Alert View")
+        dataSource.append(description)
+        
+        attributes = EKAttributes.bottomFloat
+        attributes.displayDuration = 4
+        attributes.screenBackground = .clear
+        attributes.screenInteraction = .forward
+        attributes.entryInteraction = .absorbTouches
+        attributes.roundCorners = .none
         attributes.positionConstraints = EKAttributes.PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
         description = EntryAttributesDescription(with: attributes, title: "Bottom Floating Custom View")
         dataSource.append(description)
@@ -134,7 +144,7 @@ class ViewController: UIViewController {
         show(view: contentView, attributes: attributes)
     }
     
-    private func showCustomNotificationMessage(attributes: EKAttributes) {
+    private func showAlertMessage(attributes: EKAttributes) {
         let title = EKProperty.LabelContent(text: "Awesome!", style: EKProperty.Label(font: UIFont.boldSystemFont(ofSize: 26), color: .darkText))
         let description = EKProperty.LabelContent(text: "You are using SwiftEntryKit, and this is a customized alert view that is floating at the bottom.", style: EKProperty.Label(font: UIFont.systemFont(ofSize: 16), color: .darkSubText))
         let button = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "Got it!", style: EKProperty.Label(font: UIFont.boldSystemFont(ofSize: 16), color: .white)), backgroundColor: .amber)
@@ -147,6 +157,11 @@ class ViewController: UIViewController {
         contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         
         show(view: contentView, attributes: attributes)
+    }
+    
+    private func showCustomNibView(attributes: EKAttributes) {
+        let customNibView = NibExampleView()
+        show(view: customNibView, attributes: attributes)
     }
     
     private func show(view: UIView, attributes: EKAttributes) {
@@ -177,7 +192,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case 6:
             showStatusBarMessage(attributes: attributes)
         case 7:
-            showCustomNotificationMessage(attributes: attributes)
+            showAlertMessage(attributes: attributes)
+        case 8:
+            showCustomNibView(attributes: attributes)
         default:
             fatalError()
         }

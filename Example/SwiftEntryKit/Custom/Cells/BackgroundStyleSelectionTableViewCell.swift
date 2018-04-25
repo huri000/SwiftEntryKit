@@ -48,7 +48,7 @@ class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
     
     private func selectSegment() {
         switch backgroundStyle {
-        case .none:
+        case .clear:
             segmentedControl.selectedSegmentIndex = 0
         case .visualEffect(style: _):
             segmentedControl.selectedSegmentIndex = 1
@@ -65,7 +65,7 @@ class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            backgroundStyle = .none
+            backgroundStyle = .clear
         case 1:
             backgroundStyle = .visualEffect(style: .light)
         case 2:

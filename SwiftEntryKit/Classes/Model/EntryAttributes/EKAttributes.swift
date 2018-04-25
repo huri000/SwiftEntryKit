@@ -30,7 +30,7 @@ public struct EKAttributes {
     public var entryBackground = BackgroundStyle.visualEffect(style: .light)
     
     /** Describes the background appearance while the entry shows */
-    public var screenBackground = BackgroundStyle.none
+    public var screenBackground = BackgroundStyle.clear
     
     // Describes what happens when the user interacts the background, passes touchss forward by default
     // Triggered when the user begin touch interaction with the bsckground

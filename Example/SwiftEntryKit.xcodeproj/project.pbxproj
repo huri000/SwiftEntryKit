@@ -25,6 +25,9 @@
 		14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */; };
 		14D18CCD2090FE970019AE7F /* SafeAreaSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CCC2090FE970019AE7F /* SafeAreaSelectionTableViewCell.swift */; };
 		14D18CCF209105290019AE7F /* WidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */; };
+		14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CD1209118DA0019AE7F /* NibExampleView.swift */; };
+		14D18CD4209118E90019AE7F /* NibExampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D18CD3209118E90019AE7F /* NibExampleView.xib */; };
+		14D18CD620911E9E0019AE7F /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CD520911E9E0019AE7F /* UIView+Nib.swift */; };
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* ViewController.swift */; };
 		14F36801208B585E001E8F56 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */; };
@@ -67,6 +70,9 @@
 		14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDurationTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CCC2090FE970019AE7F /* SafeAreaSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		14D18CD1209118DA0019AE7F /* NibExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibExampleView.swift; sourceTree = "<group>"; };
+		14D18CD3209118E90019AE7F /* NibExampleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NibExampleView.xib; sourceTree = "<group>"; };
+		14D18CD520911E9E0019AE7F /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
@@ -134,6 +140,7 @@
 				14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */,
 				14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */,
 				143F3AA52090AB50009F3719 /* Object+ClassName.swift */,
+				14D18CD520911E9E0019AE7F /* UIView+Nib.swift */,
 				14C894FD208E7DDE003D8CE3 /* Font.swift */,
 			);
 			path = Utils;
@@ -157,6 +164,15 @@
 				14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		14D18CD0209118950019AE7F /* NibExampleView */ = {
+			isa = PBXGroup;
+			children = (
+				14D18CD1209118DA0019AE7F /* NibExampleView.swift */,
+				14D18CD3209118E90019AE7F /* NibExampleView.xib */,
+			);
+			path = NibExampleView;
 			sourceTree = "<group>";
 		};
 		19E182478A85E3C07278EE0F /* Pods */ = {
@@ -195,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
+				14D18CD0209118950019AE7F /* NibExampleView */,
 				149B2B57208F0C22007C829F /* Main */,
 				14C894F3208E70A4003D8CE3 /* Custom */,
 				14C894FC208E7DD0003D8CE3 /* Utils */,
@@ -343,6 +360,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				14D18CD4209118E90019AE7F /* NibExampleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,8 +466,10 @@
 				14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */,
 				14C89500208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift in Sources */,
 				14F36800208B585E001E8F56 /* ViewController.swift in Sources */,
+				14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */,
 				14A40C63208B7AA800B79474 /* CustomEntryViewController.swift in Sources */,
 				143F3AAE2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift in Sources */,
+				14D18CD620911E9E0019AE7F /* UIView+Nib.swift in Sources */,
 				143F3AA42090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift in Sources */,
 				14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,

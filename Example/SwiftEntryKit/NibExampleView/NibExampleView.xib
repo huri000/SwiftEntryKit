@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NibExampleView" customModule="SwiftEntryKit_Example" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audience-band-blur-518389" translatesAutoresizingMaskIntoConstraints="NO" id="4m1-eK-fCE">
+                    <rect key="frame" x="16" y="15" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="2GR-mh-BCf"/>
+                        <constraint firstAttribute="width" secondItem="4m1-eK-fCE" secondAttribute="height" multiplier="1:1" id="2mn-3H-6Yj"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOW PLAYING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzi-I6-Y4b">
+                    <rect key="frame" x="118" y="26" width="80" height="15"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="0.60624464897260277" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Further" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryf-7I-m6R">
+                    <rect key="frame" x="118" y="51" width="51" height="18"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kings of Lion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ku-Ab-fMo">
+                    <rect key="frame" x="118" y="74" width="82" height="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.50422731164383561" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lij-bw-5XF">
+                    <rect key="frame" x="282" y="42" width="36" height="36"/>
+                    <state key="normal" image="ic_pause_circle_outline_white_36pt"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zHX-T5-W7D">
+                    <rect key="frame" x="321" y="48" width="24" height="24"/>
+                    <state key="normal" image="ic_fast_forward_white"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="soo-Bj-Ivd">
+                    <rect key="frame" x="256" y="48" width="24" height="24"/>
+                    <state key="normal" image="ic_fast_rewind_white"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.21568627450980393" green="0.22745098039215686" blue="0.29803921568627451" alpha="0.94560680650684936" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="soo-Bj-Ivd" firstAttribute="centerY" secondItem="lij-bw-5XF" secondAttribute="centerY" id="2FK-pu-cmQ"/>
+                <constraint firstItem="lij-bw-5XF" firstAttribute="centerY" secondItem="4m1-eK-fCE" secondAttribute="centerY" id="ELT-AM-x3k"/>
+                <constraint firstItem="Ryf-7I-m6R" firstAttribute="top" secondItem="uzi-I6-Y4b" secondAttribute="bottom" constant="10" id="Mmy-lJ-jmc"/>
+                <constraint firstItem="zHX-T5-W7D" firstAttribute="centerY" secondItem="lij-bw-5XF" secondAttribute="centerY" id="Qy6-nn-dQH"/>
+                <constraint firstItem="4m1-eK-fCE" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="VLq-Vi-yvM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4m1-eK-fCE" secondAttribute="bottom" constant="15" id="Wwb-sG-sms"/>
+                <constraint firstItem="1Ku-Ab-fMo" firstAttribute="leading" secondItem="Ryf-7I-m6R" secondAttribute="leading" id="Wx6-8k-vOn"/>
+                <constraint firstItem="zHX-T5-W7D" firstAttribute="leading" secondItem="lij-bw-5XF" secondAttribute="trailing" constant="3" id="bXJ-OU-eQq"/>
+                <constraint firstItem="1Ku-Ab-fMo" firstAttribute="top" secondItem="Ryf-7I-m6R" secondAttribute="bottom" constant="5" id="bhU-P1-E9t"/>
+                <constraint firstItem="Ryf-7I-m6R" firstAttribute="leading" secondItem="uzi-I6-Y4b" secondAttribute="leading" id="l8T-rh-9sO"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zHX-T5-W7D" secondAttribute="trailing" constant="30" id="nsM-uz-MRl"/>
+                <constraint firstItem="Ryf-7I-m6R" firstAttribute="centerY" secondItem="4m1-eK-fCE" secondAttribute="centerY" id="q5F-rv-yaD"/>
+                <constraint firstItem="uzi-I6-Y4b" firstAttribute="leading" secondItem="4m1-eK-fCE" secondAttribute="trailing" constant="12" id="rIq-1o-aZi"/>
+                <constraint firstItem="4m1-eK-fCE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="tQA-RH-Ihz"/>
+                <constraint firstItem="4m1-eK-fCE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="uTf-x9-Rcv"/>
+                <constraint firstItem="lij-bw-5XF" firstAttribute="leading" secondItem="soo-Bj-Ivd" secondAttribute="trailing" constant="2" id="wf3-dK-5UO"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="33.5" y="335"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="audience-band-blur-518389" width="400" height="267"/>
+        <image name="ic_fast_forward_white" width="24" height="24"/>
+        <image name="ic_fast_rewind_white" width="24" height="24"/>
+        <image name="ic_pause_circle_outline_white_36pt" width="36" height="36"/>
+    </resources>
+</document>

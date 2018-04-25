@@ -99,7 +99,7 @@ class EntryAttributesDescription {
             desc += "custom image"
         case .gradient(gradient: _):
             desc += "gradient colors"
-        case .none:
+        case .clear:
             desc = "clear style"
         }
         return desc

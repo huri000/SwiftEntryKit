@@ -58,7 +58,7 @@ class EKBackgroundView: UIView {
                 backgroundImage = image
             case .visualEffect(style: let style):
                 backgroundEffect = UIBlurEffect(style: style)
-            case .none:
+            case .clear:
                 break
             }
         

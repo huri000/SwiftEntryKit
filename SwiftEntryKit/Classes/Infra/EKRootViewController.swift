@@ -103,7 +103,7 @@ extension EKRootViewController: EntryScrollViewDelegate {
         guard EKAttributes.count <= 1 else {
             return
         }
-        changeBackground(to: .none, duration: attributes.exitAnimation.duration)
+        changeBackground(to: .clear, duration: attributes.exitAnimation.duration)
     }
     
     private func changeBackground(to style: EKAttributes.BackgroundStyle, duration: TimeInterval) {
