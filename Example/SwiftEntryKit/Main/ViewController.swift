@@ -48,7 +48,7 @@ class ViewController: UIViewController {
         attributes = EKAttributes.topToast
         attributes.windowLevel = .belowStatusBar
         attributes.entryBackground = .color(color: .satCyan)
-        attributes.options.exitBehavior = .animated(animation: nil)
+        attributes.options.popBehavior = .animated(animation: nil)
         description = EntryAttributesDescription(with: attributes, title: "Top Single Line Note")
         dataSource.append(description)
         
@@ -56,14 +56,14 @@ class ViewController: UIViewController {
         attributes.windowLevel = .belowStatusBar
         attributes.entryInteraction = .absorbTouches
         attributes.displayDuration = .infinity
-        attributes.options.exitBehavior = .animated(animation: nil)
+        attributes.options.popBehavior = .animated(animation: nil)
         attributes.entryBackground = .color(color: .pinky)
         description = EntryAttributesDescription(with: attributes, title: "Top Single Line Processing Note (Infinate Duration)")
         dataSource.append(description)
         
         attributes = EKAttributes.statusBar
         attributes.entryBackground = .color(color: .greenGrass)
-        attributes.options.exitBehavior = .animated(animation: nil)
+        attributes.options.popBehavior = .animated(animation: nil)
         description = EntryAttributesDescription(with: attributes, title: "Status Bar Temporary Cover")
         dataSource.append(description)
         awakeFromNib()

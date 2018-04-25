@@ -33,7 +33,7 @@ public extension EKAttributes {
         }
         
         /** Describes the previous entry's behavior when the current entry shows */
-        public enum ExitBehavior {
+        public enum PopBehavior {
             
             /** Overrides the previous entry - The previous entry disappears promptly when the current one shows */
             case overriden
@@ -56,7 +56,7 @@ public extension EKAttributes {
         
         /** Describes the previous entry behaviour when the current entry shows
          */
-        public var exitBehavior = ExitBehavior.animated(animation: Animation(duration: 0.6, types: [.scale]))
+        public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.6, types: [.scale]))
         
         /** Describes the scrolling behavior of the entry */
         public var scroll = Scroll.enabled

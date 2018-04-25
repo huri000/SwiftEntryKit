@@ -1,28 +1,28 @@
 //
-//  LocationSelectionTableViewCell.swift
+//  ShadowSelectionTableViewCell.swift
 //  SwiftEntryKit_Example
 //
-//  Created by Daniel Huri on 4/24/18.
+//  Created by Daniel Huri on 4/25/18.
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
 import UIKit
 import SwiftEntryKit
 
-class PositionSelectionTableViewCell: SelectionTableViewCell {
-    
+class ShadowSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
-        titleValue = "Position on Screen"
-        descriptionValue = "The position of the entry inside the screen"
-        insertSegments(by: ["Top", "Bottom"])
+        titleValue = "Shadow"
+        descriptionValue = "The shadow around the entry"
+        insertSegments(by: ["Off", "On"])
         selectSegment()
     }
     
     private func selectSegment() {
-        if attributesWrapper.attributes.position.isTop {
+        switch attributesWrapper.attributes.shadow {
+        case .none:
             segmentedControl.selectedSegmentIndex = 0
-        } else {
+        case .active(with: _):
             segmentedControl.selectedSegmentIndex = 1
         }
     }
@@ -30,9 +30,10 @@ class PositionSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.position = .top
+            attributesWrapper.attributes.shadow = .none
         case 1:
-            attributesWrapper.attributes.position = .bottom
+            let value = EKAttributes.Shadow.Value(color: .black, opacity: 0.5, radius: 10, offset: .zero)
+            attributesWrapper.attributes.shadow = .active(with: value)
         default:
             break
         }

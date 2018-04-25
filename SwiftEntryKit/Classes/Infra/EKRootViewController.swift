@@ -65,7 +65,7 @@ class EKRootViewController: UIViewController {
         guard let attributes = lastAttributes else {
             return
         }
-        if attributes.options.exitBehavior.isOverriden {
+        if attributes.options.popBehavior.isOverriden {
             lastEntry?.removePromptly()
         } else {
             rollOutLastEntry()

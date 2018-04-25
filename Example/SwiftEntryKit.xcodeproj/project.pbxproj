@@ -8,7 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		14333AE3208FA09E00DCFC7B /* AttributesDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14333AE2208FA09E00DCFC7B /* AttributesDescription.swift */; };
-		14A40C63208B7AA800B79474 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* ComposeViewController.swift */; };
+		143F3AA22090A6A7009F3719 /* ShadowSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA12090A6A7009F3719 /* ShadowSelectionTableViewCell.swift */; };
+		143F3AA42090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA32090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift */; };
+		143F3AA62090AB50009F3719 /* Object+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA52090AB50009F3719 /* Object+ClassName.swift */; };
+		143F3AAA2090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA92090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift */; };
+		143F3AAC2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */; };
+		143F3AAE2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */; };
+		143F3AB02090B579009F3719 /* PopBehaviorSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAF2090B579009F3719 /* PopBehaviorSelectionTableViewCell.swift */; };
+		143F3AB22090B7F0009F3719 /* ScrollSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */; };
+		14A40C63208B7AA800B79474 /* CustomEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* CustomEntryViewController.swift */; };
 		14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */; };
 		14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */; };
 		14C894FE208E7DDE003D8CE3 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FD208E7DDE003D8CE3 /* Font.swift */; };
@@ -41,7 +49,15 @@
 /* Begin PBXFileReference section */
 		05385903DACAE3FCA44909E1 /* Pods-SwiftEntryKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKit_Example/Pods-SwiftEntryKit_Example.release.xcconfig"; sourceTree = "<group>"; };
 		14333AE2208FA09E00DCFC7B /* AttributesDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesDescription.swift; sourceTree = "<group>"; };
-		14A40C62208B7AA800B79474 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		143F3AA12090A6A7009F3719 /* ShadowSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		143F3AA32090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornersSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		143F3AA52090AB50009F3719 /* Object+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+ClassName.swift"; sourceTree = "<group>"; };
+		143F3AA92090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStyleSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		143F3AAF2090B579009F3719 /* PopBehaviorSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopBehaviorSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		14A40C62208B7AA800B79474 /* CustomEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEntryViewController.swift; sourceTree = "<group>"; };
 		14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
 		14C894FD208E7DDE003D8CE3 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -104,11 +120,18 @@
 		14C894F3208E70A4003D8CE3 /* Composition */ = {
 			isa = PBXGroup;
 			children = (
-				14A40C62208B7AA800B79474 /* ComposeViewController.swift */,
+				14A40C62208B7AA800B79474 /* CustomEntryViewController.swift */,
 				14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */,
 				14C894FF208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift */,
 				14C89501208E83AA003D8CE3 /* WindowLevelTableViewCell.swift */,
 				14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */,
+				143F3AA12090A6A7009F3719 /* ShadowSelectionTableViewCell.swift */,
+				143F3AA32090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift */,
+				143F3AA92090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift */,
+				143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */,
+				143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */,
+				143F3AAF2090B579009F3719 /* PopBehaviorSelectionTableViewCell.swift */,
+				143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */,
 			);
 			path = Composition;
 			sourceTree = "<group>";
@@ -117,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */,
+				143F3AA52090AB50009F3719 /* Object+ClassName.swift */,
 				14C894FD208E7DDE003D8CE3 /* Font.swift */,
 			);
 			path = Utils;
@@ -408,19 +432,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				143F3AAC2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift in Sources */,
 				14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */,
 				14C89500208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift in Sources */,
 				14F36800208B585E001E8F56 /* ViewController.swift in Sources */,
-				14A40C63208B7AA800B79474 /* ComposeViewController.swift in Sources */,
+				14A40C63208B7AA800B79474 /* CustomEntryViewController.swift in Sources */,
+				143F3AAE2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift in Sources */,
+				143F3AA42090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift in Sources */,
 				14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				14C894FE208E7DDE003D8CE3 /* Font.swift in Sources */,
 				14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */,
+				143F3AB22090B7F0009F3719 /* ScrollSelectionTableViewCell.swift in Sources */,
+				143F3AA22090A6A7009F3719 /* ShadowSelectionTableViewCell.swift in Sources */,
+				143F3AA62090AB50009F3719 /* Object+ClassName.swift in Sources */,
 				14333AE3208FA09E00DCFC7B /* AttributesDescription.swift in Sources */,
+				143F3AB02090B579009F3719 /* PopBehaviorSelectionTableViewCell.swift in Sources */,
 				14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */,
 				14F36801208B585E001E8F56 /* EntryTableViewCell.swift in Sources */,
 				14C89502208E83AA003D8CE3 /* WindowLevelTableViewCell.swift in Sources */,
 				14F36803208B5B3B001E8F56 /* MessageData.swift in Sources */,
+				143F3AAA2090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

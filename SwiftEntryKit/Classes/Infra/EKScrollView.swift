@@ -192,7 +192,7 @@ class EKScrollView: UIScrollView {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
-        if case .animated(animation: let animation) = attributes.options.exitBehavior, rollOut {
+        if case .animated(animation: let animation) = attributes.options.popBehavior, rollOut {
             if let animation = animation {
                 UIView.animate(withDuration: animation.duration, delay: 0, options: [.curveEaseOut], animations: {
                     if animation.types.contains(.scale) {

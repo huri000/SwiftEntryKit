@@ -13,8 +13,30 @@ class WindowLevelTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Window Level"
-        descriptionValue = "The window level of the entry. Below or above the status bar"
-        segmentedControl.insertSegment(withTitle: "BELOW", at: 0, animated: false)
-        segmentedControl.insertSegment(withTitle: "ABOVE", at: 1, animated: false)
+        descriptionValue = "The window level of the entry"
+        insertSegments(by: ["Above status bar", "Below status bar"])
+        selectSegment()
+    }
+    
+    private func selectSegment() {
+        switch attributesWrapper.attributes.windowLevel {
+        case .aboveStatusBar:
+            segmentedControl.selectedSegmentIndex = 0
+        case .belowStatusBar:
+            segmentedControl.selectedSegmentIndex = 1
+        default:
+            break
+        }
+    }
+    
+    @objc override func segmentChanged() {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            attributesWrapper.attributes.windowLevel = .aboveStatusBar
+        case 1:
+            attributesWrapper.attributes.windowLevel = .belowStatusBar
+        default:
+            break
+        }
     }
 }

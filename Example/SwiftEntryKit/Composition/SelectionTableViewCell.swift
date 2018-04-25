@@ -15,6 +15,11 @@ class SelectionBaseCell: UITableViewCell {
 
 class SelectionTableViewCell: SelectionBaseCell {
 
+    enum Focus: String {
+        case entry
+        case screen
+    }
+    
     enum Setting {
         case position
         case windowLevel
@@ -81,6 +86,12 @@ class SelectionTableViewCell: SelectionBaseCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         segmentedControl.removeAllSegments()
         self.attributesWrapper = attributesWrapper
+    }
+    
+    func insertSegments(by array: [String]) {
+        for (index, info) in array.enumerated() {
+            segmentedControl.insertSegment(withTitle: info, at: index, animated: false)
+        }
     }
     
     @objc func segmentChanged() {}

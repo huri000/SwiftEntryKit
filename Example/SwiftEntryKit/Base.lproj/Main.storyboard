@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--EntryKit Sample App-->
+        <!--Presets-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SwiftEntryKit_Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,8 +22,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="EntryKit Sample App" id="coN-y3-4zm">
-                        <barButtonItem key="rightBarButtonItem" title="Compose" id="IX0-qK-RAk">
+                    <navigationItem key="navigationItem" title="Presets" id="coN-y3-4zm">
+                        <barButtonItem key="rightBarButtonItem" title="Custom" id="IX0-qK-RAk">
                             <connections>
                                 <segue destination="hAa-pE-SAe" kind="show" id="WMZ-op-Cyq"/>
                             </connections>
@@ -34,10 +34,10 @@
             </objects>
             <point key="canvasLocation" x="982" y="439"/>
         </scene>
-        <!--Compose View Controller-->
+        <!--Custom-->
         <scene sceneID="6CQ-Ki-hYC">
             <objects>
-                <viewController id="hAa-pE-SAe" customClass="ComposeViewController" customModule="SwiftEntryKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hAa-pE-SAe" customClass="CustomEntryViewController" customModule="SwiftEntryKit_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DSG-Fp-vjt"/>
                         <viewControllerLayoutGuide type="bottom" id="zT4-fx-ydB"/>
@@ -47,6 +47,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Custom" id="uMb-FP-a2v">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Zvk-BE-qQ1"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="e2Q-Yz-Q9Z"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CjF-WE-dXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

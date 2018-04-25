@@ -29,11 +29,6 @@ public struct EKAttributes {
     /** Describes the background appearance while the entry shows */
     public var screenBackground = BackgroundStyle.color(color: .clear)
     
-    // Describes how the entry animates in and out
-    public var entranceAnimation = Animation.fade
-    public var exitAnimation = Animation.fade
-    
-    // MARK: - User Interaction
     
     // Describes what happens when the user interacts the background, passes touchss forward by default
     // Triggered when the user begin touch interaction with the bsckground
@@ -53,4 +48,8 @@ public struct EKAttributes {
     
     /** Round corners */
     public var roundCorners = RoundCorners.none
+    
+    // Describes how the entry animates in and out
+    public var entranceAnimation = Animation.fade
+    public var exitAnimation = Animation.fade
 }
