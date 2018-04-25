@@ -75,7 +75,7 @@ public extension EKAttributes {
             return PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
         }
         
-        public init(verticalOffset: CGFloat = 10, width: Edge = .offset(value: 20), height: Edge = .unspecified, maximumWidth: Edge = .unspecified) {
+        public init(verticalOffset: CGFloat = 0, width: Edge = .offset(value: 0), height: Edge = .unspecified, maximumWidth: Edge = .unspecified) {
             self.verticalOffset = verticalOffset
             self.width = width
             self.height = height

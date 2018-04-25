@@ -13,7 +13,7 @@ class SafeAreaSelectionTableViewCell: SelectionTableViewCell {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Safe Area Adjustment"
         descriptionValue = "Describes whether the entry overrides / ignore safe area insets"
-        insertSegments(by: ["Leave Empty", "Leave Colored", "Override"])
+        insertSegments(by: ["Colored", "Uncolored", "Override"])
         selectSegment()
     }
     

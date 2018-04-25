@@ -21,7 +21,7 @@ public struct EKAttributes {
     public var position = Position.top
 
     /** Describes how long the entry is displayed before it is dismissed */
-    public var displayDuration: TimeInterval = 4 // Use .infinity for infinate duration
+    public var displayDuration: TimeInterval = 2 // Use .infinity for infinate duration
     
     /** The frame attributes of the entry */
     public var positionConstraints = PositionConstraints()
@@ -30,7 +30,7 @@ public struct EKAttributes {
     public var entryBackground = BackgroundStyle.visualEffect(style: .light)
     
     /** Describes the background appearance while the entry shows */
-    public var screenBackground = BackgroundStyle.color(color: .clear)
+    public var screenBackground = BackgroundStyle.none
     
     // Describes what happens when the user interacts the background, passes touchss forward by default
     // Triggered when the user begin touch interaction with the bsckground
