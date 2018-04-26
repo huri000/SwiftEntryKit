@@ -21,9 +21,11 @@ public class EKContainerView: UIView {
         }
     }
     
+    public var contentContainerView = UIView()
+    
     public var content: Content! {
         didSet {
-            contentView = content.view
+            contentView =  content.view
         }
     }
     
@@ -36,8 +38,13 @@ public class EKContainerView: UIView {
     private var contentView: UIView! {
         didSet {
             oldValue?.removeFromSuperview()
-            addSubview(contentView)
-            contentView.clipsToBounds = true
+            
+            addSubview(contentContainerView)
+            contentContainerView.layoutToSuperview(axis: .vertically)
+            contentContainerView.layoutToSuperview(axis: .horizontally)
+            contentContainerView.clipsToBounds = true
+
+            contentContainerView.addSubview(contentView)
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
             
@@ -67,7 +74,7 @@ public class EKContainerView: UIView {
     private func applyRoundCorners() {
         switch attributes.roundCorners {
         case .all(radius: let radius), .bottom(radius: let radius), .top(radius: let radius):
-            roundCorners(by: attributes.roundCorners.cornerValues.value, radius: radius)
+            contentContainerView.roundCorners(by: attributes.roundCorners.cornerValues.value, radius: radius)
         case .none:
             break
         }
@@ -75,15 +82,11 @@ public class EKContainerView: UIView {
     
     // Apply drop shadow
     private func applyDropShadow() {
-        shadowView?.removeFromSuperview()
         switch attributes.shadow {
         case .active(with: let value):
-//            shadowView = UIView()
-//            insertSubview(shadowView, at: 0)
-//            shadowView.fillSuperview()
             applyDropShadow(withOffset: value.offset, opacity: value.opacity, radius: value.radius, color: value.color)
         case .none:
-            shadowView = nil
+            removeDropShadow()
         }
     }
 

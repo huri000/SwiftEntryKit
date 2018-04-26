@@ -61,13 +61,9 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
     private func selectSegment() {
         if attributesWrapper.attributes.entranceAnimation.containsTranslation {
             segmentedControl.selectedSegmentIndex = 0
-        }
-    
-        if attributesWrapper.attributes.entranceAnimation.containsScale {
+        } else if attributesWrapper.attributes.entranceAnimation.containsScale {
             segmentedControl.selectedSegmentIndex = 1
-        }
-        
-        if attributesWrapper.attributes.entranceAnimation.containsFade {
+        } else if attributesWrapper.attributes.entranceAnimation.containsFade {
             segmentedControl.selectedSegmentIndex = 2
         }
     }

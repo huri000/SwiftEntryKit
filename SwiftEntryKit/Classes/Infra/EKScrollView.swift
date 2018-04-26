@@ -245,12 +245,11 @@ class EKScrollView: UIScrollView {
     private func animateOut(with animation: EKAttributes.Animation) {
         let duration = animation.duration
         let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
+        var shouldAnimate = false
         
-        // Change to active state
         superview?.layoutIfNeeded()
-        if !animation.containsTranslation {
-            changeToInactiveState()
-        } else {
+        if animation.containsTranslation {
+            shouldAnimate = true
             UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
                 self.changeToInactiveState()
             }, completion: { finished in
@@ -260,17 +259,24 @@ class EKScrollView: UIScrollView {
         
         // Get fade
         if let fadeAnimation = animation.fade, case EKAttributes.Animation.AnimationType.fade(from: let start, to: let end) = fadeAnimation {
-            fade(fromAlpha: end, toAlpha: start, duration: duration)
+            shouldAnimate = true
+            fade(fromAlpha: end, toAlpha: start, duration: duration) { [weak self] in
+                self?.removeFromSuperview(keepWindow: false)
+            }
         }
         
         // Get scale
         if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
-            transform(fromScale: end, toScale: start, duration: duration)
+            shouldAnimate = true
+            transform(fromScale: end, toScale: start, duration: duration) { [weak self] in
+                self?.removeFromSuperview(keepWindow: false)
+            }
         }
-    }
-    
-    private func rollOut() {
         
+        if !shouldAnimate {
+            changeToInactiveState()
+            removeFromSuperview(keepWindow: false)
+        }
     }
     
     private func scheduleAnimateOut(withDelay delay: TimeInterval? = nil) {
@@ -316,18 +322,22 @@ class EKScrollView: UIScrollView {
         scheduleAnimateOut()
     }
     
-    private func fade(fromAlpha start: CGFloat, toAlpha end: CGFloat, duration: TimeInterval) {
+    private func fade(fromAlpha start: CGFloat, toAlpha end: CGFloat, duration: TimeInterval, completion: @escaping () -> () = {}) {
         alpha = start
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {
             self.alpha = end
-        }, completion: nil)
+        }, completion: { finished in
+            completion()
+        })
     }
     
-    private func transform(fromScale start: CGFloat, toScale end: CGFloat, duration: TimeInterval) {
+    private func transform(fromScale start: CGFloat, toScale end: CGFloat, duration: TimeInterval, completion: @escaping () -> () = {}) {
         transform = CGAffineTransform(scaleX: start, y: start)
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {
             self.transform = CGAffineTransform(scaleX: end, y: end)
-        }, completion: nil)
+        }, completion: { finished in
+            completion()
+        })
     }
     
     // Removes the view promptly - DOES NOT animate out

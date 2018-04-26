@@ -31,6 +31,7 @@ class PresetsViewController: UIViewController {
         var attributes = EKAttributes.topFloat
         let gradient = EKAttributes.BackgroundStyle.Gradient(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1))
         attributes.entryBackground = .gradient(gradient: gradient) // .color(color: .satCyan)
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
         var description = EntryAttributesDescription(with: attributes, title: "Top Floating Banner")
         dataSource.append(description)
         
