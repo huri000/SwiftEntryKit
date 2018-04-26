@@ -9,7 +9,7 @@
 import SwiftEntryKit
 import UIKit
 
-class ViewController: UIViewController {
+class PresetsViewController: UIViewController {
 
     private var dataSource: [EntryAttributesDescription] = []
     private let tableView = UITableView()
@@ -172,7 +172,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: UITableViewDelegate, UITableViewDataSource
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension PresetsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let attributes = dataSource[indexPath.row].attributes
