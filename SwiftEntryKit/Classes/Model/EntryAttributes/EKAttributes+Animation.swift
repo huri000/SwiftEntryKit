@@ -49,5 +49,4 @@ public extension EKAttributes {
             self.types = types
         }
     }
-    
 }

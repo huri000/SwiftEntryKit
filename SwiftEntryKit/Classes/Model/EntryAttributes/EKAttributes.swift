@@ -46,9 +46,11 @@ public struct EKAttributes {
     /** Round corners */
     public var roundCorners = RoundCorners.none
     
-    // Describes how the entry animates in and out
-    public var entranceAnimation = Animation.fade
-    public var exitAnimation = Animation.fade
+    /** Describes how the entry animates in */
+    public var entranceAnimation = Animation(duration: 0.3, types: [.scale, .fade])
+    
+    /** Describes how the entry animates out */
+    public var exitAnimation = Animation.translation
     
     /** Additional options that could be applied to an *EKAttributes* instance */
     public var options = Options()
