@@ -14,7 +14,7 @@ protocol EntryScrollViewDelegate: class {
 }
 
 class EKScrollView: UIScrollView {
-
+    
     // MARK: Props
     
     // Entry delegate
@@ -222,6 +222,9 @@ class EKScrollView: UIScrollView {
     }
     
     func removeFromSuperview(keepWindow: Bool) {
+        guard let _ = superview else {
+            return
+        }
         super.removeFromSuperview()
         if EKAttributes.count > 0 {
             EKAttributes.count -= 1
@@ -235,11 +238,20 @@ class EKScrollView: UIScrollView {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
-        if case .animated(animation: let animation) = attributes.options.popBehavior, pushOut {
+        if case .animated(animation: let animation) = attributes.popBehavior, pushOut {
             animateOut(with: animation)
         } else {
             animateOut(with: attributes.exitAnimation)
         }
+    }
+    
+    private func scheduleAnimateOut(withDelay delay: TimeInterval? = nil) {
+        outDispatchWorkItem?.cancel()
+        outDispatchWorkItem = DispatchWorkItem { [weak self] in
+            self?.animateOut(pushOut: false)
+        }
+        let delay = attributes.entranceAnimation.duration + (delay ?? attributes.displayDuration)
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: outDispatchWorkItem)
     }
     
     private func animateOut(with animation: EKAttributes.Animation) {
@@ -279,20 +291,11 @@ class EKScrollView: UIScrollView {
         }
     }
     
-    private func scheduleAnimateOut(withDelay delay: TimeInterval? = nil) {
-        outDispatchWorkItem?.cancel()
-        outDispatchWorkItem = DispatchWorkItem { [weak self] in
-            self?.animateOut(pushOut: false)
-        }
-        let delay = attributes.entranceAnimation.duration + (delay ?? attributes.displayDuration)
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: outDispatchWorkItem)
-    }
-    
     private func animateIn() {
         
         // Increment entry count
         EKAttributes.count += 1
-    
+        
         let animation = attributes.entranceAnimation
         let duration = animation.duration
         let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]

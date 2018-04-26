@@ -31,33 +31,7 @@ public extension EKAttributes {
                 return self == .edgeCrossingDisabled
             }
         }
-        
-        /** Describes the previous entry's behavior when the current entry shows */
-        public enum PopBehavior {
-            
-            /** Overrides the previous entry - The previous entry disappears promptly when the current one shows */
-            case overriden
-            
-            /** Animate the previous entry - The previous entry rolls out when the current one shows.
-             
-             - note: This animation is applied instead of *exitAnimation* which is the default exit animation
-             */
-            case animated(animation: Animation)
-            
-            public var isOverriden: Bool {
-                switch self {
-                case .overriden:
-                    return true
-                default:
-                    return false
-                }
-            }
-        }
-        
-        /** Describes the previous entry behaviour when the current entry shows
-         */
-        public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.6, types: [.scaleDefault]))
-        
+
         /** Describes the scrolling behavior of the entry */
         public var scroll = Scroll.enabled
         

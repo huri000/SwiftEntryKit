@@ -26,7 +26,7 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
             case .exit:
                 attributesWrapper.attributes.exitAnimation = newValue
             case .pop:
-                attributesWrapper.attributes.options.popBehavior = EKAttributes.Options.PopBehavior.animated(animation: newValue)
+                attributesWrapper.attributes.popBehavior = EKAttributes.PopBehavior.animated(animation: newValue)
             }
         }
         get {
@@ -36,7 +36,7 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
             case .exit:
                 return attributesWrapper.attributes.exitAnimation
             case .pop:
-                if case EKAttributes.Options.PopBehavior.animated(animation: let animation) = attributesWrapper.attributes.options.popBehavior {
+                if case EKAttributes.PopBehavior.animated(animation: let animation) = attributesWrapper.attributes.popBehavior {
                     return animation
                 } else {
                     fatalError()

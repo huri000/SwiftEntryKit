@@ -39,7 +39,7 @@ class EntryTableViewCell: UITableViewCell {
     private func setupImageView() {
         contentView.addSubview(thumbImageView)
         thumbImageView.image = UIImage(named: "ic_shopping_cart_dark_32pt")
-        thumbImageView.layoutToSuperview(.left, .top, offset: 20)
+        thumbImageView.layoutToSuperview(.left, .top, offset: 16)
         thumbImageView.set(.width, .height, of: 50)
     }
     
@@ -47,8 +47,8 @@ class EntryTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         titleLabel.font = Font.HelveticaNeue.medium.with(size: 18)
         titleLabel.numberOfLines = 0
-        titleLabel.layout(.left, to: .right, of: thumbImageView, offset: 20)
-        titleLabel.layout(to: .centerY, of: thumbImageView)
+        titleLabel.layout(.left, to: .right, of: thumbImageView, offset: 16)
+        titleLabel.layout(to: .top, of: thumbImageView, offset: 10)
         titleLabel.layoutToSuperview(.right, offset: -20)
     }
     
@@ -56,9 +56,9 @@ class EntryTableViewCell: UITableViewCell {
         contentView.addSubview(descriptionLabel)
         descriptionLabel.font = Font.HelveticaNeue.thin.with(size: 14)
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.layout(to: .left, of: thumbImageView)
+        descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 12)
+        descriptionLabel.layout(to: .left, of: titleLabel)
         descriptionLabel.layout(to: .right, of: titleLabel)
-        descriptionLabel.layout(.top, to: .bottom, of: thumbImageView, offset: 20)
-        descriptionLabel.layoutToSuperview(.bottom, offset: -20)
+        descriptionLabel.layoutToSuperview(.bottom, offset: -16)
     }
 }

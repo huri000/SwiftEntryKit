@@ -52,7 +52,7 @@ class EKRootViewController: UIViewController {
         removeLastEntry(keepWindow: true)
 
         lastAttributes = attributes
-        
+                
         let entryScrollView = EKScrollView(withEntryDelegate: self)
         view.addSubview(entryScrollView)
         entryScrollView.setup(with: entryView, attributes: attributes)
@@ -65,7 +65,7 @@ class EKRootViewController: UIViewController {
         guard let attributes = lastAttributes else {
             return
         }
-        if attributes.options.popBehavior.isOverriden {
+        if attributes.popBehavior.isOverriden {
             lastEntry?.removePromptly()
         } else {
             rollOutLastEntry()

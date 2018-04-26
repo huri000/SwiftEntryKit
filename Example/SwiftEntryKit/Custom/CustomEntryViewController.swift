@@ -16,23 +16,32 @@ class CustomEntryViewController: UIViewController {
     private let attributesWrapper = EntryAttributeWrapper(with: EKAttributes())
     
     struct Cells {
-        static let cells = [PositionSelectionTableViewCell.self,
+        
+        static let sectionTitles = ["General", "Interaction", "Size / Position Constraints", "Animation"]
+        
+        static let header = SelectionHeaderView.self
+        
+        static let cells = [[PositionSelectionTableViewCell.self,
                             WindowLevelTableViewCell.self,
                             DisplayDurationTableViewCell.self,
                             ShadowSelectionTableViewCell.self,
                             RoundCornersSelectionTableViewCell.self,
                             BackgroundStyleSelectionTableViewCell.self,
-                            BackgroundStyleSelectionTableViewCell.self,
+                            BackgroundStyleSelectionTableViewCell.self],
+                            
+                            [UserInteractionSelectionTableViewCell.self,
                             UserInteractionSelectionTableViewCell.self,
-                            UserInteractionSelectionTableViewCell.self,
-                            HapticFeedbackSelectionTableViewCell.self,
-                            PopBehaviorSelectionTableViewCell.self,
                             ScrollSelectionTableViewCell.self,
-                            SafeAreaSelectionTableViewCell.self,
-                            WidthSelectionTableViewCell.self,
+                            HapticFeedbackSelectionTableViewCell.self],
+                            
+                            [WidthSelectionTableViewCell.self,
+                            HeightSelectionTableViewCell.self,
+                            MaxWidthSelectionTableViewCell.self,
+                            SafeAreaSelectionTableViewCell.self],
+                            
+                            [AnimationSelectionTableViewCell.self,
                             AnimationSelectionTableViewCell.self,
-                            AnimationSelectionTableViewCell.self,
-                            AnimationSelectionTableViewCell.self]
+                            AnimationSelectionTableViewCell.self]]
     }
     
     override func viewDidLoad() {
@@ -46,10 +55,13 @@ class CustomEntryViewController: UIViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        Cells.cells.forEach { tableView.register($0, forCellReuseIdentifier: $0.className) }
+        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.register(Cells.header, forHeaderFooterViewReuseIdentifier: Cells.header.className)
+        Cells.cells.forEach { cells in
+            cells.forEach { tableView.register($0, forCellReuseIdentifier: $0.className) }
+        }
+        
         tableView.fillSuperview()
-        
-        
     }
     
     @IBAction func play() {
@@ -76,32 +88,34 @@ extension CustomEntryViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: SelectionBaseCell
-        cell = selectionCell(by: Cells.cells[indexPath.row].className, and: indexPath)
+        cell = selectionCell(by: Cells.cells[indexPath.section][indexPath.row].className, and: indexPath)
         
-        switch indexPath.row {
-        case 0...4:
+        switch (indexPath.section, indexPath.row) {
+        case (0, 0...4):
             cell.configure(attributesWrapper: attributesWrapper)
-        case 5:
+        case (0, 5):
             let cell = cell as! BackgroundStyleSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .screen)
-        case 6:
+        case (0, 6):
             let cell = cell as! BackgroundStyleSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .entry)
-        case 7:
+        case (1, 0):
             let cell = cell as! UserInteractionSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .screen)
-        case 8:
+        case (1, 1):
             let cell = cell as! UserInteractionSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .entry)
-        case 9, 10, 11, 12, 13:
+        case (1, 2...4):
             cell.configure(attributesWrapper: attributesWrapper)
-        case 14:
+        case (2, 0...3):
+            cell.configure(attributesWrapper: attributesWrapper)
+        case (3, 0):
             let cell = cell as! AnimationSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, action: .entrance)
-        case 15:
+        case (3, 1):
             let cell = cell as! AnimationSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, action: .exit)
-        case 16:
+        case (3, 2):
             let cell = cell as! AnimationSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, action: .pop)
         default:
@@ -111,11 +125,21 @@ extension CustomEntryViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: Cells.header.className) as! SelectionHeaderView
+        header.text = Cells.sectionTitles[section]
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return Cells.sectionTitles[section]
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return Cells.cells.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Cells.cells.count
+        return Cells.cells[section].count
     }
 }

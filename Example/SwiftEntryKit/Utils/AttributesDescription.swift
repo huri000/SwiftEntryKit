@@ -19,7 +19,7 @@ class EntryAttributesDescription {
     }
     
     var description: String {
-        let title = "The entry is located at the \(position), \(windowLevel), and displayed for \(displayDuration).\n\nIt's background has a \(entryBackground), the screen's background has a \(screenBackground).\n\nTouchs on the entry \(entryInteraction) and touchs on the screen \(screenInteraction)"
+        let title = "Presented \(windowLevel), for \(displayDuration). It's background has a \(entryBackground), the screen's background has a \(screenBackground).\n\nTouchs on the entry \(entryInteraction) and touchs on the screen \(screenInteraction)"
         return title
     }
     
@@ -83,7 +83,7 @@ class EntryAttributesDescription {
         case .dismissEntry:
             desc += "dismiss the entry immediately"
         case .forward:
-            desc += "touchs go through into the lower level window"
+            desc += "go through into the lower level window"
         }
         return desc
     }

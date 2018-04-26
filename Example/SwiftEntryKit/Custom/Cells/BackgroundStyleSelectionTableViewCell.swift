@@ -69,10 +69,17 @@ class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
         case 1:
             backgroundStyle = .visualEffect(style: .light)
         case 2:
-            let gradient = EKAttributes.BackgroundStyle.Gradient(colors: [.amber, .facebookDarkBlue], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1))
+            let gradient = EKAttributes.BackgroundStyle.Gradient(colors: [EKColor.BlueGray.c100, EKColor.BlueGray.c300], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1))
             backgroundStyle = .gradient(gradient: gradient)
         case 3:
-            backgroundStyle = .color(color: .amber)
+            let color: UIColor
+            switch focus {
+            case .entry:
+                color = .amber
+            case .screen:
+                color = UIColor.black.withAlphaComponent(0.5)
+            }
+            backgroundStyle = .color(color: color)
         default:
             break
         }

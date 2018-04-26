@@ -18,7 +18,7 @@ public extension EKAttributes {
         attributes.positionConstraints = .full
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.windowLevel = .aboveStatusBar
-        attributes.options.popBehavior = .animated(animation: .translation)
+        attributes.popBehavior = .animated(animation: .translation)
         return attributes
     }
     

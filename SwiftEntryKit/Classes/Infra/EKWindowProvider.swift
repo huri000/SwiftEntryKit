@@ -13,6 +13,15 @@ public class EKWindowProvider {
     public enum State {
         case message(view: EKContainerView, attributes: EKAttributes)
         case main
+        
+        var isMain: Bool {
+            switch self {
+            case .main:
+                return true
+            default:
+                return false
+            }
+        }
     }
 
     public var state: State = .main {
@@ -21,6 +30,12 @@ public class EKWindowProvider {
             case .main:
                 clean()
             case .message(view: let view, attributes: let attributes):
+                if oldValue.isMain {
+                    previousStatusBarStyle = UIApplication.shared.statusBarStyle
+                }
+                if let newStatusBarStyle = attributes.statusBarStyle {
+                    UIApplication.shared.statusBarStyle = newStatusBarStyle
+                }
                 setup(with: view, attributes: attributes)
             }
         }
@@ -32,6 +47,8 @@ public class EKWindowProvider {
         }
         rootVC.rollOutLastEntry()
     }
+    
+    private var previousStatusBarStyle: UIStatusBarStyle!
         
     var rootVC: EKRootViewController? {
         return entryWindow?.rootViewController as? EKRootViewController
@@ -68,6 +85,7 @@ public class EKWindowProvider {
     }
     
     private func clean() {
+        UIApplication.shared.statusBarStyle = previousStatusBarStyle
         entryWindow = nil
         UIApplication.shared.keyWindow?.makeKeyAndVisible()
     }

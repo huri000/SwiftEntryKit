@@ -47,10 +47,16 @@ public struct EKAttributes {
     public var roundCorners = RoundCorners.none
     
     /** Describes how the entry animates in */
-    public var entranceAnimation = Animation(duration: 0.3, types: [.scaleDefault, .fadeDefault])
+    public var entranceAnimation = Animation.translation
     
     /** Describes how the entry animates out */
     public var exitAnimation = Animation.translation
+    
+    /** Describes the previous entry behaviour when the current entry shows */
+    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.6, types: [.scaleDefault, .translate]))
+    
+    /** Preferred status bar style while the entry shows */
+    public var statusBarStyle: UIStatusBarStyle!
     
     /** Additional options that could be applied to an *EKAttributes* instance */
     public var options = Options()
