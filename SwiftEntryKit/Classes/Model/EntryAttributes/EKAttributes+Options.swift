@@ -40,9 +40,9 @@ public extension EKAttributes {
             
             /** Animate the previous entry - The previous entry rolls out when the current one shows.
              
-             - note: This animation is applied additionally to *exitAnimation* which is the default exit animation
+             - note: This animation is applied instead of *exitAnimation* which is the default exit animation
              */
-            case animated(animation: Animation?)
+            case animated(animation: Animation)
             
             public var isOverriden: Bool {
                 switch self {
@@ -56,7 +56,7 @@ public extension EKAttributes {
         
         /** Describes the previous entry behaviour when the current entry shows
          */
-        public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.6, types: [.scale]))
+        public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.6, types: [.scaleDefault]))
         
         /** Describes the scrolling behavior of the entry */
         public var scroll = Scroll.enabled

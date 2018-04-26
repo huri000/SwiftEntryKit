@@ -74,7 +74,7 @@ class EKRootViewController: UIViewController {
     
     // Rolls out last entry - animatedly
     func rollOutLastEntry() {
-        lastEntry?.animateOut(rollOut: true)
+        lastEntry?.animateOut(pushOut: true)
     }
 }
 

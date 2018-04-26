@@ -29,7 +29,10 @@ class CustomEntryViewController: UIViewController {
                             PopBehaviorSelectionTableViewCell.self,
                             ScrollSelectionTableViewCell.self,
                             SafeAreaSelectionTableViewCell.self,
-                            WidthSelectionTableViewCell.self]
+                            WidthSelectionTableViewCell.self,
+                            AnimationSelectionTableViewCell.self,
+                            AnimationSelectionTableViewCell.self,
+                            AnimationSelectionTableViewCell.self]
     }
     
     override func viewDidLoad() {
@@ -92,6 +95,15 @@ extension CustomEntryViewController: UITableViewDelegate, UITableViewDataSource 
             cell.configure(attributesWrapper: attributesWrapper, focus: .entry)
         case 9, 10, 11, 12, 13:
             cell.configure(attributesWrapper: attributesWrapper)
+        case 14:
+            let cell = cell as! AnimationSelectionTableViewCell
+            cell.configure(attributesWrapper: attributesWrapper, action: .entrance)
+        case 15:
+            let cell = cell as! AnimationSelectionTableViewCell
+            cell.configure(attributesWrapper: attributesWrapper, action: .exit)
+        case 16:
+            let cell = cell as! AnimationSelectionTableViewCell
+            cell.configure(attributesWrapper: attributesWrapper, action: .pop)
         default:
             fatalError()
         }

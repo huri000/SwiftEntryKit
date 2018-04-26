@@ -6,7 +6,7 @@
 //  Copyright © 2018 CocoaPods. All rights reserved.
 //
 
-import Foundation
+import SwiftEntryKit
 
 class PopBehaviorSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
@@ -31,7 +31,8 @@ class PopBehaviorSelectionTableViewCell: SelectionTableViewCell {
         case 0:
             attributesWrapper.attributes.options.popBehavior = .overriden
         case 1:
-            attributesWrapper.attributes.options.popBehavior = .animated(animation: .init(duration: 0.6, types: [.scale]))
+            let animation = EKAttributes.Animation(duration: 0.6, types: [.scaleDefault])
+            attributesWrapper.attributes.options.popBehavior = .animated(animation: animation)
         default:
             break
         }

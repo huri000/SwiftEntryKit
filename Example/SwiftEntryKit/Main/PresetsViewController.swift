@@ -49,7 +49,7 @@ class PresetsViewController: UIViewController {
         attributes = EKAttributes.topToast
         attributes.windowLevel = .belowStatusBar
         attributes.entryBackground = .color(color: .satCyan)
-        attributes.options.popBehavior = .animated(animation: nil)
+        attributes.options.popBehavior = .animated(animation: .translation)
         description = EntryAttributesDescription(with: attributes, title: "Top Single Line Note")
         dataSource.append(description)
         
@@ -57,14 +57,14 @@ class PresetsViewController: UIViewController {
         attributes.windowLevel = .belowStatusBar
         attributes.entryInteraction = .absorbTouches
         attributes.displayDuration = .infinity
-        attributes.options.popBehavior = .animated(animation: nil)
+        attributes.options.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .pinky)
         description = EntryAttributesDescription(with: attributes, title: "Top Single Line Processing Note (Infinate Duration)")
         dataSource.append(description)
         
         attributes = EKAttributes.statusBar
         attributes.entryBackground = .color(color: .greenGrass)
-        attributes.options.popBehavior = .animated(animation: nil)
+        attributes.options.popBehavior = .animated(animation: .translation)
         description = EntryAttributesDescription(with: attributes, title: "Status Bar Temporary Cover")
         dataSource.append(description)
 

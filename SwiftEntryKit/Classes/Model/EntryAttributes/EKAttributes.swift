@@ -47,7 +47,7 @@ public struct EKAttributes {
     public var roundCorners = RoundCorners.none
     
     /** Describes how the entry animates in */
-    public var entranceAnimation = Animation(duration: 0.3, types: [.scale, .fade])
+    public var entranceAnimation = Animation(duration: 0.3, types: [.scaleDefault, .fadeDefault])
     
     /** Describes how the entry animates out */
     public var exitAnimation = Animation.translation

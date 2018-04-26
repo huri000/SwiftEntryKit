@@ -122,7 +122,7 @@ class EKScrollView: UIScrollView {
         // Setup out constraint, capture pre calculated offsets and attributes
         let setupOutConstraint = { (animation: EKAttributes.Animation, priority: UILayoutPriority) -> NSLayoutConstraint in
             let constraint: NSLayoutConstraint
-            if animation.types.contains(.translation) {
+            if animation.containsTranslation {
                 constraint = self.layout(messageTopInSuperview, to: messageBottomInSuperview, of: self.superview!, offset: outOffset, priority: .must)!
             } else {
                 constraint = self.layout(to: messageBottomInSuperview, of: self.superview!, offset: inOffset, priority: .must)!
@@ -231,35 +231,52 @@ class EKScrollView: UIScrollView {
         }
     }
     
-    func animateOut(rollOut: Bool) {
-        
+    func animateOut(pushOut: Bool) {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
-        if case .animated(animation: let animation) = attributes.options.popBehavior, rollOut {
-            if let animation = animation {
-                UIView.animate(withDuration: animation.duration, delay: 0, options: [.curveEaseOut], animations: {
-                    if animation.types.contains(.scale) {
-                        self.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                    }
-                    if animation.types.contains(.fade) {
-                        self.alpha = 0
-                    }
-                }, completion: nil)
-            }
+        if case .animated(animation: let animation) = attributes.options.popBehavior, pushOut {
+            animateOut(with: animation)
+        } else {
+            animateOut(with: attributes.exitAnimation)
+        }
+    }
+    
+    private func animateOut(with animation: EKAttributes.Animation) {
+        let duration = animation.duration
+        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
+        
+        // Change to active state
+        superview?.layoutIfNeeded()
+        if !animation.containsTranslation {
+            changeToInactiveState()
+        } else {
+            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+                self.changeToInactiveState()
+            }, completion: { finished in
+                self.removeFromSuperview(keepWindow: false)
+            })
         }
         
-        UIView.animate(withDuration: attributes.exitAnimation.duration, delay: 0.1, options: [.beginFromCurrentState], animations: {
-            self.changeToInactiveState()
-        }, completion: { finished in
-            self.removeFromSuperview(keepWindow: false)
-        })
+        // Get fade
+        if let fadeAnimation = animation.fade, case EKAttributes.Animation.AnimationType.fade(from: let start, to: let end) = fadeAnimation {
+            fade(fromAlpha: end, toAlpha: start, duration: duration)
+        }
+        
+        // Get scale
+        if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
+            transform(fromScale: end, toScale: start, duration: duration)
+        }
+    }
+    
+    private func rollOut() {
+        
     }
     
     private func scheduleAnimateOut(withDelay delay: TimeInterval? = nil) {
         outDispatchWorkItem?.cancel()
         outDispatchWorkItem = DispatchWorkItem { [weak self] in
-            self?.animateOut(rollOut: false)
+            self?.animateOut(pushOut: false)
         }
         let delay = attributes.entranceAnimation.duration + (delay ?? attributes.displayDuration)
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: outDispatchWorkItem)
@@ -273,9 +290,10 @@ class EKScrollView: UIScrollView {
         let animation = attributes.entranceAnimation
         let duration = animation.duration
         let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
+        
         // Change to active state
         superview?.layoutIfNeeded()
-        if !animation.types.contains(.translation) {
+        if !animation.containsTranslation {
             changeToActiveState()
         } else {
             UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
@@ -283,22 +301,33 @@ class EKScrollView: UIScrollView {
             }, completion: nil)
         }
         
-        if animation.types.contains(.fade) {
-            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-                self.alpha = 1
-            }, completion: nil)
+        // Get fade
+        if let fadeAnimation = animation.fade, case EKAttributes.Animation.AnimationType.fade(from: let start, to: let end) = fadeAnimation {
+            fade(fromAlpha: start, toAlpha: end, duration: duration)
         }
-        
-        if animation.types.contains(.scale) {
-            self.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-                self.transform = .identity
-            }, completion: nil)
+
+        // Get scale
+        if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
+            transform(fromScale: start, toScale: end, duration: duration)
         }
         
         entryDelegate?.changeToActive(withAttributes: attributes)
 
         scheduleAnimateOut()
+    }
+    
+    private func fade(fromAlpha start: CGFloat, toAlpha end: CGFloat, duration: TimeInterval) {
+        alpha = start
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {
+            self.alpha = end
+        }, completion: nil)
+    }
+    
+    private func transform(fromScale start: CGFloat, toScale end: CGFloat, duration: TimeInterval) {
+        transform = CGAffineTransform(scaleX: start, y: start)
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {
+            self.transform = CGAffineTransform(scaleX: end, y: end)
+        }, completion: nil)
     }
     
     // Removes the view promptly - DOES NOT animate out
@@ -312,7 +341,7 @@ class EKScrollView: UIScrollView {
     @objc func tapGestureRecognized() {
         switch attributes.entryInteraction.defaultAction {
         case .dismissEntry:
-            animateOut(rollOut: true)
+            animateOut(pushOut: true)
             fallthrough
         default:
             attributes.entryInteraction.customActions.forEach { $0() }
