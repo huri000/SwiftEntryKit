@@ -38,7 +38,7 @@ class EntryTableViewCell: UITableViewCell {
     
     private func setupImageView() {
         contentView.addSubview(thumbImageView)
-        thumbImageView.image = UIImage(named: "ic_shopping_cart_dark_32pt")
+        thumbImageView.image = UIImage(named: "ic_phone_iphone_36pt")
         thumbImageView.layoutToSuperview(.left, .top, offset: 16)
         thumbImageView.set(.width, .height, of: 50)
     }

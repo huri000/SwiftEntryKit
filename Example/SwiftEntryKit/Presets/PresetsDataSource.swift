@@ -58,7 +58,7 @@ struct PresetsDataSource {
         
         // Preset II
         attributes = .bottomFloat
-        attributes.entryBackground = .color(color: EKColor.BlueGray.c600)
+        attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.entryInteraction = .delayExit(by: 3)
         attributes.statusBarStyle = .default
         descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
@@ -92,7 +92,7 @@ struct PresetsDataSource {
         attributes.displayDuration = 4
         attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10, offset: .zero))
         attributes.popBehavior = .overriden
-        descriptionString = "The entry has a dark background with a chat message style. Displayed for \(attributes.displayDuration)s"
+        descriptionString = "The entry has a dark background with a chat message style. Displayed for \(attributes.displayDuration)s. Once a new entry shows, it's overridden promptly"
         description = EntryAttributesDescription(with: attributes, title: "Top II", description: descriptionString)
         toasts.append(description)
         
@@ -141,6 +141,14 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Status Bar Note", description: descriptionString)
         notes.append(description)
         
+        // Preset IV
+        attributes = .bottomNote
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
+        attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Purple.a300, EKColor.Purple.a400, EKColor.Purple.a700], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        descriptionString = "Presented at the bottom / Above the notch, with a mild gradient and shadow"
+        description = .init(with: attributes, title: "Bottom Standard Note", description: descriptionString)
+        notes.append(description)
+        
         dataSource.append(("Notes", notes))
     }
     
@@ -161,7 +169,7 @@ struct PresetsDataSource {
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.width = .offset(value: 20)
         
-        descriptionString = "Customized alert view with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry."
+        descriptionString = "Customized alert view with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
         description = .init(with: attributes, title: "Custom Alert", description: descriptionString)
         customs.append(description)
 
@@ -169,11 +177,17 @@ struct PresetsDataSource {
         attributes = .bottomFloat
         attributes.displayDuration = 4
         attributes.screenBackground = .clear
+        attributes.entryBackground = .clear
         attributes.screenInteraction = .forward
         attributes.entryInteraction = .absorbTouches
-        attributes.roundCorners = .none
-        attributes.positionConstraints = .init(verticalOffset: 10, width: .offset(value: 20))
-        descriptionString = "Example for a view that is initialized by a nib file"
+        attributes.roundCorners = .all(radius: 5)
+        attributes.entranceAnimation = .init(duration: 0.2, types: [.translate, .scale(from: 0.8, to: 1)])
+        attributes.exitAnimation = .init(duration: 0.5, types: [.fade(from: 1, to: 0), .scale(from: 1, to: 0.8)])
+        attributes.popBehavior = .animated(animation: .init(duration: 0.3, types: [.translate, .scale(from: 1, to: 0.8)]))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
+        attributes.positionConstraints.verticalOffset = 10
+        attributes.positionConstraints.width = .offset(value: 20)
+        descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
         description = .init(with: attributes, title: "View From Nib", description: descriptionString)
         customs.append(description)
         

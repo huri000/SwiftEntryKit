@@ -55,7 +55,7 @@
                     <state key="normal" image="ic_fast_rewind_white"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.21568627450980393" green="0.22745098039215686" blue="0.29803921568627451" alpha="0.94560680650684936" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.21568627450980393" green="0.22745098039215686" blue="0.29803921568627451" alpha="0.90333369006849318" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="soo-Bj-Ivd" firstAttribute="centerY" secondItem="lij-bw-5XF" secondAttribute="centerY" id="2FK-pu-cmQ"/>
                 <constraint firstItem="lij-bw-5XF" firstAttribute="centerY" secondItem="4m1-eK-fCE" secondAttribute="centerY" id="ELT-AM-x3k"/>

@@ -174,13 +174,14 @@ extension PresetsViewController {
             showProcessingNote(attributes: attributes)
         case 2:
             showStatusBarMessage(attributes: attributes)
+        case 3:
+            showNote(attributes: attributes)
         default:
             break
         }
     }
     
     private func floatCellSelected(with attributes: EKAttributes, row: Int) {
-        
         switch row {
         case 0:
             showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")

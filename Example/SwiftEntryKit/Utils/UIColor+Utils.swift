@@ -44,29 +44,40 @@ extension UIColor {
     static let darkChatMessage = UIColor(red: 48, green: 47, blue: 48)
 }
 
-public struct EKColor {
-    public struct BlueGray {
-        public static let c50 = UIColor(rgb: 0xeceff1)
-        public static let c100 = UIColor(rgb: 0xcfd8dc)
-        public static let c200 = UIColor(rgb: 0xb0bec5)
-        public static let c300 = UIColor(rgb: 0x90a4ae)
-        public static let c400 = UIColor(rgb: 0x78909c)
-        public static let c500 = UIColor(rgb: 0x607d8b)
-        public static let c600 = UIColor(rgb: 0x546e7a)
-        public static let c700 = UIColor(rgb: 0x455a64)
-        public static let c800 = UIColor(rgb: 0x37474f)
-        public static let c900 = UIColor(rgb: 0x263238)
+struct EKColor {
+    struct BlueGray {
+        static let c50 = UIColor(rgb: 0xeceff1)
+        static let c100 = UIColor(rgb: 0xcfd8dc)
+        static let c200 = UIColor(rgb: 0xb0bec5)
+        static let c300 = UIColor(rgb: 0x90a4ae)
+        static let c400 = UIColor(rgb: 0x78909c)
+        static let c500 = UIColor(rgb: 0x607d8b)
+        static let c600 = UIColor(rgb: 0x546e7a)
+        static let c700 = UIColor(rgb: 0x455a64)
+        static let c800 = UIColor(rgb: 0x37474f)
+        static let c900 = UIColor(rgb: 0x263238)
     }
     
-    public struct Yellow {
-        public static let a700 = UIColor(rgb: 0xffd600)
+    struct Purple {
+        static let a300 = UIColor(rgb: 0xba68c8)
+        static let a400 = UIColor(rgb: 0xab47bc)
+        static let a700 = UIColor(rgb: 0xaa00ff)
     }
     
-    public struct Orange {
-        public static let a50 = UIColor(rgb: 0xfff3e0)
+    struct BlueGradient {
+        static let light = UIColor(red: 100, green: 172, blue: 196)
+        static let dark = UIColor(red: 27, green: 47, blue: 144)
     }
     
-    public struct LightBlue {
-        public static let a700 = UIColor(rgb: 0x0091ea)
+    struct Yellow {
+        static let a700 = UIColor(rgb: 0xffd600)
+    }
+    
+    struct Orange {
+        static let a50 = UIColor(rgb: 0xfff3e0)
+    }
+    
+    struct LightBlue {
+        static let a700 = UIColor(rgb: 0x0091ea)
     }
 }

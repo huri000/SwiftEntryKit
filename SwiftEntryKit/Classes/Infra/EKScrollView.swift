@@ -24,6 +24,7 @@ class EKScrollView: UIScrollView {
     private var entranceOutConstraint: NSLayoutConstraint!
     private var inConstraint: NSLayoutConstraint!
     private var exitOutConstraint: NSLayoutConstraint!
+    private var popOutConstraint: NSLayoutConstraint!
     
     private var outDispatchWorkItem: DispatchWorkItem!
 
@@ -131,6 +132,12 @@ class EKScrollView: UIScrollView {
             return constraint
         }
         
+        if case .animated(animation: let animation) = attributes.popBehavior {
+            popOutConstraint = setupOutConstraint(animation, .defaultLow)
+        } else {
+            popOutConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)!
+        }
+        
         // Set position constraints
         entranceOutConstraint = setupOutConstraint(attributes.entranceAnimation, .must)
         exitOutConstraint = setupOutConstraint(attributes.exitAnimation, .defaultLow)
@@ -211,14 +218,19 @@ class EKScrollView: UIScrollView {
     private func changeToActiveState() {
         entranceOutConstraint.priority = .defaultLow
         exitOutConstraint.priority = .defaultLow
+        popOutConstraint.priority = .defaultLow
         inConstraint.priority = .must
         superview?.layoutIfNeeded()
     }
     
-    private func changeToInactiveState() {
+    private func changeToInactiveState(entryPopped: Bool) {
         inConstraint.priority = .defaultLow
         entranceOutConstraint.priority = .defaultLow
-        exitOutConstraint.priority = .must
+        if entryPopped {
+            popOutConstraint.priority = .must
+        } else {
+            exitOutConstraint.priority = .must
+        }
         superview?.layoutIfNeeded()
     }
     
@@ -240,9 +252,9 @@ class EKScrollView: UIScrollView {
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
         if case .animated(animation: let animation) = attributes.popBehavior, pushOut {
-            animateOut(with: animation)
+            animateOut(with: animation, animatePop: pushOut)
         } else {
-            animateOut(with: attributes.exitAnimation)
+            animateOut(with: attributes.exitAnimation, animatePop: false)
         }
     }
     
@@ -255,7 +267,7 @@ class EKScrollView: UIScrollView {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: outDispatchWorkItem)
     }
     
-    private func animateOut(with animation: EKAttributes.Animation) {
+    private func animateOut(with animation: EKAttributes.Animation, animatePop: Bool) {
         let duration = animation.duration
         let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
         var shouldAnimate = false
@@ -264,20 +276,20 @@ class EKScrollView: UIScrollView {
         if animation.containsTranslation {
             shouldAnimate = true
             UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-                self.changeToInactiveState()
+                self.changeToInactiveState(entryPopped: animatePop)
             }, completion: { finished in
                 self.removeFromSuperview(keepWindow: false)
             })
         }
-        
+
         // Get fade
         if let fadeAnimation = animation.fade, case EKAttributes.Animation.AnimationType.fade(from: let start, to: let end) = fadeAnimation {
             shouldAnimate = true
-            fade(fromAlpha: end, toAlpha: start, duration: duration) { [weak self] in
+            fade(fromAlpha: start, toAlpha: end, duration: duration) { [weak self] in
                 self?.removeFromSuperview(keepWindow: false)
             }
         }
-        
+
         // Get scale
         if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
             shouldAnimate = true
@@ -287,7 +299,7 @@ class EKScrollView: UIScrollView {
         }
         
         if !shouldAnimate {
-            changeToInactiveState()
+            changeToInactiveState(entryPopped: animatePop)
             removeFromSuperview(keepWindow: false)
         }
     }
