@@ -60,6 +60,15 @@ public extension EKAttributes {
         return attributes
     }
     
+    /** Preset for top note entry */
+    public static var topNote: EKAttributes {
+        var attributes = topToast
+        attributes.options.scroll = .disabled
+        attributes.windowLevel = .belowStatusBar
+        attributes.entryInteraction = .absorbTouches
+        return attributes
+    }
+    
     /** Preset for status bar entry - appears on top of the status bar */
     public static var statusBar: EKAttributes {
         var attributes = topToast

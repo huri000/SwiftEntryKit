@@ -11,18 +11,15 @@ import SwiftEntryKit
 class EntryAttributesDescription {
     
     let title: String
+    var description: String
     let attributes: EKAttributes
     
-    init(with attributes: EKAttributes, title: String) {
+    init(with attributes: EKAttributes, title: String, description: String = "") {
         self.title = title
+        self.description = description
         self.attributes = attributes
     }
-    
-    var description: String {
-        let title = "Presented \(windowLevel), for \(displayDuration). It's background has a \(entryBackground), the screen's background has a \(screenBackground).\n\nTouchs on the entry \(entryInteraction) and touchs on the screen \(screenInteraction)"
-        return title
-    }
-    
+
     var type: String {
         if attributes.positionConstraints.hasVerticalOffset {
             return "float"
@@ -42,11 +39,11 @@ class EntryAttributesDescription {
     var windowLevel: String {
         switch attributes.windowLevel {
         case .aboveStatusBar:
-            return "above the status bar"
+            return "above the status bar window"
         case .belowStatusBar:
-            return "below the status bar"
+            return "below the status bar window"
         case .custom(level: let level):
-            return "the window level is \(level)"
+            return "at window level \(level)"
         }
     }
     
@@ -92,15 +89,15 @@ class EntryAttributesDescription {
         var desc = ""
         switch style {
         case .visualEffect(style: _):
-            desc += "blur effect"
+            desc += "blurred"
         case .color(color: _):
-            desc += "custom color"
+            desc += "colored"
         case .image(image: _):
-            desc += "custom image"
+            desc += "image"
         case .gradient(gradient: _):
-            desc += "gradient colors"
+            desc += "gradient"
         case .clear:
-            desc = "clear style"
+            desc = "clear"
         }
         return desc
     }

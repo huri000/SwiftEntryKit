@@ -36,7 +36,7 @@ class PresetsViewController: UIViewController {
     // Bumps a standard note
     private func showNote(attributes: EKAttributes) {
         let text = "Pssst! I have something to tell you..."
-        let style = EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .white)
+        let style = EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .white)
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         let contentView = EKNoteMessageView(with: labelContent)
 
@@ -46,7 +46,7 @@ class PresetsViewController: UIViewController {
     // Bumps an infinate processing note
     private func showProcessingNote(attributes: EKAttributes) {
         let text = "Waiting for the goodies to arrive!"
-        let style = EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .white)
+        let style = EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .white)
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         
         let contentView = EKProcessingNoteMessageView(with: labelContent, activityIndicator: .white)
@@ -58,7 +58,7 @@ class PresetsViewController: UIViewController {
         let statusBarHeight = UIApplication.shared.statusBarFrame.maxY
         
         let contentView: UIView
-        let font = Font.HelveticaNeue.medium.with(size: 12)
+        let font = Font.HelveticaNeue.light.with(size: 12)
         let labelStyle = EKProperty.Label(font: font, color: .white)
         if statusBarHeight > 20 {
             let leading = EKProperty.LabelContent(text: "My 🧠", style: labelStyle)
@@ -144,7 +144,7 @@ extension PresetsViewController {
     private func toastCellSelected(with attributes: EKAttributes, row: Int) {
         switch row {
         case 0:
-            showNotificationMessage(attributes: attributes, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
+            showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
         case 1:
             showNotificationMessage(attributes: attributes, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
         default:

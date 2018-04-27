@@ -45,18 +45,20 @@ class EntryTableViewCell: UITableViewCell {
     
     private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
+        titleLabel.textColor = EKColor.BlueGray.c900
         titleLabel.font = Font.HelveticaNeue.medium.with(size: 18)
         titleLabel.numberOfLines = 0
         titleLabel.layout(.left, to: .right, of: thumbImageView, offset: 16)
-        titleLabel.layout(to: .top, of: thumbImageView, offset: 10)
-        titleLabel.layoutToSuperview(.right, offset: -20)
+        titleLabel.layout(to: .top, of: thumbImageView)
+        titleLabel.layoutToSuperview(.right, offset: -12)
     }
     
     private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
-        descriptionLabel.font = Font.HelveticaNeue.thin.with(size: 14)
+        descriptionLabel.textColor = EKColor.BlueGray.c800
+        descriptionLabel.font = Font.HelveticaNeue.light.with(size: 14)
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 12)
+        descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 4)
         descriptionLabel.layout(to: .left, of: titleLabel)
         descriptionLabel.layout(to: .right, of: titleLabel)
         descriptionLabel.layoutToSuperview(.bottom, offset: -16)

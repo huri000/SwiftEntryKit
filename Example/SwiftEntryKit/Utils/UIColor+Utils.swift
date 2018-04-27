@@ -56,4 +56,16 @@ public struct EKColor {
         public static let c800 = UIColor(rgb: 0x37474f)
         public static let c900 = UIColor(rgb: 0x263238)
     }
+    
+    public struct Yellow {
+        public static let a700 = UIColor(rgb: 0xffd600)
+    }
+    
+    public struct Orange {
+        public static let a50 = UIColor(rgb: 0xfff3e0)
+    }
+    
+    public struct LightBlue {
+        public static let a700 = UIColor(rgb: 0x0091ea)
+    }
 }
