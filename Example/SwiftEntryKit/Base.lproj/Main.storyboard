@@ -23,7 +23,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Presets" id="coN-y3-4zm">
-                        <barButtonItem key="rightBarButtonItem" title="Custom" id="IX0-qK-RAk">
+                        <barButtonItem key="rightBarButtonItem" title="Playground" id="IX0-qK-RAk">
                             <connections>
                                 <segue destination="hAa-pE-SAe" kind="show" id="WMZ-op-Cyq"/>
                             </connections>
@@ -34,10 +34,10 @@
             </objects>
             <point key="canvasLocation" x="982" y="439"/>
         </scene>
-        <!--Custom-->
+        <!--Playground-->
         <scene sceneID="6CQ-Ki-hYC">
             <objects>
-                <viewController id="hAa-pE-SAe" customClass="CustomEntryViewController" customModule="SwiftEntryKit_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hAa-pE-SAe" customClass="PlaygroundViewController" customModule="SwiftEntryKit_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DSG-Fp-vjt"/>
                         <viewControllerLayoutGuide type="bottom" id="zT4-fx-ydB"/>
@@ -48,7 +48,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Custom" id="uMb-FP-a2v">
+                    <navigationItem key="navigationItem" title="Playground" id="uMb-FP-a2v">
                         <barButtonItem key="backBarButtonItem" title="Back" id="Zvk-BE-qQ1"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="play" id="e2Q-Yz-Q9Z">
                             <connections>

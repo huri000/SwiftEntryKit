@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEntryKit
 
-class CustomEntryViewController: UIViewController {
+class PlaygroundViewController: UIViewController {
     
     private let tableView = UITableView()
     
@@ -17,7 +17,7 @@ class CustomEntryViewController: UIViewController {
     
     struct Cells {
         
-        static let sectionTitles = ["Display", "Interaction", "Size / Position Constraints", "Animation"]
+        static let sectionTitles = ["Display", "Interaction", "Size & Position", "Animation"]
         
         static let header = SelectionHeaderView.self
         
@@ -62,7 +62,6 @@ class CustomEntryViewController: UIViewController {
         Cells.cells.forEach { cells in
             cells.forEach { tableView.register($0, forCellReuseIdentifier: $0.className) }
         }
-        
         tableView.fillSuperview()
     }
     
@@ -81,7 +80,7 @@ class CustomEntryViewController: UIViewController {
 }
 
 // MARK: UITableViewDelegate, UITableViewDataSource
-extension CustomEntryViewController: UITableViewDelegate, UITableViewDataSource {
+extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
     
     private func selectionCell(by id: String, and indexPath: IndexPath) -> SelectionBaseCell {
         return tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! SelectionBaseCell

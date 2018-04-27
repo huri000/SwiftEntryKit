@@ -9,11 +9,13 @@
 import Foundation
 import SwiftEntryKit
 
+/** This view controller offers presets of entries to choose from */
 struct PresetsDataSource {
     
-    typealias Cluster = (title: String, data: [EntryAttributesDescription])
+    // Cluster of presets, aggregated under name
+    typealias Cluster = (title: String, data: [PresetDescription])
     
-    var dataSource: [Cluster] = []
+    private(set) var dataSource: [Cluster] = []
     
     private(set) subscript(section: Int) -> Cluster {
         get {
@@ -24,7 +26,7 @@ struct PresetsDataSource {
         }
     }
     
-    private(set) subscript(section: Int, index: Int) -> EntryAttributesDescription {
+    private(set) subscript(section: Int, index: Int) -> PresetDescription {
         get {
             return dataSource[section].data[index]
         }
@@ -33,6 +35,7 @@ struct PresetsDataSource {
         }
     }
     
+    // MARK: Setup
     init() {
         setupToastPresets()
         setupNotePresets()
@@ -42,8 +45,8 @@ struct PresetsDataSource {
 
     private mutating func setupFloatPresets() {
         
-        var floats: [EntryAttributesDescription] = []
-        var description: EntryAttributesDescription
+        var floats: [PresetDescription] = []
+        var description: PresetDescription
         var attributes: EKAttributes
         var descriptionString: String
         
@@ -70,9 +73,9 @@ struct PresetsDataSource {
     
     private mutating func setupToastPresets() {
         
-        var toasts: [EntryAttributesDescription] = []
+        var toasts: [PresetDescription] = []
         var attributes: EKAttributes
-        var description: EntryAttributesDescription
+        var description: PresetDescription
         var descriptionString: String
         
         // Preset I
@@ -81,7 +84,7 @@ struct PresetsDataSource {
         attributes.entranceAnimation = .init(duration: 0.5, types: [.fade(from: 0, to: 1)])
         attributes.exitAnimation = .translation
         descriptionString = "The entry fades in and exits with transition upwards"
-        description = EntryAttributesDescription(with: attributes, title: "Top I", description: descriptionString)
+        description = .init(with: attributes, title: "Top I", description: descriptionString)
         toasts.append(description)
 
         // Preset II
@@ -93,7 +96,7 @@ struct PresetsDataSource {
         attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10, offset: .zero))
         attributes.popBehavior = .overriden
         descriptionString = "The entry has a dark background with a chat message style. Displayed for \(attributes.displayDuration)s. Once a new entry shows, it's overridden promptly"
-        description = EntryAttributesDescription(with: attributes, title: "Top II", description: descriptionString)
+        description = .init(with: attributes, title: "Top II", description: descriptionString)
         toasts.append(description)
         
         // Preset III
@@ -101,7 +104,7 @@ struct PresetsDataSource {
         attributes.entryBackground = .visualEffect(style: .light)
         attributes.statusBarStyle = .default
         descriptionString = "The entry has an light blurred background"
-        description = EntryAttributesDescription(with: attributes, title: "Bottom", description: descriptionString)
+        description = .init(with: attributes, title: "Bottom", description: descriptionString)
         toasts.append(description)
         
         dataSource.append(("Toasts", toasts))
@@ -109,9 +112,9 @@ struct PresetsDataSource {
     
     private mutating func setupNotePresets() {
         
-        var notes: [EntryAttributesDescription] = []
+        var notes: [PresetDescription] = []
         var attributes: EKAttributes
-        var description: EntryAttributesDescription
+        var description: PresetDescription
         var descriptionString: String
         
         // Preset I
@@ -155,9 +158,9 @@ struct PresetsDataSource {
     
     private mutating func setupCustomPresets() {
         
-        var customs: [EntryAttributesDescription] = []
+        var customs: [PresetDescription] = []
         var attributes: EKAttributes
-        var description: EntryAttributesDescription
+        var description: PresetDescription
         var descriptionString: String
         
         // Preset I

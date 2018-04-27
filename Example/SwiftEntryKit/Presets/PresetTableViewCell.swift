@@ -1,5 +1,5 @@
 //
-//  EntryTableViewCell.swift
+//  PresetTableViewCell.swift
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 04/14/2018.
@@ -10,17 +10,17 @@ import SwiftEntryKit
 import QuickLayout
 import UIKit
 
-class EntryTableViewCell: UITableViewCell {
+class PresetTableViewCell: UITableViewCell {
 
     // MARK: Props
     private let thumbImageView = UIImageView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     
-    var attributesDescription: EntryAttributesDescription! {
+    var presetDescription: PresetDescription! {
         didSet {
-            titleLabel.text = attributesDescription.title
-            descriptionLabel.text = attributesDescription.description
+            titleLabel.text = presetDescription.title
+            descriptionLabel.text = presetDescription.description
         }
     }
     

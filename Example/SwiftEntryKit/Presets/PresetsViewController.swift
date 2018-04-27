@@ -9,6 +9,7 @@
 import SwiftEntryKit
 import UIKit
 
+/** This view controller offers presets of entries to choose from */
 class PresetsViewController: UIViewController {
 
     // MARK: Props
@@ -24,7 +25,7 @@ class PresetsViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.register(EntryTableViewCell.self, forCellReuseIdentifier: EntryTableViewCell.className)
+        tableView.register(PresetTableViewCell.self, forCellReuseIdentifier: PresetTableViewCell.className)
         tableView.register(SelectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SelectionHeaderView.className)
         tableView.dataSource = self
         tableView.delegate = self
@@ -130,8 +131,8 @@ extension PresetsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: EntryTableViewCell.self), for: indexPath) as! EntryTableViewCell
-        cell.attributesDescription = dataSource[indexPath.section, indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: PresetTableViewCell.className, for: indexPath) as! PresetTableViewCell
+        cell.presetDescription = dataSource[indexPath.section, indexPath.row]
         return cell
     }
     

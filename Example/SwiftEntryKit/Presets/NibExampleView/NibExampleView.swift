@@ -8,7 +8,8 @@
 
 import UIKit
 
-final class NibExampleView: UIView {
+class NibExampleView: UIView {
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         fromNib()
