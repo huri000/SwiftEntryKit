@@ -17,6 +17,7 @@ public class EKMessageContentView: UIView {
     private var horizontalConstraints: QLAxisConstraints!
     private var topConstraint: NSLayoutConstraint!
     private var bottomConstraint: NSLayoutConstraint!
+    private var labelsOffsetConstraint: NSLayoutConstraint!
     
     public var titleContent: EKProperty.LabelContent! {
         didSet {
@@ -70,6 +71,13 @@ public class EKMessageContentView: UIView {
         }
     }
     
+    public var labelsOffset: CGFloat = 8 {
+        didSet {
+            labelsOffsetConstraint.constant = labelsOffset
+            layoutIfNeeded()
+        }
+    }
+    
     public init() {
         super.init(frame: UIScreen.main.bounds)
         clipsToBounds = true
@@ -92,7 +100,7 @@ public class EKMessageContentView: UIView {
     private func setupSubtitleLabel() {
         addSubview(subtitleLabel)
         subtitleLabel.numberOfLines = 0
-        subtitleLabel.layout(.top, to: .bottom, of: titleLabel, offset: 10)
+        labelsOffsetConstraint = subtitleLabel.layout(.top, to: .bottom, of: titleLabel, offset: labelsOffset)
         subtitleLabel.layout(to: .left, of: titleLabel)
         subtitleLabel.layout(to: .right, of: titleLabel)
         bottomConstraint = subtitleLabel.layoutToSuperview(.bottom, offset: -verticalMargins, priority: .must)

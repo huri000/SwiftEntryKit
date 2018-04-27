@@ -57,7 +57,7 @@ public class EKNotificationMessageView: UIView {
         messageContentView.titleContent = message.title
         messageContentView.subtitleContent = message.description
         addSubview(messageContentView)
-        messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 4)
+        messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 12)
         messageContentView.layout(.right, to: .left, of: timeLabel)
         messageContentView.layout(to: .top, of: thumbImageView)
         messageContentView.layoutToSuperview(.bottom, offset: -20)

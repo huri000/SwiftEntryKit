@@ -145,6 +145,7 @@ struct PresetsDataSource {
         attributes = .bottomNote
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Purple.a300, EKColor.Purple.a400, EKColor.Purple.a700], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.statusBarStyle = .default
         descriptionString = "Presented at the bottom / Above the notch, with a mild gradient and shadow"
         description = .init(with: attributes, title: "Bottom Standard Note", description: descriptionString)
         notes.append(description)
@@ -162,13 +163,16 @@ struct PresetsDataSource {
         // Preset I
         attributes = .bottomFloat
         attributes.displayDuration = .infinity
+        attributes.entryBackground = .visualEffect(style: .light)
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
         attributes.roundCorners = .all(radius: 25)
+        attributes.exitAnimation = .init(duration: 0.2, types: [.translate])
+        attributes.popBehavior = .animated(animation: .init(duration: 0.2, types: [.translate]))
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.width = .offset(value: 20)
-        
+        attributes.statusBarStyle = .default
         descriptionString = "Customized alert view with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
         description = .init(with: attributes, title: "Custom Alert", description: descriptionString)
         customs.append(description)
@@ -187,6 +191,7 @@ struct PresetsDataSource {
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.width = .offset(value: 20)
+        attributes.statusBarStyle = .default
         descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
         description = .init(with: attributes, title: "View From Nib", description: descriptionString)
         customs.append(description)

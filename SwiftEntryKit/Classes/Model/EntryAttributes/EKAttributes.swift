@@ -27,7 +27,7 @@ public struct EKAttributes {
     public var positionConstraints = PositionConstraints()
     
     /** Describes the entry's background appearance while it shows */
-    public var entryBackground = BackgroundStyle.visualEffect(style: .light)
+    public var entryBackground = BackgroundStyle.clear
     
     /** Describes the background appearance while the entry shows */
     public var screenBackground = BackgroundStyle.clear
