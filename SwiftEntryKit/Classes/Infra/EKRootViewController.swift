@@ -61,7 +61,7 @@ class EKRootViewController: UIViewController {
     }
 
     // Removes last entry - can keep the window 'ON' if necessary
-    func removeLastEntry(keepWindow: Bool) {
+    private func removeLastEntry(keepWindow: Bool) {
         guard let attributes = lastAttributes else {
             return
         }

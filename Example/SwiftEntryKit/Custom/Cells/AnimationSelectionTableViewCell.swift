@@ -3,7 +3,7 @@
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/26/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import SwiftEntryKit
@@ -73,9 +73,9 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
         case 0:
             attributesWrapper.attributes.entranceAnimation = .translation
         case 1:
-            attributesWrapper.attributes.entranceAnimation = .scale
+            attributesWrapper.attributes.entranceAnimation = .scaleIn
         case 2:
-            attributesWrapper.attributes.entranceAnimation = .fade
+            attributesWrapper.attributes.entranceAnimation = .fadeIn
         default:
             break
         }

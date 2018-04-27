@@ -39,11 +39,11 @@ public struct EKProperty {
             self.color = color
         }
         
-        public static var bold: Label {
+        static var bold: Label {
             return Label(font: UIFont.boldSystemFont(ofSize: 16), color: .white)
         }
         
-        public static var regular: Label {
+        static var regular: Label {
             return Label(font: UIFont.systemFont(ofSize: 14), color: .white)
         }
     }

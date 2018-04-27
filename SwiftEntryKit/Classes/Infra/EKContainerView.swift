@@ -9,9 +9,9 @@
 import UIKit
 import QuickLayout
 
-public class EKContainerView: UIView {
-        
-    public struct Content {
+class EKContainerView: UIView {
+    
+    struct Content {
         public var view: UIView
         public var attributes: EKAttributes
         
@@ -21,9 +21,9 @@ public class EKContainerView: UIView {
         }
     }
     
-    public var contentContainerView = UIView()
+    // MARK: Props
     
-    public var content: Content! {
+    var content: Content! {
         didSet {
             contentView =  content.view
         }
@@ -33,8 +33,7 @@ public class EKContainerView: UIView {
         return content.attributes
     }
     
-    private var shadowView: UIView!
-    
+    private let contentContainerView = UIView()
     private var contentView: UIView! {
         didSet {
             oldValue?.removeFromSuperview()
@@ -57,15 +56,15 @@ public class EKContainerView: UIView {
     }
 
     // MARK: Setup
-    public init() {
+    init() {
         super.init(frame: UIScreen.main.bounds)
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         applyRoundCorners()
     }

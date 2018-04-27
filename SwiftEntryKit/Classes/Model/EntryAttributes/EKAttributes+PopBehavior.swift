@@ -9,16 +9,13 @@ import Foundation
 
 extension EKAttributes {
     
-    /** Describes the previous entry's behavior when the current entry shows */
+    /** Describes the entry behavior when a new entry shows */
     public enum PopBehavior {
         
-        /** Overrides the previous entry - The previous entry disappears promptly when the current one shows */
+        /** The entry disappears promptly when a new one shows */
         case overriden
         
-        /** Animate the previous entry - The previous entry rolls out when the current one shows.
-         
-         - note: This animation is applied instead of *exitAnimation* which is the default exit animation
-         */
+        /** Animate the entry out - The entry rolls out when a new one shows */
         case animated(animation: Animation)
         
         public var isOverriden: Bool {

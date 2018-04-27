@@ -3,7 +3,7 @@
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/23/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import UIKit
@@ -66,6 +66,7 @@ class SelectionTableViewCell: SelectionBaseCell {
         titleLabel.font = Font.HelveticaNeue.bold.with(size: 18)
         titleLabel.layoutToSuperview(.top, offset: 20)
         titleLabel.layoutToSuperview(axis: .horizontally, offset: 20)
+        titleLabel.forceContentWrap(.vertically)
     }
     
     private func setupDescriptionLabel() {
@@ -75,6 +76,7 @@ class SelectionTableViewCell: SelectionBaseCell {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 10)
         descriptionLabel.layoutToSuperview(axis: .horizontally, offset: 20)
+        descriptionLabel.forceContentWrap(.vertically)
     }
     
     private func setupSegmentedControl() {

@@ -25,6 +25,8 @@ class PresetsViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
         tableView.register(PresetTableViewCell.self, forCellReuseIdentifier: PresetTableViewCell.className)
         tableView.register(SelectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SelectionHeaderView.className)
         tableView.dataSource = self
@@ -126,10 +128,6 @@ class PresetsViewController: UIViewController {
 // MARK: UITableViewDelegate, UITableViewDataSource
 extension PresetsViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PresetTableViewCell.className, for: indexPath) as! PresetTableViewCell
         cell.presetDescription = dataSource[indexPath.section, indexPath.row]
@@ -148,6 +146,15 @@ extension PresetsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource[section].data.count
+    }
+    
+    // iOS 9, 10 support
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 60
     }
 }
 

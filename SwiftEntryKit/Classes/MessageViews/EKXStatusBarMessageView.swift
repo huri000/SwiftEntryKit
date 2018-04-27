@@ -12,10 +12,12 @@ import QuickLayout
 public class EKXStatusBarMessageView: UIView {
     
     // MARK: Props
+    
     private let leadingLabel = UILabel()
     private let trailingLabel = UILabel()
     
     // MARK: Setup
+    
     public init(leading: EKProperty.LabelContent, trailing: EKProperty.LabelContent) {
         super.init(frame: UIScreen.main.bounds)
         setup(leading: leading, trailing: trailing)

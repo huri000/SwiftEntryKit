@@ -61,7 +61,7 @@ public extension EKAttributes {
         public var verticalOffset: CGFloat
         
         /** Can be used to present content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
-        public var safeArea = SafeArea.empty(fillSafeArea: true)
+        public var safeArea = SafeArea.empty(fillSafeArea: false)
         
         public var hasVerticalOffset: Bool {
             return verticalOffset > 0

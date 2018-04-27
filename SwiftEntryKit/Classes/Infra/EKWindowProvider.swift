@@ -58,7 +58,8 @@ public class EKWindowProvider {
         if #available(iOS 11.0, *) {
             return EKWindowProvider.shared.entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
         } else {
-            return .zero
+            let statusBarMaxY = UIApplication.shared.statusBarFrame.maxY
+            return UIEdgeInsets(top: statusBarMaxY, left: 0, bottom: 10, right: 0)
         }
     }
     

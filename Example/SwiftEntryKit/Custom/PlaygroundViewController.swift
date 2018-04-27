@@ -3,7 +3,7 @@
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/21/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import UIKit
@@ -86,6 +86,7 @@ extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
         return tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! SelectionBaseCell
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: SelectionBaseCell
@@ -132,15 +133,20 @@ extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
         return header
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return Cells.sectionTitles[section]
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return Cells.cells.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Cells.cells[section].count
+    }
+    
+    // iOS 9, 10 support
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
 }

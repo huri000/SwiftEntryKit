@@ -11,16 +11,18 @@ import UIKit
 public extension EKAttributes {
     
     public struct Animation {
+        
+        /** Describes the type of the animation */
         public enum AnimationType {
             case fade(from: CGFloat, to: CGFloat)
             case scale(from: CGFloat, to: CGFloat)
             case translate
             
-            public static var fadeDefault: AnimationType {
+            public static var fadeIn: AnimationType {
                 return .fade(from: 0, to: 1)
             }
             
-            public static var scaleDefault: AnimationType {
+            public static var scaleIn: AnimationType {
                 return .scale(from: 0.1, to: 1)
             }
             
@@ -39,14 +41,12 @@ public extension EKAttributes {
         public var duration: TimeInterval
         public var types: [AnimationType]
         
-        public static var `default` = Animation()
-        
-        public static var fade: Animation {
-            return Animation(duration: 0.3, types: [.fadeDefault])
+        public static var fadeIn: Animation {
+            return Animation(duration: 0.3, types: [.fadeIn])
         }
         
-        public static var scale: Animation {
-            return Animation(duration: 0.3, types: [.scaleDefault])
+        public static var scaleIn: Animation {
+            return Animation(duration: 0.3, types: [.scaleIn])
         }
         
         public static var translation: Animation {
@@ -58,11 +58,11 @@ public extension EKAttributes {
         }
         
         public var scale: AnimationType? {
-            return types.filter { AnimationType.scaleDefault.rawValue == $0.rawValue }.first
+            return types.filter { AnimationType.scaleIn.rawValue == $0.rawValue }.first
         }
         
         public var fade: AnimationType? {
-            return types.filter { AnimationType.fadeDefault.rawValue == $0.rawValue }.first
+            return types.filter { AnimationType.fadeIn.rawValue == $0.rawValue }.first
         }
         
         public var containsTranslation: Bool {
@@ -70,11 +70,11 @@ public extension EKAttributes {
         }
         
         public var containsScale: Bool {
-            return contains(AnimationType.scaleDefault)
+            return contains(AnimationType.scaleIn)
         }
         
         public var containsFade: Bool {
-            return contains(AnimationType.fadeDefault)
+            return contains(AnimationType.fadeIn)
         }
         
         public init(duration: TimeInterval = 0.3, types: [AnimationType] = [.translate]) {

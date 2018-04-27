@@ -32,7 +32,7 @@ public struct EKAttributes {
     /** Describes the background appearance while the entry shows */
     public var screenBackground = BackgroundStyle.clear
     
-    // Describes what happens when the user interacts the background, passes touchss forward by default
+    // Describes what happens when the user interacts the background, passes touches forward by default
     // Triggered when the user begin touch interaction with the bsckground
     public var screenInteraction = UserInteraction.forward
     
