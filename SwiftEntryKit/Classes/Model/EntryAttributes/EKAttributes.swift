@@ -53,7 +53,7 @@ public struct EKAttributes {
     public var exitAnimation = Animation.translation
     
     /** Describes the previous entry behaviour when the current entry shows */
-    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.6, types: [.scaleDefault, .translate]))
+    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.5, types: [.translate, .scale(from: 1, to: 0.8)]))
     
     /** Preferred status bar style while the entry shows */
     public var statusBarStyle: UIStatusBarStyle!

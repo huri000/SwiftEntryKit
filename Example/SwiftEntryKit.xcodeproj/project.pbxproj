@@ -19,6 +19,7 @@
 		147A9A612092682E00A49D7A /* SelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A602092682E00A49D7A /* SelectionHeaderView.swift */; };
 		147A9A6320926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */; };
 		147A9A6520926C5D00A49D7A /* HeightSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A6420926C5D00A49D7A /* HeightSelectionTableViewCell.swift */; };
+		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* CustomEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* CustomEntryViewController.swift */; };
 		14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */; };
 		14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */; };
@@ -67,6 +68,7 @@
 		147A9A602092682E00A49D7A /* SelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHeaderView.swift; sourceTree = "<group>"; };
 		147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxWidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		147A9A6420926C5D00A49D7A /* HeightSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsDataSource.swift; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* CustomEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEntryViewController.swift; sourceTree = "<group>"; };
 		14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
@@ -121,13 +123,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		149B2B57208F0C22007C829F /* Main */ = {
+		149B2B57208F0C22007C829F /* Presets */ = {
 			isa = PBXGroup;
 			children = (
 				14F367FE208B585E001E8F56 /* PresetsViewController.swift */,
+				14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */,
 				14F367FF208B585E001E8F56 /* EntryTableViewCell.swift */,
 			);
-			path = Main;
+			path = Presets;
 			sourceTree = "<group>";
 		};
 		14C894F3208E70A4003D8CE3 /* Custom */ = {
@@ -221,7 +224,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				14D18CD0209118950019AE7F /* NibExampleView */,
-				149B2B57208F0C22007C829F /* Main */,
+				149B2B57208F0C22007C829F /* Presets */,
 				14C894F3208E70A4003D8CE3 /* Custom */,
 				14C894FC208E7DD0003D8CE3 /* Utils */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -493,6 +496,7 @@
 				143F3AA62090AB50009F3719 /* Object+ClassName.swift in Sources */,
 				14333AE3208FA09E00DCFC7B /* AttributesDescription.swift in Sources */,
 				147A9A612092682E00A49D7A /* SelectionHeaderView.swift in Sources */,
+				14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */,
 				14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */,
 				14F36801208B585E001E8F56 /* EntryTableViewCell.swift in Sources */,
 				14C89502208E83AA003D8CE3 /* WindowLevelTableViewCell.swift in Sources */,

@@ -280,7 +280,7 @@ class EKScrollView: UIScrollView {
         // Get scale
         if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
             shouldAnimate = true
-            transform(fromScale: end, toScale: start, duration: duration) { [weak self] in
+            transform(fromScale: start, toScale: end, duration: duration) { [weak self] in
                 self?.removeFromSuperview(keepWindow: false)
             }
         }
@@ -316,6 +316,7 @@ class EKScrollView: UIScrollView {
         }
 
         // Get scale
+        transformScale(by: animation)
         if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
             transform(fromScale: start, toScale: end, duration: duration)
         }
@@ -332,6 +333,10 @@ class EKScrollView: UIScrollView {
         }, completion: { finished in
             completion()
         })
+    }
+    
+    private func transformScale(by animation: EKAttributes.Animation) {
+        
     }
     
     private func transform(fromScale start: CGFloat, toScale end: CGFloat, duration: TimeInterval, completion: @escaping () -> () = {}) {

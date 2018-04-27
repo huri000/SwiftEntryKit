@@ -10,10 +10,10 @@ import SwiftEntryKit
 
 class EntryAttributesDescription {
     
-    var title = ""
+    let title: String
     let attributes: EKAttributes
     
-    init(with attributes: EKAttributes, title: String = "") {
+    init(with attributes: EKAttributes, title: String) {
         self.title = title
         self.attributes = attributes
     }

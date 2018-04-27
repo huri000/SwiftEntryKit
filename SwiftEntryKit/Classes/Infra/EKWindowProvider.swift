@@ -11,7 +11,7 @@ import UIKit
 public class EKWindowProvider {
     
     public enum State {
-        case message(view: EKContainerView, attributes: EKAttributes)
+        case message(view: UIView, attributes: EKAttributes)
         case main
         
         var isMain: Bool {
@@ -71,17 +71,17 @@ public class EKWindowProvider {
     private func setup(with messageView: UIView, attributes: EKAttributes) {
         let entryVC: EKRootViewController
         if entryWindow == nil {
-            entryWindow = EKWindow()
-            entryWindow.frame = UIScreen.main.bounds
-            entryWindow.backgroundColor = .clear
             entryVC = EKRootViewController()
-            entryWindow.rootViewController = entryVC
-            entryWindow.makeKeyAndVisible()
+            entryWindow = EKWindow(with: entryVC)
         } else {
             entryVC = rootVC!
         }
         entryWindow.windowLevel = attributes.windowLevel.value
-        entryVC.configure(entryView: messageView, attributes: attributes)
+        
+        // Configure the container with the message view inside
+        let containerView = EKContainerView()
+        containerView.content = EKContainerView.Content(view: messageView, attributes: attributes)
+        entryVC.configure(entryView: containerView, attributes: attributes)
     }
     
     private func clean() {

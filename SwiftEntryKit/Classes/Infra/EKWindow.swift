@@ -10,6 +10,18 @@ import UIKit
 
 class EKWindow: UIWindow {
     var isAbleToReceiveTouches = false
+    
+    init(with rootVC: UIViewController) {
+        super.init(frame: UIScreen.main.bounds)
+        backgroundColor = .clear
+        rootViewController = rootVC
+        makeKeyAndVisible()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         if isAbleToReceiveTouches {
             return super.hitTest(point, with: event)

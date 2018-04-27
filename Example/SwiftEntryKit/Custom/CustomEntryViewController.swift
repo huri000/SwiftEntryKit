@@ -17,7 +17,7 @@ class CustomEntryViewController: UIViewController {
     
     struct Cells {
         
-        static let sectionTitles = ["General", "Interaction", "Size / Position Constraints", "Animation"]
+        static let sectionTitles = ["Display", "Interaction", "Size / Position Constraints", "Animation"]
         
         static let header = SelectionHeaderView.self
         
@@ -44,6 +44,8 @@ class CustomEntryViewController: UIViewController {
                             AnimationSelectionTableViewCell.self]]
     }
     
+    // MARK: Lifecycle & Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -64,6 +66,8 @@ class CustomEntryViewController: UIViewController {
         tableView.fillSuperview()
     }
     
+    // MARK: Actions
+    
     @IBAction func play() {
         let title = EKProperty.LabelContent(text: "TEST!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .black))
         let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .black))
@@ -72,9 +76,7 @@ class CustomEntryViewController: UIViewController {
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image)
         let contentView = EKNotificationMessageView(with: content)
         
-        let containerView = EKContainerView()
-        containerView.content = EKContainerView.Content(view: contentView, attributes: attributesWrapper.attributes)
-        EKWindowProvider.shared.state = .message(view: containerView, attributes: attributesWrapper.attributes)
+        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributesWrapper.attributes)
     }
 }
 
