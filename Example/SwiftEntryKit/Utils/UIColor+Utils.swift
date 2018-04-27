@@ -41,6 +41,7 @@ extension UIColor {
     static let redish = UIColor(rgb: 0xFF5252)
     static let darkSubText = UIColor(rgb: 0x757575)
     static let greenGrass = UIColor(rgb: 0x4CAF50)
+    static let darkChatMessage = UIColor(red: 48, green: 47, blue: 48)
 }
 
 public struct EKColor {

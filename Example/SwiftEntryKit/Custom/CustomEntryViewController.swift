@@ -73,7 +73,7 @@ class CustomEntryViewController: UIViewController {
         let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .black))
         let time = EKProperty.LabelContent(text: "12:00", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .black))
         let image = UIImage(named: "ic_info_outline")!
-        let content = EKNotificationMessage(title: title, description: description, time: time, image: image)
+        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
         let contentView = EKNotificationMessageView(with: content)
         
         EKWindowProvider.shared.state = .message(view: contentView, attributes: attributesWrapper.attributes)

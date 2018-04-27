@@ -77,13 +77,25 @@ class PresetsViewController: UIViewController {
     
     // Bumps a notification structured entry
     private func showNotificationMessage(attributes: EKAttributes, textColor: UIColor, imageName: String) {
-        let title = EKProperty.LabelContent(text: "SHOPPING DISCOUNT", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: textColor))
-        let description = EKProperty.LabelContent(text: "50% discount until midnight at Luzius Bakery", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: textColor))
-        let time = EKProperty.LabelContent(text: "20:59", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 12), color: textColor))
+        let title = EKProperty.LabelContent(text: "SHOPPING DISCOUNT", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: textColor))
+        let description = EKProperty.LabelContent(text: "50% discount until midnight at Luzius Bakery", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: textColor))
+        let time = EKProperty.LabelContent(text: "20:59", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 12), color: textColor))
         let image = UIImage(named: imageName)!
         
-        let content = EKNotificationMessage(title: title, description: description, time: time, image: image)
+        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
         
+        let contentView = EKNotificationMessageView(with: content)
+        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+    }
+    
+    // Bumps a chat message structured entry
+    private func showChatNotificationMessage(attributes: EKAttributes) {
+        let title = EKProperty.LabelContent(text: "Madi", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .white))
+        let description = EKProperty.LabelContent(text: "Hey! I'll come by at your office for lunch... 🍲", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 12), color: .white))
+        let time = EKProperty.LabelContent(text: "09:00", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 10), color: .white))
+        let image = UIImage(named: "profile")!
+        
+        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: true)
         let contentView = EKNotificationMessageView(with: content)
         EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
     }
@@ -146,6 +158,8 @@ extension PresetsViewController {
         case 0:
             showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
         case 1:
+            showChatNotificationMessage(attributes: attributes)
+        case 2:
             showNotificationMessage(attributes: attributes, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
         default:
             break

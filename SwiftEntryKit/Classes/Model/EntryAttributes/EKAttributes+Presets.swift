@@ -18,6 +18,7 @@ public extension EKAttributes {
         attributes.positionConstraints = .full
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.windowLevel = .aboveStatusBar
+        attributes.options.scroll = .edgeCrossingDisabled
         attributes.popBehavior = .animated(animation: .translation)
         return attributes
     }
@@ -72,6 +73,7 @@ public extension EKAttributes {
     /** Preset for status bar entry - appears on top of the status bar */
     public static var statusBar: EKAttributes {
         var attributes = topToast
+        attributes.windowLevel = .aboveStatusBar
         attributes.entryInteraction = .absorbTouches
         attributes.positionConstraints.safeArea = .overriden
         return attributes

@@ -86,7 +86,7 @@ public class EKMessageContentView: UIView {
         titleLabel.numberOfLines = 0
         topConstraint = titleLabel.layoutToSuperview(.top, offset: verticalMargins)
         horizontalConstraints = titleLabel.layoutToSuperview(axis: .horizontally, offset: horizontalMargins)
-        titleLabel.verticalHuggingPriority = .must
+        titleLabel.forceContentWrap(.vertically)
     }
     
     private func setupSubtitleLabel() {
@@ -96,6 +96,6 @@ public class EKMessageContentView: UIView {
         subtitleLabel.layout(to: .left, of: titleLabel)
         subtitleLabel.layout(to: .right, of: titleLabel)
         bottomConstraint = subtitleLabel.layoutToSuperview(.bottom, offset: -verticalMargins, priority: .must)
-        subtitleLabel.verticalHuggingPriority = .must
+        subtitleLabel.forceContentWrap(.vertically)
     }
 }

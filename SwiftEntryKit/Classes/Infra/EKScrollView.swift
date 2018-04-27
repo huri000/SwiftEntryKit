@@ -117,15 +117,16 @@ class EKScrollView: UIScrollView {
         
         // Layout the content view inside the scroll view
         addSubview(contentView)
-        contentView.layoutToSuperview(.left, .right, .top, .bottom, .width, .height)
+        contentView.layoutToSuperview(.left, .right, .top, .bottom)
+        contentView.layoutToSuperview(.width, .height)
         
         // Setup out constraint, capture pre calculated offsets and attributes
         let setupOutConstraint = { (animation: EKAttributes.Animation, priority: UILayoutPriority) -> NSLayoutConstraint in
             let constraint: NSLayoutConstraint
             if animation.containsTranslation {
-                constraint = self.layout(messageTopInSuperview, to: messageBottomInSuperview, of: self.superview!, offset: outOffset, priority: .must)!
+                constraint = self.layout(messageTopInSuperview, to: messageBottomInSuperview, of: self.superview!, offset: outOffset, priority: priority)!
             } else {
-                constraint = self.layout(to: messageBottomInSuperview, of: self.superview!, offset: inOffset, priority: .must)!
+                constraint = self.layout(to: messageBottomInSuperview, of: self.superview!, offset: inOffset, priority: priority)!
             }
             return constraint
         }
@@ -316,7 +317,6 @@ class EKScrollView: UIScrollView {
         }
 
         // Get scale
-        transformScale(by: animation)
         if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
             transform(fromScale: start, toScale: end, duration: duration)
         }
@@ -333,10 +333,6 @@ class EKScrollView: UIScrollView {
         }, completion: { finished in
             completion()
         })
-    }
-    
-    private func transformScale(by animation: EKAttributes.Animation) {
-        
     }
     
     private func transform(fromScale start: CGFloat, toScale end: CGFloat, duration: TimeInterval, completion: @escaping () -> () = {}) {
@@ -371,14 +367,14 @@ class EKScrollView: UIScrollView {
 extension EKScrollView: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let scrollAttribute = attributes?.options.scroll, scrollAttribute.isEdgeCrossingDisabled else {
-            return
-        }
-        if attributes.position.isTop && contentOffset.y < 0 {
-            contentOffset.y = 0
-        } else if !attributes.position.isTop && scrollView.bounds.maxY > scrollView.contentSize.height {
-            contentOffset.y = 0
-        }
+//        guard let scrollAttribute = attributes?.options.scroll, scrollAttribute.isEdgeCrossingDisabled else {
+//            return
+//        }
+//        if attributes.position.isTop && contentOffset.y < 0 {
+//            contentOffset.y = 0
+//        } else if !attributes.position.isTop && scrollView.bounds.maxY > scrollView.contentSize.height {
+//            contentOffset.y = 0
+//        }
     }
 }
 

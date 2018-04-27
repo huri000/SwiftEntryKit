@@ -51,6 +51,7 @@ struct PresetsDataSource {
         attributes = .topFloat
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.statusBarStyle = .default
         descriptionString = "Has a gradient content background and a drop shadow"
         description = .init(with: attributes, title: "Top", description: descriptionString)
         floats.append(description)
@@ -59,6 +60,7 @@ struct PresetsDataSource {
         attributes = .bottomFloat
         attributes.entryBackground = .color(color: EKColor.BlueGray.c600)
         attributes.entryInteraction = .delayExit(by: 3)
+        attributes.statusBarStyle = .default
         descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
         description = .init(with: attributes, title: "Bottom", description: descriptionString)
         floats.append(description)
@@ -78,17 +80,30 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: EKColor.LightBlue.a700)
         attributes.entranceAnimation = .init(duration: 0.5, types: [.fade(from: 0, to: 1)])
         attributes.exitAnimation = .translation
-        descriptionString = "The entry fades in and exit by transition upwards"
-        description = EntryAttributesDescription(with: attributes, title: "Top", description: descriptionString)
+        descriptionString = "The entry fades in and exits with transition upwards"
+        description = EntryAttributesDescription(with: attributes, title: "Top I", description: descriptionString)
         toasts.append(description)
 
         // Preset II
+        attributes = .topToast
+        attributes.entryBackground = .color(color: .darkChatMessage)
+        attributes.entranceAnimation = .translation
+        attributes.exitAnimation = .translation
+        attributes.displayDuration = 4
+        attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.popBehavior = .overriden
+        descriptionString = "The entry has a dark background with a chat message style. Displayed for \(attributes.displayDuration)s"
+        description = EntryAttributesDescription(with: attributes, title: "Top II", description: descriptionString)
+        toasts.append(description)
+        
+        // Preset III
         attributes = .bottomToast
-        attributes.entryBackground = .visualEffect(style: .extraLight)
-        descriptionString = "The entry has an extra-light blurred background"
+        attributes.entryBackground = .visualEffect(style: .light)
+        attributes.statusBarStyle = .default
+        descriptionString = "The entry has an light blurred background"
         description = EntryAttributesDescription(with: attributes, title: "Bottom", description: descriptionString)
         toasts.append(description)
-
+        
         dataSource.append(("Toasts", toasts))
     }
     
@@ -122,7 +137,6 @@ struct PresetsDataSource {
         attributes = .statusBar
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .greenGrass)
-        attributes.statusBarStyle = .lightContent
         descriptionString = "Overrides the status bar"
         description = .init(with: attributes, title: "Status Bar Note", description: descriptionString)
         notes.append(description)
@@ -144,7 +158,9 @@ struct PresetsDataSource {
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
         attributes.roundCorners = .all(radius: 25)
-        attributes.positionConstraints = .init(verticalOffset: 10, width: .offset(value: 20))
+        attributes.positionConstraints.verticalOffset = 10
+        attributes.positionConstraints.width = .offset(value: 20)
+        
         descriptionString = "Customized alert view with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry."
         description = .init(with: attributes, title: "Custom Alert", description: descriptionString)
         customs.append(description)

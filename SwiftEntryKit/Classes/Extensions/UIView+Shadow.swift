@@ -24,6 +24,7 @@ extension CALayer {
         shadowRadius = radius
         shadowColor = color.cgColor
         shouldRasterize = true
+        rasterizationScale = UIScreen.main.scale
     }
     
     func removeDropShadow() {

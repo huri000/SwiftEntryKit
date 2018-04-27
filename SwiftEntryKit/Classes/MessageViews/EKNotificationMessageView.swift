@@ -34,25 +34,32 @@ public class EKNotificationMessageView: UIView {
         addSubview(thumbImageView)
         thumbImageView.image = message.image
         thumbImageView.layoutToSuperview(.top, .left, offset: 16)
-        thumbImageView.forceContentWrap()
+        
+        let edge: CGFloat = 50
+        thumbImageView.set(.width, .height, of: edge)
+        if message.roundImage {
+            thumbImageView.clipsToBounds = true
+            thumbImageView.layer.cornerRadius = edge * 0.5
+        }
     }
     
     private func setupTimeLabel() {
         timeLabel.labelContent = message.time
         addSubview(timeLabel)
         timeLabel.layoutToSuperview(.right, offset: -16)
-        timeLabel.layoutToSuperview(.top, offset: 16)
+        timeLabel.layoutToSuperview(.top, offset: 18)
         timeLabel.forceContentWrap()
     }
     
     private func setupMessageContentView() {
-        messageContentView.verticalMargins = 16
-        messageContentView.titleContent
-            = message.title
+        messageContentView.verticalMargins = 0
+        messageContentView.horizontalMargins = 0
+        messageContentView.titleContent = message.title
         messageContentView.subtitleContent = message.description
         addSubview(messageContentView)
-        messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 8)
-        messageContentView.layout(.right, to: .left, of: timeLabel, offset: -8)
-        messageContentView.layoutToSuperview(.bottom, .top)
+        messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 4)
+        messageContentView.layout(.right, to: .left, of: timeLabel)
+        messageContentView.layout(to: .top, of: thumbImageView)
+        messageContentView.layoutToSuperview(.bottom, offset: -20)
     }
 }

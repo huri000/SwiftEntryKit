@@ -13,11 +13,13 @@ public struct EKNotificationMessage {
     public let description: EKProperty.LabelContent
     public let time: EKProperty.LabelContent
     public let image: UIImage
+    public let roundImage: Bool
     
-    public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent, time: EKProperty.LabelContent, image: UIImage) {
+    public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent, time: EKProperty.LabelContent, image: UIImage, roundImage: Bool) {
         self.title = title
         self.description = description
         self.time = time
         self.image = image
+        self.roundImage = roundImage
     }
 }
