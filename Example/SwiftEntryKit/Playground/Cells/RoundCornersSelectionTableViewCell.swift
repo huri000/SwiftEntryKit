@@ -10,10 +10,11 @@ import UIKit
 import SwiftEntryKit
 
 class RoundCornersSelectionTableViewCell: SelectionTableViewCell {
+    
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Round Corners"
-        descriptionValue = "The entry's corners can be rounded in the following manner"
+        descriptionValue = "The entry's corners can be rounded in one of the following manner"
         insertSegments(by: ["None", "Top", "Bottom", "All"])
         selectSegment()
     }

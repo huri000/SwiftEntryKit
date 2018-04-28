@@ -11,17 +11,17 @@ import QuickLayout
 import SwiftEntryKit
 
 class DynamicExampleView: UIView {
-    
+        
     private var notificationMessageView: EKNotificationMessageView!
     private let buttonsBarView = ButtonsBarView()
     
     private var buttonsBarCompressedConstraint: NSLayoutConstraint!
     private var buttonsBarExpandedConstraint: NSLayoutConstraint!
     
-    init(with message: EKNotificationMessage, buttonsContent: ButtonsBarContent) {
+    init(with message: EKNotificationMessage, buttonsContent: ButtonsBarContent, approveAction: @escaping ButtonsBarView.Action) {
         super.init(frame: UIScreen.main.bounds)
         setupNotificationMessageView(withContent: message)
-        setupButtonsBarView(withContent: buttonsContent)
+        setupButtonsBarView(withContent: buttonsContent, approveAction: approveAction)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +34,7 @@ class DynamicExampleView: UIView {
         notificationMessageView.layoutToSuperview(.left, .right, .top)
     }
     
-    private func setupButtonsBarView(withContent content: ButtonsBarContent) {
+    private func setupButtonsBarView(withContent content: ButtonsBarContent, approveAction: @escaping ButtonsBarView.Action) {
         buttonsBarView.clipsToBounds = true
         addSubview(buttonsBarView)
         buttonsBarView.layoutToSuperview(axis: .horizontally)
@@ -42,7 +42,8 @@ class DynamicExampleView: UIView {
         buttonsBarView.layout(.top, to: .bottom, of: notificationMessageView)
         buttonsBarCompressedConstraint = buttonsBarView.set(.height, of: 1, priority: .must)
         buttonsBarExpandedConstraint = buttonsBarView.set(.height, of: 50, priority: .defaultLow)
-
+        
+        buttonsBarView.approveAction = approveAction
         buttonsBarView.buttonsContent = content
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -52,10 +53,16 @@ class DynamicExampleView: UIView {
     
     private func animateIn() {
         layoutIfNeeded()
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction], animations: {
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
             self.buttonsBarCompressedConstraint.priority = .defaultLow
             self.buttonsBarExpandedConstraint.priority = .must
             self.layoutIfNeeded()
+            
+            /* NOTE: Calling layoutIfNeeded for the whole view hierarchy.
+             Sometimes it's easier to just use frames instead of AutoLayout for
+             hierarch complexity considerations. Here the animation influences almost the
+             entire view hierarchy. */
+            EKWindowProvider.shared.rootVC?.view.layoutIfNeeded()
         }, completion: nil)
     }
 }

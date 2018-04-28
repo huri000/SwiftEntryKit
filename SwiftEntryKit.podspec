@@ -28,7 +28,7 @@ s.description = 'SwiftEntryKit offers you a simple way to present notification e
   s.author           = { 'Daniel Huri' => 'huri000@gmail.com' }
   s.source           = { :git => 'https://github.com/huri000/SwiftEntryKit.git', :tag => s.version.to_s }
 
-  s.source_files = 'SwiftEntryKit/Classes/**/*'
+  s.source_files = 'SwiftEntryKit/**/*'
   
   # s.resource_bundles = {
   #   'SwiftEntryKit' => ['SwiftEntryKit/Assets/*.png']
@@ -36,7 +36,7 @@ s.description = 'SwiftEntryKit offers you a simple way to present notification e
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  s.dependency 'QuickLayout', :path => '/Users/danielhuri/Documents/QuickLayout'
+  s.dependency 'QuickLayout', '1.0.10'
   
   # s.dependency 'Quick', '1.2.0'
   # s.dependency 'Nimble', '7.0.2'

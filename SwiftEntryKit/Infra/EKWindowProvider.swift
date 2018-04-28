@@ -45,12 +45,12 @@ public class EKWindowProvider {
         guard let rootVC = rootVC else {
             return
         }
-        rootVC.rollOutLastEntry()
+        rootVC.animateOutLastEntry()
     }
     
     private var previousStatusBarStyle: UIStatusBarStyle!
         
-    var rootVC: EKRootViewController? {
+    public var rootVC: EKRootViewController? {
         return entryWindow?.rootViewController as? EKRootViewController
     }
     

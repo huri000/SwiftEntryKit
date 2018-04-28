@@ -32,6 +32,7 @@
                         <action selector="buttonTouchUp:" destination="-1" eventType="touchCancel" id="2bj-EN-MeX"/>
                         <action selector="buttonTouchUp:" destination="-1" eventType="touchUpInside" id="WPh-9P-Au7"/>
                         <action selector="buttonTouchUp:" destination="-1" eventType="touchUpOutside" id="qS1-dd-OR0"/>
+                        <action selector="leftButtonTouchUpInside" destination="-1" eventType="touchUpInside" id="wnw-Px-ZeA"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcs-7k-A7Y" userLabel="Button - Right">
@@ -45,6 +46,7 @@
                         <action selector="buttonTouchUp:" destination="-1" eventType="touchUpInside" id="7De-cV-9mC"/>
                         <action selector="buttonTouchUp:" destination="-1" eventType="touchCancel" id="Hef-c3-BKq"/>
                         <action selector="buttonTouchUp:" destination="-1" eventType="touchUpOutside" id="taI-1s-LvB"/>
+                        <action selector="rightButtonTouchUpInside" destination="-1" eventType="touchUpInside" id="Kx2-Fx-2nL"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arQ-n0-NRb" userLabel="View - Center">
@@ -62,7 +64,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="arQ-n0-NRb" secondAttribute="bottom" id="FZ1-RR-6dX"/>
                 <constraint firstItem="wjb-qJ-RBA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="QBK-iG-6FD"/>

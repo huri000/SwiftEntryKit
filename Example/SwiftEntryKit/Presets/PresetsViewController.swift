@@ -103,10 +103,14 @@ class PresetsViewController: UIViewController {
         EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
     }
     
+    private func showAwesomeAlertMessage(attributes: EKAttributes) {
+        showAlertMessage(attributes: attributes, title: "Awesome!", description: "You are using SwiftEntryKit, and this is a customized alert view that is floating at the bottom.")
+    }
+    
     // Bumps a custom alert entry
-    private func showAlertMessage(attributes: EKAttributes) {
-        let title = EKProperty.LabelContent(text: "Awesome!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 26), color: .darkText))
-        let description = EKProperty.LabelContent(text: "You are using SwiftEntryKit, and this is a customized alert view that is floating at the bottom.", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: .darkSubText))
+    private func showAlertMessage(attributes: EKAttributes, title: String, description: String) {
+        let title = EKProperty.LabelContent(text: title, style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 26), color: .darkText))
+        let description = EKProperty.LabelContent(text: description, style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: .darkSubText))
         let button = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "Got it!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .white)), backgroundColor: .amber)
         let image = UIImage(named: "ic_done_all_48pt")!
         let message = EKPopUpMessage(title: title, description: description, button: button, image: image) {
@@ -127,11 +131,14 @@ class PresetsViewController: UIViewController {
         
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: true)
         
-        let leadingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "CLOSE", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Gray.a800)), backgroundColor: .clear)
-        let trailingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "GET COUPON", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Teal.a600)), backgroundColor: .clear)
+        let leadingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "NOT NOW", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Gray.a800)), backgroundColor: .clear)
+        let trailingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "SHOW ME", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Teal.a600)), backgroundColor: .clear)
         let buttonsBarContent = ButtonsBarContent(leading: leadingButton, trailing: trailingButton)
         
-        let contentView = DynamicExampleView(with: content, buttonsContent: buttonsBarContent)
+        let contentView = DynamicExampleView(with: content, buttonsContent: buttonsBarContent) { [unowned self] in
+            let attributes = self.dataSource.bottomAlertAttributes
+            self.showAlertMessage(attributes: attributes, title: "Congratz!", description: "Your book coupon is 5w1ft3ntr1k1t")
+        }
         EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
     }
     
@@ -219,7 +226,7 @@ extension PresetsViewController {
     private func customCellSelected(with attributes: EKAttributes, row: Int) {
         switch row {
         case 0:
-            showAlertMessage(attributes: attributes)
+            showAwesomeAlertMessage(attributes: attributes)
         case 1:
             showCustomNibView(attributes: attributes)
         case 2:

@@ -26,6 +26,7 @@ class PlaygroundViewController: UIViewController {
                             DisplayDurationTableViewCell.self,
                             ShadowSelectionTableViewCell.self,
                             RoundCornersSelectionTableViewCell.self,
+                            BorderSelectionTableViewCell.self,
                             BackgroundStyleSelectionTableViewCell.self,
                             BackgroundStyleSelectionTableViewCell.self],
                             
@@ -86,19 +87,18 @@ extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
         return tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! SelectionBaseCell
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: SelectionBaseCell
         cell = selectionCell(by: Cells.cells[indexPath.section][indexPath.row].className, and: indexPath)
         
         switch (indexPath.section, indexPath.row) {
-        case (0, 0...4):
+        case (0, 0...5):
             cell.configure(attributesWrapper: attributesWrapper)
-        case (0, 5):
+        case (0, 6):
             let cell = cell as! BackgroundStyleSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .screen)
-        case (0, 6):
+        case (0, 7):
             let cell = cell as! BackgroundStyleSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .entry)
         case (1, 0):

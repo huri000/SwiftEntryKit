@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EKRootViewController: UIViewController {
+public class EKRootViewController: UIViewController {
     
     private var lastAttributes: EKAttributes!
     private var tapGestureRecognizer: UITapGestureRecognizer!
@@ -31,15 +31,15 @@ class EKRootViewController: UIViewController {
     }
     
     // MARK: Lifecycle
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init() {
+    public init() {
         super.init(nibName: nil, bundle: nil)
     }
     
-    override func loadView() {
+    override public func loadView() {
         view = wrapperView
         view.insertSubview(backgroundView, at: 0)
         backgroundView.isUserInteractionEnabled = false
@@ -68,12 +68,17 @@ class EKRootViewController: UIViewController {
         if attributes.popBehavior.isOverriden {
             lastEntry?.removePromptly()
         } else {
-            rollOutLastEntry()
+            popLastEntry()
         }
     }
     
-    // Rolls out last entry - animatedly
-    func rollOutLastEntry() {
+    // Make last entry exit using exitAnimation - animatedly
+    func animateOutLastEntry() {
+        lastEntry?.animateOut(pushOut: false)
+    }
+    
+    // Pops last entry (using pop animation) - animatedly
+    func popLastEntry() {
         lastEntry?.animateOut(pushOut: true)
     }
 }
@@ -81,7 +86,7 @@ class EKRootViewController: UIViewController {
 // MARK: UIResponder
 extension EKRootViewController {
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch lastAttributes.screenInteraction.defaultAction {
         case .dismissEntry:
             lastEntry?.animateOut(pushOut: false)

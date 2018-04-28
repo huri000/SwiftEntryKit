@@ -25,7 +25,7 @@ class EKContainerView: UIView {
     
     var content: Content! {
         didSet {
-            contentView =  content.view
+            contentView = content.view
         }
     }
     
@@ -42,11 +42,11 @@ class EKContainerView: UIView {
             contentContainerView.layoutToSuperview(axis: .vertically)
             contentContainerView.layoutToSuperview(axis: .horizontally)
             contentContainerView.clipsToBounds = true
-
+            
             contentContainerView.addSubview(contentView)
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
-            
+                        
             applyDropShadow()
 
             applyBackgroundToContentView()
@@ -66,7 +66,7 @@ class EKContainerView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
+        applyFrameStyle()
     }
     
     // Apply round corners

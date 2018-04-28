@@ -16,9 +16,13 @@ struct ButtonsBarContent {
 
 class ButtonsBarView: UIView {
     
+    typealias Action = () -> ()
+
     // MARK: Props
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var approveButton: UIButton!
+    
+    var approveAction: Action!
     
     var buttonsContent: ButtonsBarContent! {
         didSet {
@@ -49,6 +53,14 @@ class ButtonsBarView: UIView {
     }
     
     // MARK: Actions
+    
+    @IBAction func leftButtonTouchUpInside() {
+         EKWindowProvider.shared.dismiss()
+    }
+    
+    @IBAction func rightButtonTouchUpInside() {
+        approveAction?()
+    }
     
     @IBAction func buttonTouchDown(_ button: UIButton) {
         button.backgroundColor = button.titleColor(for: .normal)!.withAlphaComponent(0.05)
