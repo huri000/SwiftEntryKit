@@ -32,12 +32,11 @@ public struct EKAttributes {
     /** Describes the background appearance while the entry shows */
     public var screenBackground = BackgroundStyle.clear
     
-    // Describes what happens when the user interacts the background, passes touches forward by default
-    // Triggered when the user begin touch interaction with the bsckground
+    /** Describes what happens when the user interacts the screen,
+     forwards the touch to the application window by default */
     public var screenInteraction = UserInteraction.forward
     
-    // Describes what happens when the user interacts the content, dismisses the content by default
-    // Triggered when the user taps te entry
+    /** Describes what happens when the user interacts the entry, dismisses the content by default */
     public var entryInteraction = UserInteraction.dismiss
 
     /** The shadow attributes */
