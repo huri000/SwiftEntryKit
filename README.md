@@ -104,6 +104,32 @@ let contentView = EKNoteMessageView(with: labelContent)
 EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
 ```
 
+### How to deal with orientation change:
+
+For example - create a top floating entry, And set it's width to be offset of 20pts from the screen width.
+In order to limit the view's width, you can give it maximum width, likewise:
+
+```Swift
+let attributes = EKAttributes.topFloat
+attributes.positionConstraints.width = .offset(value: 20)
+
+let maxWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+attributes.positionConstraints.maximumWidth = .constant(value: maxWidth)
+
+let contentView = UIView()
+/*
+... Customize to view as you like (See example project for more info)
+*/
+
+// Change the state of EKWindowProvider to .message and inject the contentView and the attributes
+EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+```
+
+Oriantation Change Demonstration |
+--- |
+![demo_01](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
+
+
 ## Author
 
 Daniel Huri, huri000@gmail.com
