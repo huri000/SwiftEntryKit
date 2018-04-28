@@ -251,7 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				607FACD21AFB9204008FA782 /* Example for SwiftEntryKit */,
+				607FACD21AFB9204008FA782 /* DemoApp */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
 				BE7CFFAA4A21FE8AD608DBDC /* Pods */,
@@ -268,7 +268,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		607FACD21AFB9204008FA782 /* Example for SwiftEntryKit */ = {
+		607FACD21AFB9204008FA782 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -280,7 +280,7 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
-			name = "Example for SwiftEntryKit";
+			name = DemoApp;
 			path = SwiftEntryKit;
 			sourceTree = "<group>";
 		};
