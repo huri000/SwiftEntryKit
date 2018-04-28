@@ -174,9 +174,10 @@ struct PresetsDataSource {
         attributes.exitAnimation = .init(duration: 0.2, types: [.translate])
         attributes.popBehavior = .animated(animation: .init(duration: 0.2, types: [.translate]))
         attributes.positionConstraints.verticalOffset = 10
+        attributes.border = .value(color: .black, width: 0.5)
         attributes.positionConstraints.width = .offset(value: 20)
         attributes.statusBarStyle = .default
-        descriptionString = "Customized alert view with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
+        descriptionString = "Customized alert view with round corners and a border. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
         description = .init(with: attributes, title: "Custom Alert", description: descriptionString)
         customs.append(description)
 
@@ -199,6 +200,21 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "View From Nib", description: descriptionString)
         customs.append(description)
         
+        // Preset III
+        attributes = .topFloat
+        attributes.screenInteraction = .dismiss
+        attributes.entryInteraction = .absorbTouches
+        attributes.screenBackground = .color(color: .dimmedBackground)
+        attributes.entryBackground = .color(color: .white)
+        attributes.entranceAnimation = .init(duration: 0.2, types: [.fadeIn, .scale(from: 0.6, to: 1)])
+        attributes.exitAnimation = .init(duration: 0.3, types: [.translate])
+        attributes.displayDuration = .infinity
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.statusBarStyle = .default
+        descriptionString = "Customized view with internal animation. It has shadow and round corners"
+        description = .init(with: attributes, title: "Custom View", description: descriptionString)
+        customs.append(description)
+
         dataSource.append(("Complex Entries", customs))
     }
 }

@@ -84,7 +84,7 @@ extension EKRootViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch lastAttributes.screenInteraction.defaultAction {
         case .dismissEntry:
-            rollOutLastEntry()
+            lastEntry?.animateOut(pushOut: false)
             fallthrough
         default:
             lastAttributes.screenInteraction.customActions.forEach { $0() }

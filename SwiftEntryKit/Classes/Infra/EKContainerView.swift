@@ -33,7 +33,7 @@ class EKContainerView: UIView {
         return content.attributes
     }
     
-    private let contentContainerView = UIView()
+    private let contentContainerView = EKContentStyleView()
     private var contentView: UIView! {
         didSet {
             oldValue?.removeFromSuperview()
@@ -51,7 +51,7 @@ class EKContainerView: UIView {
 
             applyBackgroundToContentView()
             
-            applyRoundCorners()
+            applyFrameStyle()
         }
     }
 
@@ -66,17 +66,12 @@ class EKContainerView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        applyRoundCorners()
+        contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
     }
     
     // Apply round corners
-    private func applyRoundCorners() {
-        switch attributes.roundCorners {
-        case .all(radius: let radius), .bottom(radius: let radius), .top(radius: let radius):
-            contentContainerView.roundCorners(by: attributes.roundCorners.cornerValues.value, radius: radius)
-        case .none:
-            break
-        }
+    private func applyFrameStyle() {
+        contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
     }
     
     // Apply drop shadow

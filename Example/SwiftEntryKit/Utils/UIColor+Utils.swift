@@ -58,6 +58,10 @@ struct EKColor {
         static let c900 = UIColor(rgb: 0x263238)
     }
     
+    struct Gray {
+        static let a800 = UIColor(rgb: 0x424242)
+    }
+    
     struct Purple {
         static let a300 = UIColor(rgb: 0xba68c8)
         static let a400 = UIColor(rgb: 0xab47bc)
@@ -71,6 +75,11 @@ struct EKColor {
     
     struct Yellow {
         static let a700 = UIColor(rgb: 0xffd600)
+    }
+    
+    struct Teal {
+        static let a700 = UIColor(rgb: 0x00bfa5)
+        static let a600 = UIColor(rgb: 0x00897b)
     }
     
     struct Orange {

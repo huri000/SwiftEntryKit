@@ -32,9 +32,10 @@ public class EKNotificationMessageView: UIView {
     
     private func setupThumbImageView() {
         addSubview(thumbImageView)
+        thumbImageView.contentMode = .scaleToFill
         thumbImageView.image = message.image
         thumbImageView.layoutToSuperview(.top, .left, offset: 16)
-        
+
         let edge: CGFloat = 50
         thumbImageView.set(.width, .height, of: edge)
         if message.roundImage {

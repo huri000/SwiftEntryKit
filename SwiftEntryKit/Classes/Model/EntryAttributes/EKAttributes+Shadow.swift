@@ -30,36 +30,6 @@ public extension EKAttributes {
             }
         }
     }
-    
-    /** Corner radius of the entry */
-    public enum RoundCorners {
-        case none
-        case all(radius: CGFloat)
-        case top(radius: CGFloat)
-        case bottom(radius: CGFloat)
-        
-        public var hasRoundCorners: Bool {
-            switch self {
-            case .none:
-                return false
-            default:
-                return true
-            }
-        }
-        
-        public var cornerValues: (value: UIRectCorner, radius: CGFloat) {
-            switch self {
-            case .all(radius: let radius):
-                return (value: .allCorners, radius: radius)
-            case .top(radius: let radius):
-                return (value: .top, radius: radius)
-            case .bottom(radius: let radius):
-                return (value: .bottom, radius: radius)
-            case .none:
-                return (value: [], radius: 0)
-            }
-        }
-    }
 }
 
 

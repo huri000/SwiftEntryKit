@@ -119,6 +119,22 @@ class PresetsViewController: UIViewController {
         EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
     }
     
+    private func showDynamicMessage(attributes: EKAttributes) {
+        let title = EKProperty.LabelContent(text: "Dear Reader!", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 15), color: .black))
+        let description = EKProperty.LabelContent(text: "Get a coupon for a free book now", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 13), color: .black))
+        let time = EKProperty.LabelContent(text: "", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 10), color: .black))
+        let image = UIImage(named: "books")!
+        
+        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: true)
+        
+        let leadingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "CLOSE", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Gray.a800)), backgroundColor: .clear)
+        let trailingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "GET COUPON", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Teal.a600)), backgroundColor: .clear)
+        let buttonsBarContent = ButtonsBarContent(leading: leadingButton, trailing: trailingButton)
+        
+        let contentView = DynamicExampleView(with: content, buttonsContent: buttonsBarContent)
+        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+    }
+    
     // Bumps a custom nib view
     private func showCustomNibView(attributes: EKAttributes) {
         EKWindowProvider.shared.state = .message(view: NibExampleView(), attributes: attributes)
@@ -206,6 +222,8 @@ extension PresetsViewController {
             showAlertMessage(attributes: attributes)
         case 1:
             showCustomNibView(attributes: attributes)
+        case 2:
+            showDynamicMessage(attributes: attributes)
         default:
             break
         }

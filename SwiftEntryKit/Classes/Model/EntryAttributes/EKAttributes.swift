@@ -40,11 +40,14 @@ public struct EKAttributes {
     // Triggered when the user taps te entry
     public var entryInteraction = UserInteraction.dismiss
 
-    /** Shadow */
+    /** The shadow attributes */
     public var shadow = Shadow.none
     
-    /** Round corners */
+    /** The corner attributes */
     public var roundCorners = RoundCorners.none
+    
+    /** The border attributes around the entry */
+    public var border = Border.none
     
     /** Describes how the entry animates in */
     public var entranceAnimation = Animation.translation
