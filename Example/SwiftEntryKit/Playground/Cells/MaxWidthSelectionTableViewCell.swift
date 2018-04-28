@@ -12,8 +12,8 @@ class MaxWidthSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Max Width"
-        descriptionValue = "Describes the entry's maximum width limitation"
-        insertSegments(by: ["Stretch", "310pts", "90% Screen"])
+        descriptionValue = "Describes the entry's maximum width limitation. It can stretch to the width of the screen, get screen edge less 40pts, or be 90% of the screen width"
+        insertSegments(by: ["Stretch", "Min Edge", "90% Screen"])
         selectSegment()
     }
     
@@ -35,7 +35,7 @@ class MaxWidthSelectionTableViewCell: SelectionTableViewCell {
         case 0:
             attributesWrapper.attributes.positionConstraints.maximumWidth = .offset(value: 0)
         case 1:
-            attributesWrapper.attributes.positionConstraints.maximumWidth = .constant(value: 310)
+            attributesWrapper.attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge - 40)
         case 2:
             attributesWrapper.attributes.positionConstraints.maximumWidth = .ratio(value: 0.9)
         default:

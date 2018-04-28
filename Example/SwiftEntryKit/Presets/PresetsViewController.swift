@@ -252,5 +252,4 @@ extension PresetsViewController {
             break
         }
     }
-    
 }

@@ -9,7 +9,6 @@
 import Foundation
 import SwiftEntryKit
 
-/** This view controller offers presets of entries to choose from */
 struct PresetsDataSource {
     
     // Cluster of presets, aggregated under name
@@ -47,6 +46,7 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(duration: 0.2, types: [.translate]))
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.width = .offset(value: 20)
+        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         attributes.statusBarStyle = .default
         return attributes
     }
@@ -57,34 +57,6 @@ struct PresetsDataSource {
         setupNotePresets()
         setupFloatPresets()
         setupCustomPresets()
-    }
-
-    private mutating func setupFloatPresets() {
-        
-        var floats: [PresetDescription] = []
-        var description: PresetDescription
-        var attributes: EKAttributes
-        var descriptionString: String
-        
-        // Preset I
-        attributes = .topFloat
-        attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-        attributes.statusBarStyle = .default
-        descriptionString = "Has a gradient content background and a drop shadow"
-        description = .init(with: attributes, title: "Top", description: descriptionString)
-        floats.append(description)
-        
-        // Preset II
-        attributes = .bottomFloat
-        attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
-        attributes.entryInteraction = .delayExit(by: 3)
-        attributes.statusBarStyle = .default
-        descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
-        description = .init(with: attributes, title: "Bottom", description: descriptionString)
-        floats.append(description)
-        
-        dataSource.append(("Floats", floats))
     }
     
     private mutating func setupToastPresets() {
@@ -97,7 +69,7 @@ struct PresetsDataSource {
         // Preset I
         attributes = .topToast
         attributes.entryBackground = .color(color: EKColor.LightBlue.a700)
-        attributes.entranceAnimation = .init(duration: 0.5, types: [.fade(from: 0, to: 1)])
+        attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(from: 1.07, to: 1)])
         attributes.exitAnimation = .translation
         descriptionString = "The entry fades in and exits with transition upwards"
         description = .init(with: attributes, title: "Top I", description: descriptionString)
@@ -172,6 +144,36 @@ struct PresetsDataSource {
         dataSource.append(("Notes", notes))
     }
     
+    private mutating func setupFloatPresets() {
+        
+        var floats: [PresetDescription] = []
+        var description: PresetDescription
+        var attributes: EKAttributes
+        var descriptionString: String
+        
+        // Preset I
+        attributes = .topFloat
+        attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.statusBarStyle = .default
+        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        descriptionString = "Has a gradient content background and a drop shadow. It's max width is the screen minimal edge."
+        description = .init(with: attributes, title: "Top", description: descriptionString)
+        floats.append(description)
+        
+        // Preset II
+        attributes = .bottomFloat
+        attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.entryInteraction = .delayExit(by: 3)
+        attributes.statusBarStyle = .default
+        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
+        description = .init(with: attributes, title: "Bottom", description: descriptionString)
+        floats.append(description)
+        
+        dataSource.append(("Floats", floats))
+    }
+    
     private mutating func setupCustomPresets() {
         
         var customs: [PresetDescription] = []
@@ -197,6 +199,7 @@ struct PresetsDataSource {
         attributes.exitAnimation = .init(duration: 0.5, types: [.fade(from: 1, to: 0), .scale(from: 1, to: 0.8)])
         attributes.popBehavior = .animated(animation: .init(duration: 0.3, types: [.translate, .scale(from: 1, to: 0.8)]))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
+        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.width = .offset(value: 20)
         attributes.statusBarStyle = .default
@@ -216,6 +219,7 @@ struct PresetsDataSource {
         attributes.border = .value(color: .black, width: 0.5)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
         attributes.statusBarStyle = .default
+        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Customized view with internal animation. It has a drop shadow, round corners and a mild border"
         description = .init(with: attributes, title: "Custom View", description: descriptionString)
         customs.append(description)

@@ -36,7 +36,7 @@ s.description = 'SwiftEntryKit offers you a simple way to present notification e
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
-  s.dependency 'QuickLayout', '1.0.10'
+  s.dependency 'QuickLayout', '1.0.11'
   
   # s.dependency 'Quick', '1.2.0'
   # s.dependency 'Nimble', '7.0.2'

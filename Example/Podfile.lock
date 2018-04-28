@@ -11,9 +11,9 @@ PODS:
     - FBSnapshotTestCase (~> 2.0)
     - Nimble (~> 7.0)
   - Quick (1.2.0)
-  - QuickLayout (1.0.10)
+  - QuickLayout (1.0.11)
   - SwiftEntryKit (0.1.1):
-    - QuickLayout (= 1.0.10)
+    - QuickLayout (= 1.0.11)
 
 DEPENDENCIES:
   - FBSnapshotTestCase (~> 2.1.4)
@@ -39,8 +39,8 @@ SPEC CHECKSUMS:
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nimble-Snapshots: f5459b5b091678dc942d03ec4741cacb58ba4a52
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  QuickLayout: d3b65e75084d454a4b8ae8cb507136ed5ce5c6c1
-  SwiftEntryKit: eb736fcbe961c1dc2544ec6423b932bd1506e7d0
+  QuickLayout: d0dd349643d887bb6746c6108cb6d0eb6f0c5e30
+  SwiftEntryKit: 5c77b8c53427a8a3d58ca093f82fa82182313363
 
 PODFILE CHECKSUM: ab9f6b6c11f2da19aefaa45a6dc1ec25a987268e
 

@@ -153,12 +153,13 @@ class EKScrollView: UIScrollView {
     // Setup layout constraints according to EKAttributes.PositionConstraints
     private func setupLayoutConstraints() {
         
+        layoutToSuperview(.centerX)
+        
         // Layout the scroll view horizontally inside the screen
         switch attributes.positionConstraints.width {
         case .offset(value: let offset):
             layoutToSuperview(axis: .horizontally, offset: offset, priority: .must)
         case .ratio(value: let ratio):
-            layoutToSuperview(.centerX)
             layoutToSuperview(.width, ratio: ratio, priority: .must)
         case .constant(value: let constant):
             set(.width, of: constant, priority: .must)
@@ -187,8 +188,7 @@ class EKScrollView: UIScrollView {
             layoutToSuperview(.centerX)
             layout(to: .width, of: superview!, relation: .lessThanOrEqual, ratio: ratio)
         case .constant(value: let constant):
-            // TODO: Add relation to QuickLayout
-//            set(.width, of: constant, relation: .lessThanOrEqual)
+            set(.width, of: constant, relation: .lessThanOrEqual)
             break
         case .unspecified:
             break
