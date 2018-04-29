@@ -4,25 +4,42 @@
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
+* **[Overview](#overview)**
+  * [Presets](#presets)
+  * [Playground](#playground)
+* **[Requirements](#requirements)**
+* **[Installation](#installation)**
+* **[Usage](#usage)**
+  * [EKAttributes](#ekattributes)
+  * [Basic Usage Example](#basic-usage-example)
+  * [Presets Usage Example](#presets-usage-example)
+  * [How to deal with the screen Safe Area](#how-to-deal-with-the-screen-safe-area)
+  * [How to deal with device orientation change](#how-to-deal-with-device-orientation-change)
+* [Known Issues](#known-issues)
+* [Contributing](#contributing)
+* [Author](#author)
+* [License](#license)
+
+## Overview
+
 SwiftEntryKit is a simple and versatile pop-up presenter written in Swift.
 
 The library is still WIP and will be released very soon.
 
-## Features
-- **Entry Position** - Entries can be displayed at the top or the bottom of the screen.
-- **Presets** - SwiftEntryKit offers various beautiful entry presets that can be themed with your app colors and fonts.
-- **Entries are highly customizable**
-  - Entries can have a border, drop-shadow and round corners.
-  - Entries background can be blurred, colorred or a gradient style.
+- Banners or Pop-Ups are called *Entries*.
+- The entries are displayed in a separated UIWindow called EKWindow, so the user can navigate the app freely while the entries are being displayed in a non intrusive manner.
+- The kit offers various beautiful entry presets that can be themed with your app colors and fonts.
+- **Customization** - Entries are highly customizable
+  - Can be displayed at the top or the bottom of the screen.
+  - Can have a border, drop-shadow and round corners.
+  - Background can be blurred, colored or have a gradient style.
   - The screen background can be dimmed.
-  - Entries push and pop animations the can be customized.
-  - User interaction with the entry or the screen can dismiss the entry or be ignored and pass forward  to the application window.
-- **Status Bar** - Status bar style can be replaced once the entry shows and gets it's previous style again when the entry animates out.
-- **Haptic Feedback** - Automatically supported (with device restrictions).
-- **Screen Transitions** - The entries are displayed in a designated UIWindow above the application window (The window level is customizable as well), so the user can navigate the app freely while entries are being displayed.
-- **Custom Views** Supports custom views / programmatically initialized views / nib initialized views.
+  - Push and pop animations can be customized.
+  - User interactions with the entry or the screen can be intercepted.
+  - The status bar style can be replaced while the entry is displayed.
+  - Supports **custom views**.
 
-## Example
+### Presets
 
 Taken from the Example project, here are some presets and abilities that can be used.
 
@@ -32,7 +49,9 @@ Toasts | Notes | Floats | Custom Message | Custom Nib
 
 The example project contains a Playground in which you can investigate preferable displays of entries.
 
-### Playground - noun: a place where people can play :-)
+### Playground
+
+#### noun: a place where people can play :-)
 
 The example app contains a playground screen - an interface that enable you to customize and create entries.
 the playground screen has some limitations but you can easily modify the internal logic to suit your needs.
@@ -57,11 +76,11 @@ SwiftEntryKit is still WIP and will be formally released very soon.
 
 ## Usage
 
-### The basic types:
+### EKAttributes:
 
-***EKAttributes*** - is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is used to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations and more.
+*EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
-Below are most of attributes that can be modified:
+Below are most of it's attributes that can be modified:
 
 **Window Level** - The entry's window level
 
@@ -93,7 +112,6 @@ Below are most of attributes that can be modified:
 
 **Options** - Contains additional attributes like whether a haptic feedback should be generated once the entry is displayed.
 
-
 EKAttributes' interface is as follows:
 
 ```Swift
@@ -118,7 +136,7 @@ public struct EKAttributes {
 }
 ```
 
-### Basic usage example:
+### Basic Usage Example:
 
 ```Swift
 // Create a basic toast that appears at the top
@@ -142,7 +160,7 @@ let customView = CustomView()
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
-### Using SwiftEntryKit's presets - example:
+### Presets Usage Example:
 
 ```Swift
 // Generate top note entry - located below the status bar.
@@ -198,6 +216,8 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 Oriantation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
+
+## Known Issues
 
 ## Contributing
 
