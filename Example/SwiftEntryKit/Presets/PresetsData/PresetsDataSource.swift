@@ -217,7 +217,7 @@ struct PresetsDataSource {
         attributes.exitAnimation = .init(duration: 0.3, types: [.fade(from: 1, to: 0), .scale(from: 1, to: 0.7)])
         attributes.displayDuration = .infinity
         attributes.border = .value(color: .black, width: 0.5)
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5, offset: .zero))
         attributes.statusBarStyle = .default
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Customized view with internal animation. It has a drop shadow, round corners and a mild border"
