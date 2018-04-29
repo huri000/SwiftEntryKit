@@ -27,12 +27,13 @@
 		14C729D5209476A90060D267 /* BorderSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D4209476A90060D267 /* BorderSelectionTableViewCell.swift */; };
 		14C729D7209496180060D267 /* CGRect+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D6209496180060D267 /* CGRect+Utils.swift */; };
 		14C729D9209496730060D267 /* UIScreen+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D8209496730060D267 /* UIScreen+Utils.swift */; };
+		14C75E082096430D0002465E /* PrioritySelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C75E072096430D0002465E /* PrioritySelectionTableViewCell.swift */; };
 		14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */; };
 		14C894FB208E79B8003D8CE3 /* EntryAttributeWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */; };
 		14C894FE208E7DDE003D8CE3 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FD208E7DDE003D8CE3 /* Font.swift */; };
 		14C89500208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C894FF208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift */; };
-		14C89502208E83AA003D8CE3 /* WindowLevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C89501208E83AA003D8CE3 /* WindowLevelTableViewCell.swift */; };
-		14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */; };
+		14C89502208E83AA003D8CE3 /* WindowLevelSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C89501208E83AA003D8CE3 /* WindowLevelSelectionTableViewCell.swift */; };
+		14C89504208E870C003D8CE3 /* DisplayDurationSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C89503208E870C003D8CE3 /* DisplayDurationSelectionTableViewCell.swift */; };
 		14D18CCD2090FE970019AE7F /* SafeAreaSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CCC2090FE970019AE7F /* SafeAreaSelectionTableViewCell.swift */; };
 		14D18CCF209105290019AE7F /* WidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */; };
 		14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CD1209118DA0019AE7F /* NibExampleView.swift */; };
@@ -82,12 +83,13 @@
 		14C729D4209476A90060D267 /* BorderSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C729D6209496180060D267 /* CGRect+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Utils.swift"; sourceTree = "<group>"; };
 		14C729D8209496730060D267 /* UIScreen+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Utils.swift"; sourceTree = "<group>"; };
+		14C75E072096430D0002465E /* PrioritySelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrioritySelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C894FA208E79B8003D8CE3 /* EntryAttributeWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryAttributeWrapper.swift; sourceTree = "<group>"; };
 		14C894FD208E7DDE003D8CE3 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		14C894FF208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionSelectionTableViewCell.swift; sourceTree = "<group>"; };
-		14C89501208E83AA003D8CE3 /* WindowLevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLevelTableViewCell.swift; sourceTree = "<group>"; };
-		14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDurationTableViewCell.swift; sourceTree = "<group>"; };
+		14C89501208E83AA003D8CE3 /* WindowLevelSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLevelSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		14C89503208E870C003D8CE3 /* DisplayDurationSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDurationSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CCC2090FE970019AE7F /* SafeAreaSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CD1209118DA0019AE7F /* NibExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibExampleView.swift; sourceTree = "<group>"; };
@@ -211,8 +213,9 @@
 				147A9A602092682E00A49D7A /* SelectionHeaderView.swift */,
 				14C894F6208E70D5003D8CE3 /* SelectionTableViewCell.swift */,
 				14C894FF208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift */,
-				14C89501208E83AA003D8CE3 /* WindowLevelTableViewCell.swift */,
-				14C89503208E870C003D8CE3 /* DisplayDurationTableViewCell.swift */,
+				14C89501208E83AA003D8CE3 /* WindowLevelSelectionTableViewCell.swift */,
+				14C75E072096430D0002465E /* PrioritySelectionTableViewCell.swift */,
+				14C89503208E870C003D8CE3 /* DisplayDurationSelectionTableViewCell.swift */,
 				143F3AA12090A6A7009F3719 /* ShadowSelectionTableViewCell.swift */,
 				143F3AA32090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift */,
 				14C729D4209476A90060D267 /* BorderSelectionTableViewCell.swift */,
@@ -526,6 +529,7 @@
 			files = (
 				143F3AAC2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift in Sources */,
 				14D18CCF209105290019AE7F /* WidthSelectionTableViewCell.swift in Sources */,
+				14C75E082096430D0002465E /* PrioritySelectionTableViewCell.swift in Sources */,
 				14C729D0209453240060D267 /* ButtonsBarView.swift in Sources */,
 				147A9A6320926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift in Sources */,
 				14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */,
@@ -552,9 +556,9 @@
 				14C729D9209496730060D267 /* UIScreen+Utils.swift in Sources */,
 				14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */,
 				14C729C8209448390060D267 /* DynamicExampleView.swift in Sources */,
-				14C89504208E870C003D8CE3 /* DisplayDurationTableViewCell.swift in Sources */,
+				14C89504208E870C003D8CE3 /* DisplayDurationSelectionTableViewCell.swift in Sources */,
 				14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */,
-				14C89502208E83AA003D8CE3 /* WindowLevelTableViewCell.swift in Sources */,
+				14C89502208E83AA003D8CE3 /* WindowLevelSelectionTableViewCell.swift in Sources */,
 				143F3AAA2090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift in Sources */,
 				14C729D7209496180060D267 /* CGRect+Utils.swift in Sources */,
 			);

@@ -1,5 +1,5 @@
 //
-//  WindowLevelTableViewCell.swift
+//  VisibleDurationTableViewCell.swift
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/24/18.
@@ -8,22 +8,24 @@
 
 import UIKit
 
-class WindowLevelTableViewCell: SelectionTableViewCell {
-
+class DisplayDurationSelectionTableViewCell: SelectionTableViewCell {
+    
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
-        titleValue = "Window Level"
-        descriptionValue = "Where the entry should be presented in the application window hierarchy"
-        insertSegments(by: ["Above status bar", "Below status bar"])
+        titleValue = "Display Duration"
+        descriptionValue = "How long the entry is displayed"
+        insertSegments(by: ["2 Seconds", "4 Seconds", "Infinate"])
         selectSegment()
     }
     
     private func selectSegment() {
-        switch attributesWrapper.attributes.windowLevel {
-        case .aboveStatusBar:
+        switch attributesWrapper.attributes.displayDuration {
+        case 2:
             segmentedControl.selectedSegmentIndex = 0
-        case .belowStatusBar:
+        case 4:
             segmentedControl.selectedSegmentIndex = 1
+        case .infinity:
+            segmentedControl.selectedSegmentIndex = 2
         default:
             break
         }
@@ -32,9 +34,11 @@ class WindowLevelTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.windowLevel = .aboveStatusBar
+            attributesWrapper.attributes.displayDuration = 2
         case 1:
-            attributesWrapper.attributes.windowLevel = .belowStatusBar
+            attributesWrapper.attributes.displayDuration = 4
+        case 2:
+            attributesWrapper.attributes.displayDuration = .infinity
         default:
             break
         }

@@ -32,30 +32,10 @@ public extension EKAttributes {
             }
         }
         
-        public enum Priority {
-            
-            /** High priority entries can be overriden by other high priority entries only. Normal priority entries are ignored while a high priority entry is being displayed. High priority entry overrides any other entry including another high priority one */
-            case high
-            
-            /** Normal entries can be overridden by either normal or higher priority entries. They cannot override higher priority entries and are automatically ignored when a higher priority entry is already being displayed */
-            case normal
-            
-            var isHigh: Bool {
-                return self == .high
-            }
-            
-            func isPreceding(priority: Priority) -> Bool {
-                return isHigh || (!isHigh && !priority.isHigh)
-            }
-        }
-
         /** Describes the scrolling behavior of the entry */
         public var scroll = Scroll.enabled
         
         /** Haptic notification feedback */
         public var useHapticFeedback = true
-        
-        /** The priority of the entry */
-        public var priority = Priority.normal
     }
 }

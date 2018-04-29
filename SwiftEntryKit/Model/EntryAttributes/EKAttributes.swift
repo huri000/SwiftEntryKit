@@ -22,6 +22,9 @@ public struct EKAttributes {
     /** The position of the entry inside the screen */
     public var position = Position.top
 
+    /** The display priority of the entry */
+    public var displayPriority = DisplayPriority.normal
+    
     /** Describes how long the entry is displayed before it is dismissed */
     public var displayDuration: TimeInterval = 2 // Use .infinity for infinate duration
     
