@@ -120,52 +120,35 @@ public struct EKAttributes {
 }
 ```
 
-#### Window Level
-The entry's window level
+**Window Level** - The entry's window level
 
-#### Display Position
-The entry can be displayed either at the top or the bottom of the screen.
+**Display Position** - The entry can be displayed either at the top or the bottom of the screen.
 
-#### Display Priority
-The display priority of the entry determines whether it can be popped by entries with lower priority.
+**Display Priority** - The display priority of the entry determines whether it can be popped by entries with lower priority.
 
-#### Display Duration
-The display duration of the entry (Counted from the moment the entry is finished it's entrance animation).
+**Display Duration** - The display duration of the entry (Counted from the moment the entry is finished it's entrance animation).
 
-#### Position Constraints
-Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset.
+**Position Constraints** - Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset.
 
-#### Background Style
-The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
+**Background Style** - The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
 
-#### User Interaction
-The entry and the screen can be interacted by the user. 
-User interaction be can intercepted in various ways, such as: dismiss the entry, be ignored, pass the touch forward to the lower level window, and more.
+**User Interaction** - The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways, such as: dismiss the entry, be ignored, pass the touch forward to the lower level window, and more.
 
-#### Shadow
-The shadow that surrounds the entry
+**Shadow** - The shadow that surrounds the entry
 
-#### Round Corners
-Round corners around the entry
+**Round Corners** - Round corners around the entry
 
-#### Border
-The border around the entry
+**Border** - The border around the entry
 
-#### Entrance Animation
-Describes how the entry animates inside
+**Entrance Animation** - Describes how the entry animates inside
 
-### Exit Animation
-Describes how the entry animates out
+**Exit Animation** - Describes how the entry animates out
 
-#### Pop Behavior
-Describes the entry behavior when it's being popped (gives priority to the next entry).
+**Pop Behavior** - Describes the entry behavior when it's being popped (gives priority to the next entry).
 
-#### Status Bar Style
-The status bar style can be modified for the display duration of the entry.
-In order to enable this feature you just set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+**Status Bar Style** - The status bar style can be modified for the display duration of the entry. In order to enable this feature you just set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
 
-#### Options
-Contains additional attributes like whether a haptic feedback should be generated once the entry is displayed.
+**Options** - Contains additional attributes like whether a haptic feedback should be generated once the entry is displayed.
 
 ### Basic usage:
 
