@@ -66,14 +66,14 @@ This library is still WIP and will be formally released very soon.
 ```Swift
 public struct EKAttributes {
 
-    /** Init with default attributes */
-    public init()
-
     /** Entry presentation window level */
     public var windowLevel: SwiftEntryKit.EKAttributes.WindowLevel
 
     /** The position of the entry inside the screen */
     public var position: SwiftEntryKit.EKAttributes.Position
+
+    /** The display priority of the entry */
+    public var displayPriority: SwiftEntryKit.EKAttributes.DisplayPriority
 
     /** Describes how long the entry is displayed before it is dismissed */
     public var displayDuration: TimeInterval
@@ -120,6 +120,53 @@ public struct EKAttributes {
 }
 ```
 
+#### Window Level
+The entry's window level
+
+#### Display Position
+The entry can be displayed either at the top or the bottom of the screen.
+
+#### Display Priority
+The display priority of the entry determines whether it can be popped by entries with lower priority.
+
+#### Display Duration
+The display duration of the entry (Counted from the moment the entry is finished it's entrance animation).
+
+#### Position Constraints
+Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset.
+
+#### Background Style
+The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
+
+#### User Interaction
+The entry and the screen can be interacted by the user. 
+User interaction be can intercepted in various ways, such as: dismiss the entry, be ignored, pass the touch forward to the lower level window, and more.
+
+#### Shadow
+The shadow that surrounds the entry
+
+#### Round Corners
+Round corners around the entry
+
+#### Border
+The border around the entry
+
+#### Entrance Animation
+Describes how the entry animates inside
+
+### Exit Animation
+Describes how the entry animates out
+
+#### Pop Behavior
+Describes the entry behavior when it's being popped (gives priority to the next entry).
+
+#### Status Bar Style
+The status bar style can be modified for the display duration of the entry.
+In order to enable this feature you just set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+
+#### Options
+Contains additional attributes like whether a haptic feedback should be generated once the entry is displayed.
+
 ### Basic usage:
 
 ```Swift
@@ -135,19 +182,18 @@ attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(f
 // Animate out using translation only
 attributes.exitAnimation = .translation
 
-let contentView = UIView()
+let customView = CustomView()
 /*
-... Customize to view as you like (See example project for more info)
+... Customize the view as you like ...
 */
 
-// Change the state of EKWindowProvider to .message and inject the contentView and the attributes
-EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+// Use class method of SwiftEntryKit to display the view using the desired attributes
+SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
 ### Using SwiftEntryKit's presets - an example:
 
 ```Swift
-
 // Generate top note entry - located below the status bar.
 let attributes = EKAttributes.topNote
 attributes.entryBackground = .color(color: .white)
@@ -163,8 +209,8 @@ let labelContent = EKProperty.LabelContent(text: text, style: style)
 // Create the note view
 let contentView = EKNoteMessageView(with: labelContent)
 
-// Show contentView
-EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+// Use class method of SwiftEntryKit to display the view using the desired attributes
+SwiftEntryKit.display(entry: contentView, using: attributes)
 ```
 
 ### How to deal with the screen Safe Area:
@@ -176,7 +222,7 @@ SwiftEntryKit supports iOS 11.x.y and is backward compatible with iOS 9.x.y and 
 ### How to deal with device orientation change:
 
 SwiftEntryKit identifies orientation changes and adjust the entry's layout to those changes.
-In order to limit the entries's width, you can give it a maximum width, likewise:
+In order to limit the entries's width, you can give it a maximum width value, likewise:
 
 ```Swift
 let attributes = EKAttributes.topFloat
@@ -188,13 +234,13 @@ attributes.positionConstraints.width = .offset(value: 20)
 let maxWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
 attributes.positionConstraints.maximumWidth = .constant(value: maxWidth)
 
-let contentView = UIView()
+let customView = CustomView()
 /*
-... Customize to view as you like (See example project for more info)
+... Customize the view as you like ...
 */
 
-// Change the state of EKWindowProvider to .message and inject the contentView and the attributes
-EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+// Use class method of SwiftEntryKit to display the view using the desired attributes
+SwiftEntryKit.display(entry: contentView, using: attributes)
 ```
 
 Oriantation Change Demonstration |
