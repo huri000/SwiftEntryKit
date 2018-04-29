@@ -14,6 +14,10 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
         case entrance
         case exit
         case pop
+        
+        var isOut: Bool {
+            return Set([.exit, .pop]).contains(self)
+        }
     }
     
     var action: Action = .entrance
@@ -59,11 +63,11 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        if attributesWrapper.attributes.entranceAnimation.containsTranslation {
+        if animation.containsTranslation {
             segmentedControl.selectedSegmentIndex = 0
-        } else if attributesWrapper.attributes.entranceAnimation.containsScale {
+        } else if animation.containsScale {
             segmentedControl.selectedSegmentIndex = 1
-        } else if attributesWrapper.attributes.entranceAnimation.containsFade {
+        } else if animation.containsFade {
             segmentedControl.selectedSegmentIndex = 2
         }
     }
@@ -71,11 +75,15 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.entranceAnimation = .translation
+            animation = .translation
+        case 1 where action.isOut:
+            animation = .scaleOut
         case 1:
-            attributesWrapper.attributes.entranceAnimation = .scaleIn
+            animation = .scaleIn
+        case 2 where action.isOut:
+            animation = .fadeOut
         case 2:
-            attributesWrapper.attributes.entranceAnimation = .fadeIn
+            animation = .fadeIn
         default:
             break
         }

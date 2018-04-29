@@ -3,7 +3,7 @@
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/28/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import UIKit
@@ -52,17 +52,17 @@ class DynamicExampleView: UIView {
     }
     
     private func animateIn() {
-        layoutIfNeeded()
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
+            
             self.buttonsBarCompressedConstraint.priority = .defaultLow
             self.buttonsBarExpandedConstraint.priority = .must
-            self.layoutIfNeeded()
             
             /* NOTE: Calling layoutIfNeeded for the whole view hierarchy.
              Sometimes it's easier to just use frames instead of AutoLayout for
              hierarch complexity considerations. Here the animation influences almost the
              entire view hierarchy. */
-            EKWindowProvider.shared.rootVC?.view.layoutIfNeeded()
+            SwiftEntryKit.layoutIfNeeded()
+            
         }, completion: nil)
     }
 }

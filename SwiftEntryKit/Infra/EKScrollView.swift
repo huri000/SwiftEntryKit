@@ -46,6 +46,7 @@ class EKScrollView: UIScrollView {
     
     // Called from outer scope with a presentable view and attributes
     func setup(with contentView: UIView, attributes: EKAttributes) {
+        
         self.attributes = attributes
         self.contentView = contentView
         
@@ -72,7 +73,7 @@ class EKScrollView: UIScrollView {
     private func setupInitialPosition() {
         
         // Determine the layout entrance type according to the entry type
-        let messageBottomInSuperview: NSLayoutAttribute
+        let messageAnchorInSuperview: NSLayoutAttribute
         let messageTopInSuperview: NSLayoutAttribute
         var inOffset: CGFloat = 0
         var outOffset: CGFloat = 0
@@ -95,7 +96,7 @@ class EKScrollView: UIScrollView {
         
         switch attributes.position {
         case .top:
-            messageBottomInSuperview = .top
+            messageAnchorInSuperview = .top
             messageTopInSuperview = .bottom
             
             if overrideSafeArea {
@@ -114,7 +115,7 @@ class EKScrollView: UIScrollView {
             spacerView?.layout(.bottom, to: .top, of: self)
             
         case .bottom:
-            messageBottomInSuperview = .bottom
+            messageAnchorInSuperview = .bottom
             messageTopInSuperview = .top
             
             inOffset = -safeAreaInsets.bottom - attributes.positionConstraints.verticalOffset
@@ -131,9 +132,9 @@ class EKScrollView: UIScrollView {
         let setupOutConstraint = { (animation: EKAttributes.Animation, priority: UILayoutPriority) -> NSLayoutConstraint in
             let constraint: NSLayoutConstraint
             if animation.containsTranslation {
-                constraint = self.layout(messageTopInSuperview, to: messageBottomInSuperview, of: self.superview!, offset: outOffset, priority: priority)!
+                constraint = self.layout(messageTopInSuperview, to: messageAnchorInSuperview, of: self.superview!, offset: outOffset, priority: priority)!
             } else {
-                constraint = self.layout(to: messageBottomInSuperview, of: self.superview!, offset: inOffset, priority: priority)!
+                constraint = self.layout(to: messageAnchorInSuperview, of: self.superview!, offset: inOffset, priority: priority)!
             }
             return constraint
         }
@@ -141,13 +142,13 @@ class EKScrollView: UIScrollView {
         if case .animated(animation: let animation) = attributes.popBehavior {
             popOutConstraint = setupOutConstraint(animation, .defaultLow)
         } else {
-            popOutConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)!
+            popOutConstraint = layout(to: messageAnchorInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)!
         }
         
         // Set position constraints
         entranceOutConstraint = setupOutConstraint(attributes.entranceAnimation, .must)
         exitOutConstraint = setupOutConstraint(attributes.exitAnimation, .defaultLow)
-        inConstraint = layout(to: messageBottomInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
+        inConstraint = layout(to: messageAnchorInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
     }
     
     // Setup layout constraints according to EKAttributes.PositionConstraints
@@ -204,6 +205,7 @@ class EKScrollView: UIScrollView {
         isPagingEnabled = true
         delegate = self
         isScrollEnabled = attributes.options.scroll.isLooselyEnabled
+        panGestureRecognizer.addTarget(self, action: #selector(panGestureRecognized(_:)))
     }
     
     // Setup tap gesture
@@ -390,7 +392,6 @@ class EKScrollView: UIScrollView {
 extension EKScrollView: UIScrollViewDelegate {
     
     // MARK: UIScrollViewDelegate
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        guard let scrollAttribute = attributes?.options.scroll, scrollAttribute.isEdgeCrossingDisabled else {
 //            return
@@ -403,14 +404,29 @@ extension EKScrollView: UIScrollViewDelegate {
     }
     
     // MARK: Tap Gesture Handler
-    
     @objc func tapGestureRecognized() {
         switch attributes.entryInteraction.defaultAction {
+        case .delayExit(by: _):
+            scheduleAnimateOut()
         case .dismissEntry:
-            animateOut(pushOut: true)
-            fallthrough
+            animateOut(pushOut: false)
         default:
-            attributes.entryInteraction.customActions.forEach { $0() }
+            break
+        }
+        attributes.entryInteraction.customActions.forEach { $0() }
+    }
+    
+    @objc func panGestureRecognized(_ gr: UIPanGestureRecognizer) {
+        guard attributes.entryInteraction.isDelayExit else {
+            return
+        }
+        switch gr.state {
+        case .began:
+            outDispatchWorkItem?.cancel()
+        case .ended, .failed, .cancelled:
+            scheduleAnimateOut()
+        default:
+            break
         }
     }
     

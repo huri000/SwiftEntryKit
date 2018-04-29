@@ -3,7 +3,7 @@
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/28/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import UIKit
@@ -55,7 +55,7 @@ class ButtonsBarView: UIView {
     // MARK: Actions
     
     @IBAction func leftButtonTouchUpInside() {
-         EKWindowProvider.shared.dismiss()
+        SwiftEntryKit.dismiss()
     }
     
     @IBAction func rightButtonTouchUpInside() {

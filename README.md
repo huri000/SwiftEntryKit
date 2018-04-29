@@ -4,7 +4,7 @@
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
-THIS LIBRARY IS CURRENTLY WIP...
+SwiftEntryKit is still WIP and will be released very soon.
 
 SwiftEntryKit is a pop-up/banner presenter library for iOS.
 
@@ -49,15 +49,79 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-The library has not been tested with iOS 8 or lower.
+- iOS 9 or any higher version.
+- Swift 4.0 or a higher version.
+- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) to layout the views programmatically.
+- The library has not been tested with iOS 8 or a lower version.
 
 ## Installation
 
-This library is still WIP and will be formally released very soon.
+SwiftEntryKit is still WIP and will be formally released very soon.
 
 ## Usage
 
-### Basic usage:
+### The basic types:
+
+***EKAttributes*** - is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is used to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations and more.
+
+Below are most of attributes that can be modified:
+
+**Window Level** - The entry's window level
+
+**Display Position** - The entry can be displayed either at the top or the bottom of the screen.
+
+**Display Priority** - The display priority of the entry determines whether it can be popped by entries with lower priority.
+
+**Display Duration** - The display duration of the entry (Counted from the moment the entry is finished it's entrance animation).
+
+**Position Constraints** - Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset.
+
+**Background Style** - The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
+
+**User Interaction** - The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways, such as: dismiss the entry, be ignored, pass the touch forward to the lower level window, and more.
+
+**Shadow** - The shadow that surrounds the entry
+
+**Round Corners** - Round corners around the entry
+
+**Border** - The border around the entry
+
+**Entrance Animation** - Describes how the entry animates inside
+
+**Exit Animation** - Describes how the entry animates out
+
+**Pop Behavior** - Describes the entry behavior when it's being popped (gives priority to the next entry).
+
+**Status Bar Style** - The status bar style can be modified for the display duration of the entry. In order to enable this feature you just set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+
+**Options** - Contains additional attributes like whether a haptic feedback should be generated once the entry is displayed.
+
+
+EKAttributes' interface is as follows:
+
+```Swift
+public struct EKAttributes {
+    public var windowLevel: WindowLevel
+    public var position: Position
+    public var displayPriority: DisplayPriority
+    public var displayDuration: TimeInterval
+    public var positionConstraints: PositionConstraints
+    public var entryBackground: BackgroundStyle
+    public var screenBackground: BackgroundStyle
+    public var screenInteraction: UserInteraction
+    public var entryInteraction: UserInteraction
+    public var shadow: Shadow
+    public var roundCorners: RoundCorners
+    public var border: Border
+    public var entranceAnimation: Animation
+    public var exitAnimation: Animation
+    public var popBehavior: PopBehavior
+    public var statusBarStyle: UIStatusBarStyle!
+    public var options: Options
+}
+```
+
+### Basic usage example:
 
 ```Swift
 // Create a basic toast that appears at the top
@@ -72,19 +136,18 @@ attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(f
 // Animate out using translation only
 attributes.exitAnimation = .translation
 
-let contentView = UIView()
+let customView = CustomView()
 /*
-... Customize to view as you like (See example project for more info)
+... Customize the view as you like ...
 */
 
-// Change the state of EKWindowProvider to .message and inject the contentView and the attributes
-EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+// Use class method of SwiftEntryKit to display the view using the desired attributes
+SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
-### Using SwiftEntryKit's presets - an example:
+### Using SwiftEntryKit's presets - example:
 
 ```Swift
-
 // Generate top note entry - located below the status bar.
 let attributes = EKAttributes.topNote
 attributes.entryBackground = .color(color: .white)
@@ -100,35 +163,48 @@ let labelContent = EKProperty.LabelContent(text: text, style: style)
 // Create the note view
 let contentView = EKNoteMessageView(with: labelContent)
 
-// Show contentView
-EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+// Use class method of SwiftEntryKit to display the view using the desired attributes
+SwiftEntryKit.display(entry: contentView, using: attributes)
 ```
 
-### How to deal with orientation change:
+### How to deal with the screen Safe Area:
 
-For example - create a top floating entry, And set it's width to be offset of 20pts from the screen width.
-In order to limit the view's width, you can give it maximum width, likewise:
+*EKAttributes.PositionConstraints.SafeArea* may be used to override the safe area with the entry's content, or to fill the safe area with a background color (like [Toasts](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) do), or even leave the safe area empty (Like [Floats](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) do).
+
+SwiftEntryKit supports iOS 11.x.y and is backward compatible with iOS 9.x.y and 10.x.y, so the status bar area is treated the same as the safe area in earlier iOS versions.
+
+### How to deal with device orientation change:
+
+SwiftEntryKit identifies orientation changes and adjust the entry's layout to those changes.
+
+Therefore, if you wish to limit the entries's width, you are able to do so by giving it a maximum value, likewise:
 
 ```Swift
 let attributes = EKAttributes.topFloat
+
+// Give the entry the width of the screen minus 20pts from each side.
 attributes.positionConstraints.width = .offset(value: 20)
 
+// Give the entry maximum width of the screen minimum edge - thus the entry won't grow much when the device orientation changes from portrait to landscape mode.
 let maxWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
 attributes.positionConstraints.maximumWidth = .constant(value: maxWidth)
 
-let contentView = UIView()
+let customView = CustomView()
 /*
-... Customize to view as you like (See example project for more info)
+... Customize the view as you like ...
 */
 
-// Change the state of EKWindowProvider to .message and inject the contentView and the attributes
-EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+// Use class method of SwiftEntryKit to display the view using the desired attributes
+SwiftEntryKit.display(entry: contentView, using: attributes)
 ```
 
 Oriantation Change Demonstration |
 --- |
 ![demo_01](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
 
+## Contributing
+
+Forks, patches and other feedback will be available once the library is formally released and registered in CocoaPods.
 
 ## Author
 

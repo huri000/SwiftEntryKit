@@ -20,9 +20,10 @@ class PositionSelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        if attributesWrapper.attributes.position.isTop {
+        switch attributesWrapper.attributes.position {
+        case .top:
             segmentedControl.selectedSegmentIndex = 0
-        } else {
+        case .bottom:
             segmentedControl.selectedSegmentIndex = 1
         }
     }

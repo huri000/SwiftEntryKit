@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class EKRootViewController: UIViewController {
+class EKRootViewController: UIViewController {
     
     private var lastAttributes: EKAttributes!
     private var tapGestureRecognizer: UITapGestureRecognizer!
@@ -49,6 +49,10 @@ public class EKRootViewController: UIViewController {
     // MARK: Setup
     func configure(entryView: UIView, attributes: EKAttributes) {
         
+        guard checkPriorityPrecedence(for: attributes) else {
+            return
+        }
+        
         removeLastEntry(keepWindow: true)
 
         lastAttributes = attributes
@@ -58,6 +62,14 @@ public class EKRootViewController: UIViewController {
         entryScrollView.setup(with: entryView, attributes: attributes)
         
         isResponsive = attributes.screenInteraction.isResponsive
+    }
+    
+    
+    private func checkPriorityPrecedence(for attributes: EKAttributes) -> Bool {
+        guard let lastAttributes = lastAttributes else {
+            return true
+        }
+        return attributes.displayPriority.isPreceding(priority: lastAttributes.displayPriority)
     }
 
     // Removes last entry - can keep the window 'ON' if necessary

@@ -55,12 +55,13 @@ public class EKNotificationMessageView: UIView {
     private func setupMessageContentView() {
         messageContentView.verticalMargins = 0
         messageContentView.horizontalMargins = 0
+        messageContentView.labelsOffset = 5
         messageContentView.titleContent = message.title
         messageContentView.subtitleContent = message.description
         addSubview(messageContentView)
         messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 12)
         messageContentView.layout(.right, to: .left, of: timeLabel)
-        messageContentView.layout(to: .top, of: thumbImageView)
+        messageContentView.layout(to: .top, of: thumbImageView, offset: 4)
         messageContentView.layoutToSuperview(.bottom, offset: -20)
     }
 }

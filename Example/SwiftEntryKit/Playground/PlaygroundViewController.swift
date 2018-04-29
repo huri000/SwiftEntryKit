@@ -17,14 +17,16 @@ class PlaygroundViewController: UIViewController {
     
     struct Cells {
         
-        static let sectionTitles = ["Display", "Interaction", "Size & Position", "Animation"]
+        static let sectionTitles = ["Display", "Theme & Style", "Interaction", "Size & Position", "Animation"]
         
         static let header = SelectionHeaderView.self
         
         static let cells = [[PositionSelectionTableViewCell.self,
-                            WindowLevelTableViewCell.self,
-                            DisplayDurationTableViewCell.self,
-                            ShadowSelectionTableViewCell.self,
+                            WindowLevelSelectionTableViewCell.self,
+                            DisplayDurationSelectionTableViewCell.self,
+                            PrioritySelectionTableViewCell.self],
+                            
+                            [ShadowSelectionTableViewCell.self,
                             RoundCornersSelectionTableViewCell.self,
                             BorderSelectionTableViewCell.self,
                             BackgroundStyleSelectionTableViewCell.self,
@@ -76,7 +78,7 @@ class PlaygroundViewController: UIViewController {
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
         let contentView = EKNotificationMessageView(with: content)
         
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributesWrapper.attributes)
+        SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
     }
 }
 
@@ -93,31 +95,33 @@ extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
         cell = selectionCell(by: Cells.cells[indexPath.section][indexPath.row].className, and: indexPath)
         
         switch (indexPath.section, indexPath.row) {
-        case (0, 0...5):
+        case (0, 0...3):
             cell.configure(attributesWrapper: attributesWrapper)
-        case (0, 6):
+        case (1, 0...2):
+            cell.configure(attributesWrapper: attributesWrapper)
+        case (1, 3):
             let cell = cell as! BackgroundStyleSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .screen)
-        case (0, 7):
+        case (1, 4):
             let cell = cell as! BackgroundStyleSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .entry)
-        case (1, 0):
+        case (2, 0):
             let cell = cell as! UserInteractionSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .screen)
-        case (1, 1):
+        case (2, 1):
             let cell = cell as! UserInteractionSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, focus: .entry)
-        case (1, 2...4):
+        case (2, 2...4):
             cell.configure(attributesWrapper: attributesWrapper)
-        case (2, 0...3):
+        case (3, 0...3):
             cell.configure(attributesWrapper: attributesWrapper)
-        case (3, 0):
+        case (4, 0):
             let cell = cell as! AnimationSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, action: .entrance)
-        case (3, 1):
+        case (4, 1):
             let cell = cell as! AnimationSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, action: .exit)
-        case (3, 2):
+        case (4, 2):
             let cell = cell as! AnimationSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, action: .pop)
         default:

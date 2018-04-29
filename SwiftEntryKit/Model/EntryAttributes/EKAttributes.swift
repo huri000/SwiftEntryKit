@@ -13,13 +13,16 @@ public struct EKAttributes {
     
     /** Init with default attributes */
     public init() {}
-    
+        
     /** Entry presentation window level */
     public var windowLevel = WindowLevel.aboveStatusBar
     
     /** The position of the entry inside the screen */
     public var position = Position.top
 
+    /** The display priority of the entry */
+    public var displayPriority = DisplayPriority.normal
+    
     /** Describes how long the entry is displayed before it is dismissed */
     public var displayDuration: TimeInterval = 2 // Use .infinity for infinate duration
     
@@ -32,12 +35,11 @@ public struct EKAttributes {
     /** Describes the background appearance while the entry shows */
     public var screenBackground = BackgroundStyle.clear
     
-    // Describes what happens when the user interacts the background, passes touches forward by default
-    // Triggered when the user begin touch interaction with the bsckground
+    /** Describes what happens when the user interacts the screen,
+     forwards the touch to the application window by default */
     public var screenInteraction = UserInteraction.forward
     
-    // Describes what happens when the user interacts the content, dismisses the content by default
-    // Triggered when the user taps te entry
+    /** Describes what happens when the user interacts the entry, dismisses the content by default */
     public var entryInteraction = UserInteraction.dismiss
 
     /** The shadow attributes */
@@ -56,7 +58,7 @@ public struct EKAttributes {
     public var exitAnimation = Animation.translation
     
     /** Describes the previous entry behaviour when the current entry shows */
-    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.5, types: [.translate, .scale(from: 1, to: 0.8)]))
+    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.25, types: [.translate]))
     
     /** Preferred status bar style while the entry shows */
     public var statusBarStyle: UIStatusBarStyle!

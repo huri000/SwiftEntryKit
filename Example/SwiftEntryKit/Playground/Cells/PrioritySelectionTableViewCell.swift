@@ -1,28 +1,28 @@
 //
-//  WindowLevelTableViewCell.swift
+//  PrioritySelectionTableViewCell.swift
 //  SwiftEntryKit_Example
 //
-//  Created by Daniel Huri on 4/24/18.
+//  Created by Daniel Huri on 4/29/18.
 //  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import UIKit
 
-class WindowLevelTableViewCell: SelectionTableViewCell {
+class PrioritySelectionTableViewCell: SelectionTableViewCell {
 
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
-        titleValue = "Window Level"
-        descriptionValue = "Where the entry should be presented in the application window hierarchy"
-        insertSegments(by: ["Above status bar", "Below status bar"])
+        titleValue = "Display Priority"
+        descriptionValue = "The priority of the entry. *High* overrides any other entry. *Normal* overrides only other normal priority entry"
+        insertSegments(by: ["Normal", "High"])
         selectSegment()
     }
     
     private func selectSegment() {
-        switch attributesWrapper.attributes.windowLevel {
-        case .aboveStatusBar:
+        switch attributesWrapper.attributes.displayPriority {
+        case .normal:
             segmentedControl.selectedSegmentIndex = 0
-        case .belowStatusBar:
+        case .high:
             segmentedControl.selectedSegmentIndex = 1
         default:
             break
@@ -32,9 +32,9 @@ class WindowLevelTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.windowLevel = .aboveStatusBar
+            attributesWrapper.attributes.displayPriority = .normal
         case 1:
-            attributesWrapper.attributes.windowLevel = .belowStatusBar
+            attributesWrapper.attributes.displayPriority = .high
         default:
             break
         }

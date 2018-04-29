@@ -9,6 +9,7 @@
 import UIKit
 
 class EKWindow: UIWindow {
+    
     var isAbleToReceiveTouches = false
     
     init(with rootVC: UIViewController) {

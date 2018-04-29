@@ -31,12 +31,11 @@ public extension EKAttributes {
                 return self == .edgeCrossingDisabled
             }
         }
-
+        
         /** Describes the scrolling behavior of the entry */
         public var scroll = Scroll.enabled
         
-        
-        /** Haptic notification feedback. */
+        /** Haptic notification feedback */
         public var useHapticFeedback = true
     }
 }

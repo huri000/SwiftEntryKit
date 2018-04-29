@@ -22,8 +22,16 @@ public extension EKAttributes {
                 return .fade(from: 0, to: 1)
             }
             
+            public static var fadeOut: AnimationType {
+                return .fade(from: 1, to: 0)
+            }
+            
             public static var scaleIn: AnimationType {
-                return .scale(from: 0.1, to: 1)
+                return .scale(from: 0, to: 1)
+            }
+            
+            public static var scaleOut: AnimationType {
+                return .scale(from: 1, to: 0)
             }
             
             public var rawValue: UInt {
@@ -45,8 +53,16 @@ public extension EKAttributes {
             return Animation(duration: 0.3, types: [.fadeIn])
         }
         
+        public static var fadeOut: Animation {
+            return Animation(duration: 0.3, types: [.fadeOut])
+        }
+        
         public static var scaleIn: Animation {
             return Animation(duration: 0.3, types: [.scaleIn])
+        }
+        
+        public static var scaleOut: Animation {
+            return Animation(duration: 0.3, types: [.scaleOut])
         }
         
         public static var translation: Animation {
