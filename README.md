@@ -50,8 +50,9 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Requirements
 
 - iOS 9 or any higher version.
+- Swift 4.0 or a higher version.
 - SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) to layout the views programmatically.
-- The library has not been tested with iOS 8 or lower.
+- The library has not been tested with iOS 8 or a lower version.
 
 ## Installation
 
@@ -63,7 +64,7 @@ SwiftEntryKit is still WIP and will be formally released very soon.
 
 ***EKAttributes*** - is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is used to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations and more.
 
-Below the attributes that can be set:
+Below are most of attributes that can be modified:
 
 **Window Level** - The entry's window level
 
