@@ -13,9 +13,7 @@ public struct EKAttributes {
     
     /** Init with default attributes */
     public init() {}
-    
-    var view: UIView!
-    
+        
     /** Entry presentation window level */
     public var windowLevel = WindowLevel.aboveStatusBar
     
