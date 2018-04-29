@@ -63,46 +63,7 @@ SwiftEntryKit is still WIP and will be formally released very soon.
 
 ***EKAttributes*** - is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is used to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations and more.
 
-It's interface is as follows:
-
-```Swift
-public struct EKAttributes {
-
-    public var windowLevel: SwiftEntryKit.EKAttributes.WindowLevel
-
-    public var position: SwiftEntryKit.EKAttributes.Position
-
-    public var displayPriority: SwiftEntryKit.EKAttributes.DisplayPriority
-
-    public var displayDuration: TimeInterval
-
-    public var positionConstraints: SwiftEntryKit.EKAttributes.PositionConstraints
-
-    public var entryBackground: SwiftEntryKit.EKAttributes.BackgroundStyle
-
-    public var screenBackground: SwiftEntryKit.EKAttributes.BackgroundStyle
-
-    public var screenInteraction: SwiftEntryKit.EKAttributes.UserInteraction
-
-    public var entryInteraction: SwiftEntryKit.EKAttributes.UserInteraction
-
-    public var shadow: SwiftEntryKit.EKAttributes.Shadow
-
-    public var roundCorners: SwiftEntryKit.EKAttributes.RoundCorners
-
-    public var border: SwiftEntryKit.EKAttributes.Border
-
-    public var entranceAnimation: SwiftEntryKit.EKAttributes.Animation
-
-    public var exitAnimation: SwiftEntryKit.EKAttributes.Animation
-
-    public var popBehavior: SwiftEntryKit.EKAttributes.PopBehavior
-
-    public var statusBarStyle: UIStatusBarStyle!
-
-    public var options: SwiftEntryKit.EKAttributes.Options
-}
-```
+Below the attributes that can be set:
 
 **Window Level** - The entry's window level
 
@@ -134,7 +95,32 @@ public struct EKAttributes {
 
 **Options** - Contains additional attributes like whether a haptic feedback should be generated once the entry is displayed.
 
-### Basic usage:
+
+EKAttributes' interface is as follows:
+
+```Swift
+public struct EKAttributes {
+    public var windowLevel: WindowLevel
+    public var position: Position
+    public var displayPriority: DisplayPriority
+    public var displayDuration: TimeInterval
+    public var positionConstraints: PositionConstraints
+    public var entryBackground: BackgroundStyle
+    public var screenBackground: BackgroundStyle
+    public var screenInteraction: UserInteraction
+    public var entryInteraction: UserInteraction
+    public var shadow: Shadow
+    public var roundCorners: RoundCorners
+    public var border: Border
+    public var entranceAnimation: Animation
+    public var exitAnimation: Animation
+    public var popBehavior: PopBehavior
+    public var statusBarStyle: UIStatusBarStyle!
+    public var options: Options
+}
+```
+
+### Basic usage example:
 
 ```Swift
 // Create a basic toast that appears at the top
@@ -158,7 +144,7 @@ let customView = CustomView()
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
-### Using SwiftEntryKit's presets - an example:
+### Using SwiftEntryKit's presets - example:
 
 ```Swift
 // Generate top note entry - located below the status bar.
@@ -189,7 +175,8 @@ SwiftEntryKit supports iOS 11.x.y and is backward compatible with iOS 9.x.y and 
 ### How to deal with device orientation change:
 
 SwiftEntryKit identifies orientation changes and adjust the entry's layout to those changes.
-In order to limit the entries's width, you can give it a maximum width value, likewise:
+
+Therefore, if you wish to limit the entries's width, you are able to do so by giving it a maximum value, likewise:
 
 ```Swift
 let attributes = EKAttributes.topFloat
