@@ -11,10 +11,10 @@
 * **[Installation](#installation)**
 * **[Usage](#usage)**
   * [EKAttributes](#ekattributes)
-  * [Basic Usage Example](#basic-usage-example)
   * [Presets Usage Example](#presets-usage-example)
+  * [Custom View Usage Example](#custom-view-usage-example)
   * [How to deal with the screen Safe Area](#how-to-deal-with-the-screen-safe-area)
-  * [How to deal with device orientation change](#how-to-deal-with-device-orientation-change)
+  * [How to deal with orientation change](#how-to-deal-with-orientation-change)
 * [Known Issues](#known-issues)
 * [Contributing](#contributing)
 * [Author](#author)
@@ -26,37 +26,35 @@ SwiftEntryKit is a simple and versatile pop-up presenter written in Swift.
 
 The library is still WIP and will be released very soon.
 
-- Banners or Pop-Ups are called *Entries*.
-- The entries are displayed in a separated UIWindow called EKWindow, so the user can navigate the app freely while the entries are being displayed in a non intrusive manner.
-- The kit offers various beautiful entry presets that can be themed with your app colors and fonts.
-- **Customization** - Entries are highly customizable
+### Features
+
+Banners or Pop-Ups are called *Entries*.
+
+- The entries are displayed in a separated UIWindow (of type EKWindow), so the user is able to navigate the app freely while entries are being displayed in a non intrusive manner.
+- The kit offers beautiful entry [presets](#presets) that can be themed with your app colors and fonts.
+- **Customization**: Entries are highly customizable
   - Can be displayed at the top or the bottom of the screen.
-  - Can have a border, drop-shadow and round corners.
-  - Background can be blurred, colored or have a gradient style.
-  - The screen background can be dimmed.
-  - Push and pop animations can be customized.
-  - User interactions with the entry or the screen can be intercepted.
-  - The status bar style can be replaced while the entry is displayed.
-  - Supports **custom views**.
+  - Can be displayed within or outside the screen's safe area.
+  - Can be stylized: have a border, drop-shadow and round corners.
+  - Their content's and the screen's background can be blurred, dimmed, colored or have a gradient style.
+  - Transition animations are customizable.
+  - The user interactions with the entry or the screen can be intercepted.
+  - The status bar style can be changed while the entry is displayed.
+  - SwiftEntryKit supports **custom views** as well.
 
-### Presets
-
-Taken from the Example project, here are some presets and abilities that can be used.
+### Example Project - Presets
 
 Toasts | Notes | Floats | Custom Message | Custom Nib
 --- | --- | --- | --- | ---
 ![toasts_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) | ![notes_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/notes.gif) | ![floats_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) | ![animated_custom_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/animated_custom.gif) | ![custom_nib_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/custom_nib.gif)
 
-The example project contains a Playground in which you can investigate preferable displays of entries.
 
-### Playground
+### Example Project - Playground
 
-#### noun: a place where people can play :-)
+#### noun: a place where people can play 🏈
 
-The example app contains a playground screen - an interface that enable you to customize and create entries.
-the playground screen has some limitations but you can easily modify the internal logic to suit your needs.
-
-Here are some playground samples:
+The example app contains a playground screen, an interface that allows you to customize your preferable entries.
+The playground screen has some limitations (allows to select constant values) but you can easily modify the code to suit your needs. Check it out!
 
 Screen | Top Float | Bottom Float
 --- | --- | ---
@@ -80,7 +78,7 @@ SwiftEntryKit is still WIP and will be formally released very soon.
 
 *EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
-Below are most of it's attributes that can be modified:
+Below are most of the attributes that can be modified:
 
 **Window Level** - The entry's window level
 
@@ -136,7 +134,29 @@ public struct EKAttributes {
 }
 ```
 
-### Basic Usage Example:
+### Presets Usage Example:
+
+```Swift
+// Generate top note entry - located below the status bar.
+let attributes = EKAttributes.topNote
+attributes.entryBackground = .color(color: .white)
+
+// Set dark status bar style as long as the entry shows
+attributes.statusBarStyle = .default
+
+// Set the style of the note
+let text = "Doing some testing over here!"
+let style = EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .black)
+let labelContent = EKProperty.LabelContent(text: text, style: style)
+
+// Create the note view
+let contentView = EKNoteMessageView(with: labelContent)
+
+// Use class method of SwiftEntryKit to display the view using the desired attributes
+SwiftEntryKit.display(entry: contentView, using: attributes)
+```
+
+### Custom View Usage Example:
 
 ```Swift
 // Create a basic toast that appears at the top
@@ -160,27 +180,6 @@ let customView = CustomView()
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
-### Presets Usage Example:
-
-```Swift
-// Generate top note entry - located below the status bar.
-let attributes = EKAttributes.topNote
-attributes.entryBackground = .color(color: .white)
-
-// Set dark status bar style as long as the entry shows
-attributes.statusBarStyle = .default
-
-// Set the style of the note
-let text = "Doing some testing over here!"
-let style = EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .black)
-let labelContent = EKProperty.LabelContent(text: text, style: style)
-
-// Create the note view
-let contentView = EKNoteMessageView(with: labelContent)
-
-// Use class method of SwiftEntryKit to display the view using the desired attributes
-SwiftEntryKit.display(entry: contentView, using: attributes)
-```
 
 ### How to deal with the screen Safe Area:
 
@@ -188,7 +187,7 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 
 SwiftEntryKit supports iOS 11.x.y and is backward compatible with iOS 9.x.y and 10.x.y, so the status bar area is treated the same as the safe area in earlier iOS versions.
 
-### How to deal with device orientation change:
+### How to deal with orientation change:
 
 SwiftEntryKit identifies orientation changes and adjust the entry's layout to those changes.
 
@@ -213,7 +212,7 @@ let customView = CustomView()
 SwiftEntryKit.display(entry: contentView, using: attributes)
 ```
 
-Oriantation Change Demonstration |
+Orientation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
 
