@@ -4,9 +4,9 @@
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
-SwiftEntryKit is still WIP and will be released very soon.
+SwiftEntryKit is a simple and versatile pop-up presenter written in Swift.
 
-SwiftEntryKit is a pop-up/banner presenter library for iOS.
+The library is still WIP and will be released very soon.
 
 ## Features
 - **Entry Position** - Entries can be displayed at the top or the bottom of the screen.
@@ -28,7 +28,7 @@ Taken from the Example project, here are some presets and abilities that can be 
 
 Toasts | Notes | Floats | Custom Message | Custom Nib
 --- | --- | --- | --- | ---
-![demo_01](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) | ![demo_02](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/notes.gif) | ![demo_03](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) | ![demo_04](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/animated_custom.gif) | ![demo_05](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/custom_nib.gif)
+![toasts_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) | ![notes_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/notes.gif) | ![floats_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) | ![animated_custom_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/animated_custom.gif) | ![custom_nib_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/custom_nib.gif)
 
 The example project contains a Playground in which you can investigate preferable displays of entries.
 
@@ -37,22 +37,19 @@ The example project contains a Playground in which you can investigate preferabl
 The example app contains a playground screen - an interface that enable you to customize and create entries.
 the playground screen has some limitations but you can easily modify the internal logic to suit your needs.
 
-
 Here are some playground samples:
 
 Screen | Top Float | Bottom Float
 --- | --- | ---
-![demo_01](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground.gif) | ![demo_02](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground_top.jpeg) | ![demo_03](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground_bottom.jpeg)
-
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+![playground_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground.gif) | ![play_1](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground_top.jpeg) | ![play2](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground_bottom.jpeg)
 
 ## Requirements
 
 - iOS 9 or any higher version.
-- Swift 4.0 or a higher version.
-- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) to layout the views programmatically.
+- Xcode 9 or any higher version.
+- Swift 4.0 or any higher version.
 - The library has not been tested with iOS 8 or a lower version.
+- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) to layout the views programmatically.
 
 ## Installation
 
@@ -200,7 +197,7 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 
 Oriantation Change Demonstration |
 --- |
-![demo_01](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
+![orientation_change](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
 
 ## Contributing
 
