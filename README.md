@@ -4,7 +4,7 @@
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
-THIS LIBRARY IS CURRENTLY WIP...
+SwiftEntryKit is still WIP and will be released very soon.
 
 SwiftEntryKit is a pop-up/banner presenter library for iOS.
 
@@ -49,11 +49,13 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Requirements
 
-The library has not been tested with iOS 8 or lower.
+- iOS 9 or any higher version.
+- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) to layout the views programmatically.
+- The library has not been tested with iOS 8 or lower.
 
 ## Installation
 
-This library is still WIP and will be formally released very soon.
+SwiftEntryKit is still WIP and will be formally released very soon.
 
 ## Usage
 
@@ -61,61 +63,43 @@ This library is still WIP and will be formally released very soon.
 
 ***EKAttributes*** - is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is used to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations and more.
 
-*EKAttributes* interface is as follows:
+It's interface is as follows:
 
 ```Swift
 public struct EKAttributes {
 
-    /** Entry presentation window level */
     public var windowLevel: SwiftEntryKit.EKAttributes.WindowLevel
 
-    /** The position of the entry inside the screen */
     public var position: SwiftEntryKit.EKAttributes.Position
 
-    /** The display priority of the entry */
-    public var displayPriority: SwiftEntryKit.EKAttributes.DisplayPriority
+    public var displayPriority: SwiftEntryKit.EKAttributes.DisplayPriority
 
-    /** Describes how long the entry is displayed before it is dismissed */
     public var displayDuration: TimeInterval
 
-    /** The frame attributes of the entry */
     public var positionConstraints: SwiftEntryKit.EKAttributes.PositionConstraints
 
-    /** Describes the entry's background appearance while it shows */
     public var entryBackground: SwiftEntryKit.EKAttributes.BackgroundStyle
 
-    /** Describes the background appearance while the entry shows */
     public var screenBackground: SwiftEntryKit.EKAttributes.BackgroundStyle
 
-    /** Describes what happens when the user interacts the screen,
-     forwards the touch to the application window by default */
     public var screenInteraction: SwiftEntryKit.EKAttributes.UserInteraction
 
-    /** Describes what happens when the user interacts the entry, dismisses the content by default */
     public var entryInteraction: SwiftEntryKit.EKAttributes.UserInteraction
 
-    /** The shadow attributes */
     public var shadow: SwiftEntryKit.EKAttributes.Shadow
 
-    /** The corner attributes */
     public var roundCorners: SwiftEntryKit.EKAttributes.RoundCorners
 
-    /** The border attributes around the entry */
     public var border: SwiftEntryKit.EKAttributes.Border
 
-    /** Describes how the entry animates in */
     public var entranceAnimation: SwiftEntryKit.EKAttributes.Animation
 
-    /** Describes how the entry animates out */
     public var exitAnimation: SwiftEntryKit.EKAttributes.Animation
 
-    /** Describes the previous entry behaviour when the current entry shows */
     public var popBehavior: SwiftEntryKit.EKAttributes.PopBehavior
 
-    /** Preferred status bar style while the entry shows */
     public var statusBarStyle: UIStatusBarStyle!
 
-    /** Additional options that could be applied to an *EKAttributes* instance */
     public var options: SwiftEntryKit.EKAttributes.Options
 }
 ```
@@ -229,6 +213,10 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 Oriantation Change Demonstration |
 --- |
 ![demo_01](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
+
+## Contributing
+
+Forks, patches and other feedback will be available once the library is formally released and registered in CocoaPods.
 
 ## Author
 
