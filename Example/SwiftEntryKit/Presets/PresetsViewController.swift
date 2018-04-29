@@ -43,7 +43,7 @@ class PresetsViewController: UIViewController {
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         let contentView = EKNoteMessageView(with: labelContent)
 
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
     // Bumps an infinate processing note
@@ -53,7 +53,8 @@ class PresetsViewController: UIViewController {
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         
         let contentView = EKProcessingNoteMessageView(with: labelContent, activityIndicator: .white)
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+        
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
     // Bumps a status bar replacement entry
@@ -75,7 +76,7 @@ class PresetsViewController: UIViewController {
             contentView = noteView
         }
         
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
     // Bumps a notification structured entry
@@ -86,9 +87,9 @@ class PresetsViewController: UIViewController {
         let image = UIImage(named: imageName)!
         
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
-        
         let contentView = EKNotificationMessageView(with: content)
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+        
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
     // Bumps a chat message structured entry
@@ -100,7 +101,8 @@ class PresetsViewController: UIViewController {
         
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: true)
         let contentView = EKNotificationMessageView(with: content)
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
     private func showAwesomeAlertMessage(attributes: EKAttributes) {
@@ -114,13 +116,13 @@ class PresetsViewController: UIViewController {
         let button = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "Got it!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .white)), backgroundColor: .amber)
         let image = UIImage(named: "ic_done_all_48pt")!
         let message = EKPopUpMessage(title: title, description: description, button: button, image: image) {
-            EKWindowProvider.shared.dismiss()
+            SwiftEntryKit.dismiss()
         }
         
         let contentView = EKPopUpMessageView(with: message)
         contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
 
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
     private func showDynamicMessage(attributes: EKAttributes) {
@@ -139,12 +141,13 @@ class PresetsViewController: UIViewController {
             let attributes = self.dataSource.bottomAlertAttributes
             self.showAlertMessage(attributes: attributes, title: "Congratz!", description: "Your book coupon is 5w1ft3ntr1k1t")
         }
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributes)
+        
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
     // Bumps a custom nib view
     private func showCustomNibView(attributes: EKAttributes) {
-        EKWindowProvider.shared.state = .message(view: NibExampleView(), attributes: attributes)
+        SwiftEntryKit.display(entry: NibExampleView(), using: attributes)
     }
 }
 

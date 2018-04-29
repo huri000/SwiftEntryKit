@@ -11,7 +11,7 @@ import UIKit
 public class EKWindowProvider {
     
     public enum State {
-        case message(view: UIView, attributes: EKAttributes)
+        case entry(view: UIView, attributes: EKAttributes)
         case main
         
         var isMain: Bool {
@@ -23,13 +23,27 @@ public class EKWindowProvider {
             }
         }
     }
+    
+    // Safe area insets
+    static var safeAreaInsets: UIEdgeInsets {
+        if #available(iOS 11.0, *) {
+            return EKWindowProvider.shared.entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
+        } else {
+            let statusBarMaxY = UIApplication.shared.statusBarFrame.maxY
+            return UIEdgeInsets(top: statusBarMaxY, left: 0, bottom: 10, right: 0)
+        }
+    }
+    
+    // Shared
+    static let shared = EKWindowProvider()
 
-    public var state: State = .main {
+    // State
+    public internal(set) var state: State = .main {
         didSet {
             switch state {
             case .main:
                 clean()
-            case .message(view: let view, attributes: let attributes):
+            case .entry(view: let view, attributes: let attributes):
                 if oldValue.isMain {
                     previousStatusBarStyle = UIApplication.shared.statusBarStyle
                 }
@@ -41,32 +55,25 @@ public class EKWindowProvider {
         }
     }
     
-    public func dismiss() {
+    // Entry window
+    var entryWindow: EKWindow!
+    
+    // Previous status bar style
+    private var previousStatusBarStyle: UIStatusBarStyle!
+
+    // Root view controller
+    var rootVC: EKRootViewController? {
+        return entryWindow?.rootViewController as? EKRootViewController
+    }
+
+    private init() {}
+    
+    func dismiss() {
         guard let rootVC = rootVC else {
             return
         }
         rootVC.animateOutLastEntry()
     }
-    
-    private var previousStatusBarStyle: UIStatusBarStyle!
-        
-    public var rootVC: EKRootViewController? {
-        return entryWindow?.rootViewController as? EKRootViewController
-    }
-    
-    static var safeAreaInsets: UIEdgeInsets {
-        if #available(iOS 11.0, *) {
-            return EKWindowProvider.shared.entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
-        } else {
-            let statusBarMaxY = UIApplication.shared.statusBarFrame.maxY
-            return UIEdgeInsets(top: statusBarMaxY, left: 0, bottom: 10, right: 0)
-        }
-    }
-    
-    public static let shared = EKWindowProvider()
-    private init() {}
-    
-    var entryWindow: EKWindow!
     
     // MARK: Setup and Teardown methods
     private func setup(with messageView: UIView, attributes: EKAttributes) {
@@ -89,5 +96,9 @@ public class EKWindowProvider {
         UIApplication.shared.statusBarStyle = previousStatusBarStyle
         entryWindow = nil
         UIApplication.shared.keyWindow?.makeKeyAndVisible()
+    }
+    
+    func layoutIfNeeded() {
+        entryWindow?.layoutIfNeeded()
     }
 }

@@ -14,6 +14,8 @@ public struct EKAttributes {
     /** Init with default attributes */
     public init() {}
     
+    var view: UIView!
+    
     /** Entry presentation window level */
     public var windowLevel = WindowLevel.aboveStatusBar
     
@@ -55,7 +57,7 @@ public struct EKAttributes {
     public var exitAnimation = Animation.translation
     
     /** Describes the previous entry behaviour when the current entry shows */
-    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.5, types: [.translate, .scale(from: 1, to: 0.8)]))
+    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.25, types: [.translate]))
     
     /** Preferred status bar style while the entry shows */
     public var statusBarStyle: UIStatusBarStyle!

@@ -55,7 +55,7 @@ class ButtonsBarView: UIView {
     // MARK: Actions
     
     @IBAction func leftButtonTouchUpInside() {
-         EKWindowProvider.shared.dismiss()
+        SwiftEntryKit.dismiss()
     }
     
     @IBAction func rightButtonTouchUpInside() {

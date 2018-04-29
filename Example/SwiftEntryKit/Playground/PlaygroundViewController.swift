@@ -76,7 +76,7 @@ class PlaygroundViewController: UIViewController {
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
         let contentView = EKNotificationMessageView(with: content)
         
-        EKWindowProvider.shared.state = .message(view: contentView, attributes: attributesWrapper.attributes)
+        SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
     }
 }
 
