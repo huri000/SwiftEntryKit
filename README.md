@@ -5,6 +5,8 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
 * **[Overview](#overview)**
+  * [Features](#features)
+* **[Example Project](#example-project)**
   * [Presets](#presets)
   * [Playground](#playground)
 * **[Requirements](#requirements)**
@@ -37,19 +39,26 @@ Banners or Pop-Ups are called *Entries*.
   - Can be displayed within or outside the screen's safe area.
   - Can be stylized: have a border, drop-shadow and round corners.
   - Their content's and the screen's background can be blurred, dimmed, colored or have a gradient style.
-  - Transition animations are customizable.
+  - Transition animations are customizable - Entrance, Exit and Pop (by another entry).
   - The user interactions with the entry or the screen can be intercepted.
-  - The status bar style can be changed while the entry is displayed.
+  - Entries have an optional rubber banding effect in panning.
+  - Entries can be optionally dismissed by a simple swipe gesture.
+  - Entries have display priority attribute, Entry cannot be dismissed by entries with lower priority.
+  - The status bar style is changeable for the display duration of the entry.
   - SwiftEntryKit supports **custom views** as well.
 
-### Example Project - Presets
+## Example Project
+
+The example project contains various presets and examples which use can use and modify to your liking.
+
+### Presets
 
 Toasts | Notes | Floats | Custom Message | Custom Nib
 --- | --- | --- | --- | ---
 ![toasts_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) | ![notes_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/notes.gif) | ![floats_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) | ![animated_custom_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/animated_custom.gif) | ![custom_nib_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/custom_nib.gif)
 
 
-### Example Project - Playground
+### Playground
 
 #### noun: a place where people can play 🏈
 
@@ -66,7 +75,7 @@ Screen | Top Float | Bottom Float
 - Xcode 9 or any higher version.
 - Swift 4.0 or any higher version.
 - The library has not been tested with iOS 8 or a lower version.
-- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) to layout the views programmatically.
+- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout). [QuickLayout](https://github.com/huri000/QuickLayout) is a lightwight library written in Swift that is used to easily layout views programmatically.
 
 ## Installation
 
@@ -84,7 +93,7 @@ Below are most of the attributes that can be modified:
 
 **Display Position** - The entry can be displayed either at the top or the bottom of the screen.
 
-**Display Priority** - The display priority of the entry determines whether it can be popped by entries with lower priority.
+**[Display Priority](#display_priority)** - The display priority of the entry determines whether it can be popped by entries with lower priority.
 
 **Display Duration** - The display duration of the entry (Counted from the moment the entry is finished it's entrance animation).
 
@@ -104,11 +113,13 @@ Below are most of the attributes that can be modified:
 
 **Exit Animation** - Describes how the entry animates out
 
-**Pop Behavior** - Describes the entry behavior when it's being popped (gives priority to the next entry).
+**Pop Behavior** - Describes the entry behavior when it's being popped (dismissed by an entry with equal / higher display priority).
+
+**Scroll Behavior** - Describes the entry behavior when it's being scrolled, that is, dismissal by a swipe gesture and a rubber band effect in a UIScrollView)
+
+**[Haptic Feedback](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/feedback/)** - The device can produce a haptic feedback, thus adding an additional layer of depth to each entry.
 
 **Status Bar Style** - The status bar style can be modified for the display duration of the entry. In order to enable this feature you just set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
-
-**Options** - Contains additional attributes like whether a haptic feedback should be generated once the entry is displayed.
 
 EKAttributes' interface is as follows:
 
@@ -129,8 +140,9 @@ public struct EKAttributes {
     public var entranceAnimation: Animation
     public var exitAnimation: Animation
     public var popBehavior: PopBehavior
+    public var scroll: Scroll
+    public var generateHapticFeedback: Bool
     public var statusBarStyle: UIStatusBarStyle!
-    public var options: Options
 }
 ```
 
@@ -179,7 +191,6 @@ let customView = CustomView()
 // Use class method of SwiftEntryKit to display the view using the desired attributes
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
-
 
 ### How to deal with the screen Safe Area:
 
