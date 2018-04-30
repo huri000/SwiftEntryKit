@@ -121,8 +121,8 @@ class PresetsViewController: UIViewController {
     
     // Bumps a custom alert entry
     private func showAlertMessage(attributes: EKAttributes, title: String, titleColor: UIColor, description: String, descriptionColor: UIColor, buttonTitleColor: UIColor, buttonBackgroundColor: UIColor, image: UIImage) {
-        let title = EKProperty.LabelContent(text: title, style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 26), color: titleColor))
-        let description = EKProperty.LabelContent(text: description, style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: descriptionColor))
+        let title = EKProperty.LabelContent(text: title, style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 24), color: titleColor))
+        let description = EKProperty.LabelContent(text: description, style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 16), color: descriptionColor))
         let button = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "Got it!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: buttonTitleColor)), backgroundColor: buttonBackgroundColor)
         let message = EKPopUpMessage(title: title, description: description, button: button, image: image) {
             SwiftEntryKit.dismiss()
