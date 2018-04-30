@@ -158,6 +158,7 @@ struct PresetsDataSource {
         // Preset I
         attributes = .topFloat
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.popBehavior = .animated(animation: .init(duration: 0.7, types: [.translate, .scale(from: 1, to: 0.7)]))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
         attributes.statusBarStyle = .default
         attributes.scroll = .enabled(swipeable: true, springWithDamping: false)

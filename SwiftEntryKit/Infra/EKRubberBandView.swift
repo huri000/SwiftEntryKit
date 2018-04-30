@@ -113,7 +113,7 @@ class EKRubberBandView: UIView {
             
             if overrideSafeArea {
                 if #available(iOS 11.0, *) {
-                    inOffset = -safeAreaInsets.top
+                    inOffset = 0
                 } else {
                     inOffset = 0
                 }
