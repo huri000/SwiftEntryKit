@@ -18,7 +18,7 @@ class ScrollSelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        switch attributesWrapper.attributes.options.scroll {
+        switch attributesWrapper.attributes.scroll {
         case .enabled:
             segmentedControl.selectedSegmentIndex = 0
         case .disabled:
@@ -31,11 +31,11 @@ class ScrollSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.options.scroll = .enabled
+            attributesWrapper.attributes.scroll = .enabled(swipeable: true, springWithDamping: true)
         case 1:
-            attributesWrapper.attributes.options.scroll = .disabled
+            attributesWrapper.attributes.scroll = .disabled
         case 2:
-            attributesWrapper.attributes.options.scroll = .edgeCrossingDisabled
+            attributesWrapper.attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         default:
             break
         }

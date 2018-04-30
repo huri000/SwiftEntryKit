@@ -19,8 +19,8 @@ class EKRootViewController: UIViewController {
         return EKWrapperView()
     }()
     
-    private var lastEntry: EKScrollView? {
-        return view.subviews.last as? EKScrollView
+    private var lastEntry: EKRubberBandView? {
+        return view.subviews.last as? EKRubberBandView
     }
     
     private var isResponsive: Bool = false {
@@ -57,7 +57,7 @@ class EKRootViewController: UIViewController {
 
         lastAttributes = attributes
                 
-        let entryScrollView = EKScrollView(withEntryDelegate: self)
+        let entryScrollView = EKRubberBandView(withEntryDelegate: self)
         view.addSubview(entryScrollView)
         entryScrollView.setup(with: entryView, attributes: attributes)
         

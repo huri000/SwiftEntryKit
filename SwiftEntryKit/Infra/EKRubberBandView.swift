@@ -13,18 +13,30 @@ protocol EntryScrollViewDelegate: class {
     func changeToInactive(withAttributes attributes: EKAttributes)
 }
 
-class EKScrollView: UIScrollView {
+class EKRubberBandView: UIView {
+    
+    enum OutTranslation {
+        case exit
+        case pop
+        case swipe
+    }
     
     // MARK: Props
     
     // Entry delegate
     private weak var entryDelegate: EntryScrollViewDelegate!
     
-    // Constraints
+    // Constraints and Offsets
     private var entranceOutConstraint: NSLayoutConstraint!
-    private var inConstraint: NSLayoutConstraint!
     private var exitOutConstraint: NSLayoutConstraint!
     private var popOutConstraint: NSLayoutConstraint!
+    private var inConstraint: NSLayoutConstraint!
+    private var outConstraint: NSLayoutConstraint!
+    
+    private var inOffset: CGFloat = 0
+    private var totalTranslation: CGFloat = 0
+    private var verticalLimit: CGFloat = 0
+    private let swipeMinVelocity: CGFloat = 60
     
     private var outDispatchWorkItem: DispatchWorkItem!
 
@@ -75,7 +87,7 @@ class EKScrollView: UIScrollView {
         // Determine the layout entrance type according to the entry type
         let messageAnchorInSuperview: NSLayoutAttribute
         let messageTopInSuperview: NSLayoutAttribute
-        var inOffset: CGFloat = 0
+        inOffset = 0
         var outOffset: CGFloat = 0
         
         var totalEntryHeight: CGFloat = 0
@@ -134,7 +146,7 @@ class EKScrollView: UIScrollView {
             if animation.containsTranslation {
                 constraint = self.layout(messageTopInSuperview, to: messageAnchorInSuperview, of: self.superview!, offset: outOffset, priority: priority)!
             } else {
-                constraint = self.layout(to: messageAnchorInSuperview, of: self.superview!, offset: inOffset, priority: priority)!
+                constraint = self.layout(to: messageAnchorInSuperview, of: self.superview!, offset: self.inOffset, priority: priority)!
             }
             return constraint
         }
@@ -149,6 +161,14 @@ class EKScrollView: UIScrollView {
         entranceOutConstraint = setupOutConstraint(attributes.entranceAnimation, .must)
         exitOutConstraint = setupOutConstraint(attributes.exitAnimation, .defaultLow)
         inConstraint = layout(to: messageAnchorInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
+        outConstraint = layout(messageTopInSuperview, to: messageAnchorInSuperview, of: superview!, offset: outOffset, priority: .defaultLow)
+
+        totalTranslation = inOffset
+        if attributes.position.isTop {
+            verticalLimit = inOffset
+        } else {
+            verticalLimit = UIScreen.main.bounds.height + inOffset
+        }
     }
     
     // Setup layout constraints according to EKAttributes.PositionConstraints
@@ -199,13 +219,9 @@ class EKScrollView: UIScrollView {
     // Setup general attributes
     private func setupAttributes() {
         clipsToBounds = false
-        alwaysBounceVertical = true
-        bounces = true
-        showsVerticalScrollIndicator = false
-        isPagingEnabled = true
-        delegate = self
-        isScrollEnabled = attributes.options.scroll.isLooselyEnabled
-        panGestureRecognizer.addTarget(self, action: #selector(panGestureRecognized(_:)))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognized(gr:)))
+        panGestureRecognizer.isEnabled = attributes.scroll.isEnabled
+        addGestureRecognizer(panGestureRecognizer)
     }
     
     // Setup tap gesture
@@ -220,7 +236,7 @@ class EKScrollView: UIScrollView {
     
     // Generate a haptic feedback if needed
     private func generateHapticFeedback() {
-        guard #available(iOS 10.0, *), attributes.options.useHapticFeedback else {
+        guard #available(iOS 10.0, *), attributes.generateHapticFeedback else {
             return
         }
         HapticFeedbackGenerator.notification(type: .success)
@@ -245,14 +261,14 @@ class EKScrollView: UIScrollView {
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
         if case .animated(animation: let animation) = attributes.popBehavior, pushOut {
-            animateOut(with: animation, animatePop: pushOut)
+            animateOut(with: animation, outTranslationType: .pop)
         } else {
-            animateOut(with: attributes.exitAnimation, animatePop: false)
+            animateOut(with: attributes.exitAnimation, outTranslationType: .exit)
         }
     }
     
     // Animate out
-    private func animateOut(with animation: EKAttributes.Animation, animatePop: Bool) {
+    private func animateOut(with animation: EKAttributes.Animation, outTranslationType: OutTranslation) {
         let duration = animation.duration
         let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
         var shouldAnimate = false
@@ -261,7 +277,7 @@ class EKScrollView: UIScrollView {
         if animation.containsTranslation {
             shouldAnimate = true
             UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-                self.translateOut(entryPopped: animatePop)
+                self.translateOut(withType: outTranslationType)
             }, completion: { finished in
                 self.removeFromSuperview(keepWindow: false)
             })
@@ -284,7 +300,7 @@ class EKScrollView: UIScrollView {
         }
         
         if !shouldAnimate {
-            translateOut(entryPopped: animatePop)
+            translateOut(withType: outTranslationType)
             removeFromSuperview(keepWindow: false)
         }
     }
@@ -333,13 +349,16 @@ class EKScrollView: UIScrollView {
     }
     
     // Translate out
-    private func translateOut(entryPopped: Bool) {
+    private func translateOut(withType type: OutTranslation) {
         inConstraint.priority = .defaultLow
         entranceOutConstraint.priority = .defaultLow
-        if entryPopped {
-            popOutConstraint.priority = .must
-        } else {
+        switch type {
+        case .exit:
             exitOutConstraint.priority = .must
+        case .pop:
+            popOutConstraint.priority = .must
+        case .swipe:
+            outConstraint.priority = .must
         }
         superview?.layoutIfNeeded()
     }
@@ -388,22 +407,10 @@ class EKScrollView: UIScrollView {
     }
 }
 
-// MARK: Respond to touches, user interactions (tap/scroll/touches)
-extension EKScrollView: UIScrollViewDelegate {
+// MARK: Responds to user interactions (tap / pan / swipe / touches)
+extension EKRubberBandView {
     
-    // MARK: UIScrollViewDelegate
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        guard let scrollAttribute = attributes?.options.scroll, scrollAttribute.isEdgeCrossingDisabled else {
-//            return
-//        }
-//        if attributes.position.isTop && contentOffset.y < 0 {
-//            contentOffset.y = 0
-//        } else if !attributes.position.isTop && scrollView.bounds.maxY > scrollView.contentSize.height {
-//            contentOffset.y = 0
-//        }
-    }
-    
-    // MARK: Tap Gesture Handler
+    // Tap gesture handler
     @objc func tapGestureRecognized() {
         switch attributes.entryInteraction.defaultAction {
         case .delayExit(by: _):
@@ -416,11 +423,116 @@ extension EKScrollView: UIScrollViewDelegate {
         attributes.entryInteraction.customActions.forEach { $0() }
     }
     
-    @objc func panGestureRecognized(_ gr: UIPanGestureRecognizer) {
+    // Pan gesture handler
+    @objc func panGestureRecognized(gr: UIPanGestureRecognizer) {
+        
+        // Delay the exit of the entry if needed
+        handleExitDelayIfNeeded(byPanState: gr.state)
+        
+        let translation = gr.translation(in: superview!).y
+        
+        if shouldStretch(with: translation) {
+            if attributes.scroll.isEdgeCrossingEnabled {
+                totalTranslation += translation
+                calculateLogarithmicOffset(forOffset: totalTranslation)
+                
+                switch gr.state {
+                case .ended, .failed, .cancelled:
+                    animateRubberBandPullback()
+                default:
+                    break
+                }
+            }
+        } else {
+            
+            switch gr.state {
+            case .ended, .failed, .cancelled:
+                let velocity = gr.velocity(in: superview!).y
+                swipeEnded(withVelocity: velocity)
+            case .changed:
+                inConstraint.constant += translation
+            default:
+                break
+            }
+        }
+        gr.setTranslation(.zero, in: superview!)
+    }
+
+    private func swipeEnded(withVelocity velocity: CGFloat) {
+        let distance = Swift.abs(inOffset - inConstraint.constant)
+        let duration = max(0.3, TimeInterval(distance / Swift.abs(velocity)))
+                
+        if attributes.scroll.isSwipeable && testSwipeVelocity(with: velocity) && testSwipeInConstraint() {
+            stretchOut(duration: duration)
+        } else {
+            animateRubberBandPullback()
+        }
+    }
+    
+    private func stretchOut(duration: TimeInterval) {
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
+            self.translateOut(withType: .swipe)
+        }, completion: { finished in
+            self.removeFromSuperview(keepWindow: false)
+        })
+    }
+    
+    private func calculateLogarithmicOffset(forOffset offset: CGFloat) {
+        if attributes.position.isTop {
+            inConstraint.constant = verticalLimit * (1 + log10(offset / verticalLimit))
+        } else {
+            let offset = Swift.abs(offset) + verticalLimit
+            inConstraint.constant -= (1 + log10(offset / verticalLimit))
+        }
+    }
+    
+    private func shouldStretch(with translation: CGFloat) -> Bool {
+        if attributes.position.isTop {
+            return translation > 0 && inConstraint.constant >= inOffset
+        } else {
+            return translation < 0 && inConstraint.constant <= inOffset
+        }
+    }
+    
+    private func animateRubberBandPullback() {
+        totalTranslation = verticalLimit
+        
+        var damping: CGFloat = 1
+        var duration: TimeInterval = 0.3
+        if case EKAttributes.Scroll.enabled(swipeable: _, springWithDamping: let springWithDamping) = attributes.scroll {
+            if springWithDamping {
+                damping = 0.3
+                duration = 0.5
+            }
+        }
+
+        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 10, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
+            self.inConstraint?.constant = self.inOffset
+            self.superview?.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    private func testSwipeInConstraint() -> Bool {
+        if attributes.position.isTop {
+            return inConstraint.constant < inOffset
+        } else {
+            return inConstraint.constant > inOffset
+        }
+    }
+    
+    private func testSwipeVelocity(with velocity: CGFloat) -> Bool {
+        if attributes.position.isTop {
+            return velocity < -swipeMinVelocity
+        } else {
+            return velocity > swipeMinVelocity
+        }
+    }
+    
+    private func handleExitDelayIfNeeded(byPanState state: UIGestureRecognizerState) {
         guard attributes.entryInteraction.isDelayExit else {
             return
         }
-        switch gr.state {
+        switch state {
         case .began:
             outDispatchWorkItem?.cancel()
         case .ended, .failed, .cancelled:

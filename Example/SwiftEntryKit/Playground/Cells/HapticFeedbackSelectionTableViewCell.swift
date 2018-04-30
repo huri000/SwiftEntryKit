@@ -19,7 +19,7 @@ class HapticFeedbackSelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        if !attributesWrapper.attributes.options.useHapticFeedback {
+        if !attributesWrapper.attributes.generateHapticFeedback {
             segmentedControl.selectedSegmentIndex = 0
         } else {
             segmentedControl.selectedSegmentIndex = 1
@@ -29,9 +29,9 @@ class HapticFeedbackSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.options.useHapticFeedback = false
+            attributesWrapper.attributes.generateHapticFeedback = false
         case 1:
-            attributesWrapper.attributes.options.useHapticFeedback = true
+            attributesWrapper.attributes.generateHapticFeedback = true
         default:
             break
         }

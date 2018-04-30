@@ -41,6 +41,7 @@ struct PresetsDataSource {
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .enabled(swipeable: true, springWithDamping: true)
         attributes.roundCorners = .all(radius: 25)
         attributes.exitAnimation = .init(duration: 0.2, types: [.translate])
         attributes.popBehavior = .animated(animation: .init(duration: 0.2, types: [.translate]))
@@ -71,7 +72,8 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: EKColor.LightBlue.a700)
         attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(from: 1.07, to: 1)])
         attributes.exitAnimation = .translation
-        descriptionString = "The entry fades in and exits with transition upwards"
+        attributes.scroll = .edgeCrossingDisabled(swipeable: false)
+        descriptionString = "The entry fades in and exits with transition upwards. Not swipeable"
         description = .init(with: attributes, title: "Top I", description: descriptionString)
         toasts.append(description)
 
@@ -80,6 +82,7 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: .darkChatMessage)
         attributes.entranceAnimation = .translation
         attributes.exitAnimation = .translation
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.displayDuration = 4
         attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10, offset: .zero))
         attributes.popBehavior = .overriden
@@ -90,6 +93,7 @@ struct PresetsDataSource {
         // Preset III
         attributes = .bottomToast
         attributes.entryBackground = .visualEffect(style: .light)
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.statusBarStyle = .default
         descriptionString = "The entry has an light blurred background"
         description = .init(with: attributes, title: "Bottom", description: descriptionString)
@@ -156,8 +160,9 @@ struct PresetsDataSource {
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
         attributes.statusBarStyle = .default
+        attributes.scroll = .enabled(swipeable: true, springWithDamping: false)
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
-        descriptionString = "Has a gradient content background and a drop shadow. It's max width is the screen minimal edge."
+        descriptionString = "Has a gradient content background and a drop shadow. It's max width is the screen minimal edge. Can be swiped out but doesn't spring with damp"
         description = .init(with: attributes, title: "Top", description: descriptionString)
         floats.append(description)
         
@@ -165,6 +170,7 @@ struct PresetsDataSource {
         attributes = .bottomFloat
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.entryInteraction = .delayExit(by: 3)
+        attributes.scroll = .enabled(swipeable: true, springWithDamping: true)
         attributes.statusBarStyle = .default
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
@@ -211,6 +217,7 @@ struct PresetsDataSource {
         attributes = .topFloat
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .enabled(swipeable: true, springWithDamping: true)
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.entryBackground = .color(color: .white)
         attributes.entranceAnimation = .init(duration: 0.2, types: [.fadeIn, .scale(from: 0.6, to: 1)])

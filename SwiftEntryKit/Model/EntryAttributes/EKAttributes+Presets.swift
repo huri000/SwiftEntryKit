@@ -18,7 +18,7 @@ public extension EKAttributes {
         attributes.positionConstraints = .full
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.windowLevel = .aboveStatusBar
-        attributes.options.scroll = .edgeCrossingDisabled
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.popBehavior = .animated(animation: .translation)
         return attributes
     }
@@ -64,7 +64,7 @@ public extension EKAttributes {
     /** Preset for top note entry */
     public static var topNote: EKAttributes {
         var attributes = topToast
-        attributes.options.scroll = .disabled
+        attributes.scroll = .disabled
         attributes.windowLevel = .belowStatusBar
         attributes.entryInteraction = .absorbTouches
         return attributes
@@ -73,7 +73,7 @@ public extension EKAttributes {
     /** Preset for top note entry */
     public static var bottomNote: EKAttributes {
         var attributes = bottomToast
-        attributes.options.scroll = .disabled
+        attributes.scroll = .disabled
         attributes.windowLevel = .belowStatusBar
         attributes.entryInteraction = .absorbTouches
         return attributes

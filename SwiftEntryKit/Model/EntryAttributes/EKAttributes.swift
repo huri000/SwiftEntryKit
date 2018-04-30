@@ -60,9 +60,12 @@ public struct EKAttributes {
     /** Describes the previous entry behaviour when the current entry shows */
     public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.25, types: [.translate]))
     
+    /** Describes the scrolling behaviour of the entry - The entry can be swiped out and in with an ability to spring back like a rubber band */
+    public var scroll = Scroll.enabled(swipeable: true, springWithDamping: true)
+    
     /** Preferred status bar style while the entry shows */
     public var statusBarStyle: UIStatusBarStyle!
     
-    /** Additional options that could be applied to an *EKAttributes* instance */
-    public var options = Options()
+    /** Generate haptic notification feedback once the entry is displayed */
+    public var generateHapticFeedback = true
 }
