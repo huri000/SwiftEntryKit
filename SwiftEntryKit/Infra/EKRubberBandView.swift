@@ -311,7 +311,7 @@ class EKRubberBandView: UIView {
         if !animation.containsTranslation {
             translateIn()
         } else {
-            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            UIView.animate(withDuration: duration + 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: options, animations: {
                 self.translateIn()
             }, completion: nil)
         }

@@ -60,6 +60,7 @@ struct EKColor {
     
     struct Gray {
         static let a800 = UIColor(rgb: 0x424242)
+        static let mid = UIColor(rgb: 0x616161)
     }
     
     struct Purple {

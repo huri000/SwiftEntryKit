@@ -116,7 +116,7 @@ class PresetsViewController: UIViewController {
         let image = UIImage(named: "ic_done_all_light_48pt")!
         let title = "Awesome!"
         let description = "You are using SwiftEntryKit, and this is a pop up with important content"
-        showAlertMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: .darkText, buttonBackgroundColor: .white, image: image)
+        showAlertMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: EKColor.Gray.mid, buttonBackgroundColor: .white, image: image)
     }
     
     // Bumps a custom alert entry

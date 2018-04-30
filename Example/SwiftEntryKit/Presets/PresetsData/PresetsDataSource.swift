@@ -194,7 +194,7 @@ struct PresetsDataSource {
         // Preset I
         attributes = bottomAlertAttributes
         descriptionString = "Customized pop up with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
-        description = .init(with: attributes, title: "Custom Pop Up I", description: descriptionString)
+        description = .init(with: attributes, title: "Pop Up I", description: descriptionString)
         customs.append(description)
         
         // Preset II
@@ -206,7 +206,7 @@ struct PresetsDataSource {
         attributes.roundCorners = .top(radius: 20)
 
         descriptionString = "Customized pop up with top round corners. Strectched to the width of the screen. It has a button that receives an action."
-        description = .init(with: attributes, title: "Custom Pop Up II", description: descriptionString)
+        description = .init(with: attributes, title: "Pop Up II", description: descriptionString)
         customs.append(description)
         
         // Preset III
