@@ -22,5 +22,9 @@ public extension EKAttributes {
         public var isTop: Bool {
             return self == .top
         }
+        
+        public var isBottom: Bool {
+            return self == .bottom
+        }
     }
 }

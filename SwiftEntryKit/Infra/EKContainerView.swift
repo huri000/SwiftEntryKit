@@ -9,7 +9,7 @@
 import UIKit
 import QuickLayout
 
-class EKContainerView: UIView {
+class EKContainerView: EKContentStyleView {
     
     struct Content {
         public var view: UIView
@@ -71,6 +71,9 @@ class EKContainerView: UIView {
     
     // Apply round corners
     private func applyFrameStyle() {
+        guard !appliedStyle else {
+            return
+        }
         contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
     }
     
@@ -108,6 +111,11 @@ class EKContainerView: UIView {
             
             backgroundView.layoutToSuperview(.top, offset: topInset)
             backgroundView.layoutToSuperview(.bottom, offset: bottomInset)
+            
+            if attributes.position.isBottom {
+                applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
+            }
+
         default:
             contentView.insertSubview(backgroundView, at: 0)
             backgroundView.fillSuperview()

@@ -64,7 +64,7 @@ class EKBackgroundView: UIView {
         
             gradientView.gradient = gradient
             visualEffectView.effect = backgroundEffect
-            self.layer.backgroundColor = backgroundColor.cgColor
+            layer.backgroundColor = backgroundColor.cgColor
             imageView.image = backgroundImage
         }
     }

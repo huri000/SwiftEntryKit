@@ -111,16 +111,8 @@ class EKRubberBandView: UIView {
             messageAnchorInSuperview = .top
             messageTopInSuperview = .bottom
             
-            if overrideSafeArea {
-                if #available(iOS 11.0, *) {
-                    inOffset = 0
-                } else {
-                    inOffset = 0
-                }
-            } else {
-                inOffset = safeAreaInsets.top
-            }
-            
+            inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
+
             inOffset += attributes.positionConstraints.verticalOffset
             outOffset = -safeAreaInsets.top
             
@@ -460,8 +452,9 @@ extension EKRubberBandView {
 
     private func swipeEnded(withVelocity velocity: CGFloat) {
         let distance = Swift.abs(inOffset - inConstraint.constant)
-        let duration = max(0.3, TimeInterval(distance / Swift.abs(velocity)))
-                
+        var duration = max(0.3, TimeInterval(distance / Swift.abs(velocity)))
+        duration = min(0.7, duration)
+        
         if attributes.scroll.isSwipeable && testSwipeVelocity(with: velocity) && testSwipeInConstraint() {
             stretchOut(duration: duration)
         } else {
@@ -496,17 +489,15 @@ extension EKRubberBandView {
     
     private func animateRubberBandPullback() {
         totalTranslation = verticalLimit
-        
-        var damping: CGFloat = 1
-        var duration: TimeInterval = 0.3
-        if case EKAttributes.Scroll.enabled(swipeable: _, springWithDamping: let springWithDamping) = attributes.scroll {
-            if springWithDamping {
-                damping = 0.3
-                duration = 0.5
-            }
+    
+        let animation: EKAttributes.Scroll.PullbackAnimation
+        if case EKAttributes.Scroll.enabled(swipeable: _, pullbackAnimation: let pullbackAnimation) = attributes.scroll {
+            animation = pullbackAnimation
+        } else {
+            animation = .easeOut
         }
 
-        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 10, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
+        UIView.animate(withDuration: animation.duration, delay: 0, usingSpringWithDamping: animation.damping, initialSpringVelocity: animation.initialSpringVelocity, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.inConstraint?.constant = self.inOffset
             self.superview?.layoutIfNeeded()
         }, completion: nil)

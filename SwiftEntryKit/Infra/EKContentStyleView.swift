@@ -11,6 +11,8 @@ class EKContentStyleView: UIView {
         return CAShapeLayer()
     }()
     
+    var appliedStyle = false
+    
     func applyFrameStyle(roundCorners: EKAttributes.RoundCorners, border: EKAttributes.Border) {
         var cornerRadius: CGFloat = 0
         var corners: UIRectCorner = []
@@ -30,5 +32,7 @@ class EKContentStyleView: UIView {
             borderLayer.frame = bounds
             layer.addSublayer(borderLayer)
         }
+        
+        appliedStyle = true
     }
 }

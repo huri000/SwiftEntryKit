@@ -89,4 +89,9 @@ struct EKColor {
     struct LightBlue {
         static let a700 = UIColor(rgb: 0x0091ea)
     }
+    
+    struct LightPink {
+        static let first = UIColor(rgb: 0xff9a9e)
+        static let last = UIColor(rgb: 0xfad0c4)
+    }
 }

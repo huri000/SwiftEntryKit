@@ -34,15 +34,18 @@ struct PresetsDataSource {
         }
     }
     
+    // Cumputed for the sake of reusability
     var bottomAlertAttributes: EKAttributes {
         var attributes = EKAttributes.bottomFloat
         attributes.displayDuration = .infinity
-        attributes.entryBackground = .visualEffect(style: .light)
+        attributes.entryBackground = .color(color: .white)
         attributes.screenBackground = .color(color: .dimmedBackground)
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
-        attributes.scroll = .enabled(swipeable: true, springWithDamping: true)
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
         attributes.roundCorners = .all(radius: 25)
+        attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(from: 1.05, to: 1)])
         attributes.exitAnimation = .init(duration: 0.2, types: [.translate])
         attributes.popBehavior = .animated(animation: .init(duration: 0.2, types: [.translate]))
         attributes.positionConstraints.verticalOffset = 10
@@ -161,7 +164,7 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(duration: 0.7, types: [.translate, .scale(from: 1, to: 0.7)]))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
         attributes.statusBarStyle = .default
-        attributes.scroll = .enabled(swipeable: true, springWithDamping: false)
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Has a gradient content background and a drop shadow. It's max width is the screen minimal edge. Can be swiped out but doesn't spring with damp"
         description = .init(with: attributes, title: "Top", description: descriptionString)
@@ -171,7 +174,7 @@ struct PresetsDataSource {
         attributes = .bottomFloat
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.entryInteraction = .delayExit(by: 3)
-        attributes.scroll = .enabled(swipeable: true, springWithDamping: true)
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
         attributes.statusBarStyle = .default
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
@@ -190,11 +193,23 @@ struct PresetsDataSource {
         
         // Preset I
         attributes = bottomAlertAttributes
-        descriptionString = "Customized alert view with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
-        description = .init(with: attributes, title: "Custom Alert", description: descriptionString)
+        descriptionString = "Customized pop up with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
+        description = .init(with: attributes, title: "Custom Pop Up I", description: descriptionString)
         customs.append(description)
-
+        
         // Preset II
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
+        attributes.entranceAnimation = .init(duration: 0.2, types: [.translate])
+        attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.LightPink.first, EKColor.LightPink.last], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.positionConstraints = .full
+        attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
+        attributes.roundCorners = .top(radius: 20)
+
+        descriptionString = "Customized pop up with top round corners. Strectched to the width of the screen. It has a button that receives an action."
+        description = .init(with: attributes, title: "Custom Pop Up II", description: descriptionString)
+        customs.append(description)
+        
+        // Preset III
         attributes = .bottomFloat
         attributes.displayDuration = 4
         attributes.screenBackground = .clear
@@ -214,11 +229,11 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "View From Nib", description: descriptionString)
         customs.append(description)
         
-        // Preset III
+        // Preset IV
         attributes = .topFloat
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
-        attributes.scroll = .enabled(swipeable: true, springWithDamping: true)
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.entryBackground = .color(color: .white)
         attributes.entranceAnimation = .init(duration: 0.2, types: [.fadeIn, .scale(from: 0.6, to: 1)])
