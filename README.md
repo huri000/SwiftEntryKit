@@ -43,9 +43,9 @@ Banners or Pop-Ups are called *Entries*.
   - The user interactions with the entry or the screen can be intercepted.
   - Entries have an optional rubber banding effect in panning.
   - Entries can be optionally dismissed by a simple swipe gesture.
-  - Entries have display priority attribute, Entry cannot be dismissed by entries with lower priority.
+  - Entries have display priority attribute. That means that an entry cannot be dismissed by other entries with lower display priority.
   - The status bar style is changeable for the display duration of the entry.
-  - SwiftEntryKit supports **custom views** as well.
+  - SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
 
 ## Example Project
 
@@ -93,7 +93,7 @@ Below are most of the attributes that can be modified:
 
 **Display Position** - The entry can be displayed either at the top or the bottom of the screen.
 
-**[Display Priority](#display_priority)** - The display priority of the entry determines whether it can be popped by entries with lower priority.
+**Display Priority** - The display priority of the entry determines whether it can dismiss other entries or be dismissed by them.
 
 **Display Duration** - The display duration of the entry (Counted from the moment the entry is finished it's entrance animation).
 
