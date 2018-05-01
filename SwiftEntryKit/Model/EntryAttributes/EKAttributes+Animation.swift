@@ -81,6 +81,10 @@ public extension EKAttributes {
             return fade != nil
         }
         
+        public var containsAnimation: Bool {
+            return containsTranslation || containsScale || containsFade
+        }
+        
         public var maxDelay: TimeInterval {
             return max(translate?.delay ?? 0, max(scale?.delay ?? 0, fade?.delay ?? 0))
         }
@@ -95,7 +99,7 @@ public extension EKAttributes {
         }
         
         // Class vars
-        public static var translate: Animation {
+        public static var translation: Animation {
             return Animation(translate: .init(duration: 0.3))
         }
         

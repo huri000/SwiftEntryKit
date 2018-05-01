@@ -242,7 +242,7 @@ class EKRubberBandView: UIView {
         outDispatchWorkItem = DispatchWorkItem { [weak self] in
             self?.animateOut(pushOut: false)
         }
-        let delay = attributes.entranceAnimation.duration + (delay ?? attributes.displayDuration)
+        let delay = attributes.entranceAnimation.totalDuration + (delay ?? attributes.displayDuration)
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: outDispatchWorkItem)
     }
     
@@ -261,37 +261,28 @@ class EKRubberBandView: UIView {
     
     // Animate out
     private func animateOut(with animation: EKAttributes.Animation, outTranslationType: OutTranslation) {
-        let duration = animation.duration
-        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
-        var shouldAnimate = false
         
         superview?.layoutIfNeeded()
-        if animation.containsTranslation {
-            shouldAnimate = true
-            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-                self.translateOut(withType: outTranslationType)
-            }, completion: { finished in
-                self.removeFromSuperview(keepWindow: false)
-            })
-        }
-
-        // Get fade
-        if let fadeAnimation = animation.fade, case EKAttributes.Animation.AnimationType.fade(from: let start, to: let end) = fadeAnimation {
-            shouldAnimate = true
-            fade(fromAlpha: start, toAlpha: end, duration: duration) { [weak self] in
-                self?.removeFromSuperview(keepWindow: false)
-            }
-        }
-
-        // Get scale
-        if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
-            shouldAnimate = true
-            transform(fromScale: start, toScale: end, duration: duration) { [weak self] in
-                self?.removeFromSuperview(keepWindow: false)
+        
+        if let translation = animation.translate {
+            performTranslationAnimation(with: translation) { [weak self] in
+                self?.translateOut(withType: outTranslationType)
             }
         }
         
-        if !shouldAnimate {
+        if let fade = animation.fade {
+            performFadeAnimation(with: fade)
+        }
+        
+        if let scale = animation.scale {
+            performScaleAnimation(with: scale)
+        }
+
+        if animation.containsAnimation {
+            DispatchQueue.main.asyncAfter(deadline: .now() + animation.maxDuration) {
+                self.removeFromSuperview(keepWindow: false)
+            }
+        } else {
             translateOut(withType: outTranslationType)
             removeFromSuperview(keepWindow: false)
         }
@@ -303,29 +294,23 @@ class EKRubberBandView: UIView {
         EKAttributes.count += 1
         
         let animation = attributes.entranceAnimation
-        let duration = animation.duration
-        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
         
-        // Change to active state
         superview?.layoutIfNeeded()
-        if !animation.containsTranslation {
-            translateIn()
+        
+        if let translation = animation.translate {
+            performTranslationAnimation(with: translation, animationAction: translateIn)
         } else {
-            UIView.animate(withDuration: duration + 0.2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: options, animations: {
-                self.translateIn()
-            }, completion: nil)
+            translateIn()
         }
         
-        // Get fade
-        if let fadeAnimation = animation.fade, case EKAttributes.Animation.AnimationType.fade(from: let start, to: let end) = fadeAnimation {
-            fade(fromAlpha: start, toAlpha: end, duration: duration)
+        if let fade = animation.fade {
+            performFadeAnimation(with: fade)
         }
-
-        // Get scale
-        if let scale = animation.scale, case EKAttributes.Animation.AnimationType.scale(from: let start, to: let end) = scale {
-            transform(fromScale: start, toScale: end, duration: duration)
+    
+        if let scale = animation.scale {
+            performScaleAnimation(with: scale)
         }
-        
+                
         entryDelegate?.changeToActive(withAttributes: attributes)
 
         scheduleAnimateOut()
@@ -355,26 +340,44 @@ class EKRubberBandView: UIView {
         superview?.layoutIfNeeded()
     }
     
+    // In translation animation
+    private func performTranslationAnimation(with translation: EKAttributes.Animation.Translate, animationAction: () -> ()) {
+        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
+        if let spring = translation.spring {
+            UIView.animate(withDuration: translation.duration, delay: translation.delay, usingSpringWithDamping: spring.damping, initialSpringVelocity: spring.initialVelocity, options: options, animations: {
+                
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: translation.duration, delay: translation.delay, options: options, animations: {
+                self.translateIn()
+            }, completion: nil)
+        }
+    }
+    
     // Fade animation
-    private func fade(fromAlpha start: CGFloat, toAlpha end: CGFloat, duration: TimeInterval, completion: @escaping () -> () = {}) {
-        alpha = start
-        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {
-            self.alpha = end
-        }, completion: { finished in
-            completion()
-        })
+    private func performFadeAnimation(with fade: EKAttributes.Animation.Fade) {
+        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
+        alpha = fade.start
+        UIView.animate(withDuration: fade.duration, delay: fade.delay, options: options, animations: {
+            self.alpha = fade.end
+        }, completion: nil)
     }
     
     // Scale animation
-    private func transform(fromScale start: CGFloat, toScale end: CGFloat, duration: TimeInterval, completion: @escaping () -> () = {}) {
-        transform = CGAffineTransform(scaleX: start, y: start)
-        UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut, .beginFromCurrentState], animations: {
-            self.transform = CGAffineTransform(scaleX: end, y: end)
-        }, completion: { finished in
-            completion()
-        })
+    private func performScaleAnimation(with scale: EKAttributes.Animation.Scale) {
+        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
+        transform = CGAffineTransform(scaleX: scale.start, y: scale.start)
+        if let spring = scale.spring {
+            UIView.animate(withDuration: scale.duration, delay: scale.delay, usingSpringWithDamping: spring.damping, initialSpringVelocity: spring.initialVelocity, options: options, animations: {
+                self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
+            }, completion: nil)
+        } else {
+            UIView.animate(withDuration: scale.duration, delay: scale.delay, options: options, animations: {
+                self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
+            }, completion: nil)
+        }
     }
-    
+
     // MARK: Remvoe entry
     
     // Removes the view promptly - DOES NOT animate out

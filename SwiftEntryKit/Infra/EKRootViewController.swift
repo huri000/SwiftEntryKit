@@ -113,14 +113,14 @@ extension EKRootViewController {
 extension EKRootViewController: EntryScrollViewDelegate {
     
     func changeToActive(withAttributes attributes: EKAttributes) {
-        changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.duration)
+        changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)
     }
     
     func changeToInactive(withAttributes attributes: EKAttributes) {
         guard EKAttributes.count <= 1 else {
             return
         }
-        changeBackground(to: .clear, duration: attributes.exitAnimation.duration)
+        changeBackground(to: .clear, duration: attributes.exitAnimation.totalDuration)
     }
     
     private func changeBackground(to style: EKAttributes.BackgroundStyle, duration: TimeInterval) {

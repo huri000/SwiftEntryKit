@@ -45,9 +45,9 @@ struct PresetsDataSource {
         attributes.entryInteraction = .absorbTouches
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
         attributes.roundCorners = .all(radius: 25)
-        attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(from: 1.05, to: 1)])
-        attributes.exitAnimation = .init(duration: 0.2, types: [.translate])
-        attributes.popBehavior = .animated(animation: .init(duration: 0.2, types: [.translate]))
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 1.05, to: 1, duration: 0.4))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.2))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.width = .offset(value: 20)
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
@@ -73,8 +73,8 @@ struct PresetsDataSource {
         // Preset I
         attributes = .topToast
         attributes.entryBackground = .color(color: EKColor.LightBlue.a700)
-        attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(from: 1.07, to: 1)])
-        attributes.exitAnimation = .translation
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 1.07, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.3))
         attributes.scroll = .edgeCrossingDisabled(swipeable: false)
         descriptionString = "The entry fades in and exits with transition upwards. Not swipeable"
         description = .init(with: attributes, title: "Top I", description: descriptionString)
@@ -161,7 +161,7 @@ struct PresetsDataSource {
         // Preset I
         attributes = .topFloat
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
-        attributes.popBehavior = .animated(animation: .init(duration: 0.7, types: [.translate, .scale(from: 1, to: 0.7)]))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
         attributes.statusBarStyle = .default
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
@@ -199,7 +199,7 @@ struct PresetsDataSource {
         
         // Preset II
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
-        attributes.entranceAnimation = .init(duration: 0.2, types: [.translate])
+        attributes.entranceAnimation = .translation
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.LightPink.first, EKColor.LightPink.last], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.positionConstraints = .full
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
@@ -217,9 +217,9 @@ struct PresetsDataSource {
         attributes.screenInteraction = .forward
         attributes.entryInteraction = .absorbTouches
         attributes.roundCorners = .all(radius: 5)
-        attributes.entranceAnimation = .init(duration: 0.2, types: [.translate, .scale(from: 0.8, to: 1)])
-        attributes.exitAnimation = .init(duration: 0.5, types: [.fade(from: 1, to: 0), .scale(from: 1, to: 0.8)])
-        attributes.popBehavior = .animated(animation: .init(duration: 0.3, types: [.translate, .scale(from: 1, to: 0.8)]))
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 0.8, to: 1, duration: 0.3), fade: .init(from: 0.8, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.5), scale: .init(from: 1, to: 0.8, duration: 0.5), fade: .init(from: 1, to: 0, duration: 0.5))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.8, duration: 0.3)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         attributes.positionConstraints.verticalOffset = 10
@@ -236,8 +236,8 @@ struct PresetsDataSource {
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.entryBackground = .color(color: .white)
-        attributes.entranceAnimation = .init(duration: 0.2, types: [.fadeIn, .scale(from: 0.6, to: 1)])
-        attributes.exitAnimation = .init(duration: 0.3, types: [.fade(from: 1, to: 0), .scale(from: 1, to: 0.7)])
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.2), scale: .init(from: 0.6, to: 1, duration: 0.2), fade: .init(from: 0.8, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.7, duration: 0.3), fade: .init(from: 1, to: 0, duration: 0.3))            
         attributes.displayDuration = .infinity
         attributes.border = .value(color: .black, width: 0.5)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5, offset: .zero))

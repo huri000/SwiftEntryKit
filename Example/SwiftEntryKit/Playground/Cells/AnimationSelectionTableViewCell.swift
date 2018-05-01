@@ -77,13 +77,13 @@ class AnimationSelectionTableViewCell: SelectionTableViewCell {
         case 0:
             animation = .translation
         case 1 where action.isOut:
-            animation = .scaleOut
+            animation = .init(scale: .init(from: 1, to: 0, duration: 0.3))
         case 1:
-            animation = .scaleIn
+            animation = .init(scale: .init(from: 0, to: 1, duration: 0.3))
         case 2 where action.isOut:
-            animation = .fadeOut
+            animation = .init(fade: .init(from: 1, to: 0, duration: 0.3))
         case 2:
-            animation = .fadeIn
+            animation = .init(fade: .init(from: 0, to: 1, duration: 0.3))
         default:
             break
         }

@@ -52,13 +52,13 @@ public struct EKAttributes {
     public var border = Border.none
     
     /** Describes how the entry animates in */
-    public var entranceAnimation = Animation.translate
+    public var entranceAnimation = Animation.translation
     
     /** Describes how the entry animates out */
-    public var exitAnimation = Animation.translate
+    public var exitAnimation = Animation.translation
     
     /** Describes the previous entry behaviour when the current entry shows */
-    public var popBehavior = PopBehavior.animated(animation: .translate)
+    public var popBehavior = PopBehavior.animated(animation: .translation)
     
     /** Describes the scrolling behaviour of the entry - The entry can be swiped out and in with an ability to spring back like a rubber band */
     public var scroll = Scroll.enabled(swipeable: true, pullbackAnimation: .rattle)
