@@ -228,10 +228,10 @@ class EKRubberBandView: UIView {
     
     // Generate a haptic feedback if needed
     private func generateHapticFeedback() {
-        guard #available(iOS 10.0, *), attributes.generateHapticFeedback else {
+        guard #available(iOS 10.0, *) else {
             return
         }
-        HapticFeedbackGenerator.notification(type: .success)
+        HapticFeedbackGenerator.notification(type: attributes.hapticFeedbackType)
     }
     
     // MARK: Animations

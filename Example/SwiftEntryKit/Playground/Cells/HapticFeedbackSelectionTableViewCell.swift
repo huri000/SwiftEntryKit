@@ -14,24 +14,33 @@ class HapticFeedbackSelectionTableViewCell: SelectionTableViewCell {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Notification Haptic Feedback"
         descriptionValue = "Generate a haptic feedback once the entry shows"
-        insertSegments(by: ["Off", "On"])
+        insertSegments(by: ["Off", "Success", "Warning", "Error"])
         selectSegment()
     }
     
     private func selectSegment() {
-        if !attributesWrapper.attributes.generateHapticFeedback {
+        switch attributes.hapticFeedbackType {
+        case .none:
             segmentedControl.selectedSegmentIndex = 0
-        } else {
+        case .success:
             segmentedControl.selectedSegmentIndex = 1
+        case .warning:
+            segmentedControl.selectedSegmentIndex = 2
+        case .error:
+            segmentedControl.selectedSegmentIndex = 3
         }
     }
     
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.generateHapticFeedback = false
+            attributesWrapper.attributes.hapticFeedbackType = .none
         case 1:
-            attributesWrapper.attributes.generateHapticFeedback = true
+            attributesWrapper.attributes.hapticFeedbackType = .success
+        case 2:
+            attributesWrapper.attributes.hapticFeedbackType = .warning
+        case 3:
+            attributesWrapper.attributes.hapticFeedbackType = .error
         default:
             break
         }

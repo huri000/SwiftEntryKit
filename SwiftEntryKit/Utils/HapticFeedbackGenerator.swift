@@ -10,8 +10,11 @@ import Foundation
 
 struct HapticFeedbackGenerator {
     @available(iOS 10.0, *)
-    static func notification(type: UINotificationFeedbackType) {
+    static func notification(type: EKAttributes.NotificationHapticFeedback) {
+        guard let value = type.value else {
+            return
+        }
         let generator = UINotificationFeedbackGenerator()
-        generator.notificationOccurred(type)        
+        generator.notificationOccurred(value)
     }
 }

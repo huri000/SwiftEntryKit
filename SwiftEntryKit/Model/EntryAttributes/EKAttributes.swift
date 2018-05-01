@@ -66,6 +66,6 @@ public struct EKAttributes {
     /** Preferred status bar style while the entry shows */
     public var statusBarStyle: UIStatusBarStyle!
     
-    /** Generate haptic notification feedback once the entry is displayed */
-    public var generateHapticFeedback = true
+    /** Generate haptic feedback once the entry is displayed */
+    public var hapticFeedbackType: NotificationHapticFeedback = .none
 }

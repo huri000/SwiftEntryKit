@@ -31,6 +31,10 @@ class SelectionTableViewCell: SelectionBaseCell {
     
     var attributesWrapper: EntryAttributeWrapper!
     
+    var attributes: EKAttributes {
+        return attributesWrapper.attributes
+    }
+    
     var titleValue: String {
         set {
             titleLabel.text = newValue
