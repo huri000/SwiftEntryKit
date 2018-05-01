@@ -89,7 +89,6 @@ struct PresetsDataSource {
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.displayDuration = 4
         attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10, offset: .zero))
-        attributes.popBehavior = .overriden
         descriptionString = "The entry has a dark background with a chat message style. Displayed for \(attributes.displayDuration)s. Once a new entry shows, it's overridden promptly"
         description = .init(with: attributes, title: "Top II", description: descriptionString)
         toasts.append(description)
@@ -200,7 +199,7 @@ struct PresetsDataSource {
         
         // Preset II
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
-        attributes.entranceAnimation = .translation
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 1, initialVelocity: 0)))
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.LightPink.first, EKColor.LightPink.last], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.positionConstraints = .full
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
