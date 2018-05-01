@@ -8,6 +8,17 @@
 
 import UIKit
 
+protocol EKAnimation {
+    var delay: TimeInterval { get set }
+    var duration: TimeInterval { get set }
+    var spring: EKAttributes.Animation.Spring? { get set }
+}
+
+protocol EKRangeAnimation: EKAnimation {
+    var start: CGFloat { get set }
+    var end: CGFloat { get set }
+}
+
 public extension EKAttributes {
     
     public struct Animation {
@@ -22,12 +33,12 @@ public extension EKAttributes {
             }
         }
 
-        public struct Scale {
-            public let start: CGFloat
-            public let end: CGFloat
-            public let delay: TimeInterval
-            public let duration: TimeInterval
-            public let spring: Spring?
+        public struct RangeAnimation: EKRangeAnimation {
+            public var duration: TimeInterval
+            public var delay: TimeInterval
+            public var start: CGFloat
+            public var end: CGFloat
+            public var spring: Spring?
             
             public init(from start: CGFloat, to end: CGFloat, duration: TimeInterval, delay: TimeInterval = 0, spring: Spring? = nil) {
                 self.start = start
@@ -38,24 +49,10 @@ public extension EKAttributes {
             }
         }
         
-        public struct Fade {
-            public let start: CGFloat
-            public let end: CGFloat
-            public let delay: TimeInterval
-            public let duration: TimeInterval
-            
-            public init(from start: CGFloat, to end: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
-                self.start = start
-                self.end = end
-                self.delay = delay
-                self.duration = duration
-            }
-        }
-        
-        public struct Translate {
-            public let delay: TimeInterval
-            public let duration: TimeInterval
-            public let spring: Spring?
+        public struct Translate: EKAnimation {
+            public var duration: TimeInterval
+            public var delay: TimeInterval
+            public var spring: Spring?
 
             public init(duration: TimeInterval, delay: TimeInterval = 0, spring: Spring? = nil) {
                 self.delay = delay
@@ -65,9 +62,9 @@ public extension EKAttributes {
         }
         
         // Instance vars
-        public var scale: Scale?
         public var translate: Translate?
-        public var fade: Fade?
+        public var scale: RangeAnimation?
+        public var fade: RangeAnimation?
         
         public var containsTranslation: Bool {
             return translate != nil
@@ -104,7 +101,7 @@ public extension EKAttributes {
         }
         
         // Init
-        public init(translate: Translate? = nil, scale: Scale? = nil, fade: Fade? = nil) {
+        public init(translate: Translate? = nil, scale: RangeAnimation? = nil, fade: RangeAnimation? = nil) {
             self.translate = translate
             self.scale = scale
             self.fade = fade

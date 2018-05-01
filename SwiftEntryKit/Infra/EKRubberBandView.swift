@@ -265,17 +265,21 @@ class EKRubberBandView: UIView {
         superview?.layoutIfNeeded()
         
         if let translation = animation.translate {
-            performTranslationAnimation(with: translation) { [weak self] in
+            performAnimation(with: translation) { [weak self] in
                 self?.translateOut(withType: outTranslationType)
             }
         }
         
         if let fade = animation.fade {
-            performFadeAnimation(with: fade)
+            performAnimation(with: fade, preAction: { self.alpha = fade.start }) {
+                self.alpha = fade.end
+            }
         }
         
         if let scale = animation.scale {
-            performScaleAnimation(with: scale)
+            performAnimation(with: scale, preAction: { self.transform = CGAffineTransform(scaleX: scale.start, y: scale.start) }) {
+                self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
+            }
         }
 
         if animation.containsAnimation {
@@ -298,17 +302,21 @@ class EKRubberBandView: UIView {
         superview?.layoutIfNeeded()
         
         if let translation = animation.translate {
-            performTranslationAnimation(with: translation, animationAction: translateIn)
+            performAnimation(with: translation, action: translateIn)
         } else {
             translateIn()
         }
         
         if let fade = animation.fade {
-            performFadeAnimation(with: fade)
+            performAnimation(with: fade, preAction: { self.alpha = fade.start }) {
+                self.alpha = fade.end
+            }
         }
-    
+        
         if let scale = animation.scale {
-            performScaleAnimation(with: scale)
+            performAnimation(with: scale, preAction: { self.transform = CGAffineTransform(scaleX: scale.start, y: scale.start) }) {
+                self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
+            }
         }
                 
         entryDelegate?.changeToActive(withAttributes: attributes)
@@ -340,40 +348,17 @@ class EKRubberBandView: UIView {
         superview?.layoutIfNeeded()
     }
     
-    // In translation animation
-    private func performTranslationAnimation(with translation: EKAttributes.Animation.Translate, animationAction: @escaping () -> ()) {
+    // Perform animation - translate / scale / fade
+    private func performAnimation(with animation: EKAnimation, preAction: @escaping () -> () = {}, action: @escaping () -> ()) {
         let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
-        if let spring = translation.spring {
-            UIView.animate(withDuration: translation.duration, delay: translation.delay, usingSpringWithDamping: spring.damping, initialSpringVelocity: spring.initialVelocity, options: options, animations: {
-                animationAction()
+        preAction()
+        if let spring = animation.spring {
+            UIView.animate(withDuration: animation.duration, delay: animation.delay, usingSpringWithDamping: spring.damping, initialSpringVelocity: spring.initialVelocity, options: options, animations: {
+                action()
             }, completion: nil)
         } else {
-            UIView.animate(withDuration: translation.duration, delay: translation.delay, options: options, animations: {
-                animationAction()
-            }, completion: nil)
-        }
-    }
-    
-    // Fade animation
-    private func performFadeAnimation(with fade: EKAttributes.Animation.Fade) {
-        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
-        alpha = fade.start
-        UIView.animate(withDuration: fade.duration, delay: fade.delay, options: options, animations: {
-            self.alpha = fade.end
-        }, completion: nil)
-    }
-    
-    // Scale animation
-    private func performScaleAnimation(with scale: EKAttributes.Animation.Scale) {
-        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
-        transform = CGAffineTransform(scaleX: scale.start, y: scale.start)
-        if let spring = scale.spring {
-            UIView.animate(withDuration: scale.duration, delay: scale.delay, usingSpringWithDamping: spring.damping, initialSpringVelocity: spring.initialVelocity, options: options, animations: {
-                self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
-            }, completion: nil)
-        } else {
-            UIView.animate(withDuration: scale.duration, delay: scale.delay, options: options, animations: {
-                self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
+            UIView.animate(withDuration: animation.duration, delay: animation.delay, options: options, animations: {
+                action()
             }, completion: nil)
         }
     }
@@ -429,7 +414,7 @@ extension EKRubberBandView {
         if shouldStretch(with: translation) {
             if attributes.scroll.isEdgeCrossingEnabled {
                 totalTranslation += translation
-                calculateLogarithmicOffset(forOffset: totalTranslation)
+                calculateLogarithmicOffset(forOffset: totalTranslation, currentTranslation: translation)
                 
                 switch gr.state {
                 case .ended, .failed, .cancelled:
@@ -466,6 +451,9 @@ extension EKRubberBandView {
     }
     
     private func stretchOut(duration: TimeInterval) {
+        outDispatchWorkItem?.cancel()
+        entryDelegate?.changeToInactive(withAttributes: attributes)
+        
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.translateOut(withType: .swipe)
         }, completion: { finished in
@@ -473,12 +461,13 @@ extension EKRubberBandView {
         })
     }
     
-    private func calculateLogarithmicOffset(forOffset offset: CGFloat) {
+    private func calculateLogarithmicOffset(forOffset offset: CGFloat, currentTranslation: CGFloat) {
         if attributes.position.isTop {
             inConstraint.constant = verticalLimit * (1 + log10(offset / verticalLimit))
         } else {
             let offset = Swift.abs(offset) + verticalLimit
-            inConstraint.constant -= (1 + log10(offset / verticalLimit))
+            let addition: CGFloat = abs(currentTranslation) < 2 ? 0 : 1
+            inConstraint.constant -= (addition + log10(offset / verticalLimit))
         }
     }
     
