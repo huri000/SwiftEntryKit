@@ -11,91 +11,99 @@ import UIKit
 public extension EKAttributes {
     
     public struct Animation {
-        
-        /** Describes the type of the animation */
-        public enum AnimationType {
-            case fade(from: CGFloat, to: CGFloat)
-            case scale(from: CGFloat, to: CGFloat)
-            case translate
+    
+        public struct Spring {
+            public let damping: CGFloat
+            public let initialVelocity: CGFloat
             
-            public static var fadeIn: AnimationType {
-                return .fade(from: 0, to: 1)
+            init(damping: CGFloat, initialVelocity: CGFloat) {
+                self.damping = damping
+                self.initialVelocity = initialVelocity
             }
+        }
+
+        public struct Scale {
+            public let start: CGFloat
+            public let end: CGFloat
+            public let delay: TimeInterval
+            public let duration: TimeInterval
+            public let spring: Spring?
             
-            public static var fadeOut: AnimationType {
-                return .fade(from: 1, to: 0)
-            }
-            
-            public static var scaleIn: AnimationType {
-                return .scale(from: 0, to: 1)
-            }
-            
-            public static var scaleOut: AnimationType {
-                return .scale(from: 1, to: 0)
-            }
-            
-            public var rawValue: UInt {
-                switch self {
-                case .translate:
-                    return 0
-                case .fade(from: _, to: _):
-                    return 1
-                case .scale(from: _, to: _):
-                    return 2
-                }
+            public init(from start: CGFloat, to end: CGFloat, duration: TimeInterval, delay: TimeInterval = 0, spring: Spring? = nil) {
+                self.start = start
+                self.end = end
+                self.delay = delay
+                self.duration = duration
+                self.spring = spring
             }
         }
         
-        public var duration: TimeInterval
-        public var types: [AnimationType]
-        
-        public static var fadeIn: Animation {
-            return Animation(duration: 0.3, types: [.fadeIn])
+        public struct Fade {
+            public let start: CGFloat
+            public let end: CGFloat
+            public let delay: TimeInterval
+            public let duration: TimeInterval
+            
+            public init(from start: CGFloat, to end: CGFloat, duration: TimeInterval, delay: TimeInterval = 0) {
+                self.start = start
+                self.end = end
+                self.delay = delay
+                self.duration = duration
+            }
         }
         
-        public static var fadeOut: Animation {
-            return Animation(duration: 0.3, types: [.fadeOut])
+        public struct Translate {
+            public let delay: TimeInterval
+            public let duration: TimeInterval
+            public let spring: Spring?
+
+            public init(duration: TimeInterval, delay: TimeInterval = 0, spring: Spring? = nil) {
+                self.delay = delay
+                self.duration = duration
+                self.spring = spring
+            }
         }
         
-        public static var scaleIn: Animation {
-            return Animation(duration: 0.3, types: [.scaleIn])
-        }
-        
-        public static var scaleOut: Animation {
-            return Animation(duration: 0.3, types: [.scaleOut])
-        }
-        
-        public static var translation: Animation {
-            return Animation(duration: 0.3, types: [.translate])
-        }
-        
-        public func contains(_ type: AnimationType) -> Bool {
-            return types.contains { type.rawValue == $0.rawValue }
-        }
-        
-        public var scale: AnimationType? {
-            return types.filter { AnimationType.scaleIn.rawValue == $0.rawValue }.first
-        }
-        
-        public var fade: AnimationType? {
-            return types.filter { AnimationType.fadeIn.rawValue == $0.rawValue }.first
-        }
+        // Instance vars
+        public var scale: Scale?
+        public var translate: Translate?
+        public var fade: Fade?
         
         public var containsTranslation: Bool {
-            return contains(.translate)
+            return translate != nil
         }
         
         public var containsScale: Bool {
-            return contains(AnimationType.scaleIn)
+            return scale != nil
         }
         
         public var containsFade: Bool {
-            return contains(AnimationType.fadeIn)
+            return fade != nil
         }
         
-        public init(duration: TimeInterval = 0.3, types: [AnimationType] = [.translate]) {
-            self.duration = duration
-            self.types = types
+        public var maxDelay: TimeInterval {
+            return max(translate?.delay ?? 0, max(scale?.delay ?? 0, fade?.delay ?? 0))
+        }
+        
+        public var maxDuration: TimeInterval {
+            return max(translate?.duration ?? 0, max(scale?.duration ?? 0, fade?.duration ?? 0))
+        }
+        
+        // Returns max duration + max delay
+        public var totalDuration: TimeInterval {
+            return maxDelay + maxDuration
+        }
+        
+        // Class vars
+        public static var translate: Animation {
+            return Animation(translate: .init(duration: 0.3))
+        }
+        
+        // Init
+        public init(translate: Translate? = nil, scale: Scale? = nil, fade: Fade? = nil) {
+            self.translate = translate
+            self.scale = scale
+            self.fade = fade
         }
     }
 }

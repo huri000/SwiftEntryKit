@@ -52,13 +52,13 @@ public struct EKAttributes {
     public var border = Border.none
     
     /** Describes how the entry animates in */
-    public var entranceAnimation = Animation.translation
+    public var entranceAnimation = Animation.translate
     
     /** Describes how the entry animates out */
-    public var exitAnimation = Animation.translation
+    public var exitAnimation = Animation.translate
     
     /** Describes the previous entry behaviour when the current entry shows */
-    public var popBehavior = PopBehavior.animated(animation: Animation(duration: 0.25, types: [.translate]))
+    public var popBehavior = PopBehavior.animated(animation: .translate)
     
     /** Describes the scrolling behaviour of the entry - The entry can be swiped out and in with an ability to spring back like a rubber band */
     public var scroll = Scroll.enabled(swipeable: true, pullbackAnimation: .rattle)
@@ -67,5 +67,5 @@ public struct EKAttributes {
     public var statusBarStyle: UIStatusBarStyle!
     
     /** Generate haptic feedback once the entry is displayed */
-    public var hapticFeedbackType: NotificationHapticFeedback = .none
+    public var hapticFeedbackType = NotificationHapticFeedback.none
 }
