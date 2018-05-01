@@ -341,15 +341,15 @@ class EKRubberBandView: UIView {
     }
     
     // In translation animation
-    private func performTranslationAnimation(with translation: EKAttributes.Animation.Translate, animationAction: () -> ()) {
+    private func performTranslationAnimation(with translation: EKAttributes.Animation.Translate, animationAction: @escaping () -> ()) {
         let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
         if let spring = translation.spring {
             UIView.animate(withDuration: translation.duration, delay: translation.delay, usingSpringWithDamping: spring.damping, initialSpringVelocity: spring.initialVelocity, options: options, animations: {
-                
+                animationAction()
             }, completion: nil)
         } else {
             UIView.animate(withDuration: translation.duration, delay: translation.delay, options: options, animations: {
-                self.translateIn()
+                animationAction()
             }, completion: nil)
         }
     }
