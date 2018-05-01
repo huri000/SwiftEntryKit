@@ -31,7 +31,7 @@ class ScrollSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
+            attributesWrapper.attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
         case 1:
             attributesWrapper.attributes.scroll = .disabled
         case 2:

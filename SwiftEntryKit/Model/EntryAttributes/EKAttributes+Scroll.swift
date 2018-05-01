@@ -22,10 +22,12 @@ extension EKAttributes {
                 self.initialSpringVelocity = initialSpringVelocity
             }
             
-            public static var rattle: PullbackAnimation {
+            /** The view is jolted when it's pulled back into the original position */
+            public static var jolt: PullbackAnimation {
                 return PullbackAnimation(duration: 0.5, damping: 0.3, initialSpringVelocity: 10)
             }
             
+            /** The view eases out when it's pulled back into the original position */
             public static var easeOut: PullbackAnimation {
                 return PullbackAnimation(duration: 0.3, damping: 1, initialSpringVelocity: 10)
             }

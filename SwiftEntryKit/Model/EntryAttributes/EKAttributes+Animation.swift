@@ -16,7 +16,7 @@ public extension EKAttributes {
             public let damping: CGFloat
             public let initialVelocity: CGFloat
             
-            init(damping: CGFloat, initialVelocity: CGFloat) {
+            public init(damping: CGFloat, initialVelocity: CGFloat) {
                 self.damping = damping
                 self.initialVelocity = initialVelocity
             }

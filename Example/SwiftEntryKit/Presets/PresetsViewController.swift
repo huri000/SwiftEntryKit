@@ -147,6 +147,7 @@ class PresetsViewController: UIViewController {
         let contentView = DynamicExampleView(with: content, buttonsContent: buttonsBarContent) { [unowned self] in
             var attributes = self.dataSource.bottomAlertAttributes
             attributes.entryBackground = .color(color: EKColor.LightPink.first)
+            attributes.entranceAnimation = .init(translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0)))
             let image = UIImage(named: "ic_done_all_light_48pt")!
             let title = "Congratz!"
             let description = "Your book coupon is 5w1ft3ntr1k1t"

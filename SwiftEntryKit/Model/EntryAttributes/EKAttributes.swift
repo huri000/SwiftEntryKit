@@ -61,7 +61,7 @@ public struct EKAttributes {
     public var popBehavior = PopBehavior.animated(animation: .translation)
     
     /** Describes the scrolling behaviour of the entry - The entry can be swiped out and in with an ability to spring back like a rubber band */
-    public var scroll = Scroll.enabled(swipeable: true, pullbackAnimation: .rattle)
+    public var scroll = Scroll.enabled(swipeable: true, pullbackAnimation: .jolt)
     
     /** Preferred status bar style while the entry shows */
     public var statusBarStyle: UIStatusBarStyle!

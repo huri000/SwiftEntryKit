@@ -43,9 +43,10 @@ struct PresetsDataSource {
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
-        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
         attributes.roundCorners = .all(radius: 25)
-        attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 1.05, to: 1, duration: 0.4))
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.7, spring: .init(damping: 1, initialVelocity: 0)),
+                                             scale: .init(from: 1.05, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)))
         attributes.exitAnimation = .init(translate: .init(duration: 0.2))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
         attributes.positionConstraints.verticalOffset = 10
@@ -174,7 +175,7 @@ struct PresetsDataSource {
         attributes = .bottomFloat
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.entryInteraction = .delayExit(by: 3)
-        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
         attributes.statusBarStyle = .default
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
@@ -211,15 +212,22 @@ struct PresetsDataSource {
         
         // Preset III
         attributes = .bottomFloat
-        attributes.displayDuration = 4
+        attributes.displayDuration = 3
         attributes.screenBackground = .clear
         attributes.entryBackground = .clear
         attributes.screenInteraction = .forward
         attributes.entryInteraction = .absorbTouches
         attributes.roundCorners = .all(radius: 5)
-        attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 0.8, to: 1, duration: 0.3), fade: .init(from: 0.8, to: 1, duration: 0.3))
-        attributes.exitAnimation = .init(translate: .init(duration: 0.5), scale: .init(from: 1, to: 0.8, duration: 0.5), fade: .init(from: 1, to: 0, duration: 0.5))
-        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.8, duration: 0.3)))
+        
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 0.9, initialVelocity: 0)),
+                                             scale: .init(from: 0.8, to: 1, duration: 0.5, spring: .init(damping: 0.8, initialVelocity: 0)),
+                                             fade: .init(from: 0.7, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.5),
+                                         scale: .init(from: 1, to: 0.8, duration: 0.5),
+                                         fade: .init(from: 1, to: 0, duration: 0.5))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3),
+                                                            scale: .init(from: 1, to: 0.8, duration: 0.3)))
+        
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         attributes.positionConstraints.verticalOffset = 10
@@ -233,10 +241,10 @@ struct PresetsDataSource {
         attributes = .topFloat
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
-        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .rattle)
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
         attributes.screenBackground = .color(color: .dimmedBackground)
         attributes.entryBackground = .color(color: .white)
-        attributes.entranceAnimation = .init(translate: .init(duration: 0.2), scale: .init(from: 0.6, to: 1, duration: 0.2), fade: .init(from: 0.8, to: 1, duration: 0.3))
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.7, spring: .init(damping: 1, initialVelocity: 0)), scale: .init(from: 0.6, to: 1, duration: 0.7), fade: .init(from: 0.8, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.7, duration: 0.3), fade: .init(from: 1, to: 0, duration: 0.3))            
         attributes.displayDuration = .infinity
         attributes.border = .value(color: .black, width: 0.5)
