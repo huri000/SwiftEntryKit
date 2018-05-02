@@ -14,6 +14,14 @@ struct PresetsDataSource {
     // Cluster of presets, aggregated under name
     typealias Cluster = (title: String, data: [PresetDescription])
     
+    private enum ThumbDesc: String {
+        case bottomToast = "ic_bottom_toast"
+        case bottomFloat = "ic_bottom_float"
+        case topToast = "ic_top_toast"
+        case topFloat = "ic_top_float"
+        case bottomPopup = "ic_bottom_popup"
+    }
+    
     private(set) var dataSource: [Cluster] = []
     
     private(set) subscript(section: Int) -> Cluster {
@@ -70,7 +78,8 @@ struct PresetsDataSource {
         var attributes: EKAttributes
         var description: PresetDescription
         var descriptionString: String
-        
+        var descriptionThumb: String
+
         // Preset I
         attributes = .topToast
         attributes.entryBackground = .color(color: EKColor.LightBlue.a700)
@@ -78,7 +87,8 @@ struct PresetsDataSource {
         attributes.exitAnimation = .init(translate: .init(duration: 0.3))
         attributes.scroll = .edgeCrossingDisabled(swipeable: false)
         descriptionString = "The entry fades in and exits with transition upwards. Not swipeable"
-        description = .init(with: attributes, title: "Top I", description: descriptionString)
+        descriptionThumb = ThumbDesc.topToast.rawValue
+        description = .init(with: attributes, title: "Top I", description: descriptionString, thumb: descriptionThumb)
         toasts.append(description)
 
         // Preset II
@@ -90,7 +100,8 @@ struct PresetsDataSource {
         attributes.displayDuration = 4
         attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10, offset: .zero))
         descriptionString = "The entry has a dark background with a chat message style. Displayed for \(attributes.displayDuration)s. Once a new entry shows, it's overridden promptly"
-        description = .init(with: attributes, title: "Top II", description: descriptionString)
+        descriptionThumb = ThumbDesc.topToast.rawValue
+        description = .init(with: attributes, title: "Top II", description: descriptionString, thumb: descriptionThumb)
         toasts.append(description)
         
         // Preset III
@@ -99,7 +110,8 @@ struct PresetsDataSource {
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.statusBarStyle = .default
         descriptionString = "The entry has an light blurred background"
-        description = .init(with: attributes, title: "Bottom", description: descriptionString)
+        descriptionThumb = ThumbDesc.bottomToast.rawValue
+        description = .init(with: attributes, title: "Bottom", description: descriptionString, thumb: descriptionThumb)
         toasts.append(description)
         
         dataSource.append(("Toasts", toasts))
@@ -111,14 +123,16 @@ struct PresetsDataSource {
         var attributes: EKAttributes
         var description: PresetDescription
         var descriptionString: String
-        
+        var descriptionThumb: String
+
         // Preset I
         attributes = .topNote
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .satCyan)
         attributes.statusBarStyle = .lightContent
         descriptionString = "The entry absorbs (ignores) touches and the status bar becomes light."
-        description = .init(with: attributes, title: "Top Standard Note", description: descriptionString)
+        descriptionThumb = ThumbDesc.topToast.rawValue
+        description = .init(with: attributes, title: "Top Standard Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
 
         // Preset II
@@ -128,7 +142,8 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: .pinky)
         attributes.statusBarStyle = .lightContent
         descriptionString = "Appears for an infinate duration"
-        description = .init(with: attributes, title: "Top Processing Note", description: descriptionString)
+        descriptionThumb = ThumbDesc.topToast.rawValue
+        description = .init(with: attributes, title: "Top Processing Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
 
         // Preset III
@@ -136,7 +151,8 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .greenGrass)
         descriptionString = "Overrides the status bar"
-        description = .init(with: attributes, title: "Status Bar Note", description: descriptionString)
+        descriptionThumb = ThumbDesc.topToast.rawValue
+        description = .init(with: attributes, title: "Status Bar Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
         
         // Preset IV
@@ -145,7 +161,8 @@ struct PresetsDataSource {
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Purple.a300, EKColor.Purple.a400, EKColor.Purple.a700], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.statusBarStyle = .default
         descriptionString = "Presented at the bottom / Above the notch, with a mild gradient and shadow"
-        description = .init(with: attributes, title: "Bottom Standard Note", description: descriptionString)
+        descriptionThumb = ThumbDesc.bottomToast.rawValue
+        description = .init(with: attributes, title: "Bottom Standard Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
         
         dataSource.append(("Notes", notes))
@@ -157,7 +174,8 @@ struct PresetsDataSource {
         var description: PresetDescription
         var attributes: EKAttributes
         var descriptionString: String
-        
+        var descriptionThumb: String
+
         // Preset I
         attributes = .topFloat
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
@@ -167,7 +185,8 @@ struct PresetsDataSource {
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Has a gradient content background and a drop shadow. It's max width is the screen minimal edge. Can be swiped out but doesn't spring with damp"
-        description = .init(with: attributes, title: "Top", description: descriptionString)
+        descriptionThumb = ThumbDesc.topFloat.rawValue
+        description = .init(with: attributes, title: "Top", description: descriptionString, thumb: descriptionThumb)
         floats.append(description)
         
         // Preset II
@@ -178,7 +197,8 @@ struct PresetsDataSource {
         attributes.statusBarStyle = .default
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
-        description = .init(with: attributes, title: "Bottom", description: descriptionString)
+        descriptionThumb = ThumbDesc.bottomFloat.rawValue
+        description = .init(with: attributes, title: "Bottom", description: descriptionString, thumb: descriptionThumb)
         floats.append(description)
         
         dataSource.append(("Floats", floats))
@@ -190,11 +210,13 @@ struct PresetsDataSource {
         var attributes: EKAttributes
         var description: PresetDescription
         var descriptionString: String
-        
+        var descriptionThumb: String
+
         // Preset I
         attributes = bottomAlertAttributes
         descriptionString = "Customized pop up with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
-        description = .init(with: attributes, title: "Pop Up I", description: descriptionString)
+        descriptionThumb = ThumbDesc.bottomPopup.rawValue
+        description = .init(with: attributes, title: "Pop Up I", description: descriptionString, thumb: descriptionThumb)
         customs.append(description)
         
         // Preset II
@@ -204,9 +226,9 @@ struct PresetsDataSource {
         attributes.positionConstraints = .full
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.roundCorners = .top(radius: 20)
-
         descriptionString = "Customized pop up with top round corners. Strectched to the width of the screen. It has a button that receives an action."
-        description = .init(with: attributes, title: "Pop Up II", description: descriptionString)
+        descriptionThumb = ThumbDesc.bottomPopup.rawValue
+        description = .init(with: attributes, title: "Pop Up II", description: descriptionString, thumb: descriptionThumb)
         customs.append(description)
         
         // Preset III
@@ -233,7 +255,8 @@ struct PresetsDataSource {
         attributes.positionConstraints.width = .offset(value: 20)
         attributes.statusBarStyle = .default
         descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
-        description = .init(with: attributes, title: "View From Nib", description: descriptionString)
+        descriptionThumb = ThumbDesc.bottomFloat.rawValue
+        description = .init(with: attributes, title: "View From Nib", description: descriptionString, thumb: descriptionThumb)
         customs.append(description)
         
         // Preset IV
@@ -251,7 +274,8 @@ struct PresetsDataSource {
         attributes.statusBarStyle = .default
         attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         descriptionString = "Customized view with internal animation. It has a drop shadow, round corners and a mild border"
-        description = .init(with: attributes, title: "Custom View", description: descriptionString)
+        descriptionThumb = ThumbDesc.topFloat.rawValue
+        description = .init(with: attributes, title: "Custom View", description: descriptionString, thumb: descriptionThumb)
         customs.append(description)
 
         dataSource.append(("Complex Entries", customs))

@@ -21,6 +21,7 @@ class PresetTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = presetDescription.title
             descriptionLabel.text = presetDescription.description
+            thumbImageView.image = UIImage(named: presetDescription.thumb)
         }
     }
     
@@ -38,14 +39,14 @@ class PresetTableViewCell: UITableViewCell {
     
     private func setupImageView() {
         contentView.addSubview(thumbImageView)
-        thumbImageView.image = UIImage(named: "ic_phone_iphone_36pt")
+        thumbImageView.contentMode = .scaleAspectFit
         thumbImageView.layoutToSuperview(.left, .top, offset: 16)
         thumbImageView.set(.width, .height, of: 50)
     }
     
     private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
-        titleLabel.textColor = EKColor.BlueGray.c900
+        titleLabel.textColor = .black
         titleLabel.font = Font.HelveticaNeue.medium.with(size: 18)
         titleLabel.numberOfLines = 0
         titleLabel.layout(.left, to: .right, of: thumbImageView, offset: 16)
@@ -55,7 +56,7 @@ class PresetTableViewCell: UITableViewCell {
     
     private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
-        descriptionLabel.textColor = EKColor.BlueGray.c800
+        descriptionLabel.textColor = EKColor.Gray.mid
         descriptionLabel.font = Font.HelveticaNeue.light.with(size: 14)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 4)
