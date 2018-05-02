@@ -26,30 +26,28 @@
 
 SwiftEntryKit is a simple and versatile pop-up presenter written in Swift.
 
-The library is still WIP and will be released very soon.
-
 ### Features
 
 Banners or Pop-Ups are called *Entries*.
 
 - The entries are displayed in a separated UIWindow (of type EKWindow), so the user is able to navigate the app freely while entries are being displayed in a non intrusive manner.
-- The kit offers beautiful entry [presets](#presets) that can be themed with your app colors and fonts.
+- The kit offers some beautiful [presets](#presets) that can be themed with your app colors and fonts.
 - **Customization**: Entries are highly customizable
-  - Can be displayed at the top or the bottom of the screen.
-  - Can be displayed within or outside the screen's safe area.
-  - Can be stylized: have a border, drop-shadow and round corners.
-  - Their content's and the screen's background can be blurred, dimmed, colored or have a gradient style.
-  - Transition animations are customizable - Entrance, Exit and Pop (by another entry).
-  - The user interactions with the entry or the screen can be intercepted.
-  - Entries have an optional rubber banding effect in panning.
-  - Entries can be optionally dismissed by a simple swipe gesture.
-  - Entries have display priority attribute. That means that an entry cannot be dismissed by other entries with lower display priority.
-  - The status bar style is changeable for the display duration of the entry.
-  - SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
+  - [x] Can be displayed at the top or the bottom of the screen.
+  - [x] Can be displayed within or outside the screen's safe area.
+  - [x] Can be stylized: have a border, drop-shadow and round corners.
+  - [x] Their content's and the screen's background can be blurred, dimmed, colored or have a gradient style.
+  - [x] Transition animations are customizable - Entrance, Exit and Pop (by another entry).
+  - [x] The user interactions with the entry or the screen can be intercepted.
+  - [x] Entries have an optional rubber banding effect in panning.
+  - [x] Entries can be optionally dismissed by a simple swipe gesture.
+  - [x] Entries have display priority attribute. That means that an entry cannot be dismissed by other entries with lower display priority.
+  - [x] The status bar style is settable for the display duration of the entry.
+  - [x] SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
 
 ## Example Project
 
-The example project contains various presets and examples which use can use and modify to your liking.
+The example project contains various presets and examples you can use and modify as your like.
 
 ### Presets
 
@@ -89,37 +87,37 @@ SwiftEntryKit is still WIP and will be formally released very soon.
 
 Below are most of the attributes that can be modified:
 
-**Window Level** - The entry's window level
+**Window Level** - The entry's window level. Can be above the application main window, above the status bar, above the alerts window or even have a custom level (UIWindowLevel).
 
 **Display Position** - The entry can be displayed either at the top or the bottom of the screen.
 
-**Display Priority** - The display priority of the entry determines whether it can dismiss other entries or be dismissed by them.
+**[Display Priority](#display_priority)** - The display priority of the entry determines whether it can dismiss other entries or be dismissed by them. An entry can be dismissed only by an enry with equal or higher display-priority.
 
 **Display Duration** - The display duration of the entry (Counted from the moment the entry has finished the entrance animation).
 
-**Position Constraints** - Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset.
+**Position Constraints** - Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset & Safe Area related info.
 
 **Background Style** - The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
 
 **User Interaction** - The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways, such as: dismiss the entry, be ignored, pass the touch forward to the lower level window, and more.
 
-**Shadow** - The shadow that surrounds the entry
+**Shadow** - The shadow that surrounds the entry.
 
-**Round Corners** - Round corners around the entry
+**Round Corners** - Round corners around the entry.
 
-**Border** - The border around the entry
+**Border** - The border around the entry.
 
-**Entrance Animation** - Describes how the entry animates inside
+**Entrance Animation** - Describes how the entry animates into the screen.
 
-**Exit Animation** - Describes how the entry animates out
+**Exit Animation** - Describes how the entry animates out of the screen.
 
-**Pop Behavior** - Describes the entry behavior when it's being popped (dismissed by an entry with equal / higher display priority).
+**Pop Behavior** - Describes the entry behavior when it's being popped (dismissed by an entry with equal / higher display-priority.
 
-**Scroll Behavior** - Describes the entry behavior when it's being scrolled, that is, dismissal by a swipe gesture and a rubber band effect in a UIScrollView)
+**Scroll Behavior** - Describes the entry behavior when it's being scrolled, that is, dismissal by a swipe gesture and a rubber band effect similar to a UIScrollView.
 
-**[Haptic Feedback](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/feedback/)** - The device can produce a haptic feedback, thus adding an additional layer of depth to each entry.
+**[Haptic Feedback](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/feedback/)** - The device can produce a haptic feedback, thus adding an additional sensory depth to each entry.
 
-**Status Bar Style** - The status bar style can be modified for the display duration of the entry. In order to enable this feature you just set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+**Status Bar Style** - The status bar style can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
 
 EKAttributes' interface is as follows:
 
@@ -219,7 +217,6 @@ SwiftEntryKit supports iOS 11.x.y and is backward compatible to iOS 9.x.y, so th
 ### How to deal with orientation change:
 
 SwiftEntryKit identifies orientation changes and adjust the entry's layout to those changes.
-
 Therefore, if you wish to limit the entries's width, you are able to do so by giving it a maximum value, likewise:
 
 ```Swift
