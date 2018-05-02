@@ -91,7 +91,7 @@ Below are most of the attributes that can be modified:
 
 **Display Position** - The entry can be displayed either at the top or the bottom of the screen.
 
-**[Display Priority](#display_priority)** - The display priority of the entry determines whether it can dismiss other entries or be dismissed by them. An entry can be dismissed only by an enry with equal or higher display-priority.
+**Display Priority** - The display priority of the entry determines whether it can dismiss other entries or be dismissed by them. An entry can be dismissed only by an enry with equal or higher display-priority.
 
 **Display Duration** - The display duration of the entry (Counted from the moment the entry has finished the entrance animation).
 
