@@ -55,7 +55,7 @@ The example project contains various presets and examples which use can use and 
 
 Toasts | Notes | Floats | Custom Message | Custom Nib
 --- | --- | --- | --- | ---
-![toasts_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) | ![notes_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/notes.gif) | ![floats_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) | ![animated_custom_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/animated_custom.gif) | ![custom_nib_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/custom_nib.gif)
+![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![animated_custom_example](https://github.com/huri000/assets/blob/master/swift-entrykit/animated_custom.gif) | ![custom_nib_example](https://github.com/huri000/assets/blob/master/swift-entrykit/custom_nib.gif)
 
 
 ### Playground
@@ -67,7 +67,7 @@ The playground screen has some limitations (allows to select constant values) bu
 
 Screen | Top Float | Bottom Float
 --- | --- | ---
-![playground_example](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground.gif) | ![play_1](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground_top.jpeg) | ![play2](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/playground_bottom.jpeg)
+![playground_example](https://github.com/huri000/assets/blob/master/swift-entrykit/playground.gif) | ![play_1](https://github.com/huri000/assets/blob/master/swift-entrykit/playground_top.jpeg) | ![play2](https://github.com/huri000/assets/blob/master/swift-entrykit/playground_bottom.jpeg)
 
 ## Requirements
 
@@ -210,7 +210,7 @@ Entries behave like a rubber band once they are panned toward their opposite dir
 
 ### How to deal with the screen Safe Area:
 
-*EKAttributes.PositionConstraints.SafeArea* may be used to override the safe area with the entry's content, or to fill the safe area with a background color (like [Toasts](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) do), or even leave the safe area empty (Like [Floats](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) do).
+*EKAttributes.PositionConstraints.SafeArea* may be used to override the safe area with the entry's content, or to fill the safe area with a background color (like [Toasts](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) do), or even leave the safe area empty (Like [Floats](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) do).
 
 SwiftEntryKit supports iOS 11.x.y and is backward compatible to iOS 9.x.y, so the status bar area is treated as same as the safe area in earlier iOS versions.
 
@@ -241,7 +241,7 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 
 Orientation Change Demonstration |
 --- |
-![orientation_change](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/orientation.gif)
+![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
 
 ## Known Issues
 
