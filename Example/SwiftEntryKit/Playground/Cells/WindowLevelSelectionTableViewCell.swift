@@ -13,17 +13,19 @@ class WindowLevelSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Window Level"
-        descriptionValue = "Where the entry should be presented in the application window hierarchy"
-        insertSegments(by: ["Above status bar", "Below status bar"])
+        descriptionValue = "Where the entry should be displayed in the application window hierarchy"
+        insertSegments(by: ["Normal", "Status Bar", "Alerts"])
         selectSegment()
     }
     
     private func selectSegment() {
         switch attributesWrapper.attributes.windowLevel {
-        case .aboveStatusBar:
+        case .normal:
             segmentedControl.selectedSegmentIndex = 0
-        case .belowStatusBar:
+        case .statusBar:
             segmentedControl.selectedSegmentIndex = 1
+        case .alerts:
+            segmentedControl.selectedSegmentIndex = 2
         default:
             break
         }
@@ -32,9 +34,11 @@ class WindowLevelSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.windowLevel = .aboveStatusBar
+            attributesWrapper.attributes.windowLevel = .normal
         case 1:
-            attributesWrapper.attributes.windowLevel = .belowStatusBar
+            attributesWrapper.attributes.windowLevel = .statusBar
+        case 2:
+            attributesWrapper.attributes.windowLevel = .alerts
         default:
             break
         }

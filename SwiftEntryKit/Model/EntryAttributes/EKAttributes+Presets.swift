@@ -17,19 +17,19 @@ public extension EKAttributes {
         var attributes = EKAttributes()
         attributes.positionConstraints = .full
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
-        attributes.windowLevel = .aboveStatusBar
+        attributes.windowLevel = .statusBar
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.popBehavior = .animated(animation: .translation)
         return attributes
     }
     
-    /** Float preset - The frame margined and safe area is left cleared */
+    /** Float preset - The frame is margined and the safe area is left cleared */
     public static var float: EKAttributes {
         var attributes = EKAttributes()
         attributes.positionConstraints = .float
         attributes.roundCorners = .all(radius: 10)
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: false)
-        attributes.windowLevel = .aboveStatusBar
+        attributes.windowLevel = .statusBar
         return attributes
     }
     
@@ -40,49 +40,49 @@ public extension EKAttributes {
         return attributes
     }
     
-    /** Preset for bottom float entry */
+    /** Preset for a bottom float entry */
     public static var bottomFloat: EKAttributes {
         var attributes = float
         attributes.position = .bottom
         return attributes
     }
     
-    /** Preset for bottom toast entry */
+    /** Preset for a bottom toast entry */
     public static var bottomToast: EKAttributes {
         var attributes = toast
         attributes.position = .bottom
         return attributes
     }
     
-    /** Preset for top toast entry */
+    /** Preset for a top toast entry */
     public static var topToast: EKAttributes {
         var attributes = toast
         attributes.position = .top
         return attributes
     }
     
-    /** Preset for top note entry */
+    /** Preset for a top note entry */
     public static var topNote: EKAttributes {
         var attributes = topToast
         attributes.scroll = .disabled
-        attributes.windowLevel = .belowStatusBar
+        attributes.windowLevel = .normal
         attributes.entryInteraction = .absorbTouches
         return attributes
     }
     
-    /** Preset for top note entry */
+    /** Preset for a bottom note entry */
     public static var bottomNote: EKAttributes {
         var attributes = bottomToast
         attributes.scroll = .disabled
-        attributes.windowLevel = .belowStatusBar
+        attributes.windowLevel = .normal
         attributes.entryInteraction = .absorbTouches
         return attributes
     }
     
-    /** Preset for status bar entry - appears on top of the status bar */
+    /** Preset for a status bar entry - appears on top of the status bar */
     public static var statusBar: EKAttributes {
         var attributes = topToast
-        attributes.windowLevel = .aboveStatusBar
+        attributes.windowLevel = .statusBar
         attributes.entryInteraction = .absorbTouches
         attributes.positionConstraints.safeArea = .overriden
         return attributes

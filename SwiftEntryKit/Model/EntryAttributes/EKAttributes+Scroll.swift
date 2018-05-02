@@ -9,8 +9,10 @@ import Foundation
 
 extension EKAttributes {
     
+    /** Describes the event of scroll user interaction */
     public enum Scroll {
     
+        /** Describes the event when the user leaves the entry after rubber-banding it - How the entry behaves */
         public struct PullbackAnimation {
             public var duration: TimeInterval
             public var damping: CGFloat
@@ -22,7 +24,7 @@ extension EKAttributes {
                 self.initialSpringVelocity = initialSpringVelocity
             }
             
-            /** The view is jolted when it's pulled back into the original position */
+            /** The entry is jolted when it's pulled back into the original position */
             public static var jolt: PullbackAnimation {
                 return PullbackAnimation(duration: 0.5, damping: 0.3, initialSpringVelocity: 10)
             }

@@ -9,8 +9,9 @@ import Foundation
 
 public extension EKAttributes {
     
+    /** Notification haptic feedback type. Adds an additional sensuous layer. Read more at UINotificationFeedbackType. Available from iOS 10, but you are not required to check the iOS version before using it. It's automatically handled by the kit.
+     */
     public enum NotificationHapticFeedback {
-        
         case success
         case warning
         case error

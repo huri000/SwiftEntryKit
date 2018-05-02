@@ -10,25 +10,30 @@ import UIKit
 
 public extension EKAttributes {
     
-    /** Describes the window level in which the entry would be presented */
+    /** Describes the window level in which the entry would be displayed */
     public enum WindowLevel {
         
-        /** One level above the status bar */
-        case aboveStatusBar
+        /** Above the alerts */
+        case alerts
         
-        /** One level below the status bar */
-        case belowStatusBar
+        /** Above the status bar */
+        case statusBar
+        
+        /** Above the application window */
+        case normal
         
         /** Custom level */
         case custom(level: UIWindowLevel)
         
-        /** Returns the raw value - the window level */
+        /** Returns the raw value - the window level itself */
         public var value: UIWindowLevel {
             switch self {
-            case .aboveStatusBar:
-                return UIWindowLevelStatusBar + 1
-            case .belowStatusBar:
-                return UIWindowLevelStatusBar - 1
+            case .alerts:
+                return UIWindowLevelAlert
+            case .statusBar:
+                return UIWindowLevelStatusBar
+            case .normal:
+                return UIWindowLevelNormal
             case .custom(level: let level):
                 return level
             }

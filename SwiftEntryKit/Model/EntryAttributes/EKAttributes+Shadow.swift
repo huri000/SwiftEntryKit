@@ -11,16 +11,21 @@ import UIKit
 
 public extension EKAttributes {
 
+    /** The shadow around the entry */
     public enum Shadow {
+        
+        /** No shadow */
         case none
+        
+        /** Shadow with value */
         case active(with: Value)
         
-        /** Shadow attributes */
+        /** The shadow properties */
         public struct Value {
-            public var radius: CGFloat
-            public var opacity: Float
-            public var color: UIColor
-            public var offset: CGSize
+            public let radius: CGFloat
+            public let opacity: Float
+            public let color: UIColor
+            public let offset: CGSize
             
             public init(color: UIColor = .black, opacity: Float, radius: CGFloat, offset: CGSize) {
                 self.color = color

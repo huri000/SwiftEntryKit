@@ -10,8 +10,10 @@ import UIKit
 
 public extension EKAttributes {
     
+    /** The background style property */
     public enum BackgroundStyle {
         
+        /** Gradient background style */
         public struct Gradient {
             public let colors: [UIColor]
             public let startPoint: CGPoint
@@ -24,10 +26,19 @@ public extension EKAttributes {
             }
         }
         
+        /** Visual Effect (Blurred) background style */
         case visualEffect(style: UIBlurEffectStyle)
+        
+        /** Color background style */
         case color(color: UIColor)
+        
+        /** Gradient background style */
         case gradient(gradient: Gradient)
+        
+        /** Image background style */
         case image(image: UIImage)
+        
+        /** Clear background style */
         case clear
     }
 }

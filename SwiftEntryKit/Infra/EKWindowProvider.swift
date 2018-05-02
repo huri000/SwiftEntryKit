@@ -86,10 +86,9 @@ public class EKWindowProvider {
         }
         entryWindow.windowLevel = attributes.windowLevel.value
         
-        // Configure the container with the message view inside
-        let containerView = EKContainerView()
-        containerView.content = EKContainerView.Content(view: messageView, attributes: attributes)
-        entryVC.configure(entryView: containerView, attributes: attributes)
+        let entryView = EKEntryView()
+        entryView.content = EKEntryView.Content(view: messageView, attributes: attributes)
+        entryVC.configure(newEntryView: entryView, attributes: attributes)
     }
     
     private func clean() {

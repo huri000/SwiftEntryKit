@@ -67,10 +67,12 @@ public extension EKAttributes {
             return verticalOffset > 0
         }
         
+        /** Returns a full entry (Toast-Like) */
         public static var full: PositionConstraints {
             return PositionConstraints(verticalOffset: 0, width: .offset(value: 0))
         }
         
+        /** Returns a floating entry (Float-Like) */
         public static var float: PositionConstraints {
             return PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
         }

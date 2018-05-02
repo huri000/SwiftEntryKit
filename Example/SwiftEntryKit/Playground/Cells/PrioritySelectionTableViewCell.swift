@@ -24,8 +24,6 @@ class PrioritySelectionTableViewCell: SelectionTableViewCell {
             segmentedControl.selectedSegmentIndex = 0
         case .high:
             segmentedControl.selectedSegmentIndex = 1
-        default:
-            break
         }
     }
     

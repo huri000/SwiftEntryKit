@@ -9,35 +9,21 @@
 Pod::Spec.new do |s|
   s.name = 'SwiftEntryKit'
   s.version = '0.1.1'
-  s.summary = 'Present notification entries inside your App'
+  s.summary = 'A simple banner and pop-up displayer for iOS. Written in Swift.'
   s.platform = :ios
   s.ios.deployment_target = '9.0'
   s.requires_arc = true
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-s.description = 'SwiftEntryKit offers you a simple way to present notification entries or popups inside your iOS application.'
-
+s.description      = <<-DESC
+SwiftEntryKit is a banner presenter library for iOS. It can be used to easily display pop-ups and notification-like views within your iOS apps. SwiftEntryKit is highly customizable but also offsers a bunch of beatiful presets that can be themed with your app fonts and colors.
+DESC
   s.homepage         = 'https://github.com/huri000/SwiftEntryKit'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Daniel Huri' => 'huri000@gmail.com' }
   s.source           = { :git => 'https://github.com/huri000/SwiftEntryKit.git', :tag => s.version.to_s }
-
   s.source_files = 'SwiftEntryKit/**/*'
-  
-  # s.resource_bundles = {
-  #   'SwiftEntryKit' => ['SwiftEntryKit/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
   s.dependency 'QuickLayout', '1.0.11'
-  
-  # s.dependency 'Quick', '1.2.0'
-  # s.dependency 'Nimble', '7.0.2'
+
 end

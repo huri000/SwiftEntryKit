@@ -10,6 +10,7 @@ import UIKit
 
 class EKRootViewController: UIViewController {
     
+    // MARK: Props
     private var lastAttributes: EKAttributes!
     private var tapGestureRecognizer: UITapGestureRecognizer!
     
@@ -19,8 +20,8 @@ class EKRootViewController: UIViewController {
         return EKWrapperView()
     }()
     
-    private var lastEntry: EKRubberBandView? {
-        return view.subviews.last as? EKRubberBandView
+    private var lastEntry: EKContentView? {
+        return view.subviews.last as? EKContentView
     }
     
     private var isResponsive: Bool = false {
@@ -47,8 +48,7 @@ class EKRootViewController: UIViewController {
     }
     
     // MARK: Setup
-    func configure(entryView: UIView, attributes: EKAttributes) {
-        
+    func configure(newEntryView: UIView, attributes: EKAttributes) {
         guard checkPriorityPrecedence(for: attributes) else {
             return
         }
@@ -57,14 +57,14 @@ class EKRootViewController: UIViewController {
 
         lastAttributes = attributes
                 
-        let entryScrollView = EKRubberBandView(withEntryDelegate: self)
-        view.addSubview(entryScrollView)
-        entryScrollView.setup(with: entryView, attributes: attributes)
+        let entryContentView = EKContentView(withEntryDelegate: self)
+        view.addSubview(entryContentView)
+        entryContentView.setup(with: newEntryView, attributes: attributes)
         
         isResponsive = attributes.screenInteraction.isResponsive
     }
     
-    
+    // Check priority precedence for a given entry
     private func checkPriorityPrecedence(for attributes: EKAttributes) -> Bool {
         guard let lastAttributes = lastAttributes else {
             return true
@@ -104,13 +104,13 @@ extension EKRootViewController {
             lastEntry?.animateOut(pushOut: false)
             fallthrough
         default:
-            lastAttributes.screenInteraction.customActions.forEach { $0() }
+            lastAttributes.screenInteraction.customTapActions.forEach { $0() }
         }
     }
 }
 
 // MARK: EntryScrollViewDelegate
-extension EKRootViewController: EntryScrollViewDelegate {
+extension EKRootViewController: EntryContentViewDelegate {
     
     func changeToActive(withAttributes attributes: EKAttributes) {
         changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)

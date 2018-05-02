@@ -1,5 +1,5 @@
 //
-//  EKContainerView.swift
+//  EKEntryView.swift
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 4/15/18.
@@ -9,7 +9,7 @@
 import UIKit
 import QuickLayout
 
-class EKContainerView: EKContentStyleView {
+class EKEntryView: EKStyleView {
     
     struct Content {
         public var view: UIView
@@ -33,7 +33,7 @@ class EKContainerView: EKContentStyleView {
         return content.attributes
     }
     
-    private let contentContainerView = EKContentStyleView()
+    private let contentContainerView = EKStyleView()
     private var contentView: UIView! {
         didSet {
             oldValue?.removeFromSuperview()

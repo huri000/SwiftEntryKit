@@ -1,11 +1,11 @@
 //
-//  EKContentStyleView.swift
+//  EKStyleView.swift
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 4/28/18.
 //
 
-class EKContentStyleView: UIView {
+class EKStyleView: UIView {
     
     private lazy var borderLayer: CAShapeLayer = {
         return CAShapeLayer()

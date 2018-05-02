@@ -9,6 +9,7 @@ import Foundation
 
 public extension EKAttributes {
  
+    /** The display priority of the entry - Determines whether is can be overriden by other entries */
     public enum DisplayPriority {
         
         /** High priority entries can be overriden by other high priority entries only. Normal priority entries are ignored while a high priority entry is being displayed. High priority entry overrides any other entry including another high priority one */

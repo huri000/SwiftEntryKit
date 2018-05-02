@@ -11,12 +11,20 @@ extension EKAttributes {
     
     /** Corner radius of the entry - Specifies the corners */
     public enum RoundCorners {
+        
+        /** *None* of the corners will be round */
         case none
+        
+        /** *All* of the corners will be round */
         case all(radius: CGFloat)
+        
+        /** Only the *top* left and right corners will be round */
         case top(radius: CGFloat)
+        
+        /** Only the *bottom* left and right corners will be round */
         case bottom(radius: CGFloat)
         
-        public var hasRoundCorners: Bool {
+        var hasRoundCorners: Bool {
             switch self {
             case .none:
                 return false
@@ -25,7 +33,7 @@ extension EKAttributes {
             }
         }
         
-        public var cornerValues: (value: UIRectCorner, radius: CGFloat)? {
+        var cornerValues: (value: UIRectCorner, radius: CGFloat)? {
             switch self {
             case .all(radius: let radius):
                 return (value: .allCorners, radius: radius)
@@ -39,12 +47,16 @@ extension EKAttributes {
         }
     }
     
-    /** Border of the entry */
+    /** The border around the entry */
     public enum Border {
+        
+        /** No border */
         case none
+        
+        /** Border wirh color and width */
         case value(color: UIColor, width: CGFloat)
         
-        public var hasBorder: Bool {
+        var hasBorder: Bool {
             switch self {
             case .none:
                 return false
@@ -53,7 +65,7 @@ extension EKAttributes {
             }
         }
         
-        public var borderValues: (color: UIColor, width: CGFloat)? {
+        var borderValues: (color: UIColor, width: CGFloat)? {
             switch self {
             case .value(color: let color, width: let width):
                 return(color: color, width: width)

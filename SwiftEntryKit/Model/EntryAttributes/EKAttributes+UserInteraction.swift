@@ -13,13 +13,23 @@ public extension EKAttributes {
     /** Describes the user interaction events that are triggered as the user taps the entry / screen */
     public struct UserInteraction {
         
+        /** Code that is executed when the user taps the entry / screen */
         public typealias Action = () -> ()
         
+        /** The default event that happens as the user interacts */
         public enum Default {
+            
+            /** Absorbs touches. The entry / screen does nothing (Swallows the touch) */
             case absorbTouches
+            
+            /** Touches delay the exit of the entry */
             case delayExit(by: TimeInterval)
+            
+            /** Taps dismiss the entry immediately */
             case dismissEntry
-            case forward // Pass the touch to the next responder
+            
+            /** Touches are forwarded to the lower window (In most cases it would be the application main window that will handle it */
+            case forward
         }
         
         var isResponsive: Bool {
@@ -40,26 +50,33 @@ public extension EKAttributes {
             }
         }
         
+        /** A default action that is executed when the entry or the screen are interacted by the user */
         public var defaultAction: Default
-        public var customActions: [Action]
         
-        public init(defaultAction: Default = .absorbTouches, customActions: [Action] = []) {
+        /** Additional actions that can be customized by the user */
+        public var customTapActions: [Action]
+        
+        public init(defaultAction: Default = .absorbTouches, customTapActions: [Action] = []) {
             self.defaultAction = defaultAction
-            self.customActions = customActions
+            self.customTapActions = customTapActions
         }
         
+        /** Dismiss action */
         public static var dismiss: UserInteraction {
             return UserInteraction(defaultAction: .dismissEntry)
         }
         
+        /** Forward action */
         public static var forward: UserInteraction {
             return UserInteraction(defaultAction: .forward)
         }
         
+        /** Absorb touches action */
         public static var absorbTouches: UserInteraction {
             return UserInteraction(defaultAction: .absorbTouches)
         }
         
+        /** Delay exit action */
         public static func delayExit(by delay: TimeInterval) -> UserInteraction {
             return UserInteraction(defaultAction: .delayExit(by: delay))
         }

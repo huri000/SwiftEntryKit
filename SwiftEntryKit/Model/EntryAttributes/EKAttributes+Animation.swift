@@ -8,12 +8,14 @@
 
 import UIKit
 
+// A protocol that describes an animation
 protocol EKAnimation {
     var delay: TimeInterval { get set }
     var duration: TimeInterval { get set }
     var spring: EKAttributes.Animation.Spring? { get set }
 }
 
+// A protocol that describes a range animation
 protocol EKRangeAnimation: EKAnimation {
     var start: CGFloat { get set }
     var end: CGFloat { get set }
@@ -21,8 +23,10 @@ protocol EKRangeAnimation: EKAnimation {
 
 public extension EKAttributes {
     
+    /** Describes an animation that can be performed on the entry */
     public struct Animation {
     
+        /** Describes properties for a spring animation that can be performed on the entry */
         public struct Spring {
             public let damping: CGFloat
             public let initialVelocity: CGFloat
@@ -33,6 +37,7 @@ public extension EKAttributes {
             }
         }
 
+        /** Describes an animation with range */
         public struct RangeAnimation: EKRangeAnimation {
             public var duration: TimeInterval
             public var delay: TimeInterval
@@ -49,6 +54,7 @@ public extension EKAttributes {
             }
         }
         
+        /** Describes translation animation */
         public struct Translate: EKAnimation {
             public var duration: TimeInterval
             public var delay: TimeInterval
@@ -61,9 +67,13 @@ public extension EKAttributes {
             }
         }
         
-        // Instance vars
+        /** Translation animation prop */
         public var translate: Translate?
+        
+        /** Scale animation prop */
         public var scale: RangeAnimation?
+        
+        /** Fade animation prop */
         public var fade: RangeAnimation?
         
         public var containsTranslation: Bool {
@@ -100,7 +110,6 @@ public extension EKAttributes {
             return Animation(translate: .init(duration: 0.3))
         }
         
-        // Init
         public init(translate: Translate? = nil, scale: RangeAnimation? = nil, fade: RangeAnimation? = nil) {
             self.translate = translate
             self.scale = scale

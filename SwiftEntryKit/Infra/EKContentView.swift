@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol EntryScrollViewDelegate: class {
+protocol EntryContentViewDelegate: class {
     func changeToActive(withAttributes attributes: EKAttributes)
     func changeToInactive(withAttributes attributes: EKAttributes)
 }
 
-class EKRubberBandView: UIView {
+class EKContentView: UIView {
     
     enum OutTranslation {
         case exit
@@ -24,7 +24,7 @@ class EKRubberBandView: UIView {
     // MARK: Props
     
     // Entry delegate
-    private weak var entryDelegate: EntryScrollViewDelegate!
+    private weak var entryDelegate: EntryContentViewDelegate!
     
     // Constraints and Offsets
     private var entranceOutConstraint: NSLayoutConstraint!
@@ -51,7 +51,7 @@ class EKRubberBandView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(withEntryDelegate entryDelegate: EntryScrollViewDelegate) {
+    init(withEntryDelegate entryDelegate: EntryContentViewDelegate) {
         self.entryDelegate = entryDelegate
         super.init(frame: .zero)
     }
@@ -388,19 +388,19 @@ class EKRubberBandView: UIView {
 }
 
 // MARK: Responds to user interactions (tap / pan / swipe / touches)
-extension EKRubberBandView {
+extension EKContentView {
     
     // Tap gesture handler
     @objc func tapGestureRecognized() {
         switch attributes.entryInteraction.defaultAction {
-        case .delayExit(by: _):
+        case .delayExit(by: _) where attributes.displayDuration.isFinite:
             scheduleAnimateOut()
         case .dismissEntry:
             animateOut(pushOut: false)
         default:
             break
         }
-        attributes.entryInteraction.customActions.forEach { $0() }
+        attributes.entryInteraction.customTapActions.forEach { $0() }
     }
     
     // Pan gesture handler
@@ -512,7 +512,7 @@ extension EKRubberBandView {
     }
     
     private func handleExitDelayIfNeeded(byPanState state: UIGestureRecognizerState) {
-        guard attributes.entryInteraction.isDelayExit else {
+        guard attributes.entryInteraction.isDelayExit && attributes.displayDuration.isFinite else {
             return
         }
         switch state {
@@ -528,13 +528,13 @@ extension EKRubberBandView {
     // MARK: UIResponder
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if attributes.entryInteraction.isDelayExit {
+        if attributes.entryInteraction.isDelayExit && attributes.displayDuration.isFinite {
             outDispatchWorkItem?.cancel()
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if attributes.entryInteraction.isDelayExit {
+        if attributes.entryInteraction.isDelayExit && attributes.displayDuration.isFinite {
             scheduleAnimateOut()
         }
     }
