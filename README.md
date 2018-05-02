@@ -95,7 +95,7 @@ Below are most of the attributes that can be modified:
 
 **Display Priority** - The display priority of the entry determines whether it can dismiss other entries or be dismissed by them.
 
-**Display Duration** - The display duration of the entry (Counted from the moment the entry is finished it's entrance animation).
+**Display Duration** - The display duration of the entry (Counted from the moment the entry has finished the entrance animation).
 
 **Position Constraints** - Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset.
 
@@ -124,25 +124,33 @@ Below are most of the attributes that can be modified:
 EKAttributes' interface is as follows:
 
 ```Swift
-public struct EKAttributes {
+public struct EKAttributes
+
+    // Display
     public var windowLevel: WindowLevel
     public var position: Position
-    public var displayPriority: DisplayPriority
+    public var displayPriority: DisplayPriority
     public var displayDuration: TimeInterval
     public var positionConstraints: PositionConstraints
-    public var entryBackground: BackgroundStyle
-    public var screenBackground: BackgroundStyle
+
+    // User Interaction
     public var screenInteraction: UserInteraction
     public var entryInteraction: UserInteraction
+    public var scroll: Scroll
+    public var hapticFeedbackType: NotificationHapticFeedback
+
+    // Theme & Style
+    public var entryBackground: BackgroundStyle
+    public var screenBackground: BackgroundStyle
     public var shadow: Shadow
     public var roundCorners: RoundCorners
     public var border: Border
+    public var statusBarStyle: UIStatusBarStyle!
+    
+    // Animations
     public var entranceAnimation: Animation
     public var exitAnimation: Animation
     public var popBehavior: PopBehavior
-    public var scroll: Scroll
-    public var generateHapticFeedback: Bool
-    public var statusBarStyle: UIStatusBarStyle!
 }
 ```
 
@@ -192,11 +200,19 @@ let customView = CustomView()
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
+### Swipe Out & Rubber Band - Demonstration
+
+Entries can be panned vertically (This ability can be enabled using the *scroll* attributes). 
+Thefore it's only natural that an entry can be dismissed using a swipe-like gesture.
+Entries behave like a rubber band once they are panned toward their opposite direction. Demonstration follows:
+
+
+
 ### How to deal with the screen Safe Area:
 
 *EKAttributes.PositionConstraints.SafeArea* may be used to override the safe area with the entry's content, or to fill the safe area with a background color (like [Toasts](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/toasts.gif) do), or even leave the safe area empty (Like [Floats](https://github.com/huri000/SwiftEntryKit/blob/master/Example/Assets/floats.gif) do).
 
-SwiftEntryKit supports iOS 11.x.y and is backward compatible with iOS 9.x.y and 10.x.y, so the status bar area is treated the same as the safe area in earlier iOS versions.
+SwiftEntryKit supports iOS 11.x.y and is backward compatible to iOS 9.x.y, so the status bar area is treated as same as the safe area in earlier iOS versions.
 
 ### How to deal with orientation change:
 
