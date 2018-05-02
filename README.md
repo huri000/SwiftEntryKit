@@ -75,7 +75,7 @@ Screen | Top Float | Bottom Float
 - Xcode 9 or any higher version.
 - Swift 4.0 or any higher version.
 - The library has not been tested with iOS 8 or a lower version.
-- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout). [QuickLayout](https://github.com/huri000/QuickLayout) is a lightwight library written in Swift that is used to easily layout views programmatically.
+- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) - A lightwight library written in Swift that is used to easily layout views programmatically.
 
 ## Installation
 
