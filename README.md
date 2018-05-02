@@ -206,7 +206,9 @@ Entries can be panned vertically (This ability can be enabled using the *scroll*
 Thefore it's only natural that an entry can be dismissed using a swipe-like gesture.
 Entries behave like a rubber band once they are panned toward their opposite direction. Demonstration follows:
 
-
+Swipe | Stretch
+--- | ---
+![swipe_example](https://github.com/huri000/assets/blob/master/swift-entrykit/swipe.gif) | ![band_example](https://github.com/huri000/assets/blob/master/swift-entrykit/rubber_band.gif)
 
 ### How to deal with the screen Safe Area:
 
