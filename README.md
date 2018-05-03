@@ -15,9 +15,10 @@
   * [Entry Attributes](#entry-attributes)
   * [Presets Usage Example](#presets-usage-example)
   * [Custom View Usage Example](#custom-view-usage-example)
-  * [Swipe and Rubber Banding](#swipe-and-rubber-banding)
-  * [How to deal with the screen Safe Area](#how-to-deal-with-the-screen-safe-area)
-  * [How to deal with orientation change](#how-to-deal-with-orientation-change)
+  * [Dismissing an Entry](#dismissing-an-entry)
+  * [Swiping and Rubber Banding](#swiping-and-rubber-banding)
+  * [Dealing with safe area](#dealing-with-safe-area)
+  * [Dealing with orientation change](#dealing-with-orientation-change)
 * [Known Issues](#known-issues)
 * [Contributing](#contributing)
 * [Author](#author)
@@ -100,6 +101,7 @@ And then, just call:
 ```Swift
 SwiftEntryKit.display(entry: customView, using attributes: attributes)
 ```
+The kit will install the EKWindow instance and present of the entry for you.
 
 ### Entry Attributes:
 
@@ -354,6 +356,13 @@ attributes.popBehavior = .overriden
 #### Status Bar Style
 The status bar style can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
 
+Setting the status bar style is fairly simple
+```Swift
+attributes.statusBarStyle = .default
+```
+In case there is an already presenting entry with lower/equal display priority, the status bar will change it's style
+When the entry is removed the status bar gets it's initial style back.
+
 EKAttributes' interface is as follows:
 
 ```Swift
@@ -431,7 +440,14 @@ let customView = CustomView()
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
-### Swipe and Rubber Banding
+### Dismissing an Entry
+You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, likewise:
+```Swift
+SwiftEntryKit.dismiss()
+```
+This will dismiss the entry animatedly using it's *exitAnimation* attribute and on comletion it'll remove the window as well.
+
+### Swiping and Rubber Banding
 Entries can be panned vertically (This ability can be enabled using the *scroll* attributes). 
 Thefore it's only natural that an entry can be dismissed using a swipe-like gesture.
 
@@ -451,12 +467,12 @@ Swipe | Jolt
 --- | ---
 ![swipe_example](https://github.com/huri000/assets/blob/master/swift-entrykit/swipe.gif) | ![band_example](https://github.com/huri000/assets/blob/master/swift-entrykit/rubber_band.gif)
 
-### How to deal with the screen Safe Area:
+### Dealing with safe area:
 *EKAttributes.PositionConstraints.SafeArea* may be used to override the safe area with the entry's content, or to fill the safe area with a background color (like [Toasts](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) do), or even leave the safe area empty (Like [Floats](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) do).
 
 SwiftEntryKit supports iOS 11.x.y and is backward compatible to iOS 9.x.y, so the status bar area is treated as same as the safe area in earlier iOS versions.
 
-### How to deal with orientation change:
+### Dealing with orientation change:
 SwiftEntryKit identifies orientation changes and adjust the entry's layout to those changes.
 Therefore, if you wish to limit the entries's width, you are able to do so by giving it a maximum value, likewise:
 
