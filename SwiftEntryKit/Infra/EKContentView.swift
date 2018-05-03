@@ -85,9 +85,7 @@ class EKContentView: UIView {
     private func setupInitialPosition() {
         
         // Determine the layout entrance type according to the entry type
-        let screenInAnchor: NSLayoutAttribute
         let messageInAnchor: NSLayoutAttribute
-        
         let screenOutAnchor: NSLayoutAttribute
         let messageOutAnchor: NSLayoutAttribute
         inOffset = 0
@@ -113,8 +111,6 @@ class EKContentView: UIView {
         case .top:
             screenOutAnchor = .top
             messageOutAnchor = .bottom
-
-            screenInAnchor = .top
             messageInAnchor = .top
             
             inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
@@ -123,12 +119,9 @@ class EKContentView: UIView {
             outOffset = -safeAreaInsets.top
             
             spacerView?.layout(.bottom, to: .top, of: self)
-            
         case .bottom:
             screenOutAnchor = .bottom
             messageOutAnchor = .top
-            
-            screenInAnchor = .bottom
             messageInAnchor = .bottom
             
             inOffset = -safeAreaInsets.bottom - attributes.positionConstraints.verticalOffset
@@ -137,8 +130,6 @@ class EKContentView: UIView {
         case .center:
             screenOutAnchor = .bottom
             messageOutAnchor = .top
-            
-            screenInAnchor = .centerY
             messageInAnchor = .centerY
         }
         
@@ -179,37 +170,37 @@ class EKContentView: UIView {
         }
     }
     
-    // Setup layout constraints according to EKAttributes.PositionConstraints
-    private func setupLayoutConstraints() {
-        
-        layoutToSuperview(.centerX)
+    private func setupSize() {
         
         // Layout the scroll view horizontally inside the screen
-        switch attributes.positionConstraints.width {
+        switch attributes.positionConstraints.size.width {
         case .offset(value: let offset):
             layoutToSuperview(axis: .horizontally, offset: offset, priority: .must)
         case .ratio(value: let ratio):
             layoutToSuperview(.width, ratio: ratio, priority: .must)
         case .constant(value: let constant):
             set(.width, of: constant, priority: .must)
-        case .unspecified:
+        case .intrinsic:
             break
         }
         
         // Layout the scroll view vertically inside the screen
-        switch attributes.positionConstraints.height {
+        switch attributes.positionConstraints.size.height {
         case .offset(value: let offset):
-            layoutToSuperview(.height, offset: -offset)
+            layoutToSuperview(.height, offset: -offset * 2)
         case .ratio(value: let ratio):
             layoutToSuperview(.height, ratio: ratio)
         case .constant(value: let constant):
             set(.height, of: constant)
-        case .unspecified:
+        case .intrinsic:
             break
         }
+    }
+    
+    private func setupMaxSize() {
         
         // Layout the scroll view according to the maximum width (if given any)
-        switch attributes.positionConstraints.maximumWidth {
+        switch attributes.positionConstraints.maxSize.width {
         case .offset(value: let offset):
             layout(to: .left, of: superview!, relation: .greaterThanOrEqual, offset: offset)
             layout(to: .right, of: superview!, relation: .lessThanOrEqual, offset: -offset)
@@ -219,9 +210,29 @@ class EKContentView: UIView {
         case .constant(value: let constant):
             set(.width, of: constant, relation: .lessThanOrEqual)
             break
-        case .unspecified:
+        case .intrinsic:
             break
         }
+        
+        // Layout the scroll view according to the maximum width (if given any)
+        switch attributes.positionConstraints.maxSize.height {
+        case .offset(value: let offset):
+            layout(to: .height, of: superview!, relation: .lessThanOrEqual, offset: -offset * 2)
+        case .ratio(value: let ratio):
+            layout(to: .height, of: superview!, relation: .lessThanOrEqual, ratio: ratio)
+        case .constant(value: let constant):
+            set(.height, of: constant, relation: .lessThanOrEqual)
+            break
+        case .intrinsic:
+            break
+        }
+    }
+    
+    // Setup layout constraints according to EKAttributes.PositionConstraints
+    private func setupLayoutConstraints() {
+        layoutToSuperview(.centerX)
+        setupSize()
+        setupMaxSize()
     }
 
     // Setup general attributes
@@ -261,7 +272,6 @@ class EKContentView: UIView {
         let delay = attributes.entranceAnimation.totalDuration + (delay ?? attributes.displayDuration)
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: outDispatchWorkItem)
     }
-    
     
     // Animate out
     func animateOut(pushOut: Bool) {

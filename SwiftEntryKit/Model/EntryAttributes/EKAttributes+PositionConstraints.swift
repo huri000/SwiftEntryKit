@@ -32,35 +32,55 @@ public extension EKAttributes {
             }
         }
         
-        /** Describes the width constraint of the entry */
-        public enum Edge {
+        /** Describes the size of the entry */
+        public struct Size {
             
-            /** Ratio constraint to screen width */
-            case ratio(value: CGFloat)
+            /** Describes a width constraint */
+            public let width: Edge
             
-            /** Offset from each side of the screen */
-            case offset(value: CGFloat)
+            /** Describes a height constraint */
+            public let height: Edge
             
-            /** Constant width */
-            case constant(value: CGFloat)
+            public init(width: Edge, height: Edge) {
+                self.width = width
+                self.height = height
+            }
             
-            /** Unspecified maximum width */
-            case unspecified
+            public static var defaultMaxSize: Size {
+                return Size(width: .intrinsic, height: .intrinsic)
+            }
+            
+            public static var defaultSize: Size {
+                return Size(width: .offset(value: 0), height: .intrinsic)
+            }
         }
         
-        /** The maximum width constraint of the entry */
-        public var maximumWidth: Edge
-
-        /** The width constraint of the entry */
-        public var width: Edge
+        /** Describes an edge constraint of the entry */
+        public enum Edge {
+            
+            /** Ratio constraint to screen edge */
+            case ratio(value: CGFloat)
+            
+            /** Offset from each edge of the screen */
+            case offset(value: CGFloat)
+            
+            /** Constant edge length */
+            case constant(value: CGFloat)
+            
+            /** Unspecified edge length */
+            case intrinsic
+        }
         
-        /** The height constraint of the entry */
-        public var height: Edge
+        /** The size of the entry */
+        public var size: Size
+        
+        /** The maximum size of the entry */
+        public var maxSize: Size
         
         /** The vertical offset from the top or bottom anchor */
         public var verticalOffset: CGFloat
         
-        /** Can be used to present content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
+        /** Can be used to display the content outside the safe area margins such as on the notch of the iPhone X or the status bar itself. */
         public var safeArea = SafeArea.empty(fillSafeArea: false)
         
         public var hasVerticalOffset: Bool {
@@ -69,19 +89,18 @@ public extension EKAttributes {
         
         /** Returns a full entry (Toast-Like) */
         public static var full: PositionConstraints {
-            return PositionConstraints(verticalOffset: 0, width: .offset(value: 0))
+            return PositionConstraints(verticalOffset: 0, size: .defaultSize)
         }
         
         /** Returns a floating entry (Float-Like) */
         public static var float: PositionConstraints {
-            return PositionConstraints(verticalOffset: 10, width: .offset(value: 20))
+            return PositionConstraints(verticalOffset: 10, size: .init(width: .offset(value: 20), height: .intrinsic))
         }
         
-        public init(verticalOffset: CGFloat = 0, width: Edge = .offset(value: 0), height: Edge = .unspecified, maximumWidth: Edge = .unspecified) {
+        public init(verticalOffset: CGFloat = 0, size: Size = .defaultSize, maxSize: Size = .defaultMaxSize) {
             self.verticalOffset = verticalOffset
-            self.width = width
-            self.height = height
-            self.maximumWidth = maximumWidth
+            self.size = size
+            self.maxSize = .defaultMaxSize
         }
     }
 }
