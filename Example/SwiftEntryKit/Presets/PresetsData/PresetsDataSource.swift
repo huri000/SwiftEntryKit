@@ -47,7 +47,7 @@ struct PresetsDataSource {
         var attributes = EKAttributes.bottomFloat
         attributes.displayDuration = .infinity
         attributes.entryBackground = .color(color: .white)
-        attributes.screenBackground = .color(color: .dimmedBackground)
+        attributes.screenBackground = .color(color: .dimmedLightBackground)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
@@ -220,6 +220,30 @@ struct PresetsDataSource {
         customs.append(description)
         
         // Preset II
+        attributes = EKAttributes.centerFloat
+        attributes.displayDuration = .infinity
+        attributes.entryBackground = .gradient(gradient: .init(colors: [UIColor(rgb: 0xfffbd5), UIColor(rgb: 0xb20a2c)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        attributes.screenBackground = .color(color: .dimmedDarkBackground)
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
+        attributes.screenInteraction = .dismiss
+        attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        attributes.roundCorners = .all(radius: 8)
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.7, spring: .init(damping: 0.7, initialVelocity: 0)),
+                                             scale: .init(from: 0.7, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.2))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
+        attributes.positionConstraints.width = .offset(value: 20)
+        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        attributes.statusBarStyle = .default
+        descriptionString = "Customized pop up with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
+        descriptionThumb = ThumbDesc.bottomPopup.rawValue
+        description = .init(with: attributes, title: "Pop Up II", description: descriptionString, thumb: descriptionThumb)
+        customs.append(description)
+        
+        
+        // Preset III
+        attributes = bottomAlertAttributes
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 1, initialVelocity: 0)))
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.LightPink.first, EKColor.LightPink.last], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
@@ -228,10 +252,10 @@ struct PresetsDataSource {
         attributes.roundCorners = .top(radius: 20)
         descriptionString = "Customized pop up with top round corners. Strectched to the width of the screen. It has a button that receives an action."
         descriptionThumb = ThumbDesc.bottomPopup.rawValue
-        description = .init(with: attributes, title: "Pop Up II", description: descriptionString, thumb: descriptionThumb)
+        description = .init(with: attributes, title: "Pop Up III", description: descriptionString, thumb: descriptionThumb)
         customs.append(description)
         
-        // Preset III
+        // Preset IV
         attributes = .bottomFloat
         attributes.displayDuration = 3
         attributes.screenBackground = .clear
@@ -259,12 +283,12 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "View From Nib", description: descriptionString, thumb: descriptionThumb)
         customs.append(description)
         
-        // Preset IV
+        // Preset V
         attributes = .topFloat
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-        attributes.screenBackground = .color(color: .dimmedBackground)
+        attributes.screenBackground = .color(color: .dimmedLightBackground)
         attributes.entryBackground = .color(color: .white)
         attributes.entranceAnimation = .init(translate: .init(duration: 0.7, spring: .init(damping: 1, initialVelocity: 0)), scale: .init(from: 0.6, to: 1, duration: 0.7), fade: .init(from: 0.8, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.7, duration: 0.3), fade: .init(from: 1, to: 0, duration: 0.3))            

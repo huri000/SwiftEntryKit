@@ -85,8 +85,11 @@ class EKContentView: UIView {
     private func setupInitialPosition() {
         
         // Determine the layout entrance type according to the entry type
-        let messageAnchorInSuperview: NSLayoutAttribute
-        let messageTopInSuperview: NSLayoutAttribute
+        let screenInAnchor: NSLayoutAttribute
+        let messageInAnchor: NSLayoutAttribute
+        
+        let screenOutAnchor: NSLayoutAttribute
+        let messageOutAnchor: NSLayoutAttribute
         inOffset = 0
         var outOffset: CGFloat = 0
         
@@ -97,7 +100,7 @@ class EKContentView: UIView {
         let safeAreaInsets = EKWindowProvider.safeAreaInsets
         let overrideSafeArea = attributes.positionConstraints.safeArea.isOverriden
         
-        if !overrideSafeArea && safeAreaInsets.hasVerticalInsets {
+        if !overrideSafeArea && safeAreaInsets.hasVerticalInsets && !attributes.position.isCenter {
             spacerView = UIView()
             addSubview(spacerView)
             spacerView.set(.height, of: safeAreaInsets.top)
@@ -108,8 +111,11 @@ class EKContentView: UIView {
         
         switch attributes.position {
         case .top:
-            messageAnchorInSuperview = .top
-            messageTopInSuperview = .bottom
+            screenOutAnchor = .top
+            messageOutAnchor = .bottom
+
+            screenInAnchor = .top
+            messageInAnchor = .top
             
             inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
 
@@ -119,12 +125,21 @@ class EKContentView: UIView {
             spacerView?.layout(.bottom, to: .top, of: self)
             
         case .bottom:
-            messageAnchorInSuperview = .bottom
-            messageTopInSuperview = .top
+            screenOutAnchor = .bottom
+            messageOutAnchor = .top
+            
+            screenInAnchor = .bottom
+            messageInAnchor = .bottom
             
             inOffset = -safeAreaInsets.bottom - attributes.positionConstraints.verticalOffset
             
             spacerView?.layout(.top, to: .bottom, of: self)
+        case .center:
+            screenOutAnchor = .bottom
+            messageOutAnchor = .top
+            
+            screenInAnchor = .centerY
+            messageInAnchor = .centerY
         }
         
         // Layout the content view inside the scroll view
@@ -136,9 +151,9 @@ class EKContentView: UIView {
         let setupOutConstraint = { (animation: EKAttributes.Animation, priority: UILayoutPriority) -> NSLayoutConstraint in
             let constraint: NSLayoutConstraint
             if animation.containsTranslation {
-                constraint = self.layout(messageTopInSuperview, to: messageAnchorInSuperview, of: self.superview!, offset: outOffset, priority: priority)!
+                constraint = self.layout(messageOutAnchor, to: screenOutAnchor, of: self.superview!, offset: outOffset, priority: priority)!
             } else {
-                constraint = self.layout(to: messageAnchorInSuperview, of: self.superview!, offset: self.inOffset, priority: priority)!
+                constraint = self.layout(to: messageInAnchor, of: self.superview!, offset: self.inOffset, priority: priority)!
             }
             return constraint
         }
@@ -146,19 +161,20 @@ class EKContentView: UIView {
         if case .animated(animation: let animation) = attributes.popBehavior {
             popOutConstraint = setupOutConstraint(animation, .defaultLow)
         } else {
-            popOutConstraint = layout(to: messageAnchorInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)!
+            popOutConstraint = layout(to: messageInAnchor, of: superview!, offset: inOffset, priority: .defaultLow)!
         }
         
         // Set position constraints
         entranceOutConstraint = setupOutConstraint(attributes.entranceAnimation, .must)
         exitOutConstraint = setupOutConstraint(attributes.exitAnimation, .defaultLow)
-        inConstraint = layout(to: messageAnchorInSuperview, of: superview!, offset: inOffset, priority: .defaultLow)
-        outConstraint = layout(messageTopInSuperview, to: messageAnchorInSuperview, of: superview!, offset: outOffset, priority: .defaultLow)
+        inConstraint = layout(to: messageInAnchor, of: superview!, offset: inOffset, priority: .defaultLow)
+        outConstraint = layout(messageOutAnchor, to: screenOutAnchor, of: superview!, offset: outOffset, priority: .defaultLow)
 
         totalTranslation = inOffset
-        if attributes.position.isTop {
+        switch attributes.position {
+        case .top:
             verticalLimit = inOffset
-        } else {
+        case .bottom, .center:
             verticalLimit = UIScreen.main.bounds.height + inOffset
         }
     }

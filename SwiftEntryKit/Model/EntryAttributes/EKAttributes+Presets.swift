@@ -47,6 +47,13 @@ public extension EKAttributes {
         return attributes
     }
     
+    /** Preset for a center float entry */
+    public static var centerFloat: EKAttributes {
+        var attributes = float
+        attributes.position = .center
+        return attributes
+    }
+    
     /** Preset for a bottom toast entry */
     public static var bottomToast: EKAttributes {
         var attributes = toast

@@ -245,8 +245,10 @@ extension PresetsViewController {
         case 1:
             showLightAwesomePopupMessage(attributes: attributes)
         case 2:
-            showCustomNibView(attributes: attributes)
+            showLightAwesomePopupMessage(attributes: attributes)
         case 3:
+            showCustomNibView(attributes: attributes)
+        case 4:
             showDynamicMessage(attributes: attributes)
         default:
             break

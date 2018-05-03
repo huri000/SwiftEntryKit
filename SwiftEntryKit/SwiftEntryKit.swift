@@ -7,11 +7,12 @@
 
 import Foundation
 
-/** A stateless, threadsafe class component that contains the display and the dismissal logic of entries.
+/**
+ A stateless, threadsafe entry point that contains the display and the dismissal logic of entries.
  */
 public final class SwiftEntryKit {
     
-    // Cannot be instantiated / Inherited
+    // Cannot be instantiated or inherited.
     private init() {}
     
     /**
@@ -50,7 +51,7 @@ public final class SwiftEntryKit {
         }
     }
     
-    // A Precaution: Executes a UI action on the main thread
+    // A Precaution: Executes a UI action on the main thread, thus letting any of the class methods of SwiftEntryKit to be invokes even from a background thread.
     private class func executeUIAction(_ action: @escaping () -> ()) {
         if Thread.isMainThread {
             action()
