@@ -13,7 +13,13 @@ class PlaygroundViewController: UIViewController {
     
     private let tableView = UITableView()
     
-    private let attributesWrapper = EntryAttributeWrapper(with: EKAttributes())
+    private lazy var attributesWrapper: EntryAttributeWrapper = {
+        var attributes = EKAttributes()
+        attributes.positionConstraints = .full
+        attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
+        attributes.entryBackground = .visualEffect(style: .light)
+        return EntryAttributeWrapper(with: attributes)
+    }()
     
     struct Cells {
         
@@ -71,7 +77,7 @@ class PlaygroundViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func play() {
-        let title = EKProperty.LabelContent(text: "TEST!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .black))
+        let title = EKProperty.LabelContent(text: "Hi there!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .black))
         let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .black))
         let time = EKProperty.LabelContent(text: "12:00", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .black))
         let image = UIImage(named: "ic_info_outline")!
