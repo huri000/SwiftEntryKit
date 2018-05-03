@@ -12,9 +12,10 @@
 * **[Requirements](#requirements)**
 * **[Installation](#installation)**
 * **[Usage](#usage)**
-  * [EKAttributes](#ekattributes)
+  * [Entry Attributes](#entry-attributes)
   * [Presets Usage Example](#presets-usage-example)
   * [Custom View Usage Example](#custom-view-usage-example)
+  * [Swipe and Rubber Banding](#swipe-and-rubber-banding)
   * [How to deal with the screen Safe Area](#how-to-deal-with-the-screen-safe-area)
   * [How to deal with orientation change](#how-to-deal-with-orientation-change)
 * [Known Issues](#known-issues)
@@ -100,7 +101,7 @@ And then, just call:
 SwiftEntryKit.display(entry: customView, using attributes: attributes)
 ```
 
-### EKAttributes:
+### Entry Attributes:
 
 *EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
@@ -129,7 +130,7 @@ attributes.position = .top
 ```
 
 #### Display Priority 
-The display priority of the entry determines whether it dismiss other entries or be dismissed by them. 
+The display priority of the entry determines whether it dismisses other entries or be dismissed by them. 
 An entry can be dismissed only by an entry with an equal or a higher display priority.
 
 ```Swift
@@ -193,27 +194,165 @@ Vertical Offset - An additional offset that can be applied to the entry (Other t
 attributes.positionConstraints.verticalOffset = 10
 ```
 
-**Background Style** - The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
+#### User Interaction
+The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways:
 
-**User Interaction** - The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways, such as: dismiss the entry, be ignored, pass the touch forward to the lower level window, and more.
+An interaction (Any touch whatsoever) with the entry delays it's exit by 3s:
+```Swift
+attributes.entryInteraction = .delayExit(by: 3)
+```
 
-**Shadow** - The shadow that surrounds the entry.
+A tap on the entry / screen dismisses it immediately:
+```Swift
+attributes.entryInteraction = .dismiss
+attributes.screenInteraction = .dismiss
+```
 
-**Round Corners** - Round corners around the entry.
+A tap on the entry is swallowed (ignored):
+```Swift
+attributes.entryInteraction = .absorbTouches
+```
 
-**Border** - The border around the entry.
+A tap on the screen is forwarded to the lower level window, in most cases the receiver will be the application window.
+This is very useful when you want to display an unintrusive content like banners and push notification entries.
+```Swift
+attributes.screenInteraction = .forward
+```
 
-**Entrance Animation** - Describes how the entry animates into the screen.
+Pass additional actions that are invokes whe nthe user taps the entry:
+```Swift
+let action = {
+    // Do something useful
+}
+attributes.customTapActions.append(action)
+```
 
-**Exit Animation** - Describes how the entry animates out of the screen.
+#### Scroll Behavior
+Describes the entry behavior when it's being scrolled, that is, dismissal by a swipe gesture and a rubber band effect much similar to a UIScrollView.
 
-**Pop Behavior** - Describes the entry behavior when it's being popped (dismissed by an entry with equal / higher display-priority.
+Disable the pan and swipe gestures on the entry:
+```Swift
+attributes.scroll = .disabled
+```
 
-**Scroll Behavior** - Describes the entry behavior when it's being scrolled, that is, dismissal by a swipe gesture and a rubber band effect similar to a UIScrollView.
+Enable swipe and stretch and pullback with jolt effect:
+```Swift
+attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+```
 
-**[Haptic Feedback](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/feedback/)** - The device can produce a haptic feedback, thus adding an additional sensory depth to each entry.
+Enable swipe and stretch and pullback with an ease-out effect:
+```Swift
+attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
+```
 
-**Status Bar Style** - The status bar style can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+Enable swipe but disable stretch:
+```Swift
+attributes.scroll = .edgeCrossingDisabled(swipeable: true)
+```
+
+#### [Haptic Feedback](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/feedback/)
+The device can produce a haptic feedback, thus adding an additional sensory depth to each entry.
+
+#### Background Style
+The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
+
+The default value is *.clear*. This example implies clear background for both the entry and the screen:
+```Swift
+attributes.entryBackground = .clear
+attributes.screenBackground = .clear
+```
+
+Colored entry background and dimmed screen background:
+```Swift
+attributes.entryBackground = .color(color: .white)
+attributes.screenBackground = .color(color: UIColor(white: 0.5, alpha: 0.5))
+```
+
+Gradient entry background (diagonal vector):
+```Swift
+let colors: [UIColor] = [.red, .green, .blue]
+attributes.entryBackground = .gradient(gradient: .init(colors: colors, startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+```
+
+Visual Effect entry background:
+```Swift
+attributes.entryBackground = .visualEffect(style: .light)
+```
+
+#### Shadow
+The shadow that surrounds the entry.
+
+Enable shadow around the entry:
+```Swift
+attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero))
+```
+
+Disable shadow around the entry:
+```Swift
+attributes.shadow = .none
+```
+
+#### Round Corners
+Round corners around the entry.
+
+Only top left and right corners with radius of 10:
+```Swift
+attributes.roundCorners = .top(radius: 10)
+```
+
+Only bottom left and right corners with radius of 10:
+```Swift
+attributes.roundCorners = .bottom(radius: 10)
+```
+
+All corners with radius of 10:
+```Swift
+attributes.roundCorners = .all(radius: 10)
+```
+
+No round corners:
+```Swift
+attributes.roundCorners = .none
+```
+
+#### Border
+The border around the entry.
+
+Add a black border with thickness of 0.5pts:
+```Swift
+attributes.border = .value(color: .black, width: 0.5)
+```
+
+No border:
+```Swift
+attributes.border = .none
+```
+
+#### Animations
+Describes how the entry animates into and out of the screen. Each animation object can have 3 types of animations at the same time. You can combine animation to a complex one.
+
+Example for a complex entrance animation that contains translation of the entry using spring animation, scale in and even fade in.
+```Swift
+attributes.entranceAnimation = .init(
+                 translate: .init(duration: 0.7, spring: .init(damping: 1, initialVelocity: 0)), 
+                 scale: .init(from: 0.6, to: 1, duration: 0.7), 
+                 fade: .init(from: 0.8, to: 1, duration: 0.3))
+```
+#### Pop Behavior
+Describes the entry behavior when it's being popped (dismissed by an entry with equal / higher display-priority.
+
+The entry is being popped animatedly:
+```Swift
+attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
+```
+
+The entry is being overriden (Disappears promptly):
+```Swift
+attributes.popBehavior = .overriden
+```
+
+#### Status Bar Style
+The status bar style can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
 
 EKAttributes' interface is as follows:
 
@@ -292,8 +431,7 @@ let customView = CustomView()
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
-### Swipe Out & Rubber Band - Demonstration
-
+### Swipe and Rubber Banding
 Entries can be panned vertically (This ability can be enabled using the *scroll* attributes). 
 Thefore it's only natural that an entry can be dismissed using a swipe-like gesture.
 
@@ -314,13 +452,11 @@ Swipe | Jolt
 ![swipe_example](https://github.com/huri000/assets/blob/master/swift-entrykit/swipe.gif) | ![band_example](https://github.com/huri000/assets/blob/master/swift-entrykit/rubber_band.gif)
 
 ### How to deal with the screen Safe Area:
-
 *EKAttributes.PositionConstraints.SafeArea* may be used to override the safe area with the entry's content, or to fill the safe area with a background color (like [Toasts](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) do), or even leave the safe area empty (Like [Floats](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) do).
 
 SwiftEntryKit supports iOS 11.x.y and is backward compatible to iOS 9.x.y, so the status bar area is treated as same as the safe area in earlier iOS versions.
 
 ### How to deal with orientation change:
-
 SwiftEntryKit identifies orientation changes and adjust the entry's layout to those changes.
 Therefore, if you wish to limit the entries's width, you are able to do so by giving it a maximum value, likewise:
 
