@@ -81,6 +81,25 @@ SwiftEntryKit is still WIP and will be formally released very soon.
 
 ## Usage
 
+No setup is needed! Each time you wish to display an entry, just create your view and initialize an EKAttributes struct, likewise:
+```Swift
+// Customized view
+let customView = SomeCustomView()
+/*
+Do some customization on customView
+*/
+
+// Attributes struct that describes the display, style, user interaction and animations of customView.
+let attributes = EKAttributes()
+/*
+Adjust preferable attributes
+*/
+```
+And then, just call:
+```Swift
+SwiftEntryKit.display(entry: customView, using attributes: attributes)
+```
+
 ### EKAttributes:
 
 *EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
@@ -183,10 +202,8 @@ let attributes = EKAttributes.topToast
 // Set it's background to white
 attributes.entryBackground = .color(color: .white)
 
-// Animate in with 0.3s duration using translation and scale
-attributes.entranceAnimation = .init(duration: 0.3, types: [.translate, .scale(from: 0.5, to: 1)])
-
-// Animate out using translation only
+// Animate in and out using default translation
+attributes.entranceAnimation = .translation
 attributes.exitAnimation = .translation
 
 let customView = CustomView()
@@ -194,7 +211,7 @@ let customView = CustomView()
 ... Customize the view as you like ...
 */
 
-// Use class method of SwiftEntryKit to display the view using the desired attributes
+// Display the view with the configuration
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
@@ -202,9 +219,20 @@ SwiftEntryKit.display(entry: customView, using: attributes)
 
 Entries can be panned vertically (This ability can be enabled using the *scroll* attributes). 
 Thefore it's only natural that an entry can be dismissed using a swipe-like gesture.
-Entries behave like a rubber band once they are panned toward their opposite direction. Demonstration follows:
 
-Swipe | Stretch
+Enable swipe gesture. When the swipe gesture fails (doesn't pass the velocity threshold) ease it back.
+```Swift
+attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
+```
+
+Enable swipe gesture. When the swipe gesture fails throw it back out with a jolt.
+```Swift
+attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+```
+
+The *PullbackAnimation* values (duration, damping & initialSpringVelocity) can be customized as well.
+
+Swipe | Jolt
 --- | ---
 ![swipe_example](https://github.com/huri000/assets/blob/master/swift-entrykit/swipe.gif) | ![band_example](https://github.com/huri000/assets/blob/master/swift-entrykit/rubber_band.gif)
 
