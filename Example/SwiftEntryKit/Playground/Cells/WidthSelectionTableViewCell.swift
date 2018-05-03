@@ -18,7 +18,7 @@ class WidthSelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        switch attributesWrapper.attributes.positionConstraints.width {
+        switch attributesWrapper.attributes.positionConstraints.size.width {
         case .offset(value: let value):
             if value == 0 {
                 segmentedControl.selectedSegmentIndex = 0
@@ -35,11 +35,11 @@ class WidthSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.positionConstraints.width = .offset(value: 0)
+            attributesWrapper.attributes.positionConstraints.size.width = .offset(value: 0)
         case 1:
-            attributesWrapper.attributes.positionConstraints.width = .offset(value: 20)
+            attributesWrapper.attributes.positionConstraints.size.width = .offset(value: 20)
         case 2:
-            attributesWrapper.attributes.positionConstraints.width = .ratio(value: 0.9)
+            attributesWrapper.attributes.positionConstraints.size.width = .ratio(value: 0.9)
         default:
             break
         }

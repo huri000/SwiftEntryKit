@@ -18,8 +18,8 @@ class HeightSelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        switch attributesWrapper.attributes.positionConstraints.height {
-        case .unspecified:
+        switch attributesWrapper.attributes.positionConstraints.size.height {
+        case .intrinsic:
             segmentedControl.selectedSegmentIndex = 0
         case .constant(value: 100):
             segmentedControl.selectedSegmentIndex = 1
@@ -33,11 +33,11 @@ class HeightSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.positionConstraints.height = .unspecified
+            attributesWrapper.attributes.positionConstraints.size.height = .intrinsic
         case 1:
-            attributesWrapper.attributes.positionConstraints.height = .constant(value: 100)
+            attributesWrapper.attributes.positionConstraints.size.height = .constant(value: 100)
         case 2:
-            attributesWrapper.attributes.positionConstraints.height = .ratio(value: 0.5)
+            attributesWrapper.attributes.positionConstraints.size.height = .ratio(value: 0.5)
         default:
             break
         }

@@ -47,7 +47,7 @@ public class EKWindowProvider {
                 if oldValue.isMain {
                     previousStatusBarStyle = UIApplication.shared.statusBarStyle
                 }
-                if let newStatusBarStyle = attributes.statusBarStyle {
+                if let newStatusBarStyle = attributes.statusBarStyle, newStatusBarStyle != UIApplication.shared.statusBarStyle {
                     UIApplication.shared.statusBarStyle = newStatusBarStyle
                 }
                 setup(with: view, attributes: attributes)

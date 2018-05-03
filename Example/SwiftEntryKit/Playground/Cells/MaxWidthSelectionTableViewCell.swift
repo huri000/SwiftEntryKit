@@ -18,7 +18,7 @@ class MaxWidthSelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        switch attributesWrapper.attributes.positionConstraints.maximumWidth {
+        switch attributesWrapper.attributes.positionConstraints.maxSize.width {
         case .offset(value: _):
             segmentedControl.selectedSegmentIndex = 0
         case .constant(value: _):
@@ -33,11 +33,11 @@ class MaxWidthSelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.positionConstraints.maximumWidth = .offset(value: 0)
+            attributesWrapper.attributes.positionConstraints.maxSize.width = .offset(value: 0)
         case 1:
-            attributesWrapper.attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge - 40)
+            attributesWrapper.attributes.positionConstraints.maxSize.width = .constant(value: UIScreen.main.minEdge - 40)
         case 2:
-            attributesWrapper.attributes.positionConstraints.maximumWidth = .ratio(value: 0.9)
+            attributesWrapper.attributes.positionConstraints.maxSize.width = .ratio(value: 0.9)
         default:
             break
         }

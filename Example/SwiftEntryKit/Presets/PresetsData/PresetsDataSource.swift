@@ -58,8 +58,8 @@ struct PresetsDataSource {
         attributes.exitAnimation = .init(translate: .init(duration: 0.2))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
         attributes.positionConstraints.verticalOffset = 10
-        attributes.positionConstraints.width = .offset(value: 20)
-        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         attributes.statusBarStyle = .default
         return attributes
     }
@@ -183,7 +183,7 @@ struct PresetsDataSource {
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
         attributes.statusBarStyle = .default
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
-        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Has a gradient content background and a drop shadow. It's max width is the screen minimal edge. Can be swiped out but doesn't spring with damp"
         descriptionThumb = ThumbDesc.topFloat.rawValue
         description = .init(with: attributes, title: "Top", description: descriptionString, thumb: descriptionThumb)
@@ -195,7 +195,7 @@ struct PresetsDataSource {
         attributes.entryInteraction = .delayExit(by: 3)
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
         attributes.statusBarStyle = .default
-        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Has a colored content background. Touches delay the exit by 3 seconds"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
         description = .init(with: attributes, title: "Bottom", description: descriptionString, thumb: descriptionThumb)
@@ -233,8 +233,8 @@ struct PresetsDataSource {
                                              scale: .init(from: 0.7, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)))
         attributes.exitAnimation = .init(translate: .init(duration: 0.2))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
-        attributes.positionConstraints.width = .offset(value: 20)
-        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         attributes.statusBarStyle = .default
         descriptionString = "Customized pop up with round corners. It has a button that receives an action. The background gets dimmed and any touch on it dismisses the entry"
         descriptionThumb = ThumbDesc.bottomPopup.rawValue
@@ -272,11 +272,11 @@ struct PresetsDataSource {
                                          fade: .init(from: 1, to: 0, duration: 0.5))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3),
                                                             scale: .init(from: 1, to: 0.8, duration: 0.3)))
-        
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
-        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
         attributes.positionConstraints.verticalOffset = 10
-        attributes.positionConstraints.width = .offset(value: 20)
+        attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
+        
         attributes.statusBarStyle = .default
         descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
@@ -296,7 +296,7 @@ struct PresetsDataSource {
         attributes.border = .value(color: .black, width: 0.5)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5, offset: .zero))
         attributes.statusBarStyle = .default
-        attributes.positionConstraints.maximumWidth = .constant(value: UIScreen.main.minEdge)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Customized view with internal animation. It has a drop shadow, round corners and a mild border"
         descriptionThumb = ThumbDesc.topFloat.rawValue
         description = .init(with: attributes, title: "Custom View", description: descriptionString, thumb: descriptionThumb)

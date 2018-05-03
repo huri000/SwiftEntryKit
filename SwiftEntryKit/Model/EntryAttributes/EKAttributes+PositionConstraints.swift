@@ -36,10 +36,10 @@ public extension EKAttributes {
         public struct Size {
             
             /** Describes a width constraint */
-            public let width: Edge
+            public var width: Edge
             
             /** Describes a height constraint */
-            public let height: Edge
+            public var height: Edge
             
             public init(width: Edge, height: Edge) {
                 self.width = width
