@@ -104,17 +104,94 @@ SwiftEntryKit.display(entry: customView, using attributes: attributes)
 
 *EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
-Below are most of the attributes that can be modified:
+Create an EKAttributes structure likewise:
+```Swift
+let attributes = EKAttributes()
+```
 
-**Window Level** - The entry's window level. Can be above the application main window, above the status bar, above the alerts window or even have a custom level (UIWindowLevel).
+Below are the properties that can be modified in the *EKAttributes*:
 
-**Display Position** - The entry can be displayed either at the top or the bottom of the screen.
+#### Window Level
+Entries can be displayed above the application main window, above the status bar, above the alerts window or even have a custom level (UIWindowLevel).
 
-**Display Priority** - The display priority of the entry determines whether it can dismiss other entries or be dismissed by them. An entry can be dismissed only by an enry with equal or higher display-priority.
+For example, set the window level to *normal*, likewise:
+```Swift 
+attributes.windowLevel = .normal
+```
+This causes the entry to appear above the application key window and below the status bar.
 
-**Display Duration** - The display duration of the entry (Counted from the moment the entry has finished the entrance animation).
+#### Display Position
+The entry can be displayed either at the *top*, *center*, or the *bottom* of the screen.
 
-**Position Constraints** - Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Additional Vertical Offset & Safe Area related info.
+For example, set the display position to *top*, likewise:
+```Swift 
+attributes.position = .top
+```
+
+#### Display Priority 
+The display priority of the entry determines whether it dismiss other entries or be dismissed by them. 
+An entry can be dismissed only by an entry with an equal or a higher display priority.
+
+```Swift
+let highPriorityAttributes = EKAttributes()
+highPriorityAttributes.displayPriority = .high
+
+let normalPriorityAttributes = EKAttributes()
+normalPriorityAttributes.displayPriority = .normal
+
+// Display high priority entry
+SwiftEntryKit.display(entry: view1, using: highPriorityAttributes)
+
+// Display normal priority entry (ignored!)
+SwiftEntryKit.display(entry: view2, using: normalPriorityAttributes)
+```
+
+*normalPriorityAttributes* never displays while *highPriorityAttributes* shows.
+
+#### Display Duration
+The display duration of the entry (Counted from the moment the entry has finished it's entrance animation and until the exit animation begins).
+
+Display for 2 seconds:
+```Swift
+attributes.displayDuration = 2
+```
+
+Display for an infinate duration
+```Swift
+attributes.displayDuration = .infinity
+```
+
+#### Position Constraints 
+Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Max Height, Additional Vertical Offset & Safe Area related info.
+
+For example:
+
+Ratio edge - signifies that the ratio of the width edge has a ratio of 0.9 of the screen's width.
+```Swift
+let widthConstraint = EKAttributes.PositionConstraints.Edge.ratio(value: 0.9)
+```
+
+Intrinsic edge - signifies that the wanted height value is the content height - Decided by the entries vertical constraints
+```Swift
+let heightConstraint = EKAttributes.PositionConstraints.Edge.intrinsic
+```
+
+Create the entry size constraints likewise:
+```Swift
+attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint)
+```
+You can also set *attributes.positionConstraints.maxSize* in order to make sure the entry does not exceeds predefined limitations. This is useful on [device orientation change](#how-to-deal-with-orientation-change).
+
+Safe Area - can be used to override the safe area or to color it (More examples are in the example project)
+That snippet implies that the safe area insets should be kept and not be a part of the entry.
+```Swift
+attributes.positionConstraints.safeArea = .empty(fillSafeArea: false)
+```
+
+Vertical Offset - An additional offset that can be applied to the entry (Other than the safe area).
+```Swift
+attributes.positionConstraints.verticalOffset = 10
+```
 
 **Background Style** - The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
 
