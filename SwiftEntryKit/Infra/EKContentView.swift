@@ -187,11 +187,11 @@ class EKContentView: UIView {
         // Layout the scroll view vertically inside the screen
         switch attributes.positionConstraints.size.height {
         case .offset(value: let offset):
-            layoutToSuperview(.height, offset: -offset * 2)
+            layoutToSuperview(.height, offset: -offset * 2, priority: .must)
         case .ratio(value: let ratio):
-            layoutToSuperview(.height, ratio: ratio)
+            layoutToSuperview(.height, ratio: ratio, priority: .must)
         case .constant(value: let constant):
-            set(.height, of: constant)
+            set(.height, of: constant, priority: .must)
         case .intrinsic:
             break
         }

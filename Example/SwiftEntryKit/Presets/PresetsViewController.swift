@@ -80,10 +80,10 @@ class PresetsViewController: UIViewController {
     }
     
     // Bumps a notification structured entry
-    private func showNotificationMessage(attributes: EKAttributes, textColor: UIColor, imageName: String) {
-        let title = EKProperty.LabelContent(text: "SHOPPING DISCOUNT", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: textColor))
-        let description = EKProperty.LabelContent(text: "50% discount until midnight at Luzius Bakery", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: textColor))
-        let time = EKProperty.LabelContent(text: "20:59", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 12), color: textColor))
+    private func showNotificationMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String) {
+        let title = EKProperty.LabelContent(text: title, style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: textColor))
+        let description = EKProperty.LabelContent(text: desc, style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: textColor))
+        let time = EKProperty.LabelContent(text: "", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 12), color: textColor))
         let image = UIImage(named: imageName)!
         
         let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
@@ -136,9 +136,9 @@ class PresetsViewController: UIViewController {
         let title = EKProperty.LabelContent(text: "Dear Reader!", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 15), color: .black))
         let description = EKProperty.LabelContent(text: "Get a coupon for a free book now", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 13), color: .black))
         let time = EKProperty.LabelContent(text: "", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 10), color: .black))
-        let image = UIImage(named: "books")!
+        let image = UIImage(named: "ic_books")!
         
-        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: true)
+        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
         
         let leadingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "NOT NOW", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Gray.a800)), backgroundColor: .clear)
         let trailingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "SHOW ME", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Teal.a600)), backgroundColor: .clear)
@@ -202,11 +202,15 @@ extension PresetsViewController {
     private func toastCellSelected(with attributes: EKAttributes, row: Int) {
         switch row {
         case 0:
-            showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
+            let title = "Mail Received!"
+            let desc = "Daniel sent you a message"
+            showNotificationMessage(attributes: attributes, title: title, desc: desc, textColor: .white, imageName: "paper-plane-light")
         case 1:
             showChatNotificationMessage(attributes: attributes)
         case 2:
-            showNotificationMessage(attributes: attributes, textColor: .black, imageName: "ic_shopping_cart_dark_32pt")
+            let title = "15% Discount!"
+            let desc = "Receive your coupon for 15% discount at Swifty Kitty Bakery"
+            showNotificationMessage(attributes: attributes, title: title, desc: desc, textColor: .black, imageName: "ic_pizza")
         default:
             break
         }
@@ -228,11 +232,14 @@ extension PresetsViewController {
     }
     
     private func floatCellSelected(with attributes: EKAttributes, row: Int) {
+        let title = "Kofi Shop"
+        let desc = "Over two weeks of quality coffee beans concentrated into a single entry kit"
+        let image = "ic_coffee_light"
         switch row {
         case 0:
-            showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
+            showNotificationMessage(attributes: attributes, title: title, desc: desc, textColor: .white, imageName: image)
         case 1:
-            showNotificationMessage(attributes: attributes, textColor: .white, imageName: "ic_shopping_cart_light_32pt")
+            showNotificationMessage(attributes: attributes, title: title, desc: desc, textColor: .white, imageName: image)
         default:
             break
         }

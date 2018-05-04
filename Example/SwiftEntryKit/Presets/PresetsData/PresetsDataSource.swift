@@ -232,7 +232,7 @@ struct PresetsDataSource {
         attributes.entranceAnimation = .init(translate: .init(duration: 0.7, spring: .init(damping: 0.7, initialVelocity: 0)),
                                              scale: .init(from: 0.7, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)))
         attributes.exitAnimation = .init(translate: .init(duration: 0.2))
-        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.35)))
         attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         attributes.statusBarStyle = .default

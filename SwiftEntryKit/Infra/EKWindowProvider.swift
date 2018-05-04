@@ -44,12 +44,6 @@ public class EKWindowProvider {
             case .main:
                 clean()
             case .entry(view: let view, attributes: let attributes):
-                if oldValue.isMain {
-                    previousStatusBarStyle = UIApplication.shared.statusBarStyle
-                }
-                if let newStatusBarStyle = attributes.statusBarStyle, newStatusBarStyle != UIApplication.shared.statusBarStyle {
-                    UIApplication.shared.statusBarStyle = newStatusBarStyle
-                }
                 setup(with: view, attributes: attributes)
             }
         }
@@ -58,9 +52,6 @@ public class EKWindowProvider {
     // Entry window
     var entryWindow: EKWindow!
     
-    // Previous status bar style
-    private var previousStatusBarStyle: UIStatusBarStyle!
-
     // Root view controller
     var rootVC: EKRootViewController? {
         return entryWindow?.rootViewController as? EKRootViewController
@@ -92,7 +83,6 @@ public class EKWindowProvider {
     }
     
     private func clean() {
-        UIApplication.shared.statusBarStyle = previousStatusBarStyle
         entryWindow = nil
         UIApplication.shared.keyWindow?.makeKeyAndVisible()
     }
