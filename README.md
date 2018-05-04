@@ -81,7 +81,7 @@ Toasts | Notes | Floats | Popups | Custom1 | Custom2
 The example app contains a playground screen, an interface that allows you to customize your preferable entries.
 The playground screen has some limitations (allows to select constant values) but you can easily modify the code to suit your needs. Check it out!
 
-Screen | Top Float
+The Playground Screen | Top Toast Sample
 --- | ---
 ![playground_example](https://github.com/huri000/assets/blob/master/swift-entrykit/playground.gif) | ![playground-sample-1](https://github.com/huri000/assets/blob/master/swift-entrykit/playground-sample-1.jpeg)
 
