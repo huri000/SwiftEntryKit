@@ -83,7 +83,7 @@ The playground screen has some limitations (allows to select constant values) bu
 
 Screen | Top Float
 --- | ---
-![playground_example](https://github.com/huri000/assets/blob/master/swift-entrykit/playground.gif) | ![playground-sample](https://github.com/huri000/assets/blob/master/swift-entrykit/playground-sample.jpeg)
+![playground_example](https://github.com/huri000/assets/blob/master/swift-entrykit/playground.gif) | ![playground-sample-1](https://github.com/huri000/assets/blob/master/swift-entrykit/playground-sample-1.jpeg)
 
 ## Requirements
 
