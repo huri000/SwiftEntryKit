@@ -86,7 +86,7 @@ class EKRootViewController: UIViewController {
         guard let lastAttributes = lastAttributes else {
             return true
         }
-        return attributes.displayPriority.isPreceding(priority: lastAttributes.displayPriority)
+        return attributes.displayPriority >= lastAttributes.displayPriority
     }
 
     // Removes last entry - can keep the window 'ON' if necessary
