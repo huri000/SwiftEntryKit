@@ -46,11 +46,11 @@ public extension EKAttributes {
                 self.height = height
             }
             
-            public static var defaultMaxSize: Size {
+            public static var intrinsic: Size {
                 return Size(width: .intrinsic, height: .intrinsic)
             }
             
-            public static var defaultSize: Size {
+            public static var sizeToWidth: Size {
                 return Size(width: .offset(value: 0), height: .intrinsic)
             }
         }
@@ -89,7 +89,7 @@ public extension EKAttributes {
         
         /** Returns a full entry (Toast-Like) */
         public static var full: PositionConstraints {
-            return PositionConstraints(verticalOffset: 0, size: .defaultSize)
+            return PositionConstraints(verticalOffset: 0, size: .sizeToWidth)
         }
         
         /** Returns a floating entry (Float-Like) */
@@ -97,10 +97,10 @@ public extension EKAttributes {
             return PositionConstraints(verticalOffset: 10, size: .init(width: .offset(value: 20), height: .intrinsic))
         }
         
-        public init(verticalOffset: CGFloat = 0, size: Size = .defaultSize, maxSize: Size = .defaultMaxSize) {
+        public init(verticalOffset: CGFloat = 0, size: Size = .sizeToWidth, maxSize: Size = .intrinsic) {
             self.verticalOffset = verticalOffset
             self.size = size
-            self.maxSize = .defaultMaxSize
+            self.maxSize = .intrinsic
         }
     }
 }
