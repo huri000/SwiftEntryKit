@@ -76,7 +76,7 @@ Toasts | Notes | Floats | Custom Message | Custom Nib
 
 ### Playground
 
-#### noun: a place where people can play 🏈
+**noun: a place where people can play 🏈**
 
 The example app contains a playground screen, an interface that allows you to customize your preferable entries.
 The playground screen has some limitations (allows to select constant values) but you can easily modify the code to suit your needs. Check it out!
@@ -123,7 +123,7 @@ SwiftEntryKit.display(entry: customView, using attributes: attributes)
 ```
 The kit will install the EKWindow instance and present of the entry for you.
 
-### Entry Attributes:
+### Entry Attributes
 
 *EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes struct is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
@@ -169,7 +169,7 @@ SwiftEntryKit.display(entry: view1, using: highPriorityAttributes)
 SwiftEntryKit.display(entry: view2, using: normalPriorityAttributes)
 ```
 
-*normalPriorityAttributes* never displays while *highPriorityAttributes* shows.
+*view2* won't be displayed!
 
 #### Display Duration
 The display duration of the entry (Counted from the moment the entry has finished it's entrance animation and until the exit animation begins).
