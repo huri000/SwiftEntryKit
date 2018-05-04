@@ -4,21 +4,37 @@
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
-* **[Overview](#overview)**
+* [Overview](#overview)
   * [Features](#features)
-* **[Example Project](#example-project)**
+* [Example Project](#example-project)
   * [Presets](#presets)
   * [Playground](#playground)
-* **[Requirements](#requirements)**
-* **[Installation](#installation)**
-* **[Usage](#usage)**
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Quick Usage](#quick-usage)
   * [Entry Attributes](#entry-attributes)
+    * [Window Level](#window-level)
+    * [Display Position](#display-position)
+    * [Display Priority](#display-priority)
+    * [Display Duration](#display-duration)
+    * [Position Constraints](#position-constraints)
+    * [User Interaction](#user-interaction)
+    * [Scroll Behavior](#scroll-behavior)
+    * [Haptic Feedback](#haptic-feedback)
+    * [Background Style](#background-style)
+    * [Shadow](#shadow)
+    * [Round Corners](#round-corners)
+    * [Border](#border)
+    * [Animations](#animations)
+    * [Pop Behavior](#pop-behavior)
+    * [Status Bar Style](#status-bar-style)
   * [Presets Usage Example](#presets-usage-example)
   * [Custom View Usage Example](#custom-view-usage-example)
   * [Dismissing an Entry](#dismissing-an-entry)
-  * [Swiping and Rubber Banding](#swiping-and-rubber-banding)
-  * [Dealing with safe area](#dealing-with-safe-area)
-  * [Dealing with orientation change](#dealing-with-orientation-change)
+  * [Swiping And Rubber Banding](#swiping-and-rubber-banding)
+  * [Dealing With Safe Area](#dealing-with-safe-area)
+  * [Dealing With Orientation Change](#dealing-with-orientation-change)
 * [Known Issues](#known-issues)
 * [Contributing](#contributing)
 * [Author](#author)
@@ -83,7 +99,11 @@ SwiftEntryKit is still WIP and will be formally released very soon.
 
 ## Usage
 
-No setup is needed! Each time you wish to display an entry, just create your view and initialize an EKAttributes struct, likewise:
+### Quick Usage
+
+No setup is needed! Each time you wish to display an entry, just create your view and initialize an EKAttributes struct.
+See also the [preset usage example](#presets-usage-example), and the example project.
+likewise:
 ```Swift
 // Customized view
 let customView = SomeCustomView()
@@ -105,7 +125,7 @@ The kit will install the EKWindow instance and present of the entry for you.
 
 ### Entry Attributes:
 
-*EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes object is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
+*EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes struct is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
 Create an EKAttributes structure likewise:
 ```Swift
@@ -398,23 +418,34 @@ public struct EKAttributes
 
 ### Presets Usage Example:
 
+You can use one of the presets that come with SwiftEntryKit, doing these 4 simple steps:
+
+1. Create your *EKAttributes* struct and set your preferrable properties.
+2. Create *EKNotificationMessage* struct (The Content) and set the content.
+3. Create *EKNotificationMessageView* (The View) and inject *EKNotificationMessage* struct to it.
+4. Display the entry using *SwiftEntryKit* class method.
+
+#### EKNotificationMessageView preset example:
+
 ```Swift
-// Generate top note entry - located below the status bar.
-let attributes = EKAttributes.topNote
-attributes.entryBackground = .color(color: .white)
-
-// Set dark status bar style as long as the entry shows
+// Generate top floating entry and set some properties
+var attributes = EKAttributes.topFloat
+attributes.entryBackground = .gradient(gradient: .init(colors: [.red, .green], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
+attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
 attributes.statusBarStyle = .default
+attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
 
-// Set the style of the note
-let text = "Doing some testing over here!"
-let style = EKProperty.Label(font: UIFont.systemFont(ofSize: 14), color: .black)
-let labelContent = EKProperty.LabelContent(text: text, style: style)
+// Use one of the presets - set texts, fonts and colors
+let title = EKProperty.LabelContent(text: titleText, style: EKProperty.Label(font: font, color: textColor))
+let description = EKProperty.LabelContent(text: descriptionText, style: EKProperty.Label(font: font, color: textColor))
+let time = EKProperty.LabelContent(text: timeText, style: EKProperty.Label(font: font, color: textColor))
+let image = UIImage(named: imageName)!
 
-// Create the note view
-let contentView = EKNoteMessageView(with: labelContent)
-
-// Use class method of SwiftEntryKit to display the view using the desired attributes
+// Create the view and display the entry
+let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
+let contentView = EKNotificationMessageView(with: content)
 SwiftEntryKit.display(entry: contentView, using: attributes)
 ```
 
