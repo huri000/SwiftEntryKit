@@ -69,9 +69,9 @@ The example project contains various presets and examples you can use and modify
 
 ### Presets
 
-Toasts | Notes | Floats | Custom Message | Custom Nib
---- | --- | --- | --- | ---
-![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![animated_custom_example](https://github.com/huri000/assets/blob/master/swift-entrykit/animated_custom.gif) | ![custom_nib_example](https://github.com/huri000/assets/blob/master/swift-entrykit/custom_nib.gif)
+Toasts | Notes | Floats | Popups | Custom1 | Custom2
+--- | --- | --- | --- | --- | ---
+![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![nibs](https://github.com/huri000/assets/blob/master/swift-entrykit/nibs.gif) | ![customization](https://github.com/huri000/assets/blob/master/swift-entrykit/customization.gif)
 
 
 ### Playground
@@ -81,9 +81,9 @@ Toasts | Notes | Floats | Custom Message | Custom Nib
 The example app contains a playground screen, an interface that allows you to customize your preferable entries.
 The playground screen has some limitations (allows to select constant values) but you can easily modify the code to suit your needs. Check it out!
 
-Screen | Top Float | Bottom Float
---- | --- | ---
-![playground_example](https://github.com/huri000/assets/blob/master/swift-entrykit/playground.gif) | ![play_1](https://github.com/huri000/assets/blob/master/swift-entrykit/playground_top.jpeg) | ![play2](https://github.com/huri000/assets/blob/master/swift-entrykit/playground_bottom.jpeg)
+Screen | Top Float
+--- | ---
+![playground_example](https://github.com/huri000/assets/blob/master/swift-entrykit/playground.gif) | ![playground-sample-1](https://github.com/huri000/assets/blob/master/swift-entrykit/playground-sample-1.jpeg)
 
 ## Requirements
 
