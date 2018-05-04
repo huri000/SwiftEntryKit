@@ -10,9 +10,14 @@ import UIKit
 
 public struct EKProperty {
     
+    /** Button content descriptor */
     public struct ButtonContent {
-        public let label: LabelContent
-        public let backgroundColor: UIColor
+        
+        /** Button's title label content descriptor */
+        public var label: LabelContent
+        
+        /** Button's background color */
+        public var backgroundColor: UIColor
         
         public init(label: LabelContent, backgroundColor: UIColor) {
             self.label = label
@@ -20,9 +25,14 @@ public struct EKProperty {
         }
     }
     
+    /** Label content descriptor */
     public struct LabelContent {
-        public let text: String
-        public let style: Label
+        
+        /** The text */
+        public var text: String
+        
+        /** The label's style */
+        public var style: Label
         
         public init(text: String, style: Label) {
             self.text = text
@@ -30,13 +40,66 @@ public struct EKProperty {
         }
     }
     
+    /** Label style descriptor */
     public struct Label {
-        public let font: UIFont
-        public let color: UIColor
+        
+        /** Font of the text */
+        public var font: UIFont
+        
+        /** Color of the text */
+        public var color: UIColor
         
         public init(font: UIFont, color: UIColor) {
             self.font = font
             self.color = color
+        }
+    }
+    
+    /** Image View style descriptor */
+    public struct ImageContent {
+        
+        /** The image */
+        public var image: UIImage
+        
+        /** Image View size - can be forced. If nil, then the image view hugs content and resists compression */
+        public var size: CGSize?
+    
+        /** Content mode */
+        public var contentMode: UIViewContentMode
+        
+        /** Shuld the image can rounded */
+        public var makeRound: Bool
+    
+        public init(image: UIImage, size: CGSize? = nil, contentMode: UIViewContentMode = .scaleToFill, makeRound: Bool = false) {
+            self.image = image
+            self.size = size
+            self.contentMode = contentMode
+            self.makeRound = makeRound
+        }
+        
+        public init(imageName: String, size: CGSize? = nil, contentMode: UIViewContentMode = .scaleToFill, makeRound: Bool = false) {
+            self.init(image: UIImage(named: imageName)!, size: size, contentMode: contentMode, makeRound: makeRound)
+        }
+        
+        /** Quick thumbail property generator */
+        public static func thumb(with image: UIImage, edgeSize: CGFloat) -> ImageContent {
+            return ImageContent(image: image, size: CGSize(width: edgeSize, height: edgeSize), contentMode: .scaleAspectFill, makeRound: true)
+        }
+        
+        /** Quick thumbail property generator */
+        public static func thumb(with imageName: String, edgeSize: CGFloat) -> ImageContent {
+            return ImageContent(imageName: imageName, size: CGSize(width: edgeSize, height: edgeSize), contentMode: .scaleAspectFill, makeRound: true)
+        }
+    }
+    
+    /** Button bar content */
+    public struct ButtonBarContent {
+        public var leading: ButtonContent
+        public var trailing: ButtonContent
+        
+        public init(leading: ButtonContent, trailing: ButtonContent) {
+            self.leading = leading
+            self.trailing = trailing
         }
     }
 }

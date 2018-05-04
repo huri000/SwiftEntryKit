@@ -35,9 +35,13 @@ public class EKPopUpMessageView: UIView {
     private func setupImageView() {
         addSubview(imageView)
         imageView.layoutToSuperview(.centerX)
-        imageView.layoutToSuperview(.top, offset: 40)
-        imageView.forceContentWrap()
-        imageView.image = message.image
+        switch message.imagePosition {
+        case .centerToTop(offset: let value):
+            imageView.layout(.centerY, to: .top, of: self, offset: value)
+        case .topToTop(offset: let value):
+            imageView.layoutToSuperview(.top, offset: value)
+        }
+        imageView.imageContent = message.topImage
     }
     
     private func setupTitleLabel() {

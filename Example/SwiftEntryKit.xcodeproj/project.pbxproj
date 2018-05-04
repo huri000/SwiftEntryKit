@@ -10,7 +10,6 @@
 		14333AE3208FA09E00DCFC7B /* PresetDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14333AE2208FA09E00DCFC7B /* PresetDescription.swift */; };
 		143F3AA22090A6A7009F3719 /* ShadowSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA12090A6A7009F3719 /* ShadowSelectionTableViewCell.swift */; };
 		143F3AA42090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA32090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift */; };
-		143F3AA62090AB50009F3719 /* Object+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA52090AB50009F3719 /* Object+ClassName.swift */; };
 		143F3AAA2090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AA92090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift */; };
 		143F3AAC2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */; };
 		143F3AAE2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */; };
@@ -19,11 +18,11 @@
 		147A9A612092682E00A49D7A /* SelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A602092682E00A49D7A /* SelectionHeaderView.swift */; };
 		147A9A6320926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */; };
 		147A9A6520926C5D00A49D7A /* HeightSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A6420926C5D00A49D7A /* HeightSelectionTableViewCell.swift */; };
+		1496D952209CC2AF002CBB22 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496D951209CC2AF002CBB22 /* UIView+Nib.swift */; };
+		1496D956209CC6EF002CBB22 /* Object+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496D955209CC6EF002CBB22 /* Object+ClassName.swift */; };
+		1496D958209CC860002CBB22 /* CREDITS.md in Resources */ = {isa = PBXBuildFile; fileRef = 1496D957209CC860002CBB22 /* CREDITS.md */; };
 		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
-		14C729C8209448390060D267 /* DynamicExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729C7209448390060D267 /* DynamicExampleView.swift */; };
-		14C729D0209453240060D267 /* ButtonsBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729CF209453240060D267 /* ButtonsBarView.swift */; };
-		14C729D22094532F0060D267 /* ButtonsBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14C729D12094532F0060D267 /* ButtonsBarView.xib */; };
 		14C729D5209476A90060D267 /* BorderSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D4209476A90060D267 /* BorderSelectionTableViewCell.swift */; };
 		14C729D7209496180060D267 /* CGRect+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D6209496180060D267 /* CGRect+Utils.swift */; };
 		14C729D9209496730060D267 /* UIScreen+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D8209496730060D267 /* UIScreen+Utils.swift */; };
@@ -38,7 +37,6 @@
 		14D18CCF209105290019AE7F /* WidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */; };
 		14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CD1209118DA0019AE7F /* NibExampleView.swift */; };
 		14D18CD4209118E90019AE7F /* NibExampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D18CD3209118E90019AE7F /* NibExampleView.xib */; };
-		14D18CD620911E9E0019AE7F /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CD520911E9E0019AE7F /* UIView+Nib.swift */; };
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* PresetsViewController.swift */; };
 		14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */; };
@@ -66,7 +64,6 @@
 		14333AE2208FA09E00DCFC7B /* PresetDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDescription.swift; sourceTree = "<group>"; };
 		143F3AA12090A6A7009F3719 /* ShadowSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		143F3AA32090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCornersSelectionTableViewCell.swift; sourceTree = "<group>"; };
-		143F3AA52090AB50009F3719 /* Object+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+ClassName.swift"; sourceTree = "<group>"; };
 		143F3AA92090AFB8009F3719 /* BackgroundStyleSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundStyleSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackSelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -75,11 +72,11 @@
 		147A9A602092682E00A49D7A /* SelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHeaderView.swift; sourceTree = "<group>"; };
 		147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxWidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		147A9A6420926C5D00A49D7A /* HeightSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		1496D951209CC2AF002CBB22 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
+		1496D955209CC6EF002CBB22 /* Object+ClassName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Object+ClassName.swift"; sourceTree = "<group>"; };
+		1496D957209CC860002CBB22 /* CREDITS.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CREDITS.md; path = ../CREDITS.md; sourceTree = "<group>"; };
 		14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsDataSource.swift; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
-		14C729C7209448390060D267 /* DynamicExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicExampleView.swift; sourceTree = "<group>"; };
-		14C729CF209453240060D267 /* ButtonsBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsBarView.swift; sourceTree = "<group>"; };
-		14C729D12094532F0060D267 /* ButtonsBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonsBarView.xib; sourceTree = "<group>"; };
 		14C729D4209476A90060D267 /* BorderSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C729D6209496180060D267 /* CGRect+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Utils.swift"; sourceTree = "<group>"; };
 		14C729D8209496730060D267 /* UIScreen+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Utils.swift"; sourceTree = "<group>"; };
@@ -94,7 +91,6 @@
 		14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CD1209118DA0019AE7F /* NibExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibExampleView.swift; sourceTree = "<group>"; };
 		14D18CD3209118E90019AE7F /* NibExampleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NibExampleView.xib; sourceTree = "<group>"; };
-		14D18CD520911E9E0019AE7F /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* PresetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
@@ -137,7 +133,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		149B2B57208F0C22007C829F /* Presets */ = {
+		149B2B57208F0C22007C829F /* InAppPresets */ = {
 			isa = PBXGroup;
 			children = (
 				14C729C6209447CA0060D267 /* Samples */,
@@ -145,7 +141,7 @@
 				14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */,
 				14A1AB36209371A5001CA5B4 /* PresetsData */,
 			);
-			path = Presets;
+			path = InAppPresets;
 			sourceTree = "<group>";
 		};
 		14A1AB36209371A5001CA5B4 /* PresetsData */ = {
@@ -157,31 +153,12 @@
 			path = PresetsData;
 			sourceTree = "<group>";
 		};
-		14C729C5209447B50060D267 /* DynamicExampleView */ = {
-			isa = PBXGroup;
-			children = (
-				14C729C7209448390060D267 /* DynamicExampleView.swift */,
-				14C729D320945CF40060D267 /* ButtonsBar */,
-			);
-			path = DynamicExampleView;
-			sourceTree = "<group>";
-		};
 		14C729C6209447CA0060D267 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
-				14C729C5209447B50060D267 /* DynamicExampleView */,
 				14D18CD0209118950019AE7F /* NibExampleView */,
 			);
 			path = Samples;
-			sourceTree = "<group>";
-		};
-		14C729D320945CF40060D267 /* ButtonsBar */ = {
-			isa = PBXGroup;
-			children = (
-				14C729CF209453240060D267 /* ButtonsBarView.swift */,
-				14C729D12094532F0060D267 /* ButtonsBarView.xib */,
-			);
-			path = ButtonsBar;
 			sourceTree = "<group>";
 		};
 		14C894F3208E70A4003D8CE3 /* Playground */ = {
@@ -198,11 +175,11 @@
 			isa = PBXGroup;
 			children = (
 				14C894FD208E7DDE003D8CE3 /* Font.swift */,
+				1496D955209CC6EF002CBB22 /* Object+ClassName.swift */,
 				14C729D8209496730060D267 /* UIScreen+Utils.swift */,
 				14C729D6209496180060D267 /* CGRect+Utils.swift */,
 				14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */,
-				143F3AA52090AB50009F3719 /* Object+ClassName.swift */,
-				14D18CD520911E9E0019AE7F /* UIView+Nib.swift */,
+				1496D951209CC2AF002CBB22 /* UIView+Nib.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -286,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				149B2B57208F0C22007C829F /* Presets */,
+				149B2B57208F0C22007C829F /* InAppPresets */,
 				14C894F3208E70A4003D8CE3 /* Playground */,
 				14C894FC208E7DD0003D8CE3 /* Utils */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -328,6 +305,7 @@
 			children = (
 				F1F450C1E75BEC09B67F526C /* SwiftEntryKit.podspec */,
 				EFEC60E1244126F18ABBB375 /* README.md */,
+				1496D957209CC860002CBB22 /* CREDITS.md */,
 				2A856CAE48665E23BC76CB3B /* LICENSE */,
 			);
 			name = "Podspec Metadata";
@@ -422,9 +400,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1496D958209CC860002CBB22 /* CREDITS.md in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
-				14C729D22094532F0060D267 /* ButtonsBarView.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				14D18CD4209118E90019AE7F /* NibExampleView.xib in Resources */,
 			);
@@ -530,15 +508,15 @@
 				143F3AAC2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift in Sources */,
 				14D18CCF209105290019AE7F /* WidthSelectionTableViewCell.swift in Sources */,
 				14C75E082096430D0002465E /* PrioritySelectionTableViewCell.swift in Sources */,
-				14C729D0209453240060D267 /* ButtonsBarView.swift in Sources */,
 				147A9A6320926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift in Sources */,
 				14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */,
 				14C89500208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift in Sources */,
 				14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */,
 				14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */,
+				1496D952209CC2AF002CBB22 /* UIView+Nib.swift in Sources */,
 				14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */,
+				1496D956209CC6EF002CBB22 /* Object+ClassName.swift in Sources */,
 				143F3AAE2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift in Sources */,
-				14D18CD620911E9E0019AE7F /* UIView+Nib.swift in Sources */,
 				14C729D5209476A90060D267 /* BorderSelectionTableViewCell.swift in Sources */,
 				143F3AA42090A70E009F3719 /* RoundCornersSelectionTableViewCell.swift in Sources */,
 				14C894F8208E70D5003D8CE3 /* SelectionTableViewCell.swift in Sources */,
@@ -550,12 +528,10 @@
 				143F3AB22090B7F0009F3719 /* ScrollSelectionTableViewCell.swift in Sources */,
 				143F3AA22090A6A7009F3719 /* ShadowSelectionTableViewCell.swift in Sources */,
 				147A9A6520926C5D00A49D7A /* HeightSelectionTableViewCell.swift in Sources */,
-				143F3AA62090AB50009F3719 /* Object+ClassName.swift in Sources */,
 				14333AE3208FA09E00DCFC7B /* PresetDescription.swift in Sources */,
 				147A9A612092682E00A49D7A /* SelectionHeaderView.swift in Sources */,
 				14C729D9209496730060D267 /* UIScreen+Utils.swift in Sources */,
 				14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */,
-				14C729C8209448390060D267 /* DynamicExampleView.swift in Sources */,
 				14C89504208E870C003D8CE3 /* DisplayDurationSelectionTableViewCell.swift in Sources */,
 				14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */,
 				14C89502208E83AA003D8CE3 /* WindowLevelSelectionTableViewCell.swift in Sources */,

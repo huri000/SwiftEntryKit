@@ -77,11 +77,10 @@ class PlaygroundViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func play() {
-        let title = EKProperty.LabelContent(text: "Hi there!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: .black))
-        let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .black))
-        let time = EKProperty.LabelContent(text: "12:00", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .black))
-        let image = UIImage(named: "ic_info_outline")!
-        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
+        let title = EKProperty.LabelContent(text: "Hi there!", style: EKProperty.Label(font: MainFont.bold.with(size: 16), color: .black))
+        let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: MainFont.light.with(size: 14), color: .black))
+        let image = EKProperty.ImageContent(image: UIImage(named: "ic_info_outline")!, size: CGSize(width: 35, height: 35))
+        let content = EKNotificationMessage(image: image, title: title, description: description)
         let contentView = EKNotificationMessageView(with: content)
         
         SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)

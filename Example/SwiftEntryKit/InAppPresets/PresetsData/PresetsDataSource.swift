@@ -19,6 +19,11 @@ struct PresetsDataSource {
         case bottomFloat = "ic_bottom_float"
         case topToast = "ic_top_toast"
         case topFloat = "ic_top_float"
+        
+//        case topNote = "ic_top_toast"
+//        case bottomNote = "ic_bottom_toast"
+        
+//        case centerPopup = "ic_bottom_popup"
         case bottomPopup = "ic_bottom_popup"
     }
     
@@ -45,6 +50,7 @@ struct PresetsDataSource {
     // Cumputed for the sake of reusability
     var bottomAlertAttributes: EKAttributes {
         var attributes = EKAttributes.bottomFloat
+        attributes.hapticFeedbackType = .success
         attributes.displayDuration = .infinity
         attributes.entryBackground = .color(color: .white)
         attributes.screenBackground = .color(color: .dimmedLightBackground)
@@ -82,6 +88,7 @@ struct PresetsDataSource {
 
         // Preset I
         attributes = .topToast
+        attributes.hapticFeedbackType = .success
         attributes.entryBackground = .color(color: EKColor.LightBlue.a700)
         attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 1.07, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(translate: .init(duration: 0.3))
@@ -93,6 +100,7 @@ struct PresetsDataSource {
 
         // Preset II
         attributes = .topToast
+        attributes.hapticFeedbackType = .success
         attributes.entryBackground = .color(color: .darkChatMessage)
         attributes.entranceAnimation = .translation
         attributes.exitAnimation = .translation
@@ -127,16 +135,18 @@ struct PresetsDataSource {
 
         // Preset I
         attributes = .topNote
+        attributes.hapticFeedbackType = .success
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .satCyan)
         attributes.statusBarStyle = .lightContent
-        descriptionString = "The entry absorbs (ignores) touches and the status bar becomes light."
+        descriptionString = "The entry absorbs (ignores) touches and the status bar becomes light"
         descriptionThumb = ThumbDesc.topToast.rawValue
         description = .init(with: attributes, title: "Top Standard Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
 
         // Preset II
         attributes = .topNote
+        attributes.hapticFeedbackType = .success
         attributes.displayDuration = .infinity
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .pinky)
@@ -146,8 +156,22 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Top Processing Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
 
+        
         // Preset III
+        attributes = .topNote
+        attributes.hapticFeedbackType = .error
+        attributes.displayDuration = 3
+        attributes.popBehavior = .animated(animation: .translation)
+        attributes.entryBackground = .color(color: EKColor.Purple.deep)
+        attributes.statusBarStyle = .lightContent
+        descriptionString = "Appears for 3 seconds. Generates error notification haptic feedback"
+        descriptionThumb = ThumbDesc.topToast.rawValue
+        description = .init(with: attributes, title: "Top Image Note", description: descriptionString, thumb: descriptionThumb)
+        notes.append(description)
+        
+        // Preset IV
         attributes = .statusBar
+        attributes.hapticFeedbackType = .success
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .greenGrass)
         descriptionString = "Overrides the status bar"
@@ -155,8 +179,9 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Status Bar Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
         
-        // Preset IV
+        // Preset V
         attributes = .bottomNote
+        attributes.hapticFeedbackType = .success
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Purple.a300, EKColor.Purple.a400, EKColor.Purple.a700], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.statusBarStyle = .default
@@ -178,6 +203,7 @@ struct PresetsDataSource {
 
         // Preset I
         attributes = .topFloat
+        attributes.hapticFeedbackType = .success
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
@@ -191,6 +217,7 @@ struct PresetsDataSource {
         
         // Preset II
         attributes = .bottomFloat
+        attributes.hapticFeedbackType = .success
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.entryInteraction = .delayExit(by: 3)
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
@@ -221,6 +248,7 @@ struct PresetsDataSource {
         
         // Preset II
         attributes = EKAttributes.centerFloat
+        attributes.hapticFeedbackType = .success
         attributes.displayDuration = .infinity
         attributes.entryBackground = .gradient(gradient: .init(colors: [UIColor(rgb: 0xfffbd5), UIColor(rgb: 0xb20a2c)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
@@ -257,6 +285,7 @@ struct PresetsDataSource {
         
         // Preset IV
         attributes = .bottomFloat
+        attributes.hapticFeedbackType = .success
         attributes.displayDuration = 3
         attributes.screenBackground = .clear
         attributes.entryBackground = .clear
@@ -285,6 +314,7 @@ struct PresetsDataSource {
         
         // Preset V
         attributes = .topFloat
+        attributes.hapticFeedbackType = .success
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)

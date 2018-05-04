@@ -8,18 +8,24 @@
 
 import UIKit
 
-public struct EKNotificationMessage {    
-    public let title: EKProperty.LabelContent
-    public let description: EKProperty.LabelContent
-    public let time: EKProperty.LabelContent
-    public let image: UIImage
-    public let roundImage: Bool
+public struct EKNotificationMessage {
     
-    public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent, time: EKProperty.LabelContent, image: UIImage, roundImage: Bool) {
+    /** The image view descriptor */
+    public let image: EKProperty.ImageContent
+    
+    /** The title label descriptor */
+    public let title: EKProperty.LabelContent
+    
+    /** The description label descriptor */
+    public let description: EKProperty.LabelContent
+    
+    /** Optional auxilary label descriptor (For instance, it be used to display time of message) */
+    public let auxiliary: EKProperty.LabelContent?
+    
+    public init(image: EKProperty.ImageContent, title: EKProperty.LabelContent, description: EKProperty.LabelContent, auxiliary: EKProperty.LabelContent? = nil) {
+        self.image = image
         self.title = title
         self.description = description
-        self.time = time
-        self.image = image
-        self.roundImage = roundImage
+        self.auxiliary = auxiliary
     }
 }

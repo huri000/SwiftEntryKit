@@ -23,7 +23,7 @@ class SelectionHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         backgroundView = UIView()
         backgroundView?.backgroundColor = EKColor.BlueGray.c50.withAlphaComponent(0.95)
-        textLabel?.font = Font.HelveticaNeue.bold.with(size: 17)
+        textLabel?.font = MainFont.bold.with(size: 17)
         textLabel?.textColor = EKColor.BlueGray.c900
     }
     

@@ -39,17 +39,30 @@ class PresetsViewController: UIViewController {
     // Bumps a standard note
     private func showNote(attributes: EKAttributes) {
         let text = "Pssst! I have something to tell you..."
-        let style = EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .white)
+        let style = EKProperty.Label(font: MainFont.light.with(size: 14), color: .white)
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         let contentView = EKNoteMessageView(with: labelContent)
 
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
+    private func showImageNote(attributes: EKAttributes) {
+        
+        // Set note label content
+        let text = "The thrill is gone"
+        let style = EKProperty.Label(font: MainFont.light.with(size: 14), color: .white)
+        let labelContent = EKProperty.LabelContent(text: text, style: style)
+        
+        // Set note image content
+        let imageContent = EKProperty.ImageContent(image: UIImage(named: "ic_wifi")!)
+        let contentView = EKImageNoteMessageView(with: labelContent, imageContent: imageContent)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
     // Bumps an infinate processing note
     private func showProcessingNote(attributes: EKAttributes) {
         let text = "Waiting for the goodies to arrive!"
-        let style = EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: .white)
+        let style = EKProperty.Label(font: MainFont.light.with(size: 14), color: .white)
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         
         let contentView = EKProcessingNoteMessageView(with: labelContent, activityIndicator: .white)
@@ -62,7 +75,7 @@ class PresetsViewController: UIViewController {
         let statusBarHeight = UIApplication.shared.statusBarFrame.maxY
         
         let contentView: UIView
-        let font = Font.HelveticaNeue.light.with(size: 12)
+        let font = MainFont.light.with(size: 12)
         let labelStyle = EKProperty.Label(font: font, color: .white)
         if statusBarHeight > 20 {
             let leading = EKProperty.LabelContent(text: "My 🧠", style: labelStyle)
@@ -81,12 +94,13 @@ class PresetsViewController: UIViewController {
     
     // Bumps a notification structured entry
     private func showNotificationMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String) {
-        let title = EKProperty.LabelContent(text: title, style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: textColor))
-        let description = EKProperty.LabelContent(text: desc, style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 14), color: textColor))
-        let time = EKProperty.LabelContent(text: "", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 12), color: textColor))
-        let image = UIImage(named: imageName)!
         
-        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
+        // Generate the content
+        let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 16), color: textColor))
+        let description = EKProperty.LabelContent(text: desc, style: .init(font: MainFont.light.with(size: 14), color: textColor))
+        let image = EKProperty.ImageContent(image: UIImage(named: imageName)!, size: CGSize(width: 35, height: 35))
+        let content = EKNotificationMessage(image: image, title: title, description: description)
+        
         let contentView = EKNotificationMessageView(with: content)
         
         SwiftEntryKit.display(entry: contentView, using: attributes)
@@ -94,12 +108,14 @@ class PresetsViewController: UIViewController {
     
     // Bumps a chat message structured entry
     private func showChatNotificationMessage(attributes: EKAttributes) {
-        let title = EKProperty.LabelContent(text: "Madi", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 14), color: .white))
-        let description = EKProperty.LabelContent(text: "Hey! I'll come by at your office for lunch... 🍲", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 12), color: .white))
-        let time = EKProperty.LabelContent(text: "09:00", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 10), color: .white))
-        let image = UIImage(named: "profile")!
         
-        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: true)
+        // Generate thhe content
+        let title = EKProperty.LabelContent(text: "Madi", style: .init(font: MainFont.medium.with(size: 14), color: .white))
+        let description = EKProperty.LabelContent(text: "Hey! I'll come by at your office for lunch... 🍲", style: .init(font: MainFont.light.with(size: 12), color: .white))
+        let time = EKProperty.LabelContent(text: "09:00", style: .init(font: MainFont.light.with(size: 10), color: .white))
+        let image = EKProperty.ImageContent.thumb(with: "ic_madi_profile", edgeSize: 35)
+        let content = EKNotificationMessage(image: image, title: title, description: description, auxiliary: time)
+        
         let contentView = EKNotificationMessageView(with: content)
 
         SwiftEntryKit.display(entry: contentView, using: attributes)
@@ -109,22 +125,23 @@ class PresetsViewController: UIViewController {
         let image = UIImage(named: "ic_done_all_dark_48pt")!
         let title = "Awesome!"
         let description = "You are using SwiftEntryKit, and this is a customized alert view that is floating at the bottom."
-        showAlertMessage(attributes: attributes, title: title, titleColor: .darkText, description: description, descriptionColor: .darkSubText, buttonTitleColor: .white, buttonBackgroundColor: .amber, image: image)
+        showPopupMessage(attributes: attributes, title: title, titleColor: .darkText, description: description, descriptionColor: .darkSubText, buttonTitleColor: .white, buttonBackgroundColor: .amber, image: image)
     }
     
     private func showLightAwesomePopupMessage(attributes: EKAttributes) {
         let image = UIImage(named: "ic_done_all_light_48pt")!
         let title = "Awesome!"
         let description = "You are using SwiftEntryKit, and this is a pop up with important content"
-        showAlertMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: EKColor.Gray.mid, buttonBackgroundColor: .white, image: image)
+        showPopupMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: EKColor.Gray.mid, buttonBackgroundColor: .white, image: image)
     }
     
     // Bumps a custom alert entry
-    private func showAlertMessage(attributes: EKAttributes, title: String, titleColor: UIColor, description: String, descriptionColor: UIColor, buttonTitleColor: UIColor, buttonBackgroundColor: UIColor, image: UIImage) {
-        let title = EKProperty.LabelContent(text: title, style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 24), color: titleColor))
-        let description = EKProperty.LabelContent(text: description, style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 16), color: descriptionColor))
-        let button = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "Got it!", style: EKProperty.Label(font: Font.HelveticaNeue.bold.with(size: 16), color: buttonTitleColor)), backgroundColor: buttonBackgroundColor)
-        let message = EKPopUpMessage(title: title, description: description, button: button, image: image) {
+    private func showPopupMessage(attributes: EKAttributes, title: String, titleColor: UIColor, description: String, descriptionColor: UIColor, buttonTitleColor: UIColor, buttonBackgroundColor: UIColor, image: UIImage, imagePosition: EKPopUpMessage.ImagePosition = .topToTop(offset: 40)) {
+        let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 24), color: titleColor))
+        let description = EKProperty.LabelContent(text: description, style: .init(font: MainFont.light.with(size: 16), color: descriptionColor))
+        let button = EKProperty.ButtonContent(label: .init(text: "Got it!", style: .init(font: MainFont.bold.with(size: 16), color: buttonTitleColor)), backgroundColor: buttonBackgroundColor)
+        let topImage = EKProperty.ImageContent(image: image, size: CGSize(width: 60, height: 60), contentMode: .scaleAspectFit)
+        let message = EKPopUpMessage(topImage: topImage, imagePosition: imagePosition, title: title, description: description, button: button) {
             SwiftEntryKit.dismiss()
         }
         
@@ -133,27 +150,29 @@ class PresetsViewController: UIViewController {
     }
     
     private func showDynamicMessage(attributes: EKAttributes) {
-        let title = EKProperty.LabelContent(text: "Dear Reader!", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 15), color: .black))
-        let description = EKProperty.LabelContent(text: "Get a coupon for a free book now", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 13), color: .black))
-        let time = EKProperty.LabelContent(text: "", style: EKProperty.Label(font: Font.HelveticaNeue.light.with(size: 10), color: .black))
-        let image = UIImage(named: "ic_books")!
         
-        let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
+        // Generate textual content
+        let title = EKProperty.LabelContent(text: "Dear Reader!", style: .init(font: MainFont.medium.with(size: 15), color: .black))
+        let description = EKProperty.LabelContent(text: "Get a coupon for a free book now", style: .init(font: MainFont.light.with(size: 13), color: .black))
+        let image = EKProperty.ImageContent(imageName: "ic_books", size: CGSize(width: 35, height: 35), contentMode: .scaleAspectFit)
+        let content = EKNotificationMessage(image: image, title: title, description: description)
         
-        let leadingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "NOT NOW", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Gray.a800)), backgroundColor: .clear)
-        let trailingButton = EKProperty.ButtonContent(label: EKProperty.LabelContent(text: "SHOW ME", style: EKProperty.Label(font: Font.HelveticaNeue.medium.with(size: 16), color: EKColor.Teal.a600)), backgroundColor: .clear)
-        let buttonsBarContent = ButtonsBarContent(leading: leadingButton, trailing: trailingButton)
+        let buttonFont = MainFont.medium.with(size: 16)
         
-        let contentView = DynamicExampleView(with: content, buttonsContent: buttonsBarContent) { [unowned self] in
+        // Generate buttons content
+        let leadingButton = EKProperty.ButtonContent(label: .init(text: "NOT NOW", style: .init(font: buttonFont, color: EKColor.Gray.a800)), backgroundColor: .clear)
+        let trailingButton = EKProperty.ButtonContent(label: .init(text: "SHOW ME", style: .init(font: buttonFont, color: EKColor.Teal.a600)), backgroundColor: .clear)
+        let buttonsBarContent = EKProperty.ButtonBarContent(leading: leadingButton, trailing: trailingButton)
+        
+        let contentView = EKButtonBarMessageView(with: content, buttonsContent: buttonsBarContent) { [unowned self] in
             var attributes = self.dataSource.bottomAlertAttributes
-            attributes.entryBackground = .color(color: EKColor.LightPink.first)
+            attributes.entryBackground = .color(color: EKColor.Teal.a600)
             attributes.entranceAnimation = .init(translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0)))
-            let image = UIImage(named: "ic_done_all_light_48pt")!
+            let image = UIImage(named: "ic_success")!
             let title = "Congratz!"
             let description = "Your book coupon is 5w1ft3ntr1k1t"
-            self.showAlertMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: .darkSubText, buttonBackgroundColor: .white, image: image)
+            self.showPopupMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: .darkSubText, buttonBackgroundColor: .white, image: image, imagePosition: .topToTop(offset: 25))
         }
-        
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
@@ -223,8 +242,10 @@ extension PresetsViewController {
         case 1:
             showProcessingNote(attributes: attributes)
         case 2:
-            showStatusBarMessage(attributes: attributes)
+            showImageNote(attributes: attributes)
         case 3:
+            showStatusBarMessage(attributes: attributes)
+        case 4:
             showNote(attributes: attributes)
         default:
             break

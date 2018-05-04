@@ -1,5 +1,5 @@
 //
-//  DynamicExampleView.swift
+//  EKButtonBarMessageView.swift
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/28/18.
@@ -8,23 +8,24 @@
 
 import UIKit
 import QuickLayout
-import SwiftEntryKit
 
-class DynamicExampleView: UIView {
-        
+public class EKButtonBarMessageView: UIView {
+    
+    // MARK: Props
     private var notificationMessageView: EKNotificationMessageView!
-    private let buttonsBarView = ButtonsBarView()
+    private let buttonBarView = ButtonBarView()
     
     private var buttonsBarCompressedConstraint: NSLayoutConstraint!
     private var buttonsBarExpandedConstraint: NSLayoutConstraint!
     
-    init(with message: EKNotificationMessage, buttonsContent: ButtonsBarContent, approveAction: @escaping ButtonsBarView.Action) {
+    // MARK: Setup
+    public init(with message: EKNotificationMessage, buttonsContent: EKProperty.ButtonBarContent, approveAction: @escaping () -> ()) {
         super.init(frame: UIScreen.main.bounds)
         setupNotificationMessageView(withContent: message)
         setupButtonsBarView(withContent: buttonsContent, approveAction: approveAction)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -34,24 +35,29 @@ class DynamicExampleView: UIView {
         notificationMessageView.layoutToSuperview(.left, .right, .top)
     }
     
-    private func setupButtonsBarView(withContent content: ButtonsBarContent, approveAction: @escaping ButtonsBarView.Action) {
-        buttonsBarView.clipsToBounds = true
-        addSubview(buttonsBarView)
-        buttonsBarView.layoutToSuperview(axis: .horizontally)
-        buttonsBarView.layoutToSuperview(.bottom)
-        buttonsBarView.layout(.top, to: .bottom, of: notificationMessageView)
-        buttonsBarCompressedConstraint = buttonsBarView.set(.height, of: 1, priority: .must)
-        buttonsBarExpandedConstraint = buttonsBarView.set(.height, of: 50, priority: .defaultLow)
+    private func setupButtonsBarView(withContent content: EKProperty.ButtonBarContent, approveAction: @escaping () -> ()) {
+        buttonBarView.clipsToBounds = true
+        addSubview(buttonBarView)
+        buttonBarView.layoutToSuperview(axis: .horizontally)
+        buttonBarView.layoutToSuperview(.bottom)
+        buttonBarView.layout(.top, to: .bottom, of: notificationMessageView)
+        buttonsBarCompressedConstraint = buttonBarView.set(.height, of: 1, priority: .must)
+        buttonsBarExpandedConstraint = buttonBarView.set(.height, of: 50, priority: .defaultLow)
         
-        buttonsBarView.approveAction = approveAction
-        buttonsBarView.buttonsContent = content
+        buttonBarView.approveAction = approveAction
+        buttonBarView.buttonsContent = content
+        
+        buttonBarView.alpha = 0
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.animateIn()
         }
     }
     
+    // MARK: Internal Animation
+    
     private func animateIn() {
+        buttonBarView.alpha = 1
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
             
             self.buttonsBarCompressedConstraint.priority = .defaultLow

@@ -12,8 +12,8 @@ public class EKNotificationMessageView: UIView {
     
     // MARK: Props
     private let thumbImageView = UIImageView()
-    private let timeLabel = UILabel()
     private let messageContentView = EKMessageContentView()
+    private let auxLabel = UILabel()
     
     private let message: EKNotificationMessage
     
@@ -21,8 +21,8 @@ public class EKNotificationMessageView: UIView {
     public init(with message: EKNotificationMessage) {
         self.message = message
         super.init(frame: UIScreen.main.bounds)
-        setupThumbImageView()
-        setupTimeLabel()
+        setupThumbImageView(with: message.image)
+        setupAuxLabel(with: message.auxiliary)
         setupMessageContentView()
     }
     
@@ -30,26 +30,20 @@ public class EKNotificationMessageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupThumbImageView() {
+    private func setupThumbImageView(with content: EKProperty.ImageContent) {
         addSubview(thumbImageView)
-        thumbImageView.contentMode = .scaleToFill
-        thumbImageView.image = message.image
+        thumbImageView.imageContent = content
         thumbImageView.layoutToSuperview(.top, .left, offset: 16)
-
-        let edge: CGFloat = 50
-        thumbImageView.set(.width, .height, of: edge)
-        if message.roundImage {
-            thumbImageView.clipsToBounds = true
-            thumbImageView.layer.cornerRadius = edge * 0.5
-        }
     }
     
-    private func setupTimeLabel() {
-        timeLabel.labelContent = message.time
-        addSubview(timeLabel)
-        timeLabel.layoutToSuperview(.right, offset: -16)
-        timeLabel.layoutToSuperview(.top, offset: 18)
-        timeLabel.forceContentWrap()
+    private func setupAuxLabel(with content: EKProperty.LabelContent?) {
+        if let content = content {
+            auxLabel.labelContent = content
+        }
+        addSubview(auxLabel)
+        auxLabel.layoutToSuperview(.right, offset: -16)
+        auxLabel.layoutToSuperview(.top, offset: 18)
+        auxLabel.forceContentWrap()
     }
     
     private func setupMessageContentView() {
@@ -60,7 +54,7 @@ public class EKNotificationMessageView: UIView {
         messageContentView.subtitleContent = message.description
         addSubview(messageContentView)
         messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 12)
-        messageContentView.layout(.right, to: .left, of: timeLabel)
+        messageContentView.layout(.right, to: .left, of: auxLabel)
         messageContentView.layout(to: .top, of: thumbImageView, offset: 4)
         messageContentView.layoutToSuperview(.bottom, offset: -20)
     }

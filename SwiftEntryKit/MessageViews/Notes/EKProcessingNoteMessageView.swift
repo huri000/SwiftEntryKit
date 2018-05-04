@@ -8,12 +8,13 @@
 
 import UIKit
 
-public class EKProcessingNoteMessageView: UIView {
+public class EKProcessingNoteMessageView: EKAccessoryNoteMessageView {
     
     // MARK: Props
-    private let activityIndicatorView = UIActivityIndicatorView()
+    private var activityIndicatorView: UIActivityIndicatorView!
     private var noteMessageView: EKNoteMessageView!
     
+    /** Activity indication can be turned off / on */
     public var isProcessing: Bool = true {
         didSet {
             if isProcessing {
@@ -34,20 +35,11 @@ public class EKProcessingNoteMessageView: UIView {
         setup(with: content, activityIndicator: activityIndicator)
     }
     
-    private func setup(with content: EKProperty.LabelContent, activityIndicator: UIActivityIndicatorViewStyle) {
-        clipsToBounds = true
-        noteMessageView = EKNoteMessageView(with: content)
-        noteMessageView.horizontalOffset = 5
-        noteMessageView.verticalOffset = 7
-        addSubview(noteMessageView)
-        noteMessageView.centerInSuperview()
-        noteMessageView.layoutToSuperview(.width, ratio: 0.7)
-        noteMessageView.layoutToSuperview(.height)
-        
+    private func setup(with content: EKProperty.LabelContent, activityIndicator: UIActivityIndicatorViewStyle, setProcessing: Bool = true) {
+        activityIndicatorView = UIActivityIndicatorView()
         activityIndicatorView.activityIndicatorViewStyle = activityIndicator
-        addSubview(activityIndicatorView)
-        activityIndicatorView.layoutToSuperview(.centerY)
-        activityIndicatorView.layout(.right, to: .left, of: noteMessageView)
-        isProcessing = true
+        isProcessing = setProcessing
+        accessoryView = activityIndicatorView
+        super.setup(with: content)
     }
 }

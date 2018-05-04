@@ -12,10 +12,10 @@ import QuickLayout
 class EKEntryView: EKStyleView {
     
     struct Content {
-        public var view: UIView
-        public var attributes: EKAttributes
+        var view: UIView
+        var attributes: EKAttributes
         
-        public init(view: UIView, attributes: EKAttributes) {
+        init(view: UIView, attributes: EKAttributes) {
             self.view = view
             self.attributes = attributes
         }

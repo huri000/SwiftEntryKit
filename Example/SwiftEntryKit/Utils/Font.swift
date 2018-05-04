@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias MainFont = Font.HelveticaNeue
+
 enum Font {
     enum HelveticaNeue: String {
         case ultraLightItalic = "UltraLightItalic"

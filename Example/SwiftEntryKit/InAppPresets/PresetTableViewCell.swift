@@ -47,7 +47,7 @@ class PresetTableViewCell: UITableViewCell {
     private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
         titleLabel.textColor = .black
-        titleLabel.font = Font.HelveticaNeue.medium.with(size: 18)
+        titleLabel.font = MainFont.medium.with(size: 18)
         titleLabel.numberOfLines = 0
         titleLabel.layout(.left, to: .right, of: thumbImageView, offset: 16)
         titleLabel.layout(to: .top, of: thumbImageView)
@@ -57,7 +57,7 @@ class PresetTableViewCell: UITableViewCell {
     private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
         descriptionLabel.textColor = EKColor.Gray.mid
-        descriptionLabel.font = Font.HelveticaNeue.light.with(size: 14)
+        descriptionLabel.font = MainFont.light.with(size: 14)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 4)
         descriptionLabel.layout(to: .left, of: titleLabel)

@@ -68,6 +68,7 @@ struct EKColor {
         static let a300 = UIColor(rgb: 0xba68c8)
         static let a400 = UIColor(rgb: 0xab47bc)
         static let a700 = UIColor(rgb: 0xaa00ff)
+        static let deep = UIColor(rgb: 0x673ab7)
     }
     
     struct BlueGradient {

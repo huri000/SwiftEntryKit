@@ -34,7 +34,6 @@ public class EKNoteMessageView: UIView {
     }
     
     // MARK: Setup
-    
     public init(with content: EKProperty.LabelContent) {
         super.init(frame: UIScreen.main.bounds)
         setup(with: content)
