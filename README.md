@@ -509,6 +509,13 @@ Forks, patches and other feedback will be available once the library is formally
 
 Daniel Huri, huri000@gmail.com
 
+## Credits
+
+[**Icons Credits**](https://github.com/huri000/SwiftEntryKit/blob/wip/documentation/CREDITS.md)
+
 ## License
 
 SwiftEntryKit is available under the MIT license. See the LICENSE file for more info.
+
+### Exceptions
+Please be aware that any use of the icons inside the project requires attribution to the author see [credits](https://github.com/huri000/SwiftEntryKit/blob/wip/documentation/CREDITS.md) for the authors list.
