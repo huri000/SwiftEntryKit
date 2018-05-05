@@ -90,12 +90,34 @@ The Playground Screen | Top Toast Sample
 - iOS 9 or any higher version.
 - Xcode 9 or any higher version.
 - Swift 4.0 or any higher version.
-- The library has not been tested with iOS 8 or a lower version.
+- The library has not been tested with iOS 8.x.y or a lower version.
 - SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) - A lightwight library written in Swift that is used to easily layout views programmatically.
 
 ## Installation
 
-SwiftEntryKit is still WIP and will be formally released very soon.
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate SwiftEntryKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '9.0'
+use_frameworks!
+
+pod 'SwiftEntryKit', '0.1.1'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
 
 ## Usage
 
@@ -528,12 +550,6 @@ Orientation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
 
-## Known Issues
-
-## Contributing
-
-Forks, patches and other feedback will be available once the library is formally released and registered in CocoaPods.
-
 ## Author
 
 Daniel Huri, huri000@gmail.com
@@ -544,7 +560,7 @@ Daniel Huri, huri000@gmail.com
 
 ## License
 
-SwiftEntryKit is available under the MIT license. See the LICENSE file for more info.
+SwiftEntryKit is available under the MIT license. See the [LICENSE](SwiftEntryKit/LICENSE) file for more info.
 
 ### Exceptions
 Please be aware that any use of the icons inside the project requires attribution to the creator. See [credits](SwiftEntryKit/CREDITS.md) for the creators list.
