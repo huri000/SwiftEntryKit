@@ -549,4 +549,4 @@ Daniel Huri, huri000@gmail.com
 SwiftEntryKit is available under the MIT license. See the LICENSE file for more info.
 
 ### Exceptions
-Please be aware that any use of the icons inside the project requires attribution to the author see [credits](SwiftEntryKit/CREDITS.md) for the authors list.
+Please be aware that any use of the icons inside the project requires attribution to the creator. See [credits](SwiftEntryKit/CREDITS.md) for the creators list.
