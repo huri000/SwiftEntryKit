@@ -13,15 +13,21 @@ public struct EKProperty {
     /** Button content descriptor */
     public struct ButtonContent {
         
+        public typealias Action = () -> ()
+        
         /** Button's title label content descriptor */
         public var label: LabelContent
         
         /** Button's background color */
         public var backgroundColor: UIColor
         
-        public init(label: LabelContent, backgroundColor: UIColor) {
+        /** Action */
+        public var action: Action?
+        
+        public init(label: LabelContent, backgroundColor: UIColor, action: @escaping Action = {}) {
             self.label = label
             self.backgroundColor = backgroundColor
+            self.action = action
         }
     }
     
@@ -94,12 +100,11 @@ public struct EKProperty {
     
     /** Button bar content */
     public struct ButtonBarContent {
-        public var leading: ButtonContent
-        public var trailing: ButtonContent
-        
-        public init(leading: ButtonContent, trailing: ButtonContent) {
-            self.leading = leading
-            self.trailing = trailing
+        public var content: [ButtonContent] = []
+        public var separatorColor: UIColor
+        public init(with buttonContents: ButtonContent..., separatorColor: UIColor) {
+            self.separatorColor = separatorColor
+            content.append(contentsOf: buttonContents)
         }
     }
 }

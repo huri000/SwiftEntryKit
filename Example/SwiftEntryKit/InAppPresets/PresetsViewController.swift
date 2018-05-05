@@ -149,22 +149,28 @@ class PresetsViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
-    private func showDynamicMessage(attributes: EKAttributes) {
+    private func showButtonBarMessage(attributes: EKAttributes) {
         
         // Generate textual content
         let title = EKProperty.LabelContent(text: "Dear Reader!", style: .init(font: MainFont.medium.with(size: 15), color: .black))
         let description = EKProperty.LabelContent(text: "Get a coupon for a free book now", style: .init(font: MainFont.light.with(size: 13), color: .black))
         let image = EKProperty.ImageContent(imageName: "ic_books", size: CGSize(width: 35, height: 35), contentMode: .scaleAspectFit)
         let content = EKNotificationMessage(image: image, title: title, description: description)
-        
+
+        // Generate buttons content
         let buttonFont = MainFont.medium.with(size: 16)
         
-        // Generate buttons content
-        let leadingButton = EKProperty.ButtonContent(label: .init(text: "NOT NOW", style: .init(font: buttonFont, color: EKColor.Gray.a800)), backgroundColor: .clear)
-        let trailingButton = EKProperty.ButtonContent(label: .init(text: "SHOW ME", style: .init(font: buttonFont, color: EKColor.Teal.a600)), backgroundColor: .clear)
-        let buttonsBarContent = EKProperty.ButtonBarContent(leading: leadingButton, trailing: trailingButton)
+        // Close button - Just dismiss entry when the button is tapped
+        let closeButtonLabelStyle = EKProperty.Label(font: buttonFont, color: EKColor.Gray.a800)
+        let closeButtonLabel = EKProperty.LabelContent(text: "NOT NOW", style: closeButtonLabelStyle)
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear) {
+            SwiftEntryKit.dismiss()
+        }
         
-        let contentView = EKButtonBarMessageView(with: content, buttonsContent: buttonsBarContent) { [unowned self] in
+        // Ok Button - Make transition to a new entry when the button is tapped
+        let okButtonLabelStyle = EKProperty.Label(font: buttonFont, color: EKColor.Teal.a600)
+        let okButtonLabel = EKProperty.LabelContent(text: "SHOW ME", style: okButtonLabelStyle)
+        let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear) { [unowned self] in
             var attributes = self.dataSource.bottomAlertAttributes
             attributes.entryBackground = .color(color: EKColor.Teal.a600)
             attributes.entranceAnimation = .init(translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0)))
@@ -173,6 +179,13 @@ class PresetsViewController: UIViewController {
             let description = "Your book coupon is 5w1ft3ntr1k1t"
             self.showPopupMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: .darkSubText, buttonBackgroundColor: .white, image: image, imagePosition: .topToTop(offset: 25))
         }
+        
+        // Generate the content
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light)
+        
+        // Setup the view itself
+        let contentView = EKButtonBarMessageView(with: content, buttonsContent: buttonsBarContent)
+        
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
@@ -277,7 +290,7 @@ extension PresetsViewController {
         case 3:
             showCustomNibView(attributes: attributes)
         case 4:
-            showDynamicMessage(attributes: attributes)
+            showButtonBarMessage(attributes: attributes)
         default:
             break
         }

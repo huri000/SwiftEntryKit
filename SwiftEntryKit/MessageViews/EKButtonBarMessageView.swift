@@ -13,16 +13,16 @@ public class EKButtonBarMessageView: UIView {
     
     // MARK: Props
     private var notificationMessageView: EKNotificationMessageView!
-    private let buttonBarView = ButtonBarView()
+    private var buttonBarView: EKButtonBarView!
     
     private var buttonsBarCompressedConstraint: NSLayoutConstraint!
     private var buttonsBarExpandedConstraint: NSLayoutConstraint!
     
     // MARK: Setup
-    public init(with message: EKNotificationMessage, buttonsContent: EKProperty.ButtonBarContent, approveAction: @escaping () -> ()) {
+    public init(with message: EKNotificationMessage, buttonsContent: EKProperty.ButtonBarContent) {
         super.init(frame: UIScreen.main.bounds)
         setupNotificationMessageView(withContent: message)
-        setupButtonsBarView(withContent: buttonsContent, approveAction: approveAction)
+        setupButtonsBarView(withContent: buttonsContent)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -35,22 +35,33 @@ public class EKButtonBarMessageView: UIView {
         notificationMessageView.layoutToSuperview(.left, .right, .top)
     }
     
-    private func setupButtonsBarView(withContent content: EKProperty.ButtonBarContent, approveAction: @escaping () -> ()) {
+    private func setupButtonsBarView(withContent content: EKProperty.ButtonBarContent) {
+        buttonBarView = EKButtonBarView(with: content)
         buttonBarView.clipsToBounds = true
         addSubview(buttonBarView)
         buttonBarView.layoutToSuperview(axis: .horizontally)
         buttonBarView.layoutToSuperview(.bottom)
         buttonBarView.layout(.top, to: .bottom, of: notificationMessageView)
         buttonsBarCompressedConstraint = buttonBarView.set(.height, of: 1, priority: .must)
-        buttonsBarExpandedConstraint = buttonBarView.set(.height, of: 50, priority: .defaultLow)
         
-        buttonBarView.approveAction = approveAction
-        buttonBarView.buttonsContent = content
+        let buttonHeight: CGFloat = 50
+        let height: CGFloat
+        switch content.content.count {
+        case 0:
+            height = 1
+        case 1, 2:
+            height = buttonHeight
+        default:
+            height = buttonHeight * CGFloat(content.content.count)
+        }
         
+        buttonsBarExpandedConstraint = buttonBarView.set(.height, of: height, priority: .defaultLow)
         buttonBarView.alpha = 0
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.animateIn()
+        if !content.content.isEmpty {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.animateIn()
+            }
         }
     }
     
