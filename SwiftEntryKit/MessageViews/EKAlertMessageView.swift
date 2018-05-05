@@ -64,8 +64,9 @@ public class EKAlertMessageView: EKSimpleMessageView {
 
         if !message.buttonBarContent.content.isEmpty {
             if message.buttonBarContent.expandAnimatedly {
+                let damping: CGFloat = message.buttonBarContent.content.count <= 2 ? 0.4 : 0.8
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.animateIn()
+                    self.animateIn(damping: damping)
                 }
             } else {
                 buttonBarView.alpha = 1
@@ -76,10 +77,11 @@ public class EKAlertMessageView: EKSimpleMessageView {
     }
     
     // MARK: Internal Animation
-    private func animateIn() {
+    private func animateIn(damping: CGFloat) {
         layoutIfNeeded()
         buttonBarView.alpha = 1
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
+        
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
             
             // Expand
             self.buttonBarView.expand()

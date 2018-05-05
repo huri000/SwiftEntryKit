@@ -14,13 +14,13 @@ public class EKSimpleMessageView: UIView {
     let messageContentView = EKMessageContentView()
     
     // MARK: Setup
-    public init(with message: EKSimpleMessage) {
+    init(with message: EKSimpleMessage) {
         super.init(frame: UIScreen.main.bounds)
         setupThumbImageView(with: message.image)
         setupMessageContentView(with: message.title, description: message.description)
     }
     
-    public required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

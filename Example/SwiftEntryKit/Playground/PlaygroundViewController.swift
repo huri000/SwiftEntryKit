@@ -16,6 +16,7 @@ class PlaygroundViewController: UIViewController {
     private lazy var attributesWrapper: EntryAttributeWrapper = {
         var attributes = EKAttributes()
         attributes.positionConstraints = .full
+        attributes.hapticFeedbackType = .success
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.entryBackground = .visualEffect(style: .light)
         return EntryAttributeWrapper(with: attributes)
@@ -79,7 +80,7 @@ class PlaygroundViewController: UIViewController {
     @IBAction func play() {
         let title = EKProperty.LabelContent(text: "Hi there!", style: EKProperty.Label(font: MainFont.bold.with(size: 16), color: .black))
         let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.Label(font: MainFont.light.with(size: 14), color: .black))
-        let image = EKProperty.ImageContent(image: UIImage(named: "ic_info_outline")!, size: CGSize(width: 35, height: 35))
+        let image = EKProperty.ImageContent(image: UIImage(named: "ic_info_outline")!, size: CGSize(width: 30, height: 30))
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
         

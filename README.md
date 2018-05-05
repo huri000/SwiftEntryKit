@@ -112,7 +112,7 @@ Do some customization on customView
 */
 
 // Attributes struct that describes the display, style, user interaction and animations of customView.
-let attributes = EKAttributes()
+var attributes = EKAttributes()
 /*
 Adjust preferable attributes
 */
@@ -127,9 +127,9 @@ The kit will install the EKWindow instance and present of the entry for you.
 
 *EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes struct is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
-Create an EKAttributes structure likewise:
+Create a mutable EKAttributes structure likewise:
 ```Swift
-let attributes = EKAttributes()
+var attributes = EKAttributes()
 ```
 
 Below are the properties that can be modified in the *EKAttributes*:
@@ -437,15 +437,13 @@ attributes.statusBarStyle = .default
 attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
 attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
 
-// Use one of the presets - set texts, fonts and colors
-let title = EKProperty.LabelContent(text: titleText, style: EKProperty.Label(font: font, color: textColor))
-let description = EKProperty.LabelContent(text: descriptionText, style: EKProperty.Label(font: font, color: textColor))
-let time = EKProperty.LabelContent(text: timeText, style: EKProperty.Label(font: font, color: textColor))
-let image = UIImage(named: imageName)!
+let title = EKProperty.LabelContent(text: titleText, style: .init(font: titleFont, color: textColor))
+let description = EKProperty.LabelContent(text: descText, style: .init(font: descFont, color: textColor))
+let image = EKProperty.ImageContent(image: UIImage(named: imageName)!, size: CGSize(width: 35, height: 35))
+let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
 
-// Create the view and display the entry
-let content = EKNotificationMessage(title: title, description: description, time: time, image: image, roundImage: false)
-let contentView = EKNotificationMessageView(with: content)
+let contentView = EKNotificationMessageView(with: notificationMessage)
 SwiftEntryKit.display(entry: contentView, using: attributes)
 ```
 
@@ -453,7 +451,7 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 
 ```Swift
 // Create a basic toast that appears at the top
-let attributes = EKAttributes.topToast
+var attributes = EKAttributes.topToast
 
 // Set it's background to white
 attributes.entryBackground = .color(color: .white)
@@ -462,7 +460,7 @@ attributes.entryBackground = .color(color: .white)
 attributes.entranceAnimation = .translation
 attributes.exitAnimation = .translation
 
-let customView = CustomView()
+let customView = UIView()
 /*
 ... Customize the view as you like ...
 */
@@ -508,22 +506,22 @@ SwiftEntryKit identifies orientation changes and adjust the entry's layout to th
 Therefore, if you wish to limit the entries's width, you are able to do so by giving it a maximum value, likewise:
 
 ```Swift
-let attributes = EKAttributes.topFloat
+var attributes = EKAttributes.topFloat
 
-// Give the entry the width of the screen minus 20pts from each side.
-attributes.positionConstraints.width = .offset(value: 20)
+// Give the entry the width of the screen minus 20pts from each side, the height is decided by the content's contraint's
+attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
 
 // Give the entry maximum width of the screen minimum edge - thus the entry won't grow much when the device orientation changes from portrait to landscape mode.
-let maxWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
-attributes.positionConstraints.maximumWidth = .constant(value: maxWidth)
+let edgeWidth = min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+attributes.positionConstraints.maxSize = .init(width: .constant(value: edgeWidth), height: .intrinsic)
 
-let customView = CustomView()
+let customView = UIView()
 /*
 ... Customize the view as you like ...
 */
 
 // Use class method of SwiftEntryKit to display the view using the desired attributes
-SwiftEntryKit.display(entry: contentView, using: attributes)
+SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
 Orientation Change Demonstration |

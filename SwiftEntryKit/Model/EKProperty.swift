@@ -104,6 +104,7 @@ public struct EKProperty {
     
     /** Button bar content */
     public struct ButtonBarContent {
+        
         public var content: [ButtonContent] = []
         public var separatorColor: UIColor
         public var expandAnimatedly: Bool

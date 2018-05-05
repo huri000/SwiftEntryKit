@@ -33,7 +33,7 @@ class PresetsViewController: UIViewController {
         tableView.delegate = self
         tableView.fillSuperview()
     }
-
+    
     // MARK: Entry Samples
     
     // Bumps a standard note
@@ -189,7 +189,7 @@ class PresetsViewController: UIViewController {
         
         // Generate textual content
         let title = EKProperty.LabelContent(text: "Hopa!", style: .init(font: MainFont.medium.with(size: 15), color: .black, alignment: .center))
-        let description = EKProperty.LabelContent(text: "This is a system-like alert mock, with several buttons. You can have even more if you want. Click on one one the buttons to dismiss it.", style: .init(font: MainFont.light.with(size: 13), color: .black, alignment: .center))
+        let description = EKProperty.LabelContent(text: "This is a system-like alert, with several buttons. You can display even more buttons if you want. Click on one of them to dismiss it.", style: .init(font: MainFont.light.with(size: 13), color: .black, alignment: .center))
         let image = EKProperty.ImageContent(imageName: "ic_apple", size: CGSize(width: 25, height: 25), contentMode: .scaleAspectFit)
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
         
@@ -236,7 +236,26 @@ class PresetsViewController: UIViewController {
 
 // MARK: UITableViewDelegate, UITableViewDataSource
 extension PresetsViewController: UITableViewDelegate, UITableViewDataSource {
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let attributes = dataSource[indexPath.section, indexPath.row].attributes
+        switch indexPath.section {
+        case 0:
+            toastCellSelected(with: attributes, row: indexPath.row)
+        case 1:
+            noteCellSelected(with: attributes, row: indexPath.row)
+        case 2:
+            floatCellSelected(with: attributes, row: indexPath.row)
+        case 3:
+            popupCellSelected(with: attributes, row: indexPath.row)
+        case 4:
+            customCellSelected(with: attributes, row: indexPath.row)
+        default:
+            break
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PresetTableViewCell.className, for: indexPath) as! PresetTableViewCell
         cell.presetDescription = dataSource[indexPath.section, indexPath.row]
@@ -318,7 +337,7 @@ extension PresetsViewController {
         }
     }
     
-    private func customCellSelected(with attributes: EKAttributes, row: Int) {
+    private func popupCellSelected(with attributes: EKAttributes, row: Int) {
         switch row {
         case 0:
             showDarkAwesomePopupMessage(attributes: attributes)
@@ -327,28 +346,18 @@ extension PresetsViewController {
         case 2:
             showLightAwesomePopupMessage(attributes: attributes)
         case 3:
-            showCustomNibView(attributes: attributes)
-        case 4:
             showButtonBarMessage(attributes: attributes)
-        case 5:
+        case 4:
             showAlertView(attributes: attributes)
         default:
             break
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let attributes = dataSource[indexPath.section, indexPath.row].attributes
-        switch indexPath.section {
+    private func customCellSelected(with attributes: EKAttributes, row: Int) {
+        switch row {
         case 0:
-            toastCellSelected(with: attributes, row: indexPath.row)
-        case 1:
-            noteCellSelected(with: attributes, row: indexPath.row)
-        case 2:
-            floatCellSelected(with: attributes, row: indexPath.row)
-        case 3:
-            customCellSelected(with: attributes, row: indexPath.row)
+            showCustomNibView(attributes: attributes)
         default:
             break
         }
