@@ -29,6 +29,23 @@ public class EKButtonBarView: UIView {
         return 1.0 / CGFloat(self.buttonBarContent.content.count)
     }()
     
+    private(set) lazy var intrinsicHeight: CGFloat = {
+        let buttonHeight: CGFloat = 50
+        let height: CGFloat
+        switch buttonBarContent.content.count {
+        case 0:
+            height = 1
+        case 1, 2:
+            height = buttonHeight
+        default:
+            height = buttonHeight * CGFloat(buttons.count)
+        }
+        return height
+    }()
+    
+    private var compressedConstraint: NSLayoutConstraint!
+    private var expandedConstraint: NSLayoutConstraint!
+
     // MARK: Setup
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -48,6 +65,9 @@ public class EKButtonBarView: UIView {
         super.init(frame: .zero)
         setupButtonBarContent()
         setupSeparatorViews()
+        
+        compressedConstraint = set(.height, of: 1, priority: .must)
+        expandedConstraint = set(.height, of: intrinsicHeight, priority: .defaultLow)
     }
     
     private func setupButtonBarContent() {
@@ -63,7 +83,7 @@ public class EKButtonBarView: UIView {
         }
         buttons.layoutToSuperview(axis: oppositeAxis)
         buttons.spread(spreadAxis, stretchEdgesToSuperview: true)
-        buttons.layout(relativeEdge, to: self, ratio: buttonEdgeRatio)
+        buttons.layout(relativeEdge, to: self, ratio: buttonEdgeRatio, priority: .must)
     }
     
     private func setupTopSeperatorView() {
@@ -118,17 +138,28 @@ public class EKButtonBarView: UIView {
         button.backgroundColor = content.backgroundColor
     }
     
-    // Selectors
+    private func setBackground(for button: UIButton, by content: EKProperty.ButtonContent) {
+        button.backgroundColor = content.backgroundColor
+    }
+    
+    // Add Selectors
     private func addEvents(to button: UIButton) {
         button.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
         button.addTarget(self, action: #selector(buttonTouchUpInside(_:)), for: .touchUpInside)
     }
     
-    private func setBackground(for button: UIButton, by content: EKProperty.ButtonContent) {
-        button.backgroundColor = content.backgroundColor
+    // Amination
+    func expand() {
+        compressedConstraint.priority = .defaultLow
+        expandedConstraint.priority = .must
     }
     
+    func compress() {
+        compressedConstraint.priority = .must
+        expandedConstraint.priority = .defaultLow
+    }
+
     // MARK: Buttons Selectors
     @objc func buttonTouchUpInside(_ button: UIButton) {
         buttonBarContent.content[button.tag].action?()

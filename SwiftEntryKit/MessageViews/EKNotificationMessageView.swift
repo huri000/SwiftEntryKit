@@ -8,32 +8,20 @@
 
 import UIKit
 
-public class EKNotificationMessageView: UIView {
+public class EKNotificationMessageView: EKSimpleMessageView {
     
     // MARK: Props
-    private let thumbImageView = UIImageView()
-    private let messageContentView = EKMessageContentView()
     private let auxLabel = UILabel()
-    
-    private let message: EKNotificationMessage
     
     // MARK: Setup
     public init(with message: EKNotificationMessage) {
-        self.message = message
-        super.init(frame: UIScreen.main.bounds)
-        setupThumbImageView(with: message.image)
+        super.init(with: message.simpleMessage)
         setupAuxLabel(with: message.auxiliary)
-        setupMessageContentView()
+        layoutContent()
     }
     
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func setupThumbImageView(with content: EKProperty.ImageContent) {
-        addSubview(thumbImageView)
-        thumbImageView.imageContent = content
-        thumbImageView.layoutToSuperview(.top, .left, offset: 16)
     }
     
     private func setupAuxLabel(with content: EKProperty.LabelContent?) {
@@ -41,18 +29,20 @@ public class EKNotificationMessageView: UIView {
             auxLabel.labelContent = content
         }
         addSubview(auxLabel)
-        auxLabel.layoutToSuperview(.right, offset: -16)
-        auxLabel.layoutToSuperview(.top, offset: 18)
-        auxLabel.forceContentWrap()
     }
     
-    private func setupMessageContentView() {
+    private func layoutContent() {
+        
         messageContentView.verticalMargins = 0
         messageContentView.horizontalMargins = 0
         messageContentView.labelsOffset = 5
-        messageContentView.titleContent = message.title
-        messageContentView.subtitleContent = message.description
-        addSubview(messageContentView)
+        
+        thumbImageView.layoutToSuperview(.top, .left, offset: 16)
+
+        auxLabel.layoutToSuperview(.right, offset: -16)
+        auxLabel.layoutToSuperview(.top, offset: 18)
+        auxLabel.forceContentWrap()
+        
         messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 12)
         messageContentView.layout(.right, to: .left, of: auxLabel)
         messageContentView.layout(to: .top, of: thumbImageView, offset: 4)

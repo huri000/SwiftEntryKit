@@ -16,7 +16,7 @@ extension UILabel {
             textColor = newValue.color
         }
         get {
-            return EKProperty.Label(font: font, color: textColor)
+            return EKProperty.Label(font: font, color: textColor, alignment: textAlignment)
         }
     }
     
@@ -25,9 +25,10 @@ extension UILabel {
             text = newValue.text
             font = newValue.style.font
             textColor = newValue.style.color
+            textAlignment = newValue.style.alignment
         }
         get {
-            return EKProperty.LabelContent(text: text ?? "", style: EKProperty.Label(font: font, color: textColor))
+            return EKProperty.LabelContent(text: text ?? "", style: EKProperty.Label(font: font, color: textColor, alignment: textAlignment))
         }
     }
 }
@@ -43,7 +44,7 @@ extension UIButton {
         get {
             let text = title(for: .normal)
             let color = titleColor(for: .normal)!
-            return EKProperty.ButtonContent(label: EKProperty.LabelContent(text: text!, style: EKProperty.Label(font: titleLabel!.font, color: color)), backgroundColor: backgroundColor!)
+            return EKProperty.ButtonContent(label: EKProperty.LabelContent(text: text!, style: EKProperty.Label(font: titleLabel!.font, color: color, alignment: titleLabel!.textAlignment)), backgroundColor: backgroundColor!)
         }
     }
 }

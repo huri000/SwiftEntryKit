@@ -327,11 +327,31 @@ struct PresetsDataSource {
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5, offset: .zero))
         attributes.statusBarStyle = .default
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
-        descriptionString = "Customized view with internal animation. It has a drop shadow, round corners and a mild border"
+        descriptionString = "Alert view with button bar. Smooths in animately."
         descriptionThumb = ThumbDesc.topFloat.rawValue
-        description = .init(with: attributes, title: "Custom View", description: descriptionString, thumb: descriptionThumb)
+        description = .init(with: attributes, title: "Top Alert View", description: descriptionString, thumb: descriptionThumb)
         customs.append(description)
 
-        dataSource.append(("Complex Entries", customs))
+        // Preset V
+        attributes = .centerFloat
+        attributes.windowLevel = .alerts
+        attributes.hapticFeedbackType = .success
+        attributes.screenInteraction = .absorbTouches
+        attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .disabled
+        attributes.screenBackground = .color(color: .dimmedLightBackground)
+        attributes.entryBackground = .color(color: .white)
+        attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(fade: .init(from: 1, to: 0, duration: 0.2))
+        attributes.displayDuration = .infinity
+        attributes.border = .value(color: .black, width: 0.5)
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 5, offset: .zero))
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
+        descriptionString = "Alert view with button bar, it has multiple choices."
+        descriptionThumb = ThumbDesc.topFloat.rawValue
+        description = .init(with: attributes, title: "Center Alert View", description: descriptionString, thumb: descriptionThumb)
+        customs.append(description)
+        
+        dataSource.append(("Customization", customs))
     }
 }

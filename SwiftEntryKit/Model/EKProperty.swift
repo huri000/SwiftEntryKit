@@ -55,9 +55,13 @@ public struct EKProperty {
         /** Color of the text */
         public var color: UIColor
         
-        public init(font: UIFont, color: UIColor) {
+        /** Text Alignment */
+        public var alignment: NSTextAlignment
+        
+        public init(font: UIFont, color: UIColor, alignment: NSTextAlignment = .left) {
             self.font = font
             self.color = color
+            self.alignment = alignment
         }
     }
     
@@ -102,8 +106,11 @@ public struct EKProperty {
     public struct ButtonBarContent {
         public var content: [ButtonContent] = []
         public var separatorColor: UIColor
-        public init(with buttonContents: ButtonContent..., separatorColor: UIColor) {
+        public var expandAnimatedly: Bool
+        
+        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, expandAnimatedly: Bool) {
             self.separatorColor = separatorColor
+            self.expandAnimatedly = expandAnimatedly
             content.append(contentsOf: buttonContents)
         }
     }
