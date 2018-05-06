@@ -142,7 +142,7 @@ Adjust preferable attributes
 ```
 And then, just call:
 ```Swift
-SwiftEntryKit.display(entry: customView, using attributes: attributes)
+SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 The kit will install the EKWindow instance and present of the entry for you.
 
@@ -557,11 +557,11 @@ Daniel Huri, huri000@gmail.com
 
 ## Credits
 
-[**Icons Credits**](SwiftEntryKit/CREDITS.md)
+[**Icons Credits**](/CREDITS.md)
 
 ## License
 
-SwiftEntryKit is available under the MIT license. See the [LICENSE](SwiftEntryKit/LICENSE) file for more info.
+SwiftEntryKit is available under the MIT license. See the [LICENSE](/LICENSE) file for more info.
 
 ### Exceptions
-Please be aware that any use of the icons inside the project requires attribution to the creator. See [credits](SwiftEntryKit/CREDITS.md) for the creators list.
+Please be aware that any use of the icons inside the project requires attribution to the creator. See [credits](/CREDITS.md) for the creators list.
