@@ -10,5 +10,6 @@ target 'SwiftEntryKit_Example' do
 
     pod 'Quick', '~> 1.2.0'
     pod 'Nimble', '~> 7.0.2'
+	pod 'QuickLayout', '1.0.13'
   end
 end

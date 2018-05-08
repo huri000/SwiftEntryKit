@@ -8,6 +8,7 @@ PODS:
 DEPENDENCIES:
   - Nimble (~> 7.0.2)
   - Quick (~> 1.2.0)
+  - QuickLayout (= 1.0.13)
   - SwiftEntryKit (from `../`)
 
 SPEC REPOS:
@@ -26,6 +27,6 @@ SPEC CHECKSUMS:
   QuickLayout: caf28f8ead39ef0c2548aff46d50bc46b27aabfc
   SwiftEntryKit: caf07408d4fe496f1f31ff246652dbccbd805f46
 
-PODFILE CHECKSUM: e97ee5a0c54b1d04376472e28361af38f454ec41
+PODFILE CHECKSUM: 3b7d2a97e873f11abbc57e9164e08a4a299947bb
 
 COCOAPODS: 1.5.0
