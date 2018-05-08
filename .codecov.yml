@@ -1,0 +1,15 @@
+coverage:
+  ignore:
+    - cmake-debug-build/*
+    - Example/*
+    - Scripts/*
+    - Documentaion/*
+    - Tests/*
+    - Pods/*
+    - Applications/Xcode.app/*
+    - vendor/*
+    - Carthage/*
+    - build/*
+    - .build/*
+    - .vagrant/*
+
