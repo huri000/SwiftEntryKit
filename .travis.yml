@@ -13,5 +13,6 @@ env:
 
 script:
 - set -o pipefail
+- pod repo add QuickLayout https://github.com/huri000/QuickLayout
 - xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
 - bash <(curl -s https://codecov.io/bash)
