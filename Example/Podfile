@@ -3,12 +3,11 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'SwiftEntryKit_Example' do
-  pod 'SwiftEntryKit', :path => '../'
+	pod 'SwiftEntryKit', :path => '../'
+end
 
-  target 'SwiftEntryKit_Tests' do
-    inherit! :search_paths
-
-    pod 'Quick', '~> 1.2.0'
-    pod 'Nimble', '~> 7.0.2'
-  end
+target 'SwiftEntryKit_Tests' do
+	pod 'SwiftEntryKit', :path => '../'
+    pod 'Quick', '1.2.0'
+    pod 'Nimble', '7.0.2'
 end

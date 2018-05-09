@@ -10,6 +10,10 @@ env:
     - TEST_SDK=iphonesimulator
     - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
 
+before_install:
+  - cd Example
+  - pod update
+  - cd ..
 
 script:
 - set -o pipefail

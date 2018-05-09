@@ -24,5 +24,4 @@ DESC
   s.source_files = 'SwiftEntryKit/**/*'
   s.frameworks = 'UIKit'
   s.dependency 'QuickLayout', '1.0.13'
-
 end
