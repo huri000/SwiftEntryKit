@@ -23,7 +23,7 @@
   "frameworks": "UIKit",
   "dependencies": {
     "QuickLayout": [
-      "1.0.13"
+
     ]
   }
 }

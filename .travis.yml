@@ -10,9 +10,6 @@ env:
     - TEST_SDK=iphonesimulator
     - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
 
-before_install:
-- rvm use system
-- sudo gem install cocoapods -v '1.5.0'
 
 script:
 - set -o pipefail
