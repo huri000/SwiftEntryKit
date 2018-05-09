@@ -10,9 +10,8 @@ env:
     - TEST_SDK=iphonesimulator
     - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
 
-
 before_install:
-  - pod repo add QuickLayout https://github.com/huri000/QuickLayout
+  - pod update
 
 script:
 - set -o pipefail
