@@ -23,7 +23,7 @@ DEPENDENCIES:
   - SwiftEntryKit (from `../`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - FBSnapshotTestCase
     - Nimble
     - Nimble-Snapshots
@@ -44,4 +44,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: ab9f6b6c11f2da19aefaa45a6dc1ec25a987268e
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2
