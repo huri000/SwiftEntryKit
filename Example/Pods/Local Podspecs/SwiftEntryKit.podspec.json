@@ -22,9 +22,6 @@
   "source_files": "SwiftEntryKit/**/*",
   "frameworks": "UIKit",
   "dependencies": {
-    "Nimble": [
-
-    ],
     "QuickLayout": [
       "1.0.13"
     ]
