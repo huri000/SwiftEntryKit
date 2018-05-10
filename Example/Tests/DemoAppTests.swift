@@ -10,9 +10,8 @@ class TableOfContentsSpec: QuickSpec {
     }
     
     private func attributesCreation() {
-        
+    
         describe("EKAttributes creation") {
-            
             describe("top toast") {
                 var attributes: EKAttributes!
                 beforeEach {
