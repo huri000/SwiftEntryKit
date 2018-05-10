@@ -17,7 +17,7 @@ public extension EKAttributes {
  
     /** The display priority of the entry - Determines whether is can be overriden by other entries.
      Must be in range [0...1000] */
-    public struct DisplayPriority : Hashable, Equatable, RawRepresentable, Comparable {
+    public struct DisplayPriority : Equatable, RawRepresentable, Comparable {
         fileprivate static let minRawValue: Float = 0
         fileprivate static let maxRawValue: Float = 1000
         
