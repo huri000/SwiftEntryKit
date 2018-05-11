@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PresetsViewController.swift
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 04/14/2018.
