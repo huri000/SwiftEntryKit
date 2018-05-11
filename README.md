@@ -551,6 +551,10 @@ Orientation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
 
+## Known Issues
+
+**Unable to find specification for SwiftEntryKit (=X.Y.Z)** - In case you get this error please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/4).
+
 ## Author
 
 Daniel Huri, huri000@gmail.com
