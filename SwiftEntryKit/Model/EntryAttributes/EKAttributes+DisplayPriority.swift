@@ -7,7 +7,7 @@
 
 import Foundation
 
-fileprivate extension Float {
+fileprivate extension Int {
     var isValidDisplayPriority: Bool {
         return self >= EKAttributes.DisplayPriority.minRawValue && self <= EKAttributes.DisplayPriority.maxRawValue
     }
@@ -18,19 +18,27 @@ public extension EKAttributes {
     /** The display priority of the entry - Determines whether is can be overriden by other entries.
      Must be in range [0...1000] */
     public struct DisplayPriority : Hashable, Equatable, RawRepresentable, Comparable {
-        fileprivate static let minRawValue: Float = 0
-        fileprivate static let maxRawValue: Float = 1000
+        fileprivate static let minRawValue: Int = 0
+        fileprivate static let maxRawValue: Int = 1000
         
-        public var rawValue: Float
+        public var rawValue: Int
         
-        public init(_ rawValue: Float) {
+        public var hashValue: Int {
+            return rawValue
+        }
+        
+        public init(_ rawValue: Int) {
             assert(rawValue.isValidDisplayPriority, "Display Priority must be in range [\(DisplayPriority.minRawValue)...\(DisplayPriority.maxRawValue)]")
             self.rawValue = rawValue
         }
         
-        public init(rawValue: Float) {
+        public init(rawValue: Int) {
             assert(rawValue.isValidDisplayPriority, "Display Priority must be in range [\(DisplayPriority.minRawValue)...\(DisplayPriority.maxRawValue)]")
             self.rawValue = rawValue
+        }
+        
+        public static func == (lhs: DisplayPriority, rhs: DisplayPriority) -> Bool {
+            return lhs.rawValue == rhs.rawValue
         }
         
         public static func < (lhs: DisplayPriority, rhs: DisplayPriority) -> Bool {

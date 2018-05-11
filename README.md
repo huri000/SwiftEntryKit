@@ -3,8 +3,8 @@
 [![Platform](http://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
-![](https://travis-ci.org/huri000/SwiftEntryKit.svg?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/SwiftEntryKit.svg?style=flat-square)](http://cocoapods.org/pods/SwiftEntryKit)
+![](https://travis-ci.org/huri000/SwiftEntryKit.svg?branch=master)
 
 * [Overview](#overview)
   * [Features](#features)
@@ -108,11 +108,11 @@ $ gem install cocoapods
 To integrate SwiftEntryKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.1.2'
+pod 'SwiftEntryKit', '0.1.5'
 ```
 
 Then, run the following command:
@@ -145,7 +145,7 @@ And then, just call:
 ```Swift
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
-The kit will install the EKWindow instance and present of the entry for you.
+The kit will replace the application main window with the EKWindow instance and display the entry.
 
 ### Entry Attributes
 
@@ -551,6 +551,10 @@ SwiftEntryKit.display(entry: customView, using: attributes)
 Orientation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
+
+## Known Issues
+
+**Unable to find specification for SwiftEntryKit (=X.Y.Z)** - In case you get this error please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/4).
 
 ## Author
 

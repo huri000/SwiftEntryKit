@@ -8,14 +8,12 @@ env:
     - WORKSPACE=Example/SwiftEntryKit.xcworkspace
     - SCHEME=DemoApp
     - TEST_SDK=iphonesimulator
-    - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
 
+# travis cache isn't kept between builds
 before_install:
-  - cd Example
-  - pod update
-  - cd ..
+  - pod repo update
 
 script:
 - set -o pipefail
-- xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7' -configuration Debug | xcpretty
-- bash <(curl -s https://codecov.io/bash)
+- xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -configuration Debug | xcpretty
+- bash <(curl -s https://codecov.io/bash) -J 'SwiftEntryKit'
