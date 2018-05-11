@@ -144,7 +144,7 @@ And then, just call:
 ```Swift
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
-The kit will install the EKWindow instance and present of the entry for you.
+The kit will replace the application main window with the EKWindow instance and display the entry.
 
 ### Entry Attributes
 
