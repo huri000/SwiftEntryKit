@@ -4,6 +4,7 @@
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 [![Version](https://img.shields.io/cocoapods/v/SwiftEntryKit.svg?style=flat-square)](http://cocoapods.org/pods/SwiftEntryKit)
+![](https://travis-ci.org/huri000/SwiftEntryKit.svg?branch=master)
 
 * [Overview](#overview)
   * [Features](#features)
@@ -107,11 +108,11 @@ $ gem install cocoapods
 To integrate SwiftEntryKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.1.4'
+pod 'SwiftEntryKit', '0.1.5'
 ```
 
 Then, run the following command:

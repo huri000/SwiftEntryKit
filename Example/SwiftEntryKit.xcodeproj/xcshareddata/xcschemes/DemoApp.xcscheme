@@ -3,7 +3,7 @@
    LastUpgradeVersion = "0900"
    version = "1.3">
    <BuildAction
-      parallelizeBuildables = "YES"
+      parallelizeBuildables = "NO"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
@@ -14,9 +14,51 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DD7C8BF89FE8053D0A2A2D88BB49CF07"
+               BuildableName = "Nimble.framework"
+               BlueprintName = "Nimble"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B8F574D10192115ECC7AFA41253E8A5A"
+               BuildableName = "Quick.framework"
+               BlueprintName = "Quick"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8B41380E9A27AF86CDF39CC8A42A5FEA"
+               BuildableName = "QuickLayout.framework"
+               BlueprintName = "QuickLayout"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-               BuildableName = "SwiftEntryKit_Example.app"
-               BlueprintName = "SwiftEntryKit_Example"
+               BuildableName = "DemoApp.app"
+               BlueprintName = "DemoApp"
                ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +71,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "SwiftEntryKit_Tests.xctest"
-               BlueprintName = "SwiftEntryKit_Tests"
+               BuildableName = "DemoAppTests.xctest"
+               BlueprintName = "DemoAppTests"
                ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,7 +82,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -48,8 +90,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "SwiftEntryKit_Tests.xctest"
-               BlueprintName = "SwiftEntryKit_Tests"
+               BuildableName = "DemoAppTests.xctest"
+               BlueprintName = "DemoAppTests"
                ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -58,8 +100,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "SwiftEntryKit_Example.app"
-            BlueprintName = "SwiftEntryKit_Example"
+            BuildableName = "DemoApp.app"
+            BlueprintName = "DemoApp"
             ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -70,7 +112,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -82,8 +123,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "SwiftEntryKit_Example.app"
-            BlueprintName = "SwiftEntryKit_Example"
+            BuildableName = "DemoApp.app"
+            BlueprintName = "DemoApp"
             ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -101,8 +142,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACCF1AFB9204008FA782"
-            BuildableName = "SwiftEntryKit_Example.app"
-            BlueprintName = "SwiftEntryKit_Example"
+            BuildableName = "DemoApp.app"
+            BlueprintName = "DemoApp"
             ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -1,0 +1,19 @@
+language: objective-c
+osx_image: xcode9.3
+cache: cocoapods
+podfile: Example/Podfile
+
+env:
+  global:
+    - WORKSPACE=Example/SwiftEntryKit.xcworkspace
+    - SCHEME=DemoApp
+    - TEST_SDK=iphonesimulator
+
+# travis cache isn't kept between builds
+before_install:
+  - pod repo update
+
+script:
+- set -o pipefail
+- xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -configuration Debug | xcpretty
+- bash <(curl -s https://codecov.io/bash) -J 'SwiftEntryKit'
