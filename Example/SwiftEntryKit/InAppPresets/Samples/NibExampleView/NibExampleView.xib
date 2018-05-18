@@ -7,11 +7,10 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NibExampleView" customModule="SwiftEntryKit_Example" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NibExampleView" customModule="SwiftEntryKitDemo" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
@@ -66,23 +65,22 @@
                 <constraint firstItem="lij-bw-5XF" firstAttribute="centerY" secondItem="4m1-eK-fCE" secondAttribute="centerY" id="ELT-AM-x3k"/>
                 <constraint firstItem="Ryf-7I-m6R" firstAttribute="top" secondItem="uzi-I6-Y4b" secondAttribute="bottom" constant="10" id="Mmy-lJ-jmc"/>
                 <constraint firstItem="zHX-T5-W7D" firstAttribute="centerY" secondItem="lij-bw-5XF" secondAttribute="centerY" id="Qy6-nn-dQH"/>
-                <constraint firstItem="4m1-eK-fCE" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="VLq-Vi-yvM"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4m1-eK-fCE" secondAttribute="bottom" constant="15" id="Wwb-sG-sms"/>
+                <constraint firstItem="4m1-eK-fCE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VLq-Vi-yvM"/>
+                <constraint firstAttribute="bottom" secondItem="4m1-eK-fCE" secondAttribute="bottom" constant="15" id="Wwb-sG-sms"/>
                 <constraint firstItem="1Ku-Ab-fMo" firstAttribute="leading" secondItem="Ryf-7I-m6R" secondAttribute="leading" id="Wx6-8k-vOn"/>
                 <constraint firstItem="zHX-T5-W7D" firstAttribute="leading" secondItem="lij-bw-5XF" secondAttribute="trailing" constant="3" id="bXJ-OU-eQq"/>
                 <constraint firstItem="1Ku-Ab-fMo" firstAttribute="top" secondItem="Ryf-7I-m6R" secondAttribute="bottom" constant="5" id="bhU-P1-E9t"/>
                 <constraint firstItem="Ryf-7I-m6R" firstAttribute="leading" secondItem="uzi-I6-Y4b" secondAttribute="leading" id="l8T-rh-9sO"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zHX-T5-W7D" secondAttribute="trailing" constant="20" id="nsM-uz-MRl"/>
+                <constraint firstAttribute="trailing" secondItem="zHX-T5-W7D" secondAttribute="trailing" constant="20" id="nsM-uz-MRl"/>
                 <constraint firstItem="Ryf-7I-m6R" firstAttribute="centerY" secondItem="4m1-eK-fCE" secondAttribute="centerY" id="q5F-rv-yaD"/>
                 <constraint firstItem="uzi-I6-Y4b" firstAttribute="leading" secondItem="4m1-eK-fCE" secondAttribute="trailing" constant="12" id="rIq-1o-aZi"/>
-                <constraint firstItem="4m1-eK-fCE" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="tQA-RH-Ihz"/>
-                <constraint firstItem="4m1-eK-fCE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="15" id="uTf-x9-Rcv"/>
+                <constraint firstItem="4m1-eK-fCE" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="tQA-RH-Ihz"/>
+                <constraint firstItem="4m1-eK-fCE" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="uTf-x9-Rcv"/>
                 <constraint firstItem="lij-bw-5XF" firstAttribute="leading" secondItem="soo-Bj-Ivd" secondAttribute="trailing" constant="2" id="wf3-dK-5UO"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="33.5" y="335"/>
         </view>
     </objects>

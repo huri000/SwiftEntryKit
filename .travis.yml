@@ -6,7 +6,7 @@ podfile: Example/Podfile
 env:
   global:
     - WORKSPACE=Example/SwiftEntryKit.xcworkspace
-    - SCHEME=DemoApp
+    - SCHEME=SwiftEntryKitDemo
     - TEST_SDK=iphonesimulator
 
 # travis cache isn't kept between builds

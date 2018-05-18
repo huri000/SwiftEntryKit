@@ -39,7 +39,7 @@ class PresetsViewController: UIViewController {
     // Bumps a standard note
     private func showNote(attributes: EKAttributes) {
         let text = "Pssst! I have something to tell you..."
-        let style = EKProperty.Label(font: MainFont.light.with(size: 14), color: .white, alignment: .center)
+        let style = EKProperty.LabelStyle(font: MainFont.light.with(size: 14), color: .white, alignment: .center)
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         
         let contentView = EKNoteMessageView(with: labelContent)
@@ -51,7 +51,7 @@ class PresetsViewController: UIViewController {
         
         // Set note label content
         let text = "The thrill is gone"
-        let style = EKProperty.Label(font: MainFont.light.with(size: 14), color: .white, alignment: .center)
+        let style = EKProperty.LabelStyle(font: MainFont.light.with(size: 14), color: .white, alignment: .center)
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         let imageContent = EKProperty.ImageContent(image: UIImage(named: "ic_wifi")!)
         
@@ -63,7 +63,7 @@ class PresetsViewController: UIViewController {
     // Bumps an infinate processing note
     private func showProcessingNote(attributes: EKAttributes) {
         let text = "Waiting for the goodies to arrive!"
-        let style = EKProperty.Label(font: MainFont.light.with(size: 14), color: .white, alignment: .center)
+        let style = EKProperty.LabelStyle(font: MainFont.light.with(size: 14), color: .white, alignment: .center)
         let labelContent = EKProperty.LabelContent(text: text, style: style)
         
         let contentView = EKProcessingNoteMessageView(with: labelContent, activityIndicator: .white)
@@ -77,7 +77,7 @@ class PresetsViewController: UIViewController {
         
         let contentView: UIView
         let font = MainFont.light.with(size: 12)
-        let labelStyle = EKProperty.Label(font: font, color: .white, alignment: .center)
+        let labelStyle = EKProperty.LabelStyle(font: font, color: .white, alignment: .center)
         if statusBarHeight > 20 {
             let leading = EKProperty.LabelContent(text: "My 🧠", style: labelStyle)
             let trailing = EKProperty.LabelContent(text: "Wonders!", style: labelStyle)
@@ -135,7 +135,7 @@ class PresetsViewController: UIViewController {
     private func showPopupMessage(attributes: EKAttributes, title: String, titleColor: UIColor, description: String, descriptionColor: UIColor, buttonTitleColor: UIColor, buttonBackgroundColor: UIColor, image: UIImage, imagePosition: EKPopUpMessage.ImagePosition = .topToTop(offset: 40)) {
         let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 24), color: titleColor, alignment: .center))
         let description = EKProperty.LabelContent(text: description, style: .init(font: MainFont.light.with(size: 16), color: descriptionColor, alignment: .center))
-        let button = EKProperty.ButtonContent(label: .init(text: "Got it!", style: .init(font: MainFont.bold.with(size: 16), color: buttonTitleColor)), backgroundColor: buttonBackgroundColor)
+        let button = EKProperty.ButtonContent(label: .init(text: "Got it!", style: .init(font: MainFont.bold.with(size: 16), color: buttonTitleColor)), backgroundColor: buttonBackgroundColor, highlightedBackgroundColor: buttonTitleColor.withAlphaComponent(0.05))
         let topImage = EKProperty.ImageContent(image: image, size: CGSize(width: 60, height: 60), contentMode: .scaleAspectFit)
         let message = EKPopUpMessage(topImage: topImage, imagePosition: imagePosition, title: title, description: description, button: button) {
             SwiftEntryKit.dismiss()
@@ -157,16 +157,16 @@ class PresetsViewController: UIViewController {
         let buttonFont = MainFont.medium.with(size: 16)
         
         // Close button - Just dismiss entry when the button is tapped
-        let closeButtonLabelStyle = EKProperty.Label(font: buttonFont, color: EKColor.Gray.a800)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: buttonFont, color: EKColor.Gray.a800)
         let closeButtonLabel = EKProperty.LabelContent(text: "NOT NOW", style: closeButtonLabelStyle)
-        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear) {
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Gray.a800.withAlphaComponent(0.05)) {
             SwiftEntryKit.dismiss()
         }
         
         // Ok Button - Make transition to a new entry when the button is tapped
-        let okButtonLabelStyle = EKProperty.Label(font: buttonFont, color: EKColor.Teal.a600)
+        let okButtonLabelStyle = EKProperty.LabelStyle(font: buttonFont, color: EKColor.Teal.a600)
         let okButtonLabel = EKProperty.LabelContent(text: "SHOW ME", style: okButtonLabelStyle)
-        let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear) { [unowned self] in
+        let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) { [unowned self] in
             var attributes = self.dataSource.bottomAlertAttributes
             attributes.entryBackground = .color(color: EKColor.Teal.a600)
             attributes.entranceAnimation = .init(translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0)))
@@ -197,23 +197,23 @@ class PresetsViewController: UIViewController {
         let buttonFont = MainFont.medium.with(size: 16)
         
         // Close button
-        let closeButtonLabelStyle = EKProperty.Label(font: buttonFont, color: EKColor.Gray.a800)
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: buttonFont, color: EKColor.Gray.a800)
         let closeButtonLabel = EKProperty.LabelContent(text: "NOT NOW", style: closeButtonLabelStyle)
-        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear) {
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Gray.a800.withAlphaComponent(0.05)) {
             SwiftEntryKit.dismiss()
         }
         
         // Remind me later Button
-        let laterButtonLabelStyle = EKProperty.Label(font: buttonFont, color: EKColor.Teal.a600)
+        let laterButtonLabelStyle = EKProperty.LabelStyle(font: buttonFont, color: EKColor.Teal.a600)
         let laterButtonLabel = EKProperty.LabelContent(text: "MAYBE LATER", style: laterButtonLabelStyle)
-        let laterButton = EKProperty.ButtonContent(label: laterButtonLabel, backgroundColor: .clear) {
+        let laterButton = EKProperty.ButtonContent(label: laterButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
             SwiftEntryKit.dismiss()
         }
         
         // Ok Button
-        let okButtonLabelStyle = EKProperty.Label(font: buttonFont, color: EKColor.Teal.a600)
+        let okButtonLabelStyle = EKProperty.LabelStyle(font: buttonFont, color: EKColor.Teal.a600)
         let okButtonLabel = EKProperty.LabelContent(text: "SHOW ME", style: okButtonLabelStyle)
-        let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear) {
+        let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
             SwiftEntryKit.dismiss()
         }
         
@@ -231,6 +231,28 @@ class PresetsViewController: UIViewController {
     // Bumps a custom nib view
     private func showCustomNibView(attributes: EKAttributes) {
         SwiftEntryKit.display(entry: NibExampleView(), using: attributes)
+    }
+    
+    // Sign in form
+    private func showSigninForm(attributes: EKAttributes, style: FormStyle) {
+        let title = EKProperty.LabelContent(text: "Sign in to your account", style: style.title)
+        let textFields = FormFieldPresetFactory.fields(by: [.email, .password], style: style)
+        let button = EKProperty.ButtonContent(label: .init(text: "Continue", style: style.buttonTitle), backgroundColor: style.buttonBackground, highlightedBackgroundColor: style.buttonBackground.withAlphaComponent(0.8)) {
+            SwiftEntryKit.dismiss()
+        }
+        let contentView = EKFormMessageView(with: title, textFieldsContent: textFields, buttonContent: button)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
+    // Sign up form
+    private func showSignupForm(attributes: EKAttributes, style: FormStyle) {
+        let title = EKProperty.LabelContent(text: "Fill your personal details", style: style.title)
+        let textFields = FormFieldPresetFactory.fields(by: [.fullName, .mobile, .email, .password], style: style)
+        let button = EKProperty.ButtonContent(label: .init(text: "Continue", style: style.buttonTitle), backgroundColor: style.buttonBackground, highlightedBackgroundColor: style.buttonBackground.withAlphaComponent(0.8)) {
+            SwiftEntryKit.dismiss()
+        }
+        let contentView = EKFormMessageView(with: title, textFieldsContent: textFields, buttonContent: button)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
 }
 
@@ -250,6 +272,8 @@ extension PresetsViewController: UITableViewDelegate, UITableViewDataSource {
         case 3:
             popupCellSelected(with: attributes, row: indexPath.row)
         case 4:
+            formCellSelected(with: attributes, row: indexPath.row)
+        case 5:
             customCellSelected(with: attributes, row: indexPath.row)
         default:
             break
@@ -349,6 +373,19 @@ extension PresetsViewController {
             showButtonBarMessage(attributes: attributes)
         case 4:
             showAlertView(attributes: attributes)
+        default:
+            break
+        }
+    }
+    
+    private func formCellSelected(with attributes: EKAttributes, row: Int) {
+        switch row {
+        case 0:
+            showSigninForm(attributes: attributes, style: .light)
+        case 1:
+            showSignupForm(attributes: attributes, style: .light)
+        case 2:
+            showSignupForm(attributes: attributes, style: .dark)
         default:
             break
         }

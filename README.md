@@ -112,7 +112,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.1.5'
+pod 'SwiftEntryKit', '0.2.0'
 ```
 
 Then, run the following command:
@@ -239,6 +239,17 @@ Vertical Offset - An additional offset that can be applied to the entry (Other t
 ```Swift
 attributes.positionConstraints.verticalOffset = 10
 ```
+
+Keyboard Releation - used to bind an entry to the keyboard once the keyboard is displayed.
+
+```Swift
+let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10, screenEdgeResistance: 20)
+let keyboardRelation = EKAttributes.PositionConstraints.KeyboardRelation.bind(offset: offset)
+attributes.positionConstraints.keyboardRelation = keyboardRelation
+```
+In the example above the entry's bottom is tuned to have a 10pts offset from the top of the keyboard (while it show)
+Because the entry's frame might exceed the screen bounds, the user might not see all the entry - we wouldn't want that. Therefore, an additional associated value has been added - `screenEdgeResistance` with value of 20pts. That is, to make sure that the entry remains within the bounds of the screen, and always visible to the user.
+The extreme situation might occur as the device orientation is horizontal and the keyboard shows up (See example project for more information).
 
 #### User Interaction
 The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways:
@@ -500,6 +511,15 @@ SwiftEntryKit.dismiss()
 ```
 This will dismiss the entry animatedly using it's *exitAnimation* attribute and on comletion it'll remove the window as well.
 
+
+### Is Currently Displaying
+Inquire whether an entry is currently displayed:
+```Swift
+if SwiftEntryKit.isCurrentlyDisplaying {
+    /* Do your things */
+}
+```
+
 ### Swiping and Rubber Banding
 Entries can be panned vertically (This ability can be enabled using the *scroll* attributes). 
 Thefore it's only natural that an entry can be dismissed using a swipe-like gesture.
@@ -559,6 +579,10 @@ Orientation Change Demonstration |
 ## Author
 
 Daniel Huri, huri000@gmail.com
+
+## Thank You
+
+Thanks Lily Azar, lilushkaa@gmail.com for those aweome preset icons. 
 
 ## Credits
 

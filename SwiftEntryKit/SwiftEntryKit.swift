@@ -15,6 +15,11 @@ public final class SwiftEntryKit {
     // Cannot be instantiated or inherited.
     private init() {}
     
+    /** Returns true if an entry is currently displayed */
+    public class var isCurrentlyDisplaying: Bool {
+        return EKAttributes.isDisplaying
+    }
+    
     /**
      Displays a given entry view using a given attributes struct.
      - A thread-safe method - Can be invokes from anywhere.
@@ -50,6 +55,10 @@ public final class SwiftEntryKit {
             EKWindowProvider.shared.layoutIfNeeded()
         }
     }
+}
+
+// MARK: Private
+private extension SwiftEntryKit {
     
     // A Precaution: Executes a UI action on the main thread, thus letting any of the class methods of SwiftEntryKit to be invokes even from a background thread.
     private class func executeUIAction(_ action: @escaping () -> ()) {

@@ -110,6 +110,11 @@ public extension EKAttributes {
             return Animation(translate: .init(duration: 0.3))
         }
         
+        /** No animation at all */
+        public static var none: Animation {
+            return Animation()
+        }
+        
         public init(translate: Translate? = nil, scale: RangeAnimation? = nil, fade: RangeAnimation? = nil) {
             self.translate = translate
             self.scale = scale

@@ -71,12 +71,57 @@ public extension EKAttributes {
             case intrinsic
         }
         
+        /** The relation to the keyboard's top and the screen's top while it is opened */
+        public enum KeyboardRelation {
+            
+            /** Describes the offset when the keyboard is opened */
+            public struct Offset {
+                
+                /** Describes top keyboard offset to the entry's bottom */
+                public var bottom: CGFloat
+                
+                /** Describes top screen offset to the entry's top, useful to prevent the entry from exceeding the screen top bounds */
+                public var screenEdgeResistance: CGFloat?
+                
+                public init(bottom: CGFloat = 0, screenEdgeResistance: CGFloat? = nil) {
+                    self.bottom = bottom
+                    self.screenEdgeResistance = screenEdgeResistance
+                }
+                
+                /** None offset */
+                public static var none: Offset {
+                    return .init()
+                }
+            }
+            
+            /** Bind the entry's bottom to the keyboard's top with an offset.
+             Additionally, the top edge of the screen can have a resistance offset which the entry isn't able to cross.
+             The resistance is mostly used when the device orientation changes and the entry's frame crosses the screen bounds.
+             Current isn't supported with center entry position.*/
+            case bind(offset: Offset)
+            
+            /** Entry is unbound to the keyboard. It's location doesn't change. */
+            case unbind
+            
+            public var isBound: Bool {
+                switch self {
+                case .bind(offset: _):
+                    return true
+                case .unbind:
+                    return false
+                }
+            }
+        }
+        
+        /** The entry can be bound to keyboard in case of appearence */
+        public var keyboardRelation = KeyboardRelation.unbind
+        
         /** The size of the entry */
         public var size: Size
         
         /** The maximum size of the entry */
         public var maxSize: Size
-        
+
         /** The vertical offset from the top or bottom anchor */
         public var verticalOffset: CGFloat
         
