@@ -103,6 +103,7 @@ public extension EKAttributes {
             /** Entry is unbound to the keyboard. It's location doesn't change. */
             case unbind
             
+            /** Returns true if the entry is bound to the keyboard */
             public var isBound: Bool {
                 switch self {
                 case .bind(offset: _):
@@ -142,6 +143,7 @@ public extension EKAttributes {
             return PositionConstraints(verticalOffset: 10, size: .init(width: .offset(value: 20), height: .intrinsic))
         }
         
+        /** Initialize with default parameters */
         public init(verticalOffset: CGFloat = 0, size: Size = .sizeToWidth, maxSize: Size = .intrinsic) {
             self.verticalOffset = verticalOffset
             self.size = size

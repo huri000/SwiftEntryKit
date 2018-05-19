@@ -3,7 +3,7 @@
 //  SwiftEntryKitDemo
 //
 //  Created by Daniel Huri on 5/18/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import Foundation

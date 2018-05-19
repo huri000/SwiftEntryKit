@@ -71,9 +71,9 @@ The example project contains various presets and examples you can use and modify
 
 ### Presets
 
-Toasts | Notes | Floats | Popups | Custom1 | Custom2
---- | --- | --- | --- | --- | ---
-![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![nibs](https://github.com/huri000/assets/blob/master/swift-entrykit/nibs.gif) | ![customization](https://github.com/huri000/assets/blob/master/swift-entrykit/customization.gif)
+Toasts | Notes | Floats | Popups | Alerts | Forms | Custom
+--- | --- | --- | --- | --- | --- | --- 
+![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![alert_example](https://github.com/huri000/assets/blob/master/swift-entrykit/alerts.gif) | ![form_example](https://github.com/huri000/assets/blob/master/swift-entrykit/forms.gif) | ![custom_example](https://github.com/huri000/assets/blob/master/swift-entrykit/customization.gif)
 
 
 ### Playground
@@ -247,9 +247,9 @@ let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10
 let keyboardRelation = EKAttributes.PositionConstraints.KeyboardRelation.bind(offset: offset)
 attributes.positionConstraints.keyboardRelation = keyboardRelation
 ```
-In the example above the entry's bottom is tuned to have a 10pts offset from the top of the keyboard (while it show)
+In the example above the entry's bottom is tuned to have a 10pts offset from the top of the keyboard (while it shows)
 Because the entry's frame might exceed the screen bounds, the user might not see all the entry - we wouldn't want that. Therefore, an additional associated value has been added - `screenEdgeResistance` with value of 20pts. That is, to make sure that the entry remains within the bounds of the screen, and always visible to the user.
-The extreme situation might occur as the device orientation is horizontal and the keyboard shows up (See example project for more information).
+The extreme situation might occur as the device orientation is landscape and the keyboard shows up (See example project form presets for more information).
 
 #### User Interaction
 The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways:

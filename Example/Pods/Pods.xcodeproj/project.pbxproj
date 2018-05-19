@@ -595,7 +595,7 @@
 				78FD1E70A6B1D96B56BCC9899BA618C9 /* EKPopUpMessageView.swift */,
 				E01F6FEAF6530CEDF868010442399144 /* EKSimpleMessageView.swift */,
 				6A8E45E9747E4EE0DD022809051FB14F /* Notes */,
-				B1BD763E65A8F87F5DCB709AB6CF2B51 /* Utils */,
+				B1BD763E65A8F87F5DCB709AB6CF2B51 /* MessagesUtils */,
 			);
 			name = MessageViews;
 			path = SwiftEntryKit/MessageViews;
@@ -784,13 +784,13 @@
 			path = "../Target Support Files/Nimble";
 			sourceTree = "<group>";
 		};
-		B1BD763E65A8F87F5DCB709AB6CF2B51 /* Utils */ = {
+		B1BD763E65A8F87F5DCB709AB6CF2B51 /* MessagesUtils */ = {
 			isa = PBXGroup;
 			children = (
 				54AE21D3C4E3F54E0D9819D3F3052557 /* EKButtonBarView.swift */,
 				AC27960861CA8751DBC444C73D6A7D2B /* EKTextField.swift */,
 			);
-			path = Utils;
+			path = MessagesUtils;
 			sourceTree = "<group>";
 		};
 		B8C009A640E3D51D87EEFB100A2299BD /* Pod */ = {
