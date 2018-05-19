@@ -2,11 +2,11 @@ platform :ios, '9.0'
 
 use_frameworks!
 
-target 'DemoApp' do
+target 'SwiftEntryKitDemo' do
 	pod 'SwiftEntryKit', :path => '../'
 end
 
-target 'DemoAppTests' do
+target 'SwiftEntryKitTests' do
 	pod 'SwiftEntryKit', :path => '../'
     pod 'Quick', '1.2.0'
     pod 'Nimble', '7.0.2'

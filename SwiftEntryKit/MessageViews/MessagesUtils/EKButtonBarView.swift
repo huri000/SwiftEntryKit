@@ -138,8 +138,12 @@ public class EKButtonBarView: UIView {
         button.backgroundColor = content.backgroundColor
     }
     
-    private func setBackground(for button: UIButton, by content: EKProperty.ButtonContent) {
-        button.backgroundColor = content.backgroundColor
+    private func setBackground(for button: UIButton, by content: EKProperty.ButtonContent, isHighlighted: Bool) {
+        if isHighlighted {
+            button.backgroundColor = content.highlightedBackgroundColor
+        } else {
+            button.backgroundColor = content.backgroundColor
+        }
     }
     
     // Add Selectors
@@ -166,10 +170,10 @@ public class EKButtonBarView: UIView {
     }
     
     @objc func buttonTouchDown(_ button: UIButton) {
-        button.backgroundColor = button.titleColor(for: .normal)!.withAlphaComponent(0.05)
+        setBackground(for: button, by: buttonBarContent.content[button.tag], isHighlighted: true)
     }
     
     @objc func buttonTouchUp(_ button: UIButton) {
-        setBackground(for: button, by: buttonBarContent.content[button.tag])
+        setBackground(for: button, by: buttonBarContent.content[button.tag], isHighlighted: false)
     }
 }

@@ -32,6 +32,8 @@ class EKContentView: UIView {
     private var popOutConstraint: NSLayoutConstraint!
     private var inConstraint: NSLayoutConstraint!
     private var outConstraint: NSLayoutConstraint!
+    private var resistanceConstraint: NSLayoutConstraint!
+    private var inKeyboardConstraint: NSLayoutConstraint!
     
     private var inOffset: CGFloat = 0
     private var totalTranslation: CGFloat = 0
@@ -40,6 +42,8 @@ class EKContentView: UIView {
     
     private var outDispatchWorkItem: DispatchWorkItem!
 
+    private var keyboardState = KeyboardState.hidden
+    
     // Data source
     private var attributes: EKAttributes!
     
@@ -79,6 +83,8 @@ class EKContentView: UIView {
         
         // Generate haptic feedback
         generateHapticFeedback()
+        
+        setupKeyboardChangeIfNeeded()
     }
     
     // Setup the scrollView initial position
@@ -114,7 +120,6 @@ class EKContentView: UIView {
             messageInAnchor = .top
             
             inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
-
             inOffset += attributes.positionConstraints.verticalOffset
             outOffset = -safeAreaInsets.top
             
@@ -124,7 +129,8 @@ class EKContentView: UIView {
             messageOutAnchor = .top
             messageInAnchor = .bottom
             
-            inOffset = -safeAreaInsets.bottom - attributes.positionConstraints.verticalOffset
+            inOffset = overrideSafeArea ? 0 : -safeAreaInsets.bottom
+            inOffset -= attributes.positionConstraints.verticalOffset
             
             spacerView?.layout(.top, to: .bottom, of: self)
         case .center:
@@ -167,6 +173,17 @@ class EKContentView: UIView {
             verticalLimit = inOffset
         case .bottom, .center:
             verticalLimit = UIScreen.main.bounds.height + inOffset
+        }
+        
+        // Setup keyboard constraints
+        switch attributes.positionConstraints.keyboardRelation {
+        case .bind(offset: let offset):
+            if let screenEdgeResistance = offset.screenEdgeResistance {
+                resistanceConstraint = layoutToSuperview(.top, relation: .greaterThanOrEqual, offset: screenEdgeResistance, priority: .defaultLow)
+            }
+            inKeyboardConstraint = layoutToSuperview(.bottom, priority: .defaultLow)
+        default:
+            break
         }
     }
     
@@ -275,6 +292,10 @@ class EKContentView: UIView {
     
     // Animate out
     func animateOut(pushOut: Bool) {
+        if attributes.positionConstraints.keyboardRelation.isBound {
+            endEditing(true)
+        }
+        
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
@@ -407,9 +428,115 @@ class EKContentView: UIView {
         if EKAttributes.count > 0 {
             EKAttributes.count -= 1
         }
-        if !keepWindow && !EKAttributes.isPresenting {
+        if !keepWindow && !EKAttributes.isDisplaying {
             EKWindowProvider.shared.state = .main
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+
+
+// MARK: Keyboard Logic
+extension EKContentView {
+    
+    private enum KeyboardState {
+        case visible
+        case hidden
+        
+        var isVisible: Bool {
+            return self == .visible
+        }
+        
+        var isHidden: Bool {
+            return self == .hidden
+        }
+    }
+    
+    private struct KeyboardAttributes {
+        let duration: TimeInterval
+        let curve: UIViewAnimationOptions
+        let begin: CGRect
+        let end: CGRect
+        
+        init?(withRawValue rawValue: [AnyHashable: Any]?) {
+            guard let rawValue = rawValue else {
+                return nil
+            }
+            duration = rawValue[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+            curve = UIViewAnimationOptions(rawValue: rawValue[UIKeyboardAnimationCurveUserInfoKey] as! UInt)
+            begin = (rawValue[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            end = (rawValue[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        }
+        
+        var height: CGFloat {
+            return end.maxY - end.minY
+        }
+    }
+    
+    private func setupKeyboardChangeIfNeeded() {
+        guard attributes.positionConstraints.keyboardRelation.isBound else {
+            return
+        }
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidHide(_:)), name: .UIKeyboardDidHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+    }
+
+    private func animate(by userInfo: [AnyHashable: Any]?, entrance: Bool) {
+        
+        // Guard that the entry is bound to the keyboard
+        guard case .bind(offset: let offset) = attributes.positionConstraints.keyboardRelation else {
+            return
+        }
+        
+        // Convert the user info into keyboard attributs
+        guard let keyboardAtts = KeyboardAttributes(withRawValue: userInfo) else {
+            return
+        }
+        
+        if entrance {
+            inKeyboardConstraint.constant = -(keyboardAtts.height + offset.bottom)
+            inKeyboardConstraint.priority = .must
+            resistanceConstraint?.priority = .must
+            inConstraint.priority = .defaultLow
+        } else {
+            inKeyboardConstraint.priority = .defaultLow
+            resistanceConstraint?.priority = .defaultLow
+            inConstraint.priority = .must
+        }
+        
+        UIView.animate(withDuration: keyboardAtts.duration, delay: 0, options: keyboardAtts.curve, animations: {
+            self.superview?.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard containsFirstResponder else {
+            return
+        }
+        keyboardState = .visible
+        animate(by: notification.userInfo, entrance: true)
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        animate(by: notification.userInfo, entrance: false)
+    }
+    
+    @objc func keyboardDidHide(_ notification: Notification) {
+        keyboardState = .hidden
+    }
+    
+    @objc func keyboardWillChangeFrame(_ notification: Notification) {
+        guard containsFirstResponder else {
+            return
+        }
+        animate(by: notification.userInfo, entrance: true)
     }
 }
 
@@ -431,7 +558,10 @@ extension EKContentView {
     
     // Pan gesture handler
     @objc func panGestureRecognized(gr: UIPanGestureRecognizer) {
-        
+        guard keyboardState.isHidden else {
+            return
+        }
+                
         // Delay the exit of the entry if needed
         handleExitDelayIfNeeded(byPanState: gr.state)
         
@@ -450,7 +580,6 @@ extension EKContentView {
                 }
             }
         } else {
-            
             switch gr.state {
             case .ended, .failed, .cancelled:
                 let velocity = gr.velocity(in: superview!).y
@@ -509,7 +638,7 @@ extension EKContentView {
         totalTranslation = verticalLimit
     
         let animation: EKAttributes.Scroll.PullbackAnimation
-        if case EKAttributes.Scroll.enabled(swipeable: _, pullbackAnimation: let pullbackAnimation) = attributes.scroll {
+        if case .enabled(swipeable: _, pullbackAnimation: let pullbackAnimation) = attributes.scroll {
             animation = pullbackAnimation
         } else {
             animation = .easeOut

@@ -1,14 +1,19 @@
 //
-//  UIView+QLContentWrap.swift
+//  QLView+QLContentWrap.swift
 //  QuickLayout
 //
 //  Created by Daniel Huri on 11/21/17.
 //
 
 import Foundation
+#if os(OSX)
+import AppKit
+#else
+import UIKit
+#endif
 
 // MARK: Content Compression Resistance & Content Hugging Priority
-public extension UIView {
+public extension QLView {
 
     /**
      Force hugging and compression resistance for the given axes, using variadic parameter.
@@ -36,7 +41,7 @@ public extension UIView {
     /**
      Vertical hugging priority
      */
-    public var verticalHuggingPriority: UILayoutPriority {
+    public var verticalHuggingPriority: QLPriority {
         set {
             setContentHuggingPriority(newValue, for: .vertical)
         }
@@ -48,7 +53,7 @@ public extension UIView {
     /**
      Horizontal hugging priority
      */
-    public var horizontalHuggingPriority: UILayoutPriority {
+    public var horizontalHuggingPriority: QLPriority {
         set {
             setContentHuggingPriority(newValue, for: .horizontal)
         }
@@ -73,7 +78,7 @@ public extension UIView {
     /**
      Vertical content compression resistance priority
      */
-    public var verticalCompressionResistancePriority: UILayoutPriority {
+    public var verticalCompressionResistancePriority: QLPriority {
         set {
             setContentCompressionResistancePriority(newValue, for: .vertical)
         }
@@ -85,7 +90,7 @@ public extension UIView {
     /**
      Horizontal content compression resistance priority
      */
-    public var horizontalCompressionResistancePriority: UILayoutPriority {
+    public var horizontalCompressionResistancePriority: QLPriority {
         set {
             setContentCompressionResistancePriority(newValue, for: .horizontal)
         }

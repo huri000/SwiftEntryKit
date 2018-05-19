@@ -31,13 +31,13 @@ public class EKMessageContentView: UIView {
         }
     }
     
-    public var titleAttributes: EKProperty.Label! {
+    public var titleAttributes: EKProperty.LabelStyle! {
         didSet {
             titleLabel.attributes = titleAttributes
         }
     }
     
-    public var subtitleAttributes: EKProperty.Label! {
+    public var subtitleAttributes: EKProperty.LabelStyle! {
         didSet {
             subtitleLabel.attributes = subtitleAttributes
         }

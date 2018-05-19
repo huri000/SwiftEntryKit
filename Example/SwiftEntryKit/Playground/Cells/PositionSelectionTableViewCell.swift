@@ -27,6 +27,8 @@ class PositionSelectionTableViewCell: SelectionTableViewCell {
             segmentedControl.selectedSegmentIndex = 1
         case .center:
             segmentedControl.selectedSegmentIndex = 2
+        default:
+            break
         }
     }
     

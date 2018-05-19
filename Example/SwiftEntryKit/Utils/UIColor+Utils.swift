@@ -59,6 +59,11 @@ struct EKColor {
         static let c900 = UIColor(rgb: 0x263238)
     }
     
+    struct Netflix {
+        static let light = UIColor(rgb: 0x485563)
+        static let dark = UIColor(rgb: 0x29323c)
+    }
+    
     struct Gray {
         static let a800 = UIColor(rgb: 0x424242)
         static let mid = UIColor(rgb: 0x616161)

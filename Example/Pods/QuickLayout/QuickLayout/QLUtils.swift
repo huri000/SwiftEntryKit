@@ -6,27 +6,31 @@
 //
 
 import Foundation
+#if os(OSX)
+import AppKit
+#else
 import UIKit
+#endif
 
 /**
  Typealias for dictionary that contains multiple constraints
  */
-public typealias QLMultipleConstraints = [NSLayoutAttribute : NSLayoutConstraint]
+public typealias QLMultipleConstraints = [QLAttribute : NSLayoutConstraint]
 
 /**
  Extends layout priority to other readable types
  */
-public extension UILayoutPriority {
-    public static let must = UILayoutPriority(rawValue: 999)
-    public static let zero = UILayoutPriority(rawValue: 0)
+public extension QLPriority {
+    public static let must = QLPriority(rawValue: 999)
+    public static let zero = QLPriority(rawValue: 0)
 }
 
 /**
  Represents pair of attributes
  */
 public struct QLAttributePair {
-    public let first: NSLayoutAttribute
-    public let second: NSLayoutAttribute
+    public let first: QLAttribute
+    public let second: QLAttribute
 }
 
 /**
@@ -65,15 +69,15 @@ public struct QLFillConstraints {
  Represents pair of priorities
  */
 public struct QLPriorityPair {
-    public let horizontal: UILayoutPriority
-    public let vertical: UILayoutPriority
+    public let horizontal: QLPriority
+    public let vertical: QLPriority
     public static var required: QLPriorityPair {
         return QLPriorityPair(.required, .required)
     }
     public static var must: QLPriorityPair {
         return QLPriorityPair(.must, .must)
     }
-    public init(_ horizontal: UILayoutPriority, _ vertical: UILayoutPriority) {
+    public init(_ horizontal: QLPriority, _ vertical: QLPriority) {
         self.horizontal = horizontal
         self.vertical = vertical
     }
@@ -86,8 +90,8 @@ public enum QLAxis {
     case horizontally
     case vertically
     public var attributes: QLAttributePair {
-        let first: NSLayoutAttribute
-        let second: NSLayoutAttribute
+        let first: QLAttribute
+        let second: QLAttribute
         switch self {
         case .horizontally:
             first = .left

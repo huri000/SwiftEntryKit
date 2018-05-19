@@ -20,13 +20,15 @@ public struct EKProperty {
         
         /** Button's background color */
         public var backgroundColor: UIColor
-        
+        public var highlightedBackgroundColor: UIColor
+
         /** Action */
         public var action: Action?
         
-        public init(label: LabelContent, backgroundColor: UIColor, action: @escaping Action = {}) {
+        public init(label: LabelContent, backgroundColor: UIColor, highlightedBackgroundColor: UIColor, action: @escaping Action = {}) {
             self.label = label
             self.backgroundColor = backgroundColor
+            self.highlightedBackgroundColor = highlightedBackgroundColor
             self.action = action
         }
     }
@@ -38,16 +40,16 @@ public struct EKProperty {
         public var text: String
         
         /** The label's style */
-        public var style: Label
+        public var style: LabelStyle
         
-        public init(text: String, style: Label) {
+        public init(text: String, style: LabelStyle) {
             self.text = text
             self.style = style
         }
     }
     
     /** Label style descriptor */
-    public struct Label {
+    public struct LabelStyle {
         
         /** Font of the text */
         public var font: UIFont
@@ -102,9 +104,27 @@ public struct EKProperty {
         }
     }
     
+    /** Text field content **/
+    public struct TextFieldContent {
+        public var keyboardType: UIKeyboardType
+        public var isSecure: Bool
+        public var leadingImage: UIImage!
+        public var placeholder: LabelContent
+        public var textStyle: LabelStyle
+        public var bottomBorderColor: UIColor
+        
+        public init(keyboardType: UIKeyboardType = .default, placeholder: LabelContent, textStyle: LabelStyle, isSecure: Bool = false, leadingImage: UIImage? = nil, bottomBorderColor: UIColor = .clear) {
+            self.keyboardType = keyboardType
+            self.placeholder = placeholder
+            self.textStyle = textStyle
+            self.isSecure = isSecure
+            self.leadingImage = leadingImage
+            self.bottomBorderColor = bottomBorderColor
+        }
+    }
+    
     /** Button bar content */
     public struct ButtonBarContent {
-        
         public var content: [ButtonContent] = []
         public var separatorColor: UIColor
         public var expandAnimatedly: Bool
