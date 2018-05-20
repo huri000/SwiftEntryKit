@@ -1,4 +1,9 @@
 coverage:
+  status:
+    project:
+      default:
+        target: 1
+        threshold: null
   ignore:
     - cmake-debug-build/*
     - Example/*
