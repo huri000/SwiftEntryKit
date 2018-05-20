@@ -106,12 +106,22 @@ public struct EKProperty {
     
     /** Text field content **/
     public struct TextFieldContent {
+        
+        // NOTE: Intentionally a reference type
+        class Output {
+            var text = ""
+        }
+        
         public var keyboardType: UIKeyboardType
         public var isSecure: Bool
         public var leadingImage: UIImage!
         public var placeholder: LabelContent
         public var textStyle: LabelStyle
         public var bottomBorderColor: UIColor
+        let outputWrapper = Output()
+        public var output: String {
+            return outputWrapper.text
+        }
         
         public init(keyboardType: UIKeyboardType = .default, placeholder: LabelContent, textStyle: LabelStyle, isSecure: Bool = false, leadingImage: UIImage? = nil, bottomBorderColor: UIColor = .clear) {
             self.keyboardType = keyboardType
