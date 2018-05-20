@@ -17,6 +17,10 @@ public class EKTextField: UIView {
     private let imageView = UIImageView()
     private let textField = UITextField()
     
+    var text: String {
+        return textField.text ?? ""
+    }
+    
     init(with content: EKProperty.TextFieldContent) {
         self.content = content
         super.init(frame: UIScreen.main.bounds)

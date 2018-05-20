@@ -14,11 +14,13 @@ public class EKFormMessageView: UIView {
     // MARK: Props
     private let titleLabel = UILabel()
     private let scrollView = UIScrollView()
+    private let textFieldsContent: [EKProperty.TextFieldContent]
     private var textFieldViews: [EKTextField] = []
     private var buttonBarView: EKButtonBarView!
     
     // MARK: Setup
     public init(with title: EKProperty.LabelContent, textFieldsContent: [EKProperty.TextFieldContent], buttonContent: EKProperty.ButtonContent) {
+        self.textFieldsContent = textFieldsContent
         super.init(frame: UIScreen.main.bounds)
         setupScrollView()
         setupTitleLabel(with: title)
@@ -34,9 +36,12 @@ public class EKFormMessageView: UIView {
     }
     
     private func setupTextFields(with textFieldsContent: [EKProperty.TextFieldContent]) {
+        var textFieldIndex = 0
         textFieldViews = textFieldsContent.map { content -> EKTextField in
             let textField = EKTextField(with: content)
             scrollView.addSubview(textField)
+            textField.tag = textFieldIndex
+            textFieldIndex += 1
             return textField
         }
         
@@ -68,6 +73,12 @@ public class EKFormMessageView: UIView {
     }
     
     private func setupButton(with buttonContent: EKProperty.ButtonContent) {
+        var buttonContent = buttonContent
+        let action = buttonContent.action
+        buttonContent.action = { [weak self] in
+            self?.extractTextFieldsContent()
+            action?()
+        }
         let buttonsBarContent = EKProperty.ButtonBarContent(with: buttonContent, separatorColor: .clear, expandAnimatedly: true)
         buttonBarView = EKButtonBarView(with: buttonsBarContent)
         buttonBarView.clipsToBounds = true
@@ -78,6 +89,12 @@ public class EKFormMessageView: UIView {
         buttonBarView.layoutToSuperview(.width, offset: -40)
         buttonBarView.layoutToSuperview(.bottom)
         buttonBarView.layer.cornerRadius = 5
+    }
+    
+    private func extractTextFieldsContent() {
+        for (content, textField) in zip(textFieldsContent, textFieldViews) {
+            content.outputWrapper.text = textField.text
+        }
     }
     
     // Tap Gesture

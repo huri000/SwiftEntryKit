@@ -1,4 +1,7 @@
 coverage:
+  status:
+    project: off
+    patch: off
   ignore:
     - cmake-debug-build/*
     - Example/*

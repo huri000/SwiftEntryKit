@@ -112,7 +112,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.2.0'
+pod 'SwiftEntryKit', '0.2.1'
 ```
 
 Then, run the following command:
