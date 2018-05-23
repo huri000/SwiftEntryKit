@@ -26,21 +26,6 @@ public struct EKSimpleMessage {
     }
 }
 
-// Message Toast without image.
-public struct EKMessageToast {
-    
-    /** The title label descriptor */
-    public let title: EKProperty.LabelContent
-    
-    /** The description label descriptor */
-    public let description: EKProperty.LabelContent
-    
-    public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent) {
-        self.title = title
-        self.description = description
-    }
-}
-
 public struct EKNotificationMessage {
     
     /** Image, Title, Description */
@@ -54,21 +39,6 @@ public struct EKNotificationMessage {
         self.auxiliary = auxiliary
     }
 }
-
-public struct EKNotificationMessageWithoutImage {
-    
-    /** Title, Description */
-    public let messageToast: EKMessageToast
-    
-    /** Optional auxilary label descriptor (For instance, it be used to display time of message) */
-    public let auxiliary: EKProperty.LabelContent?
-    
-    public init(messageToast: EKMessageToast, auxiliary: EKProperty.LabelContent? = nil) {
-        self.messageToast = messageToast
-        self.auxiliary = auxiliary
-    }
-}
-
 
 public struct EKAlertMessage {
     
