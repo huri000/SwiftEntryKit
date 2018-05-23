@@ -1,6 +1,11 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.2.3
+
+### Features
+Added Carthage Support
+
 ## 0.2.1
 
 ### Bug Fix

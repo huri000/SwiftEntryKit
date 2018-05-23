@@ -112,13 +112,30 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.2.1'
+pod 'SwiftEntryKit', '0.2.3'
 ```
 
 Then, run the following command:
 
 ```bash
 $ pod install
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
+
+```ogdl
+github "huri000/SwiftEntryKit" ~> 0.2.3
 ```
 
 ## Usage
