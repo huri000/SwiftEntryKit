@@ -2,7 +2,7 @@ PODS:
   - Nimble (7.0.2)
   - Quick (1.2.0)
   - QuickLayout (2.0.0)
-  - SwiftEntryKit (0.2.1):
+  - SwiftEntryKit (0.2.3):
     - QuickLayout (= 2.0.0)
 
 DEPENDENCIES:
@@ -24,8 +24,8 @@ SPEC CHECKSUMS:
   Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   QuickLayout: e09ffaf6d25c2b6516909088c1fce69cf77e0677
-  SwiftEntryKit: c6c36008f0770447184decad62f6fffbf4547d59
+  SwiftEntryKit: 2bdf5239579829d133888170dd090e061922ca90
 
-PODFILE CHECKSUM: 137b364a9280b7d16b8118ef8b11154276c90f78
+PODFILE CHECKSUM: edd6c2af5cc390dbf823427759474ab6c303ec9e
 
 COCOAPODS: 1.5.2
