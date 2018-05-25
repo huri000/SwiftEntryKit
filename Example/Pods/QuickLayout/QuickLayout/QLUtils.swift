@@ -15,7 +15,7 @@ import UIKit
 /**
  Typealias for dictionary that contains multiple constraints
  */
-public typealias QLMultipleConstraints = [QLAttribute : NSLayoutConstraint]
+public typealias QLMultipleConstraints = [QLAttribute: NSLayoutConstraint]
 
 /**
  Extends layout priority to other readable types
@@ -69,14 +69,17 @@ public struct QLFillConstraints {
  Represents pair of priorities
  */
 public struct QLPriorityPair {
+    
     public let horizontal: QLPriority
     public let vertical: QLPriority
     public static var required: QLPriorityPair {
         return QLPriorityPair(.required, .required)
     }
+    
     public static var must: QLPriorityPair {
         return QLPriorityPair(.must, .must)
     }
+    
     public init(_ horizontal: QLPriority, _ vertical: QLPriority) {
         self.horizontal = horizontal
         self.vertical = vertical
@@ -89,9 +92,12 @@ public struct QLPriorityPair {
 public enum QLAxis {
     case horizontally
     case vertically
+    
     public var attributes: QLAttributePair {
+        
         let first: QLAttribute
         let second: QLAttribute
+        
         switch self {
         case .horizontally:
             first = .left
