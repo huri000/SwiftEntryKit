@@ -11,6 +11,8 @@ env:
 
 # travis cache isn't kept between builds
 before_install:
+  - rm -rf Example/Podfile.lock
+  - pod deintegrate
   - pod repo update
 
 script:
