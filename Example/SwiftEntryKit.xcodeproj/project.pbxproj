@@ -7,55 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		143076AE20B5EA470069BA1B /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076AA20B5EA470069BA1B /* UIView+Utils.swift */; };
-		143076AF20B5EA470069BA1B /* UIRectCorner+Short.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076AB20B5EA470069BA1B /* UIRectCorner+Short.swift */; };
-		143076B020B5EA470069BA1B /* UIEdgeInsets+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076AC20B5EA470069BA1B /* UIEdgeInsets+Utils.swift */; };
-		143076B120B5EA470069BA1B /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076AD20B5EA470069BA1B /* UIView+Shadow.swift */; };
-		143076E720B5EA660069BA1B /* SwiftEntryKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076B220B5EA660069BA1B /* SwiftEntryKit.swift */; };
-		143076E820B5EA660069BA1B /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076B420B5EA660069BA1B /* EKRootViewController.swift */; };
-		143076E920B5EA660069BA1B /* EKEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076B520B5EA660069BA1B /* EKEntryView.swift */; };
-		143076EA20B5EA660069BA1B /* EKWindowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076B620B5EA660069BA1B /* EKWindowProvider.swift */; };
-		143076EB20B5EA660069BA1B /* EKWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076B720B5EA660069BA1B /* EKWindow.swift */; };
-		143076EC20B5EA660069BA1B /* EKBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076B820B5EA660069BA1B /* EKBackgroundView.swift */; };
-		143076ED20B5EA660069BA1B /* EKWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076B920B5EA660069BA1B /* EKWrapperView.swift */; };
-		143076EE20B5EA660069BA1B /* EKContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076BA20B5EA660069BA1B /* EKContentView.swift */; };
-		143076EF20B5EA660069BA1B /* EKStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076BB20B5EA660069BA1B /* EKStyleView.swift */; };
-		143076F020B5EA660069BA1B /* EKProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076BD20B5EA660069BA1B /* EKProperty.swift */; };
-		143076F120B5EA660069BA1B /* EKAttributes+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076BF20B5EA660069BA1B /* EKAttributes+Shadow.swift */; };
-		143076F220B5EA660069BA1B /* EKAttributes+Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C020B5EA660069BA1B /* EKAttributes+Count.swift */; };
-		143076F320B5EA660069BA1B /* EKAttributes+Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C120B5EA660069BA1B /* EKAttributes+Position.swift */; };
-		143076F420B5EA660069BA1B /* EKAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C220B5EA660069BA1B /* EKAttributes.swift */; };
-		143076F520B5EA660069BA1B /* EKAttributes+UserInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C320B5EA660069BA1B /* EKAttributes+UserInteraction.swift */; };
-		143076F620B5EA660069BA1B /* EKAttributes+Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C420B5EA660069BA1B /* EKAttributes+Duration.swift */; };
-		143076F720B5EA660069BA1B /* EKAttributes+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C520B5EA660069BA1B /* EKAttributes+Validations.swift */; };
-		143076F820B5EA660069BA1B /* EKAttributes+PopBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C620B5EA660069BA1B /* EKAttributes+PopBehavior.swift */; };
-		143076F920B5EA660069BA1B /* EKAttributes+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C720B5EA660069BA1B /* EKAttributes+Animation.swift */; };
-		143076FA20B5EA660069BA1B /* EKAttributes+PositionConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C820B5EA660069BA1B /* EKAttributes+PositionConstraints.swift */; };
-		143076FB20B5EA660069BA1B /* EKAttributes+DisplayPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076C920B5EA660069BA1B /* EKAttributes+DisplayPriority.swift */; };
-		143076FC20B5EA660069BA1B /* EKAttributes+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076CA20B5EA660069BA1B /* EKAttributes+Scroll.swift */; };
-		143076FD20B5EA660069BA1B /* EKAttributes+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076CB20B5EA660069BA1B /* EKAttributes+Presets.swift */; };
-		143076FE20B5EA660069BA1B /* EKAttributes+WindowLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076CC20B5EA660069BA1B /* EKAttributes+WindowLevel.swift */; };
-		143076FF20B5EA660069BA1B /* EKAttributes+BackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076CD20B5EA660069BA1B /* EKAttributes+BackgroundStyle.swift */; };
-		1430770020B5EA660069BA1B /* EKAttributes+HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076CE20B5EA660069BA1B /* EKAttributes+HapticFeedback.swift */; };
-		1430770120B5EA660069BA1B /* EKAttributes+FrameStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076CF20B5EA660069BA1B /* EKAttributes+FrameStyle.swift */; };
-		1430770220B5EA660069BA1B /* EKPopUpMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076D020B5EA660069BA1B /* EKPopUpMessage.swift */; };
-		1430770320B5EA660069BA1B /* EKNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076D120B5EA660069BA1B /* EKNotificationMessage.swift */; };
-		1430770420B5EA660069BA1B /* UIView+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076D320B5EA660069BA1B /* UIView+Responder.swift */; };
-		1430770520B5EA660069BA1B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076D520B5EA660069BA1B /* GradientView.swift */; };
-		1430770620B5EA660069BA1B /* HapticFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076D620B5EA660069BA1B /* HapticFeedbackGenerator.swift */; };
-		1430770720B5EA660069BA1B /* EKNotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076D820B5EA660069BA1B /* EKNotificationMessageView.swift */; };
-		1430770820B5EA660069BA1B /* EKAlertMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076D920B5EA660069BA1B /* EKAlertMessageView.swift */; };
-		1430770920B5EA660069BA1B /* EKSimpleMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076DA20B5EA660069BA1B /* EKSimpleMessageView.swift */; };
-		1430770A20B5EA660069BA1B /* EKImageNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076DC20B5EA660069BA1B /* EKImageNoteMessageView.swift */; };
-		1430770B20B5EA660069BA1B /* EKNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076DD20B5EA660069BA1B /* EKNoteMessageView.swift */; };
-		1430770C20B5EA660069BA1B /* EKXStatusBarMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076DE20B5EA660069BA1B /* EKXStatusBarMessageView.swift */; };
-		1430770D20B5EA660069BA1B /* EKAccessoryNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076DF20B5EA660069BA1B /* EKAccessoryNoteMessageView.swift */; };
-		1430770E20B5EA660069BA1B /* EKProcessingNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076E020B5EA660069BA1B /* EKProcessingNoteMessageView.swift */; };
-		1430770F20B5EA660069BA1B /* EKFormMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076E120B5EA660069BA1B /* EKFormMessageView.swift */; };
-		1430771020B5EA660069BA1B /* EKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076E320B5EA660069BA1B /* EKTextField.swift */; };
-		1430771120B5EA660069BA1B /* EKButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076E420B5EA660069BA1B /* EKButtonBarView.swift */; };
-		1430771220B5EA660069BA1B /* EKPopUpMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076E520B5EA660069BA1B /* EKPopUpMessageView.swift */; };
-		1430771320B5EA660069BA1B /* EKMessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143076E620B5EA660069BA1B /* EKMessageContentView.swift */; };
 		14333AE3208FA09E00DCFC7B /* PresetDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14333AE2208FA09E00DCFC7B /* PresetDescription.swift */; };
 		143C6A2220B54E4A00F7DD89 /* SwiftEntryKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 143C6A2020B54E4A00F7DD89 /* SwiftEntryKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		143C6A2520B54E4A00F7DD89 /* SwiftEntryKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143C6A1E20B54E4A00F7DD89 /* SwiftEntryKit.framework */; };
@@ -77,6 +28,55 @@
 		149D0A1220AF1EE7000AA6C4 /* FormFieldPresetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D0A1120AF1EE7000AA6C4 /* FormFieldPresetFactory.swift */; };
 		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
+		14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */; };
+		14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */; };
+		14B48B5A20B81C9700CE3EF4 /* EKWindowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */; };
+		14B48B5B20B81C9700CE3EF4 /* EKWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1C20B81C9700CE3EF4 /* EKWindow.swift */; };
+		14B48B5C20B81C9700CE3EF4 /* EKBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1D20B81C9700CE3EF4 /* EKBackgroundView.swift */; };
+		14B48B5D20B81C9700CE3EF4 /* EKWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1E20B81C9700CE3EF4 /* EKWrapperView.swift */; };
+		14B48B5E20B81C9700CE3EF4 /* EKContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1F20B81C9700CE3EF4 /* EKContentView.swift */; };
+		14B48B5F20B81C9700CE3EF4 /* EKStyleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2020B81C9700CE3EF4 /* EKStyleView.swift */; };
+		14B48B6020B81C9700CE3EF4 /* UIView+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2220B81C9700CE3EF4 /* UIView+Responder.swift */; };
+		14B48B6120B81C9700CE3EF4 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2320B81C9700CE3EF4 /* GradientView.swift */; };
+		14B48B6220B81C9700CE3EF4 /* HapticFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2420B81C9700CE3EF4 /* HapticFeedbackGenerator.swift */; };
+		14B48B6320B81C9700CE3EF4 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2620B81C9700CE3EF4 /* UIView+Utils.swift */; };
+		14B48B6420B81C9700CE3EF4 /* UIRectCorner+Short.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2720B81C9700CE3EF4 /* UIRectCorner+Short.swift */; };
+		14B48B6520B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */; };
+		14B48B6620B81C9700CE3EF4 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2920B81C9700CE3EF4 /* UIView+Shadow.swift */; };
+		14B48B6720B81C9700CE3EF4 /* SwiftEntryKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2A20B81C9700CE3EF4 /* SwiftEntryKit.swift */; };
+		14B48B6820B81C9700CE3EF4 /* EKProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2C20B81C9700CE3EF4 /* EKProperty.swift */; };
+		14B48B6920B81C9700CE3EF4 /* EKAttributes+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2E20B81C9700CE3EF4 /* EKAttributes+Shadow.swift */; };
+		14B48B6A20B81C9700CE3EF4 /* EKAttributes+Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */; };
+		14B48B6B20B81C9700CE3EF4 /* EKAttributes+Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3020B81C9700CE3EF4 /* EKAttributes+Position.swift */; };
+		14B48B6C20B81C9700CE3EF4 /* EKAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3120B81C9700CE3EF4 /* EKAttributes.swift */; };
+		14B48B6D20B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */; };
+		14B48B6E20B81C9700CE3EF4 /* EKAttributes+Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3320B81C9700CE3EF4 /* EKAttributes+Duration.swift */; };
+		14B48B6F20B81C9700CE3EF4 /* EKAttributes+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3420B81C9700CE3EF4 /* EKAttributes+Validations.swift */; };
+		14B48B7020B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3520B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift */; };
+		14B48B7120B81C9700CE3EF4 /* EKAttributes+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */; };
+		14B48B7220B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3720B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift */; };
+		14B48B7320B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift */; };
+		14B48B7420B81C9700CE3EF4 /* EKAttributes+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3920B81C9700CE3EF4 /* EKAttributes+Scroll.swift */; };
+		14B48B7520B81C9700CE3EF4 /* EKAttributes+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3A20B81C9700CE3EF4 /* EKAttributes+Presets.swift */; };
+		14B48B7620B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */; };
+		14B48B7720B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3C20B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift */; };
+		14B48B7820B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3D20B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift */; };
+		14B48B7920B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3E20B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift */; };
+		14B48B7A20B81C9700CE3EF4 /* EKPopUpMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3F20B81C9700CE3EF4 /* EKPopUpMessage.swift */; };
+		14B48B7B20B81C9700CE3EF4 /* EKNotificationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4020B81C9700CE3EF4 /* EKNotificationMessage.swift */; };
+		14B48B7C20B81C9700CE3EF4 /* EKNotificationMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4220B81C9700CE3EF4 /* EKNotificationMessageView.swift */; };
+		14B48B7D20B81C9700CE3EF4 /* EKAlertMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4320B81C9700CE3EF4 /* EKAlertMessageView.swift */; };
+		14B48B7E20B81C9700CE3EF4 /* EKSimpleMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4420B81C9700CE3EF4 /* EKSimpleMessageView.swift */; };
+		14B48B7F20B81C9700CE3EF4 /* EKImageNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4620B81C9700CE3EF4 /* EKImageNoteMessageView.swift */; };
+		14B48B8020B81C9700CE3EF4 /* EKNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4720B81C9700CE3EF4 /* EKNoteMessageView.swift */; };
+		14B48B8120B81C9700CE3EF4 /* EKXStatusBarMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4820B81C9700CE3EF4 /* EKXStatusBarMessageView.swift */; };
+		14B48B8220B81C9700CE3EF4 /* EKAccessoryNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4920B81C9700CE3EF4 /* EKAccessoryNoteMessageView.swift */; };
+		14B48B8320B81C9700CE3EF4 /* EKProcessingNoteMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4A20B81C9700CE3EF4 /* EKProcessingNoteMessageView.swift */; };
+		14B48B8420B81C9700CE3EF4 /* EKFormMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4B20B81C9700CE3EF4 /* EKFormMessageView.swift */; };
+		14B48B8520B81C9700CE3EF4 /* EKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4D20B81C9700CE3EF4 /* EKTextField.swift */; };
+		14B48B8620B81C9700CE3EF4 /* EKButtonBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4E20B81C9700CE3EF4 /* EKButtonBarView.swift */; };
+		14B48B8720B81C9700CE3EF4 /* EKPopUpMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B4F20B81C9700CE3EF4 /* EKPopUpMessageView.swift */; };
+		14B48B8820B81C9700CE3EF4 /* EKMessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B5020B81C9700CE3EF4 /* EKMessageContentView.swift */; };
 		14C729D5209476A90060D267 /* BorderSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D4209476A90060D267 /* BorderSelectionTableViewCell.swift */; };
 		14C729D7209496180060D267 /* CGRect+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D6209496180060D267 /* CGRect+Utils.swift */; };
 		14C729D9209496730060D267 /* UIScreen+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14C729D8209496730060D267 /* UIScreen+Utils.swift */; };
@@ -94,12 +94,12 @@
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* PresetsViewController.swift */; };
 		14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */; };
-		303A7F6F917F7D639BBE6A8D /* Pods_SwiftEntryKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E56763683E05E6D5F96B2F6 /* Pods_SwiftEntryKitDemo.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		DAC94EE520CA40007C43F297 /* Pods_SwiftEntryKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96CB661CB3D8F783D8BA9553 /* Pods_SwiftEntryKitTests.framework */; };
+		6595C32B406223022AA1CB2E /* Pods_SwiftEntryKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FC07460A298EF203AE4D95 /* Pods_SwiftEntryKitDemo.framework */; };
+		8FDAB0D7EBBC0D40571D7C4F /* Pods_SwiftEntryKitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D38C226E1A7CFD8D31AEB1 /* Pods_SwiftEntryKitTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,57 +183,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		081546633EB239B242336869 /* Pods-SwiftEntryKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitDemo/Pods-SwiftEntryKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		102C579051389F8128AE0343 /* Pods-SwiftEntryKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickLayout.xcodeproj; path = ../Carthage/Checkouts/QuickLayout/Example/QuickLayout.xcodeproj; sourceTree = "<group>"; };
 		1430769C20B5E5970069BA1B /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = ../Carthage/Build/iOS/QuickLayout.framework; sourceTree = "<group>"; };
-		143076AA20B5EA470069BA1B /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
-		143076AB20B5EA470069BA1B /* UIRectCorner+Short.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRectCorner+Short.swift"; sourceTree = "<group>"; };
-		143076AC20B5EA470069BA1B /* UIEdgeInsets+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Utils.swift"; sourceTree = "<group>"; };
-		143076AD20B5EA470069BA1B /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
-		143076B220B5EA660069BA1B /* SwiftEntryKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftEntryKit.swift; path = ../../SwiftEntryKit/SwiftEntryKit.swift; sourceTree = "<group>"; };
-		143076B420B5EA660069BA1B /* EKRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKRootViewController.swift; sourceTree = "<group>"; };
-		143076B520B5EA660069BA1B /* EKEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEntryView.swift; sourceTree = "<group>"; };
-		143076B620B5EA660069BA1B /* EKWindowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWindowProvider.swift; sourceTree = "<group>"; };
-		143076B720B5EA660069BA1B /* EKWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWindow.swift; sourceTree = "<group>"; };
-		143076B820B5EA660069BA1B /* EKBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKBackgroundView.swift; sourceTree = "<group>"; };
-		143076B920B5EA660069BA1B /* EKWrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWrapperView.swift; sourceTree = "<group>"; };
-		143076BA20B5EA660069BA1B /* EKContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKContentView.swift; sourceTree = "<group>"; };
-		143076BB20B5EA660069BA1B /* EKStyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKStyleView.swift; sourceTree = "<group>"; };
-		143076BD20B5EA660069BA1B /* EKProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKProperty.swift; sourceTree = "<group>"; };
-		143076BF20B5EA660069BA1B /* EKAttributes+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Shadow.swift"; sourceTree = "<group>"; };
-		143076C020B5EA660069BA1B /* EKAttributes+Count.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Count.swift"; sourceTree = "<group>"; };
-		143076C120B5EA660069BA1B /* EKAttributes+Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Position.swift"; sourceTree = "<group>"; };
-		143076C220B5EA660069BA1B /* EKAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKAttributes.swift; sourceTree = "<group>"; };
-		143076C320B5EA660069BA1B /* EKAttributes+UserInteraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+UserInteraction.swift"; sourceTree = "<group>"; };
-		143076C420B5EA660069BA1B /* EKAttributes+Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Duration.swift"; sourceTree = "<group>"; };
-		143076C520B5EA660069BA1B /* EKAttributes+Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Validations.swift"; sourceTree = "<group>"; };
-		143076C620B5EA660069BA1B /* EKAttributes+PopBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+PopBehavior.swift"; sourceTree = "<group>"; };
-		143076C720B5EA660069BA1B /* EKAttributes+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Animation.swift"; sourceTree = "<group>"; };
-		143076C820B5EA660069BA1B /* EKAttributes+PositionConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+PositionConstraints.swift"; sourceTree = "<group>"; };
-		143076C920B5EA660069BA1B /* EKAttributes+DisplayPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+DisplayPriority.swift"; sourceTree = "<group>"; };
-		143076CA20B5EA660069BA1B /* EKAttributes+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Scroll.swift"; sourceTree = "<group>"; };
-		143076CB20B5EA660069BA1B /* EKAttributes+Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Presets.swift"; sourceTree = "<group>"; };
-		143076CC20B5EA660069BA1B /* EKAttributes+WindowLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+WindowLevel.swift"; sourceTree = "<group>"; };
-		143076CD20B5EA660069BA1B /* EKAttributes+BackgroundStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+BackgroundStyle.swift"; sourceTree = "<group>"; };
-		143076CE20B5EA660069BA1B /* EKAttributes+HapticFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+HapticFeedback.swift"; sourceTree = "<group>"; };
-		143076CF20B5EA660069BA1B /* EKAttributes+FrameStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+FrameStyle.swift"; sourceTree = "<group>"; };
-		143076D020B5EA660069BA1B /* EKPopUpMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKPopUpMessage.swift; sourceTree = "<group>"; };
-		143076D120B5EA660069BA1B /* EKNotificationMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKNotificationMessage.swift; sourceTree = "<group>"; };
-		143076D320B5EA660069BA1B /* UIView+Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Responder.swift"; sourceTree = "<group>"; };
-		143076D520B5EA660069BA1B /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		143076D620B5EA660069BA1B /* HapticFeedbackGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticFeedbackGenerator.swift; sourceTree = "<group>"; };
-		143076D820B5EA660069BA1B /* EKNotificationMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKNotificationMessageView.swift; sourceTree = "<group>"; };
-		143076D920B5EA660069BA1B /* EKAlertMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKAlertMessageView.swift; sourceTree = "<group>"; };
-		143076DA20B5EA660069BA1B /* EKSimpleMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKSimpleMessageView.swift; sourceTree = "<group>"; };
-		143076DC20B5EA660069BA1B /* EKImageNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKImageNoteMessageView.swift; sourceTree = "<group>"; };
-		143076DD20B5EA660069BA1B /* EKNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKNoteMessageView.swift; sourceTree = "<group>"; };
-		143076DE20B5EA660069BA1B /* EKXStatusBarMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKXStatusBarMessageView.swift; sourceTree = "<group>"; };
-		143076DF20B5EA660069BA1B /* EKAccessoryNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKAccessoryNoteMessageView.swift; sourceTree = "<group>"; };
-		143076E020B5EA660069BA1B /* EKProcessingNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKProcessingNoteMessageView.swift; sourceTree = "<group>"; };
-		143076E120B5EA660069BA1B /* EKFormMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKFormMessageView.swift; sourceTree = "<group>"; };
-		143076E320B5EA660069BA1B /* EKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKTextField.swift; sourceTree = "<group>"; };
-		143076E420B5EA660069BA1B /* EKButtonBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKButtonBarView.swift; sourceTree = "<group>"; };
-		143076E520B5EA660069BA1B /* EKPopUpMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKPopUpMessageView.swift; sourceTree = "<group>"; };
-		143076E620B5EA660069BA1B /* EKMessageContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKMessageContentView.swift; sourceTree = "<group>"; };
 		14333AE2208FA09E00DCFC7B /* PresetDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDescription.swift; sourceTree = "<group>"; };
 		143C6A1E20B54E4A00F7DD89 /* SwiftEntryKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftEntryKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		143C6A2020B54E4A00F7DD89 /* SwiftEntryKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftEntryKit.h; sourceTree = "<group>"; };
@@ -256,6 +209,55 @@
 		14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsDataSource.swift; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		14B0B95020B7E4FE00D24D8A /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = "../../../Library/Developer/Xcode/DerivedData/QuickLayout-aotxzuhsyjyfzgcifoglldyfgnnw/Build/Products/Debug-iphonesimulator/QuickLayout-iOS/QuickLayout.framework"; sourceTree = "<group>"; };
+		14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKRootViewController.swift; sourceTree = "<group>"; };
+		14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEntryView.swift; sourceTree = "<group>"; };
+		14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWindowProvider.swift; sourceTree = "<group>"; };
+		14B48B1C20B81C9700CE3EF4 /* EKWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWindow.swift; sourceTree = "<group>"; };
+		14B48B1D20B81C9700CE3EF4 /* EKBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKBackgroundView.swift; sourceTree = "<group>"; };
+		14B48B1E20B81C9700CE3EF4 /* EKWrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWrapperView.swift; sourceTree = "<group>"; };
+		14B48B1F20B81C9700CE3EF4 /* EKContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKContentView.swift; sourceTree = "<group>"; };
+		14B48B2020B81C9700CE3EF4 /* EKStyleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKStyleView.swift; sourceTree = "<group>"; };
+		14B48B2220B81C9700CE3EF4 /* UIView+Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Responder.swift"; sourceTree = "<group>"; };
+		14B48B2320B81C9700CE3EF4 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		14B48B2420B81C9700CE3EF4 /* HapticFeedbackGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HapticFeedbackGenerator.swift; sourceTree = "<group>"; };
+		14B48B2620B81C9700CE3EF4 /* UIView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		14B48B2720B81C9700CE3EF4 /* UIRectCorner+Short.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRectCorner+Short.swift"; sourceTree = "<group>"; };
+		14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Utils.swift"; sourceTree = "<group>"; };
+		14B48B2920B81C9700CE3EF4 /* UIView+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
+		14B48B2A20B81C9700CE3EF4 /* SwiftEntryKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEntryKit.swift; sourceTree = "<group>"; };
+		14B48B2C20B81C9700CE3EF4 /* EKProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKProperty.swift; sourceTree = "<group>"; };
+		14B48B2E20B81C9700CE3EF4 /* EKAttributes+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Shadow.swift"; sourceTree = "<group>"; };
+		14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Count.swift"; sourceTree = "<group>"; };
+		14B48B3020B81C9700CE3EF4 /* EKAttributes+Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Position.swift"; sourceTree = "<group>"; };
+		14B48B3120B81C9700CE3EF4 /* EKAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKAttributes.swift; sourceTree = "<group>"; };
+		14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+UserInteraction.swift"; sourceTree = "<group>"; };
+		14B48B3320B81C9700CE3EF4 /* EKAttributes+Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Duration.swift"; sourceTree = "<group>"; };
+		14B48B3420B81C9700CE3EF4 /* EKAttributes+Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Validations.swift"; sourceTree = "<group>"; };
+		14B48B3520B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+PopBehavior.swift"; sourceTree = "<group>"; };
+		14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Animation.swift"; sourceTree = "<group>"; };
+		14B48B3720B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+PositionConstraints.swift"; sourceTree = "<group>"; };
+		14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+DisplayPriority.swift"; sourceTree = "<group>"; };
+		14B48B3920B81C9700CE3EF4 /* EKAttributes+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Scroll.swift"; sourceTree = "<group>"; };
+		14B48B3A20B81C9700CE3EF4 /* EKAttributes+Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Presets.swift"; sourceTree = "<group>"; };
+		14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+WindowLevel.swift"; sourceTree = "<group>"; };
+		14B48B3C20B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+BackgroundStyle.swift"; sourceTree = "<group>"; };
+		14B48B3D20B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+HapticFeedback.swift"; sourceTree = "<group>"; };
+		14B48B3E20B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+FrameStyle.swift"; sourceTree = "<group>"; };
+		14B48B3F20B81C9700CE3EF4 /* EKPopUpMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKPopUpMessage.swift; sourceTree = "<group>"; };
+		14B48B4020B81C9700CE3EF4 /* EKNotificationMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKNotificationMessage.swift; sourceTree = "<group>"; };
+		14B48B4220B81C9700CE3EF4 /* EKNotificationMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKNotificationMessageView.swift; sourceTree = "<group>"; };
+		14B48B4320B81C9700CE3EF4 /* EKAlertMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKAlertMessageView.swift; sourceTree = "<group>"; };
+		14B48B4420B81C9700CE3EF4 /* EKSimpleMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKSimpleMessageView.swift; sourceTree = "<group>"; };
+		14B48B4620B81C9700CE3EF4 /* EKImageNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKImageNoteMessageView.swift; sourceTree = "<group>"; };
+		14B48B4720B81C9700CE3EF4 /* EKNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKNoteMessageView.swift; sourceTree = "<group>"; };
+		14B48B4820B81C9700CE3EF4 /* EKXStatusBarMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKXStatusBarMessageView.swift; sourceTree = "<group>"; };
+		14B48B4920B81C9700CE3EF4 /* EKAccessoryNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKAccessoryNoteMessageView.swift; sourceTree = "<group>"; };
+		14B48B4A20B81C9700CE3EF4 /* EKProcessingNoteMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKProcessingNoteMessageView.swift; sourceTree = "<group>"; };
+		14B48B4B20B81C9700CE3EF4 /* EKFormMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKFormMessageView.swift; sourceTree = "<group>"; };
+		14B48B4D20B81C9700CE3EF4 /* EKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKTextField.swift; sourceTree = "<group>"; };
+		14B48B4E20B81C9700CE3EF4 /* EKButtonBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKButtonBarView.swift; sourceTree = "<group>"; };
+		14B48B4F20B81C9700CE3EF4 /* EKPopUpMessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKPopUpMessageView.swift; sourceTree = "<group>"; };
+		14B48B5020B81C9700CE3EF4 /* EKMessageContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKMessageContentView.swift; sourceTree = "<group>"; };
 		14C729D4209476A90060D267 /* BorderSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C729D6209496180060D267 /* CGRect+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Utils.swift"; sourceTree = "<group>"; };
 		14C729D8209496730060D267 /* UIScreen+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Utils.swift"; sourceTree = "<group>"; };
@@ -275,9 +277,9 @@
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* PresetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
+		18D38C226E1A7CFD8D31AEB1 /* Pods_SwiftEntryKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A856CAE48665E23BC76CB3B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		3B9294C52684AFB221BAF723 /* Pods-SwiftEntryKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		503A42B1C46F418BC91D5068 /* Pods-SwiftEntryKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitDemo/Pods-SwiftEntryKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		59FC07460A298EF203AE4D95 /* Pods_SwiftEntryKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* SwiftEntryKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftEntryKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -285,10 +287,8 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* SwiftEntryKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftEntryKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7BD5DE759E34129EB7BDE55C /* Pods-SwiftEntryKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitDemo/Pods-SwiftEntryKitDemo.release.xcconfig"; sourceTree = "<group>"; };
-		96CB661CB3D8F783D8BA9553 /* Pods_SwiftEntryKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E56763683E05E6D5F96B2F6 /* Pods_SwiftEntryKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB528E68FE00F24BAD5B83A3 /* Pods-SwiftEntryKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		A1F5A42C9A2B945993F15F5D /* Pods-SwiftEntryKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		D28F8641182B2741CE2EB772 /* Pods-SwiftEntryKitDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitDemo/Pods-SwiftEntryKitDemo.release.xcconfig"; sourceTree = "<group>"; };
 		EFEC60E1244126F18ABBB375 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F1F450C1E75BEC09B67F526C /* SwiftEntryKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftEntryKit.podspec; path = ../SwiftEntryKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
@@ -307,7 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				143C6A2520B54E4A00F7DD89 /* SwiftEntryKit.framework in Frameworks */,
-				303A7F6F917F7D639BBE6A8D /* Pods_SwiftEntryKitDemo.framework in Frameworks */,
+				6595C32B406223022AA1CB2E /* Pods_SwiftEntryKitDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,7 +315,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAC94EE520CA40007C43F297 /* Pods_SwiftEntryKitTests.framework in Frameworks */,
+				8FDAB0D7EBBC0D40571D7C4F /* Pods_SwiftEntryKitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,139 +334,6 @@
 				1430768E20B5E3C00069BA1B /* QuickLayoutMacOSTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		143076A820B5E9950069BA1B /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				143076B220B5EA660069BA1B /* SwiftEntryKit.swift */,
-				143076B320B5EA660069BA1B /* Infra */,
-				143076D720B5EA660069BA1B /* MessageViews */,
-				143076BC20B5EA660069BA1B /* Model */,
-				143076D220B5EA660069BA1B /* Utils */,
-				143076A920B5EA470069BA1B /* Extensions */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		143076A920B5EA470069BA1B /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				143076AA20B5EA470069BA1B /* UIView+Utils.swift */,
-				143076AB20B5EA470069BA1B /* UIRectCorner+Short.swift */,
-				143076AC20B5EA470069BA1B /* UIEdgeInsets+Utils.swift */,
-				143076AD20B5EA470069BA1B /* UIView+Shadow.swift */,
-			);
-			name = Extensions;
-			path = ../../SwiftEntryKit/Extensions;
-			sourceTree = "<group>";
-		};
-		143076B320B5EA660069BA1B /* Infra */ = {
-			isa = PBXGroup;
-			children = (
-				143076B420B5EA660069BA1B /* EKRootViewController.swift */,
-				143076B520B5EA660069BA1B /* EKEntryView.swift */,
-				143076B620B5EA660069BA1B /* EKWindowProvider.swift */,
-				143076B720B5EA660069BA1B /* EKWindow.swift */,
-				143076B820B5EA660069BA1B /* EKBackgroundView.swift */,
-				143076B920B5EA660069BA1B /* EKWrapperView.swift */,
-				143076BA20B5EA660069BA1B /* EKContentView.swift */,
-				143076BB20B5EA660069BA1B /* EKStyleView.swift */,
-			);
-			name = Infra;
-			path = ../../SwiftEntryKit/Infra;
-			sourceTree = "<group>";
-		};
-		143076BC20B5EA660069BA1B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				143076BD20B5EA660069BA1B /* EKProperty.swift */,
-				143076BE20B5EA660069BA1B /* EntryAttributes */,
-				143076D020B5EA660069BA1B /* EKPopUpMessage.swift */,
-				143076D120B5EA660069BA1B /* EKNotificationMessage.swift */,
-			);
-			name = Model;
-			path = ../../SwiftEntryKit/Model;
-			sourceTree = "<group>";
-		};
-		143076BE20B5EA660069BA1B /* EntryAttributes */ = {
-			isa = PBXGroup;
-			children = (
-				143076BF20B5EA660069BA1B /* EKAttributes+Shadow.swift */,
-				143076C020B5EA660069BA1B /* EKAttributes+Count.swift */,
-				143076C120B5EA660069BA1B /* EKAttributes+Position.swift */,
-				143076C220B5EA660069BA1B /* EKAttributes.swift */,
-				143076C320B5EA660069BA1B /* EKAttributes+UserInteraction.swift */,
-				143076C420B5EA660069BA1B /* EKAttributes+Duration.swift */,
-				143076C520B5EA660069BA1B /* EKAttributes+Validations.swift */,
-				143076C620B5EA660069BA1B /* EKAttributes+PopBehavior.swift */,
-				143076C720B5EA660069BA1B /* EKAttributes+Animation.swift */,
-				143076C820B5EA660069BA1B /* EKAttributes+PositionConstraints.swift */,
-				143076C920B5EA660069BA1B /* EKAttributes+DisplayPriority.swift */,
-				143076CA20B5EA660069BA1B /* EKAttributes+Scroll.swift */,
-				143076CB20B5EA660069BA1B /* EKAttributes+Presets.swift */,
-				143076CC20B5EA660069BA1B /* EKAttributes+WindowLevel.swift */,
-				143076CD20B5EA660069BA1B /* EKAttributes+BackgroundStyle.swift */,
-				143076CE20B5EA660069BA1B /* EKAttributes+HapticFeedback.swift */,
-				143076CF20B5EA660069BA1B /* EKAttributes+FrameStyle.swift */,
-			);
-			path = EntryAttributes;
-			sourceTree = "<group>";
-		};
-		143076D220B5EA660069BA1B /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				143076D320B5EA660069BA1B /* UIView+Responder.swift */,
-				143076D420B5EA660069BA1B /* New Group */,
-				143076D520B5EA660069BA1B /* GradientView.swift */,
-				143076D620B5EA660069BA1B /* HapticFeedbackGenerator.swift */,
-			);
-			name = Utils;
-			path = ../../SwiftEntryKit/Utils;
-			sourceTree = "<group>";
-		};
-		143076D420B5EA660069BA1B /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
-		143076D720B5EA660069BA1B /* MessageViews */ = {
-			isa = PBXGroup;
-			children = (
-				143076D820B5EA660069BA1B /* EKNotificationMessageView.swift */,
-				143076D920B5EA660069BA1B /* EKAlertMessageView.swift */,
-				143076DA20B5EA660069BA1B /* EKSimpleMessageView.swift */,
-				143076DB20B5EA660069BA1B /* Notes */,
-				143076E120B5EA660069BA1B /* EKFormMessageView.swift */,
-				143076E220B5EA660069BA1B /* MessagesUtils */,
-				143076E520B5EA660069BA1B /* EKPopUpMessageView.swift */,
-				143076E620B5EA660069BA1B /* EKMessageContentView.swift */,
-			);
-			name = MessageViews;
-			path = ../../SwiftEntryKit/MessageViews;
-			sourceTree = "<group>";
-		};
-		143076DB20B5EA660069BA1B /* Notes */ = {
-			isa = PBXGroup;
-			children = (
-				143076DC20B5EA660069BA1B /* EKImageNoteMessageView.swift */,
-				143076DD20B5EA660069BA1B /* EKNoteMessageView.swift */,
-				143076DE20B5EA660069BA1B /* EKXStatusBarMessageView.swift */,
-				143076DF20B5EA660069BA1B /* EKAccessoryNoteMessageView.swift */,
-				143076E020B5EA660069BA1B /* EKProcessingNoteMessageView.swift */,
-			);
-			path = Notes;
-			sourceTree = "<group>";
-		};
-		143076E220B5EA660069BA1B /* MessagesUtils */ = {
-			isa = PBXGroup;
-			children = (
-				143076E320B5EA660069BA1B /* EKTextField.swift */,
-				143076E420B5EA660069BA1B /* EKButtonBarView.swift */,
-			);
-			path = MessagesUtils;
 			sourceTree = "<group>";
 		};
 		143C6A1F20B54E4A00F7DD89 /* SwiftEntryKit */ = {
@@ -497,6 +364,127 @@
 				14333AE2208FA09E00DCFC7B /* PresetDescription.swift */,
 			);
 			path = PresetsData;
+			sourceTree = "<group>";
+		};
+		14B48B1720B81C9700CE3EF4 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B1820B81C9700CE3EF4 /* Infra */,
+				14B48B2120B81C9700CE3EF4 /* Utils */,
+				14B48B2520B81C9700CE3EF4 /* Extensions */,
+				14B48B2A20B81C9700CE3EF4 /* SwiftEntryKit.swift */,
+				14B48B2B20B81C9700CE3EF4 /* Model */,
+				14B48B4120B81C9700CE3EF4 /* MessageViews */,
+			);
+			name = Source;
+			path = ../Source;
+			sourceTree = "<group>";
+		};
+		14B48B1820B81C9700CE3EF4 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */,
+				14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */,
+				14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */,
+				14B48B1C20B81C9700CE3EF4 /* EKWindow.swift */,
+				14B48B1D20B81C9700CE3EF4 /* EKBackgroundView.swift */,
+				14B48B1E20B81C9700CE3EF4 /* EKWrapperView.swift */,
+				14B48B1F20B81C9700CE3EF4 /* EKContentView.swift */,
+				14B48B2020B81C9700CE3EF4 /* EKStyleView.swift */,
+			);
+			path = Infra;
+			sourceTree = "<group>";
+		};
+		14B48B2120B81C9700CE3EF4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B2220B81C9700CE3EF4 /* UIView+Responder.swift */,
+				14B48B2320B81C9700CE3EF4 /* GradientView.swift */,
+				14B48B2420B81C9700CE3EF4 /* HapticFeedbackGenerator.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		14B48B2520B81C9700CE3EF4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B2620B81C9700CE3EF4 /* UIView+Utils.swift */,
+				14B48B2720B81C9700CE3EF4 /* UIRectCorner+Short.swift */,
+				14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */,
+				14B48B2920B81C9700CE3EF4 /* UIView+Shadow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		14B48B2B20B81C9700CE3EF4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B2C20B81C9700CE3EF4 /* EKProperty.swift */,
+				14B48B2D20B81C9700CE3EF4 /* EntryAttributes */,
+				14B48B3F20B81C9700CE3EF4 /* EKPopUpMessage.swift */,
+				14B48B4020B81C9700CE3EF4 /* EKNotificationMessage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14B48B2D20B81C9700CE3EF4 /* EntryAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B2E20B81C9700CE3EF4 /* EKAttributes+Shadow.swift */,
+				14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */,
+				14B48B3020B81C9700CE3EF4 /* EKAttributes+Position.swift */,
+				14B48B3120B81C9700CE3EF4 /* EKAttributes.swift */,
+				14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */,
+				14B48B3320B81C9700CE3EF4 /* EKAttributes+Duration.swift */,
+				14B48B3420B81C9700CE3EF4 /* EKAttributes+Validations.swift */,
+				14B48B3520B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift */,
+				14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */,
+				14B48B3720B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift */,
+				14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift */,
+				14B48B3920B81C9700CE3EF4 /* EKAttributes+Scroll.swift */,
+				14B48B3A20B81C9700CE3EF4 /* EKAttributes+Presets.swift */,
+				14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */,
+				14B48B3C20B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift */,
+				14B48B3D20B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift */,
+				14B48B3E20B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift */,
+			);
+			path = EntryAttributes;
+			sourceTree = "<group>";
+		};
+		14B48B4120B81C9700CE3EF4 /* MessageViews */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B4220B81C9700CE3EF4 /* EKNotificationMessageView.swift */,
+				14B48B4320B81C9700CE3EF4 /* EKAlertMessageView.swift */,
+				14B48B4420B81C9700CE3EF4 /* EKSimpleMessageView.swift */,
+				14B48B4520B81C9700CE3EF4 /* Notes */,
+				14B48B4B20B81C9700CE3EF4 /* EKFormMessageView.swift */,
+				14B48B4C20B81C9700CE3EF4 /* MessagesUtils */,
+				14B48B4F20B81C9700CE3EF4 /* EKPopUpMessageView.swift */,
+				14B48B5020B81C9700CE3EF4 /* EKMessageContentView.swift */,
+			);
+			path = MessageViews;
+			sourceTree = "<group>";
+		};
+		14B48B4520B81C9700CE3EF4 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B4620B81C9700CE3EF4 /* EKImageNoteMessageView.swift */,
+				14B48B4720B81C9700CE3EF4 /* EKNoteMessageView.swift */,
+				14B48B4820B81C9700CE3EF4 /* EKXStatusBarMessageView.swift */,
+				14B48B4920B81C9700CE3EF4 /* EKAccessoryNoteMessageView.swift */,
+				14B48B4A20B81C9700CE3EF4 /* EKProcessingNoteMessageView.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
+		14B48B4C20B81C9700CE3EF4 /* MessagesUtils */ = {
+			isa = PBXGroup;
+			children = (
+				14B48B4D20B81C9700CE3EF4 /* EKTextField.swift */,
+				14B48B4E20B81C9700CE3EF4 /* EKButtonBarView.swift */,
+			);
+			path = MessagesUtils;
 			sourceTree = "<group>";
 		};
 		14C729C6209447CA0060D267 /* Samples */ = {
@@ -564,18 +552,29 @@
 			path = NibExampleView;
 			sourceTree = "<group>";
 		};
+		4B61402E35F8724D25073A5D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				081546633EB239B242336869 /* Pods-SwiftEntryKitDemo.debug.xcconfig */,
+				D28F8641182B2741CE2EB772 /* Pods-SwiftEntryKitDemo.release.xcconfig */,
+				102C579051389F8128AE0343 /* Pods-SwiftEntryKitTests.debug.xcconfig */,
+				A1F5A42C9A2B945993F15F5D /* Pods-SwiftEntryKitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
 				1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				143076A820B5E9950069BA1B /* Source */,
 				607FACD21AFB9204008FA782 /* DemoApp */,
 				607FACE81AFB9204008FA782 /* Tests */,
+				14B48B1720B81C9700CE3EF4 /* Source */,
 				143C6A1F20B54E4A00F7DD89 /* SwiftEntryKit */,
 				607FACD11AFB9204008FA782 /* Products */,
 				89834CCE498EB0030FCF4F08 /* Frameworks */,
-				93EB5F4D1BD3AB844B8E8A38 /* Pods */,
+				4B61402E35F8724D25073A5D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -647,21 +646,10 @@
 			children = (
 				1430769C20B5E5970069BA1B /* QuickLayout.framework */,
 				14B0B95020B7E4FE00D24D8A /* QuickLayout.framework */,
-				9E56763683E05E6D5F96B2F6 /* Pods_SwiftEntryKitDemo.framework */,
-				96CB661CB3D8F783D8BA9553 /* Pods_SwiftEntryKitTests.framework */,
+				59FC07460A298EF203AE4D95 /* Pods_SwiftEntryKitDemo.framework */,
+				18D38C226E1A7CFD8D31AEB1 /* Pods_SwiftEntryKitTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		93EB5F4D1BD3AB844B8E8A38 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				503A42B1C46F418BC91D5068 /* Pods-SwiftEntryKitDemo.debug.xcconfig */,
-				7BD5DE759E34129EB7BDE55C /* Pods-SwiftEntryKitDemo.release.xcconfig */,
-				3B9294C52684AFB221BAF723 /* Pods-SwiftEntryKitTests.debug.xcconfig */,
-				AB528E68FE00F24BAD5B83A3 /* Pods-SwiftEntryKitTests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -700,12 +688,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SwiftEntryKitDemo" */;
 			buildPhases = (
-				113897303AF5F61432569BF1 /* [CP] Check Pods Manifest.lock */,
+				FAACEE8B0A62D102F2A56EA2 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				143C6A2A20B54E4A00F7DD89 /* Embed Frameworks */,
-				D4AB0F619914D647F37CC715 /* [CP] Embed Pods Frameworks */,
+				EFF95CB1B2A4264BF32CA9EE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -721,11 +709,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SwiftEntryKitTests" */;
 			buildPhases = (
-				CD6F00E1FDF61920EC7F37D7 /* [CP] Check Pods Manifest.lock */,
+				D308BD4D882A58695F1CA758 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				385B88586AF323CA9DE0DA31 /* [CP] Embed Pods Frameworks */,
+				98AF5DD2605FBE75235F4997 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -871,25 +859,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		113897303AF5F61432569BF1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftEntryKitDemo-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		385B88586AF323CA9DE0DA31 /* [CP] Embed Pods Frameworks */ = {
+		98AF5DD2605FBE75235F4997 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -913,7 +883,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CD6F00E1FDF61920EC7F37D7 /* [CP] Check Pods Manifest.lock */ = {
+		D308BD4D882A58695F1CA758 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -931,7 +901,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D4AB0F619914D647F37CC715 /* [CP] Embed Pods Frameworks */ = {
+		EFF95CB1B2A4264BF32CA9EE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -951,6 +921,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftEntryKitDemo/Pods-SwiftEntryKitDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FAACEE8B0A62D102F2A56EA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SwiftEntryKitDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -958,55 +946,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				143076E820B5EA660069BA1B /* EKRootViewController.swift in Sources */,
-				143076EB20B5EA660069BA1B /* EKWindow.swift in Sources */,
-				1430771320B5EA660069BA1B /* EKMessageContentView.swift in Sources */,
-				143076EC20B5EA660069BA1B /* EKBackgroundView.swift in Sources */,
-				1430770420B5EA660069BA1B /* UIView+Responder.swift in Sources */,
-				143076FC20B5EA660069BA1B /* EKAttributes+Scroll.swift in Sources */,
-				143076EF20B5EA660069BA1B /* EKStyleView.swift in Sources */,
-				1430770D20B5EA660069BA1B /* EKAccessoryNoteMessageView.swift in Sources */,
-				1430771220B5EA660069BA1B /* EKPopUpMessageView.swift in Sources */,
-				143076F320B5EA660069BA1B /* EKAttributes+Position.swift in Sources */,
-				143076F520B5EA660069BA1B /* EKAttributes+UserInteraction.swift in Sources */,
-				1430771020B5EA660069BA1B /* EKTextField.swift in Sources */,
-				1430770720B5EA660069BA1B /* EKNotificationMessageView.swift in Sources */,
-				143076FE20B5EA660069BA1B /* EKAttributes+WindowLevel.swift in Sources */,
-				143076FF20B5EA660069BA1B /* EKAttributes+BackgroundStyle.swift in Sources */,
-				1430770F20B5EA660069BA1B /* EKFormMessageView.swift in Sources */,
-				1430770820B5EA660069BA1B /* EKAlertMessageView.swift in Sources */,
-				143076E720B5EA660069BA1B /* SwiftEntryKit.swift in Sources */,
-				1430770920B5EA660069BA1B /* EKSimpleMessageView.swift in Sources */,
-				143076F720B5EA660069BA1B /* EKAttributes+Validations.swift in Sources */,
-				143076FA20B5EA660069BA1B /* EKAttributes+PositionConstraints.swift in Sources */,
-				1430770020B5EA660069BA1B /* EKAttributes+HapticFeedback.swift in Sources */,
-				1430770120B5EA660069BA1B /* EKAttributes+FrameStyle.swift in Sources */,
-				143076FB20B5EA660069BA1B /* EKAttributes+DisplayPriority.swift in Sources */,
-				143076F920B5EA660069BA1B /* EKAttributes+Animation.swift in Sources */,
-				143076B120B5EA470069BA1B /* UIView+Shadow.swift in Sources */,
-				1430770C20B5EA660069BA1B /* EKXStatusBarMessageView.swift in Sources */,
-				143076B020B5EA470069BA1B /* UIEdgeInsets+Utils.swift in Sources */,
-				143076EA20B5EA660069BA1B /* EKWindowProvider.swift in Sources */,
-				143076F620B5EA660069BA1B /* EKAttributes+Duration.swift in Sources */,
-				143076F820B5EA660069BA1B /* EKAttributes+PopBehavior.swift in Sources */,
-				143076F020B5EA660069BA1B /* EKProperty.swift in Sources */,
-				143076FD20B5EA660069BA1B /* EKAttributes+Presets.swift in Sources */,
-				143076ED20B5EA660069BA1B /* EKWrapperView.swift in Sources */,
-				1430770220B5EA660069BA1B /* EKPopUpMessage.swift in Sources */,
-				143076EE20B5EA660069BA1B /* EKContentView.swift in Sources */,
-				1430771120B5EA660069BA1B /* EKButtonBarView.swift in Sources */,
-				143076F420B5EA660069BA1B /* EKAttributes.swift in Sources */,
-				143076AE20B5EA470069BA1B /* UIView+Utils.swift in Sources */,
-				1430770A20B5EA660069BA1B /* EKImageNoteMessageView.swift in Sources */,
-				1430770620B5EA660069BA1B /* HapticFeedbackGenerator.swift in Sources */,
-				143076E920B5EA660069BA1B /* EKEntryView.swift in Sources */,
-				143076AF20B5EA470069BA1B /* UIRectCorner+Short.swift in Sources */,
-				143076F220B5EA660069BA1B /* EKAttributes+Count.swift in Sources */,
-				1430770520B5EA660069BA1B /* GradientView.swift in Sources */,
-				143076F120B5EA660069BA1B /* EKAttributes+Shadow.swift in Sources */,
-				1430770E20B5EA660069BA1B /* EKProcessingNoteMessageView.swift in Sources */,
-				1430770B20B5EA660069BA1B /* EKNoteMessageView.swift in Sources */,
-				1430770320B5EA660069BA1B /* EKNotificationMessage.swift in Sources */,
+				14B48B5F20B81C9700CE3EF4 /* EKStyleView.swift in Sources */,
+				14B48B7120B81C9700CE3EF4 /* EKAttributes+Animation.swift in Sources */,
+				14B48B8820B81C9700CE3EF4 /* EKMessageContentView.swift in Sources */,
+				14B48B6F20B81C9700CE3EF4 /* EKAttributes+Validations.swift in Sources */,
+				14B48B6620B81C9700CE3EF4 /* UIView+Shadow.swift in Sources */,
+				14B48B7A20B81C9700CE3EF4 /* EKPopUpMessage.swift in Sources */,
+				14B48B6920B81C9700CE3EF4 /* EKAttributes+Shadow.swift in Sources */,
+				14B48B8220B81C9700CE3EF4 /* EKAccessoryNoteMessageView.swift in Sources */,
+				14B48B8720B81C9700CE3EF4 /* EKPopUpMessageView.swift in Sources */,
+				14B48B5A20B81C9700CE3EF4 /* EKWindowProvider.swift in Sources */,
+				14B48B7920B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift in Sources */,
+				14B48B8520B81C9700CE3EF4 /* EKTextField.swift in Sources */,
+				14B48B7C20B81C9700CE3EF4 /* EKNotificationMessageView.swift in Sources */,
+				14B48B7820B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift in Sources */,
+				14B48B6220B81C9700CE3EF4 /* HapticFeedbackGenerator.swift in Sources */,
+				14B48B8420B81C9700CE3EF4 /* EKFormMessageView.swift in Sources */,
+				14B48B7D20B81C9700CE3EF4 /* EKAlertMessageView.swift in Sources */,
+				14B48B6B20B81C9700CE3EF4 /* EKAttributes+Position.swift in Sources */,
+				14B48B7E20B81C9700CE3EF4 /* EKSimpleMessageView.swift in Sources */,
+				14B48B6120B81C9700CE3EF4 /* GradientView.swift in Sources */,
+				14B48B6720B81C9700CE3EF4 /* SwiftEntryKit.swift in Sources */,
+				14B48B5B20B81C9700CE3EF4 /* EKWindow.swift in Sources */,
+				14B48B7420B81C9700CE3EF4 /* EKAttributes+Scroll.swift in Sources */,
+				14B48B6C20B81C9700CE3EF4 /* EKAttributes.swift in Sources */,
+				14B48B7020B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift in Sources */,
+				14B48B6020B81C9700CE3EF4 /* UIView+Responder.swift in Sources */,
+				14B48B8120B81C9700CE3EF4 /* EKXStatusBarMessageView.swift in Sources */,
+				14B48B7220B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift in Sources */,
+				14B48B7720B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift in Sources */,
+				14B48B6E20B81C9700CE3EF4 /* EKAttributes+Duration.swift in Sources */,
+				14B48B6420B81C9700CE3EF4 /* UIRectCorner+Short.swift in Sources */,
+				14B48B5C20B81C9700CE3EF4 /* EKBackgroundView.swift in Sources */,
+				14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */,
+				14B48B6A20B81C9700CE3EF4 /* EKAttributes+Count.swift in Sources */,
+				14B48B7520B81C9700CE3EF4 /* EKAttributes+Presets.swift in Sources */,
+				14B48B7B20B81C9700CE3EF4 /* EKNotificationMessage.swift in Sources */,
+				14B48B8620B81C9700CE3EF4 /* EKButtonBarView.swift in Sources */,
+				14B48B5E20B81C9700CE3EF4 /* EKContentView.swift in Sources */,
+				14B48B6D20B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift in Sources */,
+				14B48B7F20B81C9700CE3EF4 /* EKImageNoteMessageView.swift in Sources */,
+				14B48B6820B81C9700CE3EF4 /* EKProperty.swift in Sources */,
+				14B48B6520B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift in Sources */,
+				14B48B5D20B81C9700CE3EF4 /* EKWrapperView.swift in Sources */,
+				14B48B6320B81C9700CE3EF4 /* UIView+Utils.swift in Sources */,
+				14B48B7620B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift in Sources */,
+				14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */,
+				14B48B8320B81C9700CE3EF4 /* EKProcessingNoteMessageView.swift in Sources */,
+				14B48B8020B81C9700CE3EF4 /* EKNoteMessageView.swift in Sources */,
+				14B48B7320B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1268,8 +1256,9 @@
 		};
 		607FACF01AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 503A42B1C46F418BC91D5068 /* Pods-SwiftEntryKitDemo.debug.xcconfig */;
+			baseConfigurationReference = 081546633EB239B242336869 /* Pods-SwiftEntryKitDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = D2LR97ELBQ;
@@ -1290,8 +1279,9 @@
 		};
 		607FACF11AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BD5DE759E34129EB7BDE55C /* Pods-SwiftEntryKitDemo.release.xcconfig */;
+			baseConfigurationReference = D28F8641182B2741CE2EB772 /* Pods-SwiftEntryKitDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = D2LR97ELBQ;
@@ -1312,7 +1302,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B9294C52684AFB221BAF723 /* Pods-SwiftEntryKitTests.debug.xcconfig */;
+			baseConfigurationReference = 102C579051389F8128AE0343 /* Pods-SwiftEntryKitTests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = D2LR97ELBQ;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1338,7 +1328,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB528E68FE00F24BAD5B83A3 /* Pods-SwiftEntryKitTests.release.xcconfig */;
+			baseConfigurationReference = A1F5A42C9A2B945993F15F5D /* Pods-SwiftEntryKitTests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = D2LR97ELBQ;
 				FRAMEWORK_SEARCH_PATHS = (

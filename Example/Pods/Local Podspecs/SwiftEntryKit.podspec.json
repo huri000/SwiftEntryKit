@@ -19,7 +19,7 @@
     "git": "https://github.com/huri000/SwiftEntryKit.git",
     "tag": "0.2.3"
   },
-  "source_files": "SwiftEntryKit/**/*",
+  "source_files": "Source/**/*",
   "frameworks": "UIKit",
   "dependencies": {
     "QuickLayout": [
