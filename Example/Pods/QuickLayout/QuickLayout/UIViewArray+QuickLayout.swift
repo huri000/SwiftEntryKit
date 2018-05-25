@@ -13,7 +13,7 @@ import UIKit
 #endif
 
 // MARK: Multiple Views in Array
-extension Array where Element: QLView {
+public extension Array where Element: QLView {
     
     /**
      All elements in the collection recieve constant value for the given edge.
@@ -23,7 +23,8 @@ extension Array where Element: QLView {
      - returns: The instance of the constraint that was applied (discardable).
      */
     @discardableResult
-    public func set(_ edge: QLAttribute, of value: CGFloat, priority: QLPriority = .required) -> [NSLayoutConstraint]? {
+    public func set(_ edge: QLAttribute, of value: CGFloat,
+                    priority: QLPriority = .required) -> [NSLayoutConstraint] {
         var constraints: [NSLayoutConstraint] = []
         for view in self {
             let constraint = view.set(edge, of: value)
@@ -40,7 +41,8 @@ extension Array where Element: QLView {
      - returns: The instance of the constraint that was applied (discardable).
      */
     @discardableResult
-    public func set(_ edges: QLAttribute..., of value: CGFloat, priority: QLPriority = .required) -> [QLMultipleConstraints] {
+    public func set(_ edges: QLAttribute..., of value: CGFloat,
+                    priority: QLPriority = .required) -> [QLMultipleConstraints] {
         var constraintsArray: [QLMultipleConstraints] = []
         for view in self {
             let constraints = view.set(edges, to: value, priority: priority)
@@ -57,9 +59,10 @@ extension Array where Element: QLView {
      - returns: Array of constraints that were applied (discardable)
      */
     @discardableResult
-    public func spread(_ axis: QLAxis, stretchEdgesToSuperview: Bool = false, offset: CGFloat = 0, priority: QLPriority = .required) -> [NSLayoutConstraint]? {
+    public func spread(_ axis: QLAxis, stretchEdgesToSuperview: Bool = false, offset: CGFloat = 0,
+                       priority: QLPriority = .required) -> [NSLayoutConstraint] {
         guard isValidForQuickLayout else {
-            return nil
+            return []
         }
         let attributes = axis.attributes
         var constraints: [NSLayoutConstraint] = []
@@ -73,7 +76,7 @@ extension Array where Element: QLView {
             guard index > 0 else {
                 continue
             }
-            let previousView = self[index-1]
+            let previousView = self[index - 1]
             let constraint = view.layout(attributes.first, to: attributes.second, of: previousView, offset: offset, priority: priority)!
             constraints.append(constraint)
         }
@@ -94,18 +97,26 @@ extension Array where Element: QLView {
      - returns: Array of QLAxisConstraints - see definition (discardable)
      */
     @discardableResult
-    public func layoutToSuperview(axis: QLAxis, offset: CGFloat = 0, priority: QLPriority = .required) -> [QLAxisConstraints]? {
+    public func layoutToSuperview(axis: QLAxis, offset: CGFloat = 0,
+                                  priority: QLPriority = .required) -> [QLAxisConstraints] {
+        
         let attributes = axis.attributes
-        guard let firstConstraints = layoutToSuperview(attributes.first, offset: offset, priority: priority) else {
-            return nil
+        
+        let firstConstraints = layoutToSuperview(attributes.first, offset: offset, priority: priority)
+        guard !firstConstraints.isEmpty else {
+            return []
         }
-        guard let secondConstraints = layoutToSuperview(attributes.second, offset: -offset, priority: priority) else {
-            return nil
+        
+        let secondConstraints = layoutToSuperview(attributes.second, offset: -offset, priority: priority)
+        guard !secondConstraints.isEmpty else {
+            return []
         }
+        
         var constraints: [QLAxisConstraints] = []
         for (first, second) in zip(firstConstraints, secondConstraints) {
             constraints.append(QLAxisConstraints(first: first, second: second))
         }
+        
         return constraints
     }
     
@@ -118,9 +129,10 @@ extension Array where Element: QLView {
      - returns: Array of applied constraints - see definition (discardable)
      */
     @discardableResult
-    public func layoutToSuperview(_ edge: QLAttribute, ratio: CGFloat = 1, offset: CGFloat = 0, priority: QLPriority = .required) -> [NSLayoutConstraint]? {
+    public func layoutToSuperview(_ edge: QLAttribute, ratio: CGFloat = 1, offset: CGFloat = 0,
+                                  priority: QLPriority = .required) -> [NSLayoutConstraint] {
         guard isValidForQuickLayout else {
-            return nil
+            return []
         }
         return layout(to: edge, of: first!.superview!, ratio: ratio, offset: offset, priority: priority)
     }
@@ -136,9 +148,11 @@ extension Array where Element: QLView {
      - returns: Array of applied constraints - see definition (discardable)
      */
     @discardableResult
-    public func layout(_ firstEdge: QLAttribute? = nil, to anchorEdge: QLAttribute, of anchorView: QLView, ratio: CGFloat = 1, offset: CGFloat = 0, priority: QLPriority = .required) -> [NSLayoutConstraint]? {
+    public func layout(_ firstEdge: QLAttribute? = nil, to anchorEdge: QLAttribute,
+                       of anchorView: QLView, ratio: CGFloat = 1, offset: CGFloat = 0,
+                       priority: QLPriority = .required) -> [NSLayoutConstraint] {
         guard isValidForQuickLayout else {
-            return nil
+            return []
         }
         
         let edge: QLAttribute
@@ -166,9 +180,11 @@ extension Array where Element: QLView {
      - returns: Array of applied constraints, each element is of type QLMultipleConstraints - see definition (discardable)
      */
     @discardableResult
-    public func layout(_ edges: QLAttribute..., to anchorView: QLView, ratio: CGFloat = 1, offset: CGFloat = 0, priority: QLPriority = .required) -> [QLMultipleConstraints]? {
+    public func layout(_ edges: QLAttribute..., to anchorView: QLView,
+                       ratio: CGFloat = 1, offset: CGFloat = 0,
+                       priority: QLPriority = .required) -> [QLMultipleConstraints] {
         guard !edges.isEmpty && isValidForQuickLayout else {
-            return nil
+            return []
         }
         // Avoid duplicities
         let uniqueEdges = Set(edges)
