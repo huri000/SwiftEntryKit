@@ -68,6 +68,7 @@ Banners or Pop-Ups are called *Entries*.
 ## Example Project
 
 The example project contains various presets and examples you can use and modify as your like.
+To install the example project, `git clone` from `master` and run `SwiftEntryKitDemo` scheme.  
 
 ### Presets
 
