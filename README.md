@@ -68,6 +68,7 @@ Banners or Pop-Ups are called *Entries*.
 ## Example Project
 
 The example project contains various presets and examples you can use and modify as your like.
+To install the example project, `git clone` from `master` and run `SwiftEntryKitDemo` scheme.  
 
 ### Presets
 
@@ -112,13 +113,30 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.2.1'
+pod 'SwiftEntryKit', '0.2.2'
 ```
 
 Then, run the following command:
 
 ```bash
 $ pod install
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
+
+```ogdl
+github "huri000/SwiftEntryKit" == 0.2.2
 ```
 
 ## Usage
