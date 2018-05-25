@@ -474,7 +474,7 @@ public struct EKAttributes
     public var shadow: Shadow
     public var roundCorners: RoundCorners
     public var border: Border
-    public var statusBar = StatusBar.inferred
+    public var statusBar: StatusBar
     
     // Animations
     public var entranceAnimation: Animation
