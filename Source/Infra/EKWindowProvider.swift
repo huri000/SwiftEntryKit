@@ -78,6 +78,7 @@ public class EKWindowProvider {
         entryWindow.windowLevel = attributes.windowLevel.value
         
         let entryView = EKEntryView()
+        entryVC.setStatusBarStyleIfNecessary(for: attributes)
         entryView.content = EKEntryView.Content(view: messageView, attributes: attributes)
         entryVC.configure(newEntryView: entryView, attributes: attributes)
     }

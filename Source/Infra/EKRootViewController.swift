@@ -56,6 +56,14 @@ class EKRootViewController: UIViewController {
         UIApplication.shared.set(statusBarStyle: previousStatusBar)
     }
     
+    // Set status bar
+    func setStatusBarStyleIfNecessary(for attributes: EKAttributes) {
+        guard checkPriorityPrecedence(for: attributes) else {
+            return
+        }
+        UIApplication.shared.set(statusBarStyle: attributes.statusBar)
+    }
+    
     // MARK: Setup
     func configure(newEntryView: UIView, attributes: EKAttributes) {
         guard checkPriorityPrecedence(for: attributes) else {
