@@ -444,7 +444,7 @@ attributes.statusBar = .hidden
 
 The status bar appearance is inferred from the previous context (won't be changed):
 ```Swift
-attributes.statusBar = .hidden
+attributes.statusBar = .inferred
 ```
 
 In case there is an already presenting entry with lower/equal display priority, the status bar will change it's style
