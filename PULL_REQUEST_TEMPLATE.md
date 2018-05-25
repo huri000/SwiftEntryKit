@@ -5,7 +5,7 @@
 *What have I tried to acheive / improve + use case example*
 
 ### Implementation Details ✏️
-*How did I implement
+*How did I implement*
 
 ### Testing Details 🔍
 *How did I test my implementation*

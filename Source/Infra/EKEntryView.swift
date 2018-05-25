@@ -46,7 +46,7 @@ class EKEntryView: EKStyleView {
             contentContainerView.addSubview(contentView)
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
-                        
+            
             applyDropShadow()
 
             applyBackgroundToContentView()

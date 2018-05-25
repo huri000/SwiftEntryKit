@@ -114,7 +114,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.2.2'
+pod 'SwiftEntryKit', '0.2.3'
 ```
 
 Then, run the following command:
@@ -137,7 +137,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.2.2
+github "huri000/SwiftEntryKit" == 0.2.3
 ```
 
 ## Usage
@@ -427,13 +427,26 @@ The entry is being overriden (Disappears promptly):
 attributes.popBehavior = .overriden
 ```
 
-#### Status Bar Style
-The status bar style can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+#### Status Bar
+The status bar appearance can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
 
-Setting the status bar style is fairly simple
+Setting the status bar style is fairly simple:
+
+Status bar becomes visible and gets a light style:
 ```Swift
-attributes.statusBarStyle = .default
+attributes.statusBar = .light
 ```
+
+The status bar becomes hidden:
+```Swift
+attributes.statusBar = .hidden
+```
+
+The status bar appearance is inferred from the previous context (won't be changed):
+```Swift
+attributes.statusBar = .hidden
+```
+
 In case there is an already presenting entry with lower/equal display priority, the status bar will change it's style
 When the entry is removed the status bar gets it's initial style back.
 
@@ -461,7 +474,7 @@ public struct EKAttributes
     public var shadow: Shadow
     public var roundCorners: RoundCorners
     public var border: Border
-    public var statusBarStyle: UIStatusBarStyle!
+    public var statusBar = StatusBar.inferred
     
     // Animations
     public var entranceAnimation: Animation

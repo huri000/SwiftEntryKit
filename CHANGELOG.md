@@ -1,6 +1,17 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.2.3
+
+### Features
+
+#### Status Bar Revised
+* Instead of assigning the `UIStatusBarStyle`, use `EKAttributes.StatusBar` to define the status bar.
+* The benefit is an absolute control over the status bar appearance.
+* New statuses:
+- `.hidden` - Hides the status bar.
+-  `inferred` - Infer the style from the previous style.
+
 ## 0.2.2
 
 ### Features

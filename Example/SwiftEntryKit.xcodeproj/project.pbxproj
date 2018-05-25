@@ -17,6 +17,8 @@
 		143F3AAC2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */; };
 		143F3AAE2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */; };
 		143F3AB22090B7F0009F3719 /* ScrollSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */; };
+		145F56B820B84ACA0027EB67 /* EKAttributes+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F56B720B84ACA0027EB67 /* EKAttributes+StatusBar.swift */; };
+		145F56BB20B863220027EB67 /* UIApplication+EKAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */; };
 		14665621209204A5008FB96D /* AnimationSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14665620209204A5008FB96D /* AnimationSelectionTableViewCell.swift */; };
 		147A9A612092682E00A49D7A /* SelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A602092682E00A49D7A /* SelectionHeaderView.swift */; };
 		147A9A6320926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */; };
@@ -198,6 +200,8 @@
 		143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14580CCA20B7F4FB001AF703 /* DemoAppInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DemoAppInfo.plist; sourceTree = "<group>"; };
+		145F56B720B84ACA0027EB67 /* EKAttributes+StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKAttributes+StatusBar.swift"; sourceTree = "<group>"; };
+		145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EKAppearance.swift"; sourceTree = "<group>"; };
 		14665620209204A5008FB96D /* AnimationSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		147A9A602092682E00A49D7A /* SelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHeaderView.swift; sourceTree = "<group>"; };
 		147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxWidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -412,6 +416,7 @@
 				14B48B2720B81C9700CE3EF4 /* UIRectCorner+Short.swift */,
 				14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */,
 				14B48B2920B81C9700CE3EF4 /* UIView+Shadow.swift */,
+				145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -430,23 +435,24 @@
 		14B48B2D20B81C9700CE3EF4 /* EntryAttributes */ = {
 			isa = PBXGroup;
 			children = (
-				14B48B2E20B81C9700CE3EF4 /* EKAttributes+Shadow.swift */,
-				14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */,
-				14B48B3020B81C9700CE3EF4 /* EKAttributes+Position.swift */,
 				14B48B3120B81C9700CE3EF4 /* EKAttributes.swift */,
-				14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */,
-				14B48B3320B81C9700CE3EF4 /* EKAttributes+Duration.swift */,
-				14B48B3420B81C9700CE3EF4 /* EKAttributes+Validations.swift */,
-				14B48B3520B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift */,
 				14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */,
-				14B48B3720B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift */,
-				14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift */,
-				14B48B3920B81C9700CE3EF4 /* EKAttributes+Scroll.swift */,
-				14B48B3A20B81C9700CE3EF4 /* EKAttributes+Presets.swift */,
-				14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */,
 				14B48B3C20B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift */,
-				14B48B3D20B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift */,
+				14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */,
+				14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift */,
+				14B48B3320B81C9700CE3EF4 /* EKAttributes+Duration.swift */,
 				14B48B3E20B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift */,
+				14B48B3D20B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift */,
+				14B48B3520B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift */,
+				14B48B3020B81C9700CE3EF4 /* EKAttributes+Position.swift */,
+				14B48B3720B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift */,
+				14B48B3A20B81C9700CE3EF4 /* EKAttributes+Presets.swift */,
+				14B48B3920B81C9700CE3EF4 /* EKAttributes+Scroll.swift */,
+				14B48B2E20B81C9700CE3EF4 /* EKAttributes+Shadow.swift */,
+				145F56B720B84ACA0027EB67 /* EKAttributes+StatusBar.swift */,
+				14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */,
+				14B48B3420B81C9700CE3EF4 /* EKAttributes+Validations.swift */,
+				14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */,
 			);
 			path = EntryAttributes;
 			sourceTree = "<group>";
@@ -960,6 +966,7 @@
 				14B48B8520B81C9700CE3EF4 /* EKTextField.swift in Sources */,
 				14B48B7C20B81C9700CE3EF4 /* EKNotificationMessageView.swift in Sources */,
 				14B48B7820B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift in Sources */,
+				145F56B820B84ACA0027EB67 /* EKAttributes+StatusBar.swift in Sources */,
 				14B48B6220B81C9700CE3EF4 /* HapticFeedbackGenerator.swift in Sources */,
 				14B48B8420B81C9700CE3EF4 /* EKFormMessageView.swift in Sources */,
 				14B48B7D20B81C9700CE3EF4 /* EKAlertMessageView.swift in Sources */,
@@ -974,6 +981,7 @@
 				14B48B6020B81C9700CE3EF4 /* UIView+Responder.swift in Sources */,
 				14B48B8120B81C9700CE3EF4 /* EKXStatusBarMessageView.swift in Sources */,
 				14B48B7220B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift in Sources */,
+				145F56BB20B863220027EB67 /* UIApplication+EKAppearance.swift in Sources */,
 				14B48B7720B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift in Sources */,
 				14B48B6E20B81C9700CE3EF4 /* EKAttributes+Duration.swift in Sources */,
 				14B48B6420B81C9700CE3EF4 /* UIRectCorner+Short.swift in Sources */,
