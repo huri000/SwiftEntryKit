@@ -17,7 +17,7 @@ class EKRootViewController: UIViewController {
     private let backgroundView = EKBackgroundView()
 
     // Previous status bar style
-    private var previousStatusBarStyle: UIStatusBarStyle = UIApplication.shared.statusBarStyle
+    private let previousStatusBar: EKAttributes.StatusBar
     
     private lazy var wrapperView: EKWrapperView = {
         return EKWrapperView()
@@ -40,6 +40,7 @@ class EKRootViewController: UIViewController {
     }
     
     public init() {
+        previousStatusBar = .currentStatusBar
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -52,7 +53,7 @@ class EKRootViewController: UIViewController {
     
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = previousStatusBarStyle
+        UIApplication.shared.set(statusBarStyle: previousStatusBar)
     }
     
     // MARK: Setup
@@ -64,21 +65,12 @@ class EKRootViewController: UIViewController {
         removeLastEntry(keepWindow: true)
 
         lastAttributes = attributes
-        
-        setStatusBarStyle(by: attributes)
-                
+                        
         let entryContentView = EKContentView(withEntryDelegate: self)
         view.addSubview(entryContentView)
         entryContentView.setup(with: newEntryView, attributes: attributes)
         
         isResponsive = attributes.screenInteraction.isResponsive
-    }
-    
-    private func setStatusBarStyle(by attributes: EKAttributes) {
-        guard let style = attributes.statusBarStyle, style != UIApplication.shared.statusBarStyle else {
-            return
-        }
-        UIApplication.shared.statusBarStyle = style
     }
     
     // Check priority precedence for a given entry

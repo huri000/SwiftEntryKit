@@ -46,7 +46,10 @@ class EKEntryView: EKStyleView {
             contentContainerView.addSubview(contentView)
             contentView.layoutToSuperview(axis: .vertically)
             contentView.layoutToSuperview(axis: .horizontally)
-                        
+            
+            // Set status bar
+            UIApplication.shared.set(statusBarStyle: content.attributes.statusBar)
+            
             applyDropShadow()
 
             applyBackgroundToContentView()

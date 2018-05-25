@@ -65,7 +65,7 @@ struct PresetsDataSource {
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         return attributes
     }
     
@@ -93,8 +93,9 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: EKColor.LightBlue.a700)
         attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 1.07, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(translate: .init(duration: 0.3))
+        attributes.statusBar = .hidden
         attributes.scroll = .edgeCrossingDisabled(swipeable: false)
-        descriptionString = "Regular toast that appears at the top"
+        descriptionString = "Regular toast that appears at the top. Hides status Bar."
         descriptionThumb = ThumbDesc.topToast.rawValue
         description = .init(with: attributes, title: "Top I", description: descriptionString, thumb: descriptionThumb)
         toasts.append(description)
@@ -117,7 +118,7 @@ struct PresetsDataSource {
         attributes = .bottomToast
         attributes.entryBackground = .visualEffect(style: .light)
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         descriptionString = "Regular bottom toast with blurred background"
         descriptionThumb = ThumbDesc.bottomToast.rawValue
         description = .init(with: attributes, title: "Bottom", description: descriptionString, thumb: descriptionThumb)
@@ -139,7 +140,7 @@ struct PresetsDataSource {
         attributes.hapticFeedbackType = .success
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .satCyan)
-        attributes.statusBarStyle = .lightContent
+        attributes.statusBar = .light
         descriptionString = "Absorbs (swallows) touches and the status bar becomes light"
         descriptionThumb = ThumbDesc.topNote.rawValue
         description = .init(with: attributes, title: "Top Standard Note", description: descriptionString, thumb: descriptionThumb)
@@ -151,7 +152,7 @@ struct PresetsDataSource {
         attributes.displayDuration = .infinity
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .pinky)
-        attributes.statusBarStyle = .lightContent
+        attributes.statusBar = .light
         descriptionString = "Appears for an infinate duration"
         descriptionThumb = ThumbDesc.topNote.rawValue
         description = .init(with: attributes, title: "Top Processing Note", description: descriptionString, thumb: descriptionThumb)
@@ -164,7 +165,7 @@ struct PresetsDataSource {
         attributes.displayDuration = 3
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: EKColor.Purple.deep)
-        attributes.statusBarStyle = .lightContent
+        attributes.statusBar = .light
         descriptionString = "Appears for 3 seconds. Generates error notification haptic feedback"
         descriptionThumb = ThumbDesc.topNote.rawValue
         description = .init(with: attributes, title: "Top Image Note", description: descriptionString, thumb: descriptionThumb)
@@ -185,7 +186,7 @@ struct PresetsDataSource {
         attributes.hapticFeedbackType = .success
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Purple.a300, EKColor.Purple.a400, EKColor.Purple.a700], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         descriptionString = "Presented at the bottom / Above the notch"
         descriptionThumb = ThumbDesc.bottomToast.rawValue
         description = .init(with: attributes, title: "Bottom Standard Note", description: descriptionString, thumb: descriptionThumb)
@@ -208,7 +209,7 @@ struct PresetsDataSource {
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Top float with gradient background"
@@ -222,7 +223,7 @@ struct PresetsDataSource {
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.BlueGradient.dark, EKColor.BlueGradient.light], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.entryInteraction = .delayExit(by: 3)
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Bottom float with gradient background. Touches delay exit"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
@@ -264,7 +265,7 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.35)))
         attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         descriptionString = "Centeralized floating popup with dimmed background"
         descriptionThumb = ThumbDesc.bottomPopup.rawValue
         description = .init(with: attributes, title: "Pop Up II", description: descriptionString, thumb: descriptionThumb)
@@ -297,7 +298,7 @@ struct PresetsDataSource {
         attributes.displayDuration = .infinity
         attributes.border = .value(color: .black, width: 0.5)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5, offset: .zero))
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Top floating alert view with button bar. Smooths in animately."
         descriptionThumb = ThumbDesc.topFloat.rawValue
@@ -349,7 +350,7 @@ struct PresetsDataSource {
         attributes.entryBackground = .visualEffect(style: .extraLight)
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
         attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .jolt)
-        attributes.statusBarStyle = .lightContent
+        attributes.statusBar = .light
         
         attributes.positionConstraints.keyboardRelation = .bind(offset: .init(bottom: 10, screenEdgeResistance: 5))
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
@@ -377,7 +378,7 @@ struct PresetsDataSource {
         attributes.border = .value(color: UIColor(white: 0.6, alpha: 1), width: 1)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3, offset: .zero))
         attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .jolt)
-        attributes.statusBarStyle = .lightContent
+        attributes.statusBar = .light
         
         attributes.positionConstraints.keyboardRelation = .bind(offset: .init(bottom: 15, screenEdgeResistance: 0))
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
@@ -403,7 +404,7 @@ struct PresetsDataSource {
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3, offset: .zero))
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
-        attributes.statusBarStyle = .lightContent
+        attributes.statusBar = .light
         
         attributes.positionConstraints.keyboardRelation = .bind(offset: .init(bottom: 0, screenEdgeResistance: 0))
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
@@ -445,7 +446,7 @@ struct PresetsDataSource {
         attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         
-        attributes.statusBarStyle = .default
+        attributes.statusBar = .dark
         descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
         description = .init(with: attributes, title: "View From Nib", description: descriptionString, thumb: descriptionThumb)

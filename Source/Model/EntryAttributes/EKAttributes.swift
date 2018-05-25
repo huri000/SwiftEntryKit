@@ -66,7 +66,7 @@ public struct EKAttributes {
     public var border = Border.none
     
     /** Preferred status bar style while the entry shows */
-    public var statusBarStyle: UIStatusBarStyle!
+    public var statusBar = StatusBar.inferred
     
     // MARK: Animation Attributes
     
