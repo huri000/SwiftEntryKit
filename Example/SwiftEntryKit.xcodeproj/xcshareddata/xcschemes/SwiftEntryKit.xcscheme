@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "SwiftEntryKitTests.xctest"
+               BlueprintName = "SwiftEntryKitTests"
+               ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "143C6A1D20B54E4A00F7DD89"
+            BuildableName = "SwiftEntryKit.framework"
+            BlueprintName = "SwiftEntryKit"
+            ReferencedContainer = "container:SwiftEntryKit.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
