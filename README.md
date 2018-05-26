@@ -114,7 +114,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.2.3'
+pod 'SwiftEntryKit', '0.2.4'
 ```
 
 Then, run the following command:
@@ -137,7 +137,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.2.3
+github "huri000/SwiftEntryKit" == 0.2.4
 ```
 
 ## Usage
@@ -405,15 +405,19 @@ attributes.border = .none
 ```
 
 #### Animations
-Describes how the entry animates into and out of the screen. Each animation object can have 3 types of animations at the same time. You can combine animation to a complex one.
+Describes how the entry animates into and out of the screen. 
 
-Example for a complex entrance animation that contains translation of the entry using spring animation, scale in and even fade in.
+* Each animation descriptor can have up to 3 types of animations at the same time. Those can be combined to a single complex one!
+* Translation animation anchor can be explicitly set but it receives a default value according to position of the entry.
+
+Example for _translation_ from top with spring, _scale_ in and even _fade in_ as a single entrance animation:
 ```Swift
 attributes.entranceAnimation = .init(
-                 translate: .init(duration: 0.7, spring: .init(damping: 1, initialVelocity: 0)), 
+                 translate: .init(duration: 0.7, anchorPosition: .top, spring: .init(damping: 1, initialVelocity: 0)), 
                  scale: .init(from: 0.6, to: 1, duration: 0.7), 
                  fade: .init(from: 0.8, to: 1, duration: 0.3))
 ```
+
 #### Pop Behavior
 Describes the entry behavior when it's being popped (dismissed by an entry with equal / higher display-priority.
 
@@ -500,7 +504,7 @@ var attributes = EKAttributes.topFloat
 attributes.entryBackground = .gradient(gradient: .init(colors: [.red, .green], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
 attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
 attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
-attributes.statusBarStyle = .default
+attributes.statusBar = .dark
 attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
 attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
 

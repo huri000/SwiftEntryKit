@@ -15,7 +15,7 @@ class PlaygroundViewController: UIViewController {
     
     private lazy var attributesWrapper: EntryAttributeWrapper = {
         var attributes = EKAttributes()
-        attributes.positionConstraints = .full
+        attributes.positionConstraints = .fullWidth
         attributes.hapticFeedbackType = .success
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.entryBackground = .visualEffect(style: .light)

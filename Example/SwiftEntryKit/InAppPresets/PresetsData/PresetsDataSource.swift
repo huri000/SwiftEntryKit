@@ -271,13 +271,12 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Pop Up II", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
-        
         // Preset III
         attributes = bottomAlertAttributes
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 1, initialVelocity: 0)))
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.LightPink.first, EKColor.LightPink.last], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
-        attributes.positionConstraints = .full
+        attributes.positionConstraints = .fullWidth
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.roundCorners = .top(radius: 20)
         descriptionString = "Bottom toast popup with gradient background"
@@ -365,8 +364,8 @@ struct PresetsDataSource {
         attributes.position = .center
         attributes.displayDuration = .infinity
         
-        attributes.entranceAnimation = .init(translate: .init(duration: 0.65, spring: .init(damping: 1, initialVelocity: 0)))
-        attributes.exitAnimation = .init(translate: .init(duration: 0.65, spring: .init(damping: 1, initialVelocity: 0)))
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.65, anchorPosition: .bottom,  spring: .init(damping: 1, initialVelocity: 0)))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.65, anchorPosition: .top, spring: .init(damping: 1, initialVelocity: 0)))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.65, spring: .init(damping: 1, initialVelocity: 0))))
         
         attributes.entryInteraction = .absorbTouches
