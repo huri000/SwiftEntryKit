@@ -57,19 +57,13 @@ class EKRootViewController: UIViewController {
     }
     
     // Set status bar
-    func setStatusBarStyleIfNecessary(for attributes: EKAttributes) {
-        guard checkPriorityPrecedence(for: attributes) else {
-            return
-        }
+    func setStatusBarStyle(for attributes: EKAttributes) {
         UIApplication.shared.set(statusBarStyle: attributes.statusBar)
     }
     
     // MARK: Setup
     func configure(newEntryView: UIView, attributes: EKAttributes) {
-        guard checkPriorityPrecedence(for: attributes) else {
-            return
-        }
-        
+
         removeLastEntry(keepWindow: true)
 
         lastAttributes = attributes
@@ -80,9 +74,9 @@ class EKRootViewController: UIViewController {
         
         isResponsive = attributes.screenInteraction.isResponsive
     }
-    
+        
     // Check priority precedence for a given entry
-    private func checkPriorityPrecedence(for attributes: EKAttributes) -> Bool {
+    func canDisplay(attributes: EKAttributes) -> Bool {
         guard let lastAttributes = lastAttributes else {
             return true
         }

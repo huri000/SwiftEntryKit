@@ -114,7 +114,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.2.4'
+pod 'SwiftEntryKit', '0.3.0'
 ```
 
 Then, run the following command:
@@ -137,7 +137,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.2.4
+github "huri000/SwiftEntryKit" == 0.3.0
 ```
 
 ## Usage

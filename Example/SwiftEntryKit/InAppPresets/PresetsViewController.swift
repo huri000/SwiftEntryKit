@@ -252,7 +252,9 @@ class PresetsViewController: UIViewController {
             SwiftEntryKit.dismiss()
         }
         let contentView = EKFormMessageView(with: title, textFieldsContent: textFields, buttonContent: button)
-        SwiftEntryKit.display(entry: contentView, using: attributes)
+//        SwiftEntryKit.display(entry: contentView, using: attributes)
+        
+        SwiftEntryKit.transform(to: contentView)
     }
 }
 

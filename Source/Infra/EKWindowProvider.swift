@@ -11,6 +11,7 @@ import UIKit
 public class EKWindowProvider {
     
     public enum State {
+        case transform(to: UIView)
         case entry(view: UIView, attributes: EKAttributes)
         case main
         
@@ -45,6 +46,8 @@ public class EKWindowProvider {
                 clean()
             case .entry(view: let view, attributes: let attributes):
                 setup(with: view, attributes: attributes)
+            case .transform(to: let view):
+                transform(to: view)
             }
         }
     }
@@ -56,18 +59,39 @@ public class EKWindowProvider {
     var rootVC: EKRootViewController? {
         return entryWindow?.rootViewController as? EKRootViewController
     }
+    
+    private weak var entryView: EKEntryView!
 
     private init() {}
     
-    func dismiss() {
-        guard let rootVC = rootVC else {
+    // MARK: Setup and Teardown methods
+    
+    // Setup new entry
+    private func setup(with view: UIView, attributes: EKAttributes) {
+        
+        let entryVC = setupWindowAndRootVC()
+        
+        guard entryVC.canDisplay(attributes: attributes) else {
             return
         }
-        rootVC.animateOutLastEntry()
+    
+        entryWindow.windowLevel = attributes.windowLevel.value
+
+        entryVC.setStatusBarStyle(for: attributes)
+        
+        let entryView = EKEntryView()
+        entryView.setup(newEntry: .init(view: view, attributes: attributes))
+        entryVC.configure(newEntryView: entryView, attributes: attributes)
+        self.entryView = entryView
     }
     
-    // MARK: Setup and Teardown methods
-    private func setup(with messageView: UIView, attributes: EKAttributes) {
+    // Transform current entry
+    private func transform(to view: UIView) {
+        entryView?.transform(to: view)
+    }
+    
+    // Setup window and root view controller
+    private func setupWindowAndRootVC() -> EKRootViewController {
         let entryVC: EKRootViewController
         if entryWindow == nil {
             entryVC = EKRootViewController()
@@ -75,17 +99,19 @@ public class EKWindowProvider {
         } else {
             entryVC = rootVC!
         }
-        entryWindow.windowLevel = attributes.windowLevel.value
-        
-        let entryView = EKEntryView()
-        entryVC.setStatusBarStyleIfNecessary(for: attributes)
-        entryView.content = EKEntryView.Content(view: messageView, attributes: attributes)
-        entryVC.configure(newEntryView: entryView, attributes: attributes)
+        return entryVC
     }
     
     private func clean() {
         entryWindow = nil
         UIApplication.shared.keyWindow?.makeKeyAndVisible()
+    }
+    
+    func dismiss() {
+        guard let rootVC = rootVC else {
+            return
+        }
+        rootVC.animateOutLastEntry()
     }
     
     func layoutIfNeeded() {

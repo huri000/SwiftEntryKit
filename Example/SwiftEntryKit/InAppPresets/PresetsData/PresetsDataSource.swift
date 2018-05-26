@@ -345,7 +345,7 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0))))
         
         attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .dismiss
+        attributes.screenInteraction = .forward
         attributes.entryBackground = .visualEffect(style: .extraLight)
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
         attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .jolt)
@@ -369,7 +369,7 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.65, spring: .init(damping: 1, initialVelocity: 0))))
         
         attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .dismiss
+        attributes.screenInteraction = .forward
         
         attributes.entryBackground = .color(color: .white)
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
@@ -396,8 +396,8 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.65, spring: .init(damping: 1, initialVelocity: 0))))
         
         attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .dismiss
-        
+        attributes.screenInteraction = .forward
+
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Netflix.light, EKColor.Netflix.dark], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3, offset: .zero))
