@@ -15,7 +15,7 @@ public extension EKAttributes {
     /** Toast preset - The frame fills margins and safe area is filled with background view */
     public static var toast: EKAttributes {
         var attributes = EKAttributes()
-        attributes.positionConstraints = .full
+        attributes.positionConstraints = .fullWidth
         attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
         attributes.windowLevel = .statusBar
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)

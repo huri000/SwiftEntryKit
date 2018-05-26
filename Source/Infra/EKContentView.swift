@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuickLayout
 
 protocol EntryContentViewDelegate: class {
     func changeToActive(withAttributes attributes: EKAttributes)
@@ -18,7 +19,18 @@ class EKContentView: UIView {
     enum OutTranslation {
         case exit
         case pop
-        case swipe
+        case swipeDown
+        case swipeUp
+    }
+    
+    struct OutTranslationAnchor {
+        var messageOut: QLAttribute
+        var screenOut: QLAttribute
+        
+        init(_ messageOut: QLAttribute, to screenOut: QLAttribute) {
+            self.messageOut = messageOut
+            self.screenOut = screenOut
+        }
     }
     
     // MARK: Props
@@ -29,9 +41,10 @@ class EKContentView: UIView {
     // Constraints and Offsets
     private var entranceOutConstraint: NSLayoutConstraint!
     private var exitOutConstraint: NSLayoutConstraint!
+    private var swipeDownOutConstraint: NSLayoutConstraint!
+    private var swipeUpOutConstraint: NSLayoutConstraint!
     private var popOutConstraint: NSLayoutConstraint!
     private var inConstraint: NSLayoutConstraint!
-    private var outConstraint: NSLayoutConstraint!
     private var resistanceConstraint: NSLayoutConstraint!
     private var inKeyboardConstraint: NSLayoutConstraint!
     
@@ -92,10 +105,8 @@ class EKContentView: UIView {
         
         // Determine the layout entrance type according to the entry type
         let messageInAnchor: NSLayoutAttribute
-        let screenOutAnchor: NSLayoutAttribute
-        let messageOutAnchor: NSLayoutAttribute
+        
         inOffset = 0
-        var outOffset: CGFloat = 0
         
         var totalEntryHeight: CGFloat = 0
         
@@ -115,27 +126,16 @@ class EKContentView: UIView {
         
         switch attributes.position {
         case .top:
-            screenOutAnchor = .top
-            messageOutAnchor = .bottom
             messageInAnchor = .top
-            
             inOffset = overrideSafeArea ? 0 : safeAreaInsets.top
             inOffset += attributes.positionConstraints.verticalOffset
-            outOffset = -safeAreaInsets.top
-            
             spacerView?.layout(.bottom, to: .top, of: self)
         case .bottom:
-            screenOutAnchor = .bottom
-            messageOutAnchor = .top
             messageInAnchor = .bottom
-            
             inOffset = overrideSafeArea ? 0 : -safeAreaInsets.bottom
             inOffset -= attributes.positionConstraints.verticalOffset
-            
             spacerView?.layout(.top, to: .bottom, of: self)
         case .center:
-            screenOutAnchor = .bottom
-            messageOutAnchor = .top
             messageInAnchor = .centerY
         }
         
@@ -144,29 +144,11 @@ class EKContentView: UIView {
         contentView.layoutToSuperview(.left, .right, .top, .bottom)
         contentView.layoutToSuperview(.width, .height)
         
-        // Setup out constraint, capture pre calculated offsets and attributes
-        let setupOutConstraint = { (animation: EKAttributes.Animation, priority: UILayoutPriority) -> NSLayoutConstraint in
-            let constraint: NSLayoutConstraint
-            if animation.containsTranslation {
-                constraint = self.layout(messageOutAnchor, to: screenOutAnchor, of: self.superview!, offset: outOffset, priority: priority)!
-            } else {
-                constraint = self.layout(to: messageInAnchor, of: self.superview!, offset: self.inOffset, priority: priority)!
-            }
-            return constraint
-        }
-        
-        if case .animated(animation: let animation) = attributes.popBehavior {
-            popOutConstraint = setupOutConstraint(animation, .defaultLow)
-        } else {
-            popOutConstraint = layout(to: messageInAnchor, of: superview!, offset: inOffset, priority: .defaultLow)!
-        }
+        inConstraint = layout(to: messageInAnchor, of: superview!, offset: inOffset, priority: .defaultLow)
         
         // Set position constraints
-        entranceOutConstraint = setupOutConstraint(attributes.entranceAnimation, .must)
-        exitOutConstraint = setupOutConstraint(attributes.exitAnimation, .defaultLow)
-        inConstraint = layout(to: messageInAnchor, of: superview!, offset: inOffset, priority: .defaultLow)
-        outConstraint = layout(messageOutAnchor, to: screenOutAnchor, of: superview!, offset: outOffset, priority: .defaultLow)
-
+        setupOutConstraints(messageInAnchor: messageInAnchor)
+        
         totalTranslation = inOffset
         switch attributes.position {
         case .top:
@@ -186,6 +168,45 @@ class EKContentView: UIView {
             break
         }
     }
+    
+    private func setupOutConstraint(animation: EKAttributes.Animation?, messageInAnchor: QLAttribute, priority: QLPriority) -> NSLayoutConstraint {
+        let constraint: NSLayoutConstraint
+        if let translation = animation?.translate {
+            var anchor: OutTranslationAnchor
+            switch translation.anchorPosition {
+            case .top:
+                anchor = OutTranslationAnchor(.bottom, to: .top)
+            case .bottom:
+                anchor = OutTranslationAnchor(.top, to: .bottom)
+            case .automatic where attributes.position.isTop:
+                anchor = OutTranslationAnchor(.bottom, to: .top)
+            case .automatic: // attributes.position.isBottom:
+                anchor = OutTranslationAnchor(.top, to: .bottom)
+            }
+            constraint = layout(anchor.messageOut, to: anchor.screenOut, of: superview!, priority: priority)!
+        } else {
+            constraint = layout(to: messageInAnchor, of: superview!, offset: inOffset, priority: priority)!
+        }
+        return constraint
+    }
+    
+    // Setup out constraints - taking into account the full picture and all the possible use-cases
+    private func setupOutConstraints(messageInAnchor: QLAttribute) {
+        
+        // Setup entrance and exit out constraints
+        entranceOutConstraint = setupOutConstraint(animation: attributes.entranceAnimation, messageInAnchor: messageInAnchor, priority: .must)
+        exitOutConstraint = setupOutConstraint(animation: attributes.exitAnimation, messageInAnchor: messageInAnchor, priority: .defaultLow)
+        swipeDownOutConstraint = layout(.top, to: .bottom, of: superview!, priority: .defaultLow)!
+        swipeUpOutConstraint = layout(.bottom, to: .top, of: superview!, priority: .defaultLow)!
+        
+        // Setup pop out constraint
+        var popAnimation: EKAttributes.Animation?
+        if case .animated(animation: let animation) = attributes.popBehavior {
+            popAnimation = animation
+        }
+        popOutConstraint = setupOutConstraint(animation: popAnimation, messageInAnchor: messageInAnchor, priority: .defaultLow)
+    }
+    
     
     private func setupSize() {
         
@@ -389,8 +410,10 @@ class EKContentView: UIView {
             exitOutConstraint.priority = .must
         case .pop:
             popOutConstraint.priority = .must
-        case .swipe:
-            outConstraint.priority = .must
+        case .swipeUp:
+            swipeUpOutConstraint.priority = .must
+        case .swipeDown:
+            swipeDownOutConstraint.priority = .must
         }
         superview?.layoutIfNeeded()
     }
@@ -599,18 +622,18 @@ extension EKContentView {
         duration = min(0.7, duration)
         
         if attributes.scroll.isSwipeable && testSwipeVelocity(with: velocity) && testSwipeInConstraint() {
-            stretchOut(duration: duration)
+            stretchOut(usingSwipe: velocity > 0 ? .swipeDown : .swipeUp, duration: duration)
         } else {
             animateRubberBandPullback()
         }
     }
     
-    private func stretchOut(duration: TimeInterval) {
+    private func stretchOut(usingSwipe type: OutTranslation, duration: TimeInterval) {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes)
         
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
-            self.translateOut(withType: .swipe)
+            self.translateOut(withType: type)
         }, completion: { finished in
             self.removeFromSuperview(keepWindow: false)
         })

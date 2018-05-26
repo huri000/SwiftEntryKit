@@ -32,29 +32,6 @@ public extension EKAttributes {
             }
         }
         
-        /** Describes the size of the entry */
-        public struct Size {
-            
-            /** Describes a width constraint */
-            public var width: Edge
-            
-            /** Describes a height constraint */
-            public var height: Edge
-            
-            public init(width: Edge, height: Edge) {
-                self.width = width
-                self.height = height
-            }
-            
-            public static var intrinsic: Size {
-                return Size(width: .intrinsic, height: .intrinsic)
-            }
-            
-            public static var sizeToWidth: Size {
-                return Size(width: .offset(value: 0), height: .intrinsic)
-            }
-        }
-        
         /** Describes an edge constraint of the entry */
         public enum Edge {
             
@@ -69,6 +46,42 @@ public extension EKAttributes {
             
             /** Unspecified edge length */
             case intrinsic
+            
+            /** Edge totally filled */
+            public static var fill: Edge {
+                return .offset(value: 0)
+            }
+        }
+        
+        /** Describes the size of the entry */
+        public struct Size {
+            
+            /** Describes a width constraint */
+            public var width: Edge
+            
+            /** Describes a height constraint */
+            public var height: Edge
+            
+            /** Initializer */
+            public init(width: Edge, height: Edge) {
+                self.width = width
+                self.height = height
+            }
+            
+            /** The content's size. Entry's content view must have tight constraints */
+            public static var intrinsic: Size {
+                return Size(width: .intrinsic, height: .intrinsic)
+            }
+            
+            /** The content's size. Entry's content view must have tight constraints */
+            public static var sizeToWidth: Size {
+                return Size(width: .offset(value: 0), height: .intrinsic)
+            }
+            
+            /** Screen size, without horizontal or vertical offset */
+            public static var screen: Size {
+                return Size(width: .fill, height: .fill)
+            }
         }
         
         /** The relation to the keyboard's top and the screen's top while it is opened */
@@ -90,7 +103,7 @@ public extension EKAttributes {
                 
                 /** None offset */
                 public static var none: Offset {
-                    return .init()
+                    return Offset()
                 }
             }
             
@@ -133,14 +146,19 @@ public extension EKAttributes {
             return verticalOffset > 0
         }
         
-        /** Returns a full entry (Toast-Like) */
-        public static var full: PositionConstraints {
+        /** Returns a floating entry (float-like) */
+        public static var float: PositionConstraints {
+            return PositionConstraints(verticalOffset: 10, size: .init(width: .offset(value: 20), height: .intrinsic))
+        }
+        
+        /** A full width entry (toast-like) */
+        public static var fullWidth: PositionConstraints {
             return PositionConstraints(verticalOffset: 0, size: .sizeToWidth)
         }
         
-        /** Returns a floating entry (Float-Like) */
-        public static var float: PositionConstraints {
-            return PositionConstraints(verticalOffset: 10, size: .init(width: .offset(value: 20), height: .intrinsic))
+        /** A full screen entry - fills the entire screen, modal-like */
+        public static var fullScreen: PositionConstraints {
+            return PositionConstraints(verticalOffset: 0, size: .screen)
         }
         
         /** Initialize with default parameters */
