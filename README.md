@@ -10,6 +10,7 @@
 * [Overview](#overview)
   * [Features](#features)
 * [Example Project](#example-project)
+  * [Example Project Installation](#example-project-installation)
   * [Presets](#presets)
   * [Playground](#playground)
 * [Requirements](#requirements)
@@ -31,7 +32,7 @@
     * [Border](#border)
     * [Animations](#animations)
     * [Pop Behavior](#pop-behavior)
-    * [Status Bar Style](#status-bar-style)
+    * [Status Bar](#status-bar)
   * [Presets Usage Example](#presets-usage-example)
   * [Custom View Usage Example](#custom-view-usage-example)
   * [Dismissing an Entry](#dismissing-an-entry)
@@ -69,7 +70,22 @@ Banners or Pop-Ups are called *Entries*.
 ## Example Project
 
 The example project contains various presets and examples you can use and modify as your like.
-To install the example project, `git clone` from `master` and run `SwiftEntryKitDemo` scheme.  
+
+### Example Project Installation
+SwiftEntryKit supports installation using CocoaPods or Carthage, but the example project relies on Carthage. 
+To install the example project, `git clone` from `master`.
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+At the Example directory:
+```bash
+$ carthage update
+```
+
+Open the project and run `SwiftEntryKitDemo` scheme.
 
 ### Presets
 
