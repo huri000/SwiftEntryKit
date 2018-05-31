@@ -91,7 +91,7 @@ public extension EKAttributes {
         var attributes = topToast
         attributes.windowLevel = .statusBar
         attributes.entryInteraction = .absorbTouches
-        attributes.positionConstraints.safeArea = .overriden
+        attributes.positionConstraints.safeArea = .overridden
         return attributes
     }
 }

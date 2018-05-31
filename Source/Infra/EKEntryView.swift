@@ -17,6 +17,7 @@ class EKEntryView: EKStyleView {
     }
     
     // MARK: Props
+    private var backgroundView: UIView!
     private var content: Content!
     private lazy var contentView: UIView = {
         return UIView()
@@ -49,6 +50,8 @@ class EKEntryView: EKStyleView {
         applyDropShadow()
         applyBackgroundToContentView()
         applyFrameStyle()
+        
+        print("!")
     }
     
     func transform(to view: UIView) {
@@ -62,8 +65,7 @@ class EKEntryView: EKStyleView {
 
         SwiftEntryKit.layoutIfNeeded()
         
-        
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.beginFromCurrentState, .layoutSubviews], animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .layoutSubviews], animations: {
             
             previousHeight.priority = .defaultLow
             nextHeight.priority = .must
@@ -77,17 +79,13 @@ class EKEntryView: EKStyleView {
             view.alpha = 0
             
             previousView.removeFromSuperview()
-            
-            previousHeight.isActive = false
-            nextHeight.isActive = false
-            
+            self.removeConstraints([previousHeight, nextHeight])
+
             self.setupContentView()
             
-            UIView.animate(withDuration: 0.25, animations: {
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.curveEaseOut], animations: {
                 view.alpha = 1
-            }, completion: { finished in
-                
-            })
+            }, completion: nil)
         })
     }
     
@@ -119,8 +117,6 @@ class EKEntryView: EKStyleView {
             removeDropShadow()
         }
     }
-
-    var backgroundView: UIView!
     
     // Apply background
     private func applyBackgroundToContentView() {

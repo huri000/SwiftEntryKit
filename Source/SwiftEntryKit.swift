@@ -28,7 +28,7 @@ public final class SwiftEntryKit {
      - parameter attributes: Attributes (The display properties)
      */
     public class func display(entry view: UIView, using attributes: EKAttributes) {
-        executeUIAction {
+        execute {
             EKWindowProvider.shared.state = .entry(view: view, attributes: attributes)
         }
     }
@@ -40,7 +40,7 @@ public final class SwiftEntryKit {
      - parameter view: Custom view that is to be displayed instead of the currently displayed entry
      */
     public class func transform(to view: UIView) {
-        executeUIAction {
+        execute {
             EKWindowProvider.shared.state = .transform(to: view)
         }
     }
@@ -51,7 +51,7 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class.
      */
     public class func dismiss() {
-        executeUIAction {
+        execute {
             EKWindowProvider.shared.dismiss()
         }
     }
@@ -63,7 +63,7 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class.
      */
     public class func layoutIfNeeded() {
-        executeUIAction {
+        execute {
             EKWindowProvider.shared.layoutIfNeeded()
         }
     }
@@ -73,7 +73,7 @@ public final class SwiftEntryKit {
 private extension SwiftEntryKit {
     
     // A Precaution: Executes a UI action on the main thread, thus letting any of the class methods of SwiftEntryKit to be invokes even from a background thread.
-    private class func executeUIAction(_ action: @escaping () -> ()) {
+    private class func execute(action: @escaping () -> ()) {
         if Thread.isMainThread {
             action()
         } else {

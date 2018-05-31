@@ -428,7 +428,7 @@ attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0
 
 The entry is being overriden (Disappears promptly):
 ```Swift
-attributes.popBehavior = .overriden
+attributes.popBehavior = .overridden
 ```
 
 #### Status Bar

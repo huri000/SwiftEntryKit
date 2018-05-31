@@ -30,6 +30,7 @@
 		149D0A1220AF1EE7000AA6C4 /* FormFieldPresetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D0A1120AF1EE7000AA6C4 /* FormFieldPresetFactory.swift */; };
 		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
+		14B3A4FB20C073F5002306C4 /* EKTransformAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */; };
 		14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */; };
 		14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */; };
 		14B48B5A20B81C9700CE3EF4 /* EKWindowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */; };
@@ -213,6 +214,7 @@
 		14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsDataSource.swift; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		14B0B95020B7E4FE00D24D8A /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = "../../../Library/Developer/Xcode/DerivedData/QuickLayout-aotxzuhsyjyfzgcifoglldyfgnnw/Build/Products/Debug-iphonesimulator/QuickLayout-iOS/QuickLayout.framework"; sourceTree = "<group>"; };
+		14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKTransformAnimation.swift; sourceTree = "<group>"; };
 		14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKRootViewController.swift; sourceTree = "<group>"; };
 		14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEntryView.swift; sourceTree = "<group>"; };
 		14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWindowProvider.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				14B48B2D20B81C9700CE3EF4 /* EntryAttributes */,
 				14B48B3F20B81C9700CE3EF4 /* EKPopUpMessage.swift */,
 				14B48B4020B81C9700CE3EF4 /* EKNotificationMessage.swift */,
+				14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -754,6 +757,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = D2LR97ELBQ;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
 				};
@@ -977,6 +981,7 @@
 				14B48B5B20B81C9700CE3EF4 /* EKWindow.swift in Sources */,
 				14B48B7420B81C9700CE3EF4 /* EKAttributes+Scroll.swift in Sources */,
 				14B48B6C20B81C9700CE3EF4 /* EKAttributes.swift in Sources */,
+				14B3A4FB20C073F5002306C4 /* EKTransformAnimation.swift in Sources */,
 				14B48B7020B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift in Sources */,
 				14B48B6020B81C9700CE3EF4 /* UIView+Responder.swift in Sources */,
 				14B48B8120B81C9700CE3EF4 /* EKXStatusBarMessageView.swift in Sources */,
@@ -1310,6 +1315,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 102C579051389F8128AE0343 /* Pods-SwiftEntryKitTests.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D2LR97ELBQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1327,6 +1334,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -1336,6 +1344,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A1F5A42C9A2B945993F15F5D /* Pods-SwiftEntryKitTests.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D2LR97ELBQ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1349,6 +1359,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
