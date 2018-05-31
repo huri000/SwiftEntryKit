@@ -37,6 +37,14 @@ class EKEntryView: EKStyleView {
     }()
 
     // MARK: Setup
+    init() {
+        super.init(frame: UIScreen.main.bounds)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         applyFrameStyle()
@@ -49,9 +57,7 @@ class EKEntryView: EKStyleView {
         setupContentView()
         applyDropShadow()
         applyBackgroundToContentView()
-        applyFrameStyle()
-        
-        print("!")
+        applyFrameStyle()        
     }
     
     func transform(to view: UIView) {
@@ -102,10 +108,11 @@ class EKEntryView: EKStyleView {
     
     // Apply round corners
     private func applyFrameStyle() {
-        guard !appliedStyle else {
-            return
+        if appliedStyle {
+            applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
+        } else {
+            contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
         }
-        contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
     }
     
     // Apply drop shadow
