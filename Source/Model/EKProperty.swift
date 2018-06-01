@@ -147,4 +147,19 @@ public struct EKProperty {
             content.append(contentsOf: buttonContents)
         }
     }
+    
+    /** Rating item content */
+    public struct EKRatingItemContent {
+        public var title: EKProperty.LabelContent
+        public var description: EKProperty.LabelContent
+        public var unselectedImage: EKProperty.ImageContent
+        public var selectedImage: EKProperty.ImageContent
+        
+        public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent, unselectedImage: EKProperty.ImageContent, selectedImage: EKProperty.ImageContent) {
+            self.title = title
+            self.description = description
+            self.unselectedImage = unselectedImage
+            self.selectedImage = selectedImage
+        }
+    }
 }

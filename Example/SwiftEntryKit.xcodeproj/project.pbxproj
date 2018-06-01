@@ -30,8 +30,12 @@
 		149D0A1220AF1EE7000AA6C4 /* FormFieldPresetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D0A1120AF1EE7000AA6C4 /* FormFieldPresetFactory.swift */; };
 		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
-		14B3A4FB20C073F5002306C4 /* EKTransformAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */; };
 		14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */; };
+		14B3A51220C16B64002306C4 /* EKRatingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51120C16B64002306C4 /* EKRatingMessage.swift */; };
+		14B3A51420C16BAC002306C4 /* EKAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51320C16BAC002306C4 /* EKAlertMessage.swift */; };
+		14B3A51620C16BC3002306C4 /* EKSimpleMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51520C16BC3002306C4 /* EKSimpleMessage.swift */; };
+		14B3A51820C16D7A002306C4 /* EKRatingSymbolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51720C16D7A002306C4 /* EKRatingSymbolView.swift */; };
+		14B3A51A20C16E44002306C4 /* EKRatingSymbolsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51920C16E44002306C4 /* EKRatingSymbolsContainerView.swift */; };
 		14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */; };
 		14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */; };
 		14B48B5A20B81C9700CE3EF4 /* EKWindowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */; };
@@ -215,8 +219,12 @@
 		14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsDataSource.swift; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		14B0B95020B7E4FE00D24D8A /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = "../../../Library/Developer/Xcode/DerivedData/QuickLayout-aotxzuhsyjyfzgcifoglldyfgnnw/Build/Products/Debug-iphonesimulator/QuickLayout-iOS/QuickLayout.framework"; sourceTree = "<group>"; };
-		14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKTransformAnimation.swift; sourceTree = "<group>"; };
 		14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingMessageView.swift; sourceTree = "<group>"; };
+		14B3A51120C16B64002306C4 /* EKRatingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingMessage.swift; sourceTree = "<group>"; };
+		14B3A51320C16BAC002306C4 /* EKAlertMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKAlertMessage.swift; sourceTree = "<group>"; };
+		14B3A51520C16BC3002306C4 /* EKSimpleMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKSimpleMessage.swift; sourceTree = "<group>"; };
+		14B3A51720C16D7A002306C4 /* EKRatingSymbolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingSymbolView.swift; sourceTree = "<group>"; };
+		14B3A51920C16E44002306C4 /* EKRatingSymbolsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingSymbolsContainerView.swift; sourceTree = "<group>"; };
 		14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKRootViewController.swift; sourceTree = "<group>"; };
 		14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEntryView.swift; sourceTree = "<group>"; };
 		14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWindowProvider.swift; sourceTree = "<group>"; };
@@ -428,11 +436,13 @@
 		14B48B2B20B81C9700CE3EF4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				14B48B2C20B81C9700CE3EF4 /* EKProperty.swift */,
 				14B48B2D20B81C9700CE3EF4 /* EntryAttributes */,
+				14B48B2C20B81C9700CE3EF4 /* EKProperty.swift */,
 				14B48B3F20B81C9700CE3EF4 /* EKPopUpMessage.swift */,
 				14B48B4020B81C9700CE3EF4 /* EKNotificationMessage.swift */,
-				14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */,
+				14B3A51320C16BAC002306C4 /* EKAlertMessage.swift */,
+				14B3A51520C16BC3002306C4 /* EKSimpleMessage.swift */,
+				14B3A51120C16B64002306C4 /* EKRatingMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -465,12 +475,12 @@
 		14B48B4120B81C9700CE3EF4 /* MessageViews */ = {
 			isa = PBXGroup;
 			children = (
+				14B48B4C20B81C9700CE3EF4 /* MessagesUtils */,
+				14B48B4520B81C9700CE3EF4 /* Notes */,
 				14B48B4220B81C9700CE3EF4 /* EKNotificationMessageView.swift */,
 				14B48B4320B81C9700CE3EF4 /* EKAlertMessageView.swift */,
 				14B48B4420B81C9700CE3EF4 /* EKSimpleMessageView.swift */,
-				14B48B4520B81C9700CE3EF4 /* Notes */,
 				14B48B4B20B81C9700CE3EF4 /* EKFormMessageView.swift */,
-				14B48B4C20B81C9700CE3EF4 /* MessagesUtils */,
 				14B48B4F20B81C9700CE3EF4 /* EKPopUpMessageView.swift */,
 				14B48B5020B81C9700CE3EF4 /* EKMessageContentView.swift */,
 				14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */,
@@ -495,6 +505,8 @@
 			children = (
 				14B48B4D20B81C9700CE3EF4 /* EKTextField.swift */,
 				14B48B4E20B81C9700CE3EF4 /* EKButtonBarView.swift */,
+				14B3A51720C16D7A002306C4 /* EKRatingSymbolView.swift */,
+				14B3A51920C16E44002306C4 /* EKRatingSymbolsContainerView.swift */,
 			);
 			path = MessagesUtils;
 			sourceTree = "<group>";
@@ -961,6 +973,7 @@
 			files = (
 				14B48B5F20B81C9700CE3EF4 /* EKStyleView.swift in Sources */,
 				14B48B7120B81C9700CE3EF4 /* EKAttributes+Animation.swift in Sources */,
+				14B3A51A20C16E44002306C4 /* EKRatingSymbolsContainerView.swift in Sources */,
 				14B48B8820B81C9700CE3EF4 /* EKMessageContentView.swift in Sources */,
 				14B48B6F20B81C9700CE3EF4 /* EKAttributes+Validations.swift in Sources */,
 				14B48B6620B81C9700CE3EF4 /* UIView+Shadow.swift in Sources */,
@@ -984,7 +997,6 @@
 				14B48B5B20B81C9700CE3EF4 /* EKWindow.swift in Sources */,
 				14B48B7420B81C9700CE3EF4 /* EKAttributes+Scroll.swift in Sources */,
 				14B48B6C20B81C9700CE3EF4 /* EKAttributes.swift in Sources */,
-				14B3A4FB20C073F5002306C4 /* EKTransformAnimation.swift in Sources */,
 				14B48B7020B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift in Sources */,
 				14B48B6020B81C9700CE3EF4 /* UIView+Responder.swift in Sources */,
 				14B48B8120B81C9700CE3EF4 /* EKXStatusBarMessageView.swift in Sources */,
@@ -994,6 +1006,7 @@
 				14B48B6E20B81C9700CE3EF4 /* EKAttributes+Duration.swift in Sources */,
 				14B48B6420B81C9700CE3EF4 /* UIRectCorner+Short.swift in Sources */,
 				14B48B5C20B81C9700CE3EF4 /* EKBackgroundView.swift in Sources */,
+				14B3A51420C16BAC002306C4 /* EKAlertMessage.swift in Sources */,
 				14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */,
 				14B48B6A20B81C9700CE3EF4 /* EKAttributes+Count.swift in Sources */,
 				14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */,
@@ -1005,8 +1018,11 @@
 				14B48B7F20B81C9700CE3EF4 /* EKImageNoteMessageView.swift in Sources */,
 				14B48B6820B81C9700CE3EF4 /* EKProperty.swift in Sources */,
 				14B48B6520B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift in Sources */,
+				14B3A51620C16BC3002306C4 /* EKSimpleMessage.swift in Sources */,
 				14B48B5D20B81C9700CE3EF4 /* EKWrapperView.swift in Sources */,
 				14B48B6320B81C9700CE3EF4 /* UIView+Utils.swift in Sources */,
+				14B3A51820C16D7A002306C4 /* EKRatingSymbolView.swift in Sources */,
+				14B3A51220C16B64002306C4 /* EKRatingMessage.swift in Sources */,
 				14B48B7620B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift in Sources */,
 				14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */,
 				14B48B8320B81C9700CE3EF4 /* EKProcessingNoteMessageView.swift in Sources */,

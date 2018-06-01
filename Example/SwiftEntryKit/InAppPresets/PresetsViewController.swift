@@ -101,12 +101,14 @@ class PresetsViewController: UIViewController {
         let initialTitle = EKProperty.LabelContent(text: "Rate our food", style: .init(font: MainFont.medium.with(size: 34), color: .black, alignment: .center))
         let initialDescription = EKProperty.LabelContent(text: "How was it?", style: .init(font: MainFont.light.with(size: 24), color: .gray, alignment: .center))
         
-        let items = [("💩", "Pooish!"), ("🤨", "Ahhh?!"), ("👍", "OK!"), ("👌", "Tasty!"), ("😋", "Delicius!")].map { texts -> EKRatingItemContent in
+        let items = [("💩", "Pooish!"), ("🤨", "Ahhh?!"), ("👍", "OK!"), ("👌", "Tasty!"), ("😋", "Delicius!")].map { texts -> EKProperty.EKRatingItemContent in
             let itemTitle = EKProperty.LabelContent(text: texts.0, style: .init(font: MainFont.medium.with(size: 48), color: .black, alignment: .center))
             let itemDescription = EKProperty.LabelContent(text: texts.1, style: .init(font: MainFont.light.with(size: 24), color: .black, alignment: .center))
-            return EKRatingItemContent(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
+            return .init(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
         }
     
+        var message: EKRatingMessage!
+
         // Generate buttons content
         let lightFont = MainFont.light.with(size: 20)
         let mediumFont = MainFont.medium.with(size: 20)
@@ -126,10 +128,14 @@ class PresetsViewController: UIViewController {
         let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  pinkyColor.withAlphaComponent(0.05)) {
             SwiftEntryKit.dismiss()
         }
-        
+    
         let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, buttonHeight: 60, expandAnimatedly: true)
         
-        let contentView = EKRatingMessageView(initialTitle: initialTitle, initialDescription: initialDescription, ratingItems: items, buttonBarContent: buttonsBarContent)
+        message = EKRatingMessage(initialTitle: initialTitle, initialDescription: initialDescription, ratingItems: items, buttonBarContent: buttonsBarContent) { index in
+            // Rating selected - do something
+        }
+        
+        let contentView = EKRatingMessageView(with: message)
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
