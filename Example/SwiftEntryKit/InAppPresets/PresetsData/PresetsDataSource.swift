@@ -317,7 +317,6 @@ struct PresetsDataSource {
         attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(fade: .init(from: 1, to: 0, duration: 0.2))
         attributes.displayDuration = .infinity
-        attributes.border = .value(color: .black, width: 0.5)
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 5))
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Center floating alert view with button bar."
@@ -346,7 +345,8 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0))))
         
         attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .forward
+        attributes.screenInteraction = .dismiss
+        
         attributes.entryBackground = .visualEffect(style: .extraLight)
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
         attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .jolt)
@@ -370,7 +370,7 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.65, spring: .init(damping: 1, initialVelocity: 0))))
         
         attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .forward
+        attributes.screenInteraction = .dismiss
         
         attributes.entryBackground = .color(color: .white)
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
@@ -387,6 +387,7 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Center Float", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
+        // Preset III
         attributes = .toast
         attributes.windowLevel = .normal
         attributes.position = .bottom
@@ -397,8 +398,8 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.65, spring: .init(damping: 1, initialVelocity: 0))))
         
         attributes.entryInteraction = .absorbTouches
-        attributes.screenInteraction = .forward
-
+        attributes.screenInteraction = .dismiss
+        
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Netflix.light, EKColor.Netflix.dark], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3))
@@ -464,7 +465,6 @@ struct PresetsDataSource {
         attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 0.8, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.4, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 1, to: 0, duration: 0.2))
         attributes.displayDuration = .infinity
-        attributes.border = .value(color: .black, width: 0.5)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Appears in the center. Fun, expressive, and rich with animations"
         descriptionThumb = ThumbDesc.bottomPopup.rawValue

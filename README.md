@@ -73,10 +73,9 @@ To install the example project, `git clone` from `master` and run `SwiftEntryKit
 
 ### Presets
 
-Toasts | Notes | Floats | Popups | Alerts | Forms | Custom
+Toasts | Notes | Floats | Popups | Alerts | Forms | Rating
 --- | --- | --- | --- | --- | --- | --- 
-![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![alert_example](https://github.com/huri000/assets/blob/master/swift-entrykit/alerts.gif) | ![form_example](https://github.com/huri000/assets/blob/master/swift-entrykit/forms.gif) | ![nib_example](https://github.com/huri000/assets/blob/master/swift-entrykit/nibs.gif)
-
+![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![alert_example](https://github.com/huri000/assets/blob/master/swift-entrykit/alerts.gif) | ![form_example](https://github.com/huri000/assets/blob/master/swift-entrykit/forms.gif) | ![rating](https://github.com/huri000/assets/blob/master/swift-entrykit/rating.gif)
 
 ### Playground
 
