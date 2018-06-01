@@ -448,10 +448,28 @@ struct PresetsDataSource {
         attributes.statusBar = .dark
         descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
-        description = .init(with: attributes, title: "View From Nib", description: descriptionString, thumb: descriptionThumb)
+        description = .init(with: attributes, title: "View from Nib", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
+        // Preset II
+        attributes = .centerFloat
+        attributes.windowLevel = .alerts
+        attributes.hapticFeedbackType = .success
+        attributes.screenInteraction = .absorbTouches
+        attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .disabled
+        attributes.screenBackground = .color(color: .dimmedLightBackground)
+        attributes.entryBackground = .color(color: UIColor.white.withAlphaComponent(0.98))
+        attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 0.8, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.4, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 1, to: 0, duration: 0.2))
+        attributes.displayDuration = .infinity
+        attributes.border = .value(color: .black, width: 0.5)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
+        descriptionString = "Service rating preset"
+        descriptionThumb = ThumbDesc.bottomPopup.rawValue
+        description = .init(with: attributes, title: "Service Review", description: descriptionString, thumb: descriptionThumb)
+        presets.append(description)
+    
         dataSource.append(("Custom", presets))
     }
-    
 }

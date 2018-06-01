@@ -34,9 +34,10 @@ public final class SwiftEntryKit {
     }
     
     /**
-     Transform the previous entry to the current one using the previous attributes struct.
+     ALPHA FEATURE: Transform the previous entry to the current one using the previous attributes struct.
      - A thread-safe method - Can be invokes from anywhere.
      - A class method - Should be called on the class.
+     - This feature hasn't been fully tested. Use with caution.
      - parameter view: Custom view that is to be displayed instead of the currently displayed entry
      */
     public class func transform(to view: UIView) {

@@ -93,6 +93,59 @@ class PresetsViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
+    // Show rating view
+    private func showRatingView(attributes: EKAttributes) {
+        let unselectedImage = EKProperty.ImageContent(image: UIImage(named: "ic_star_unselected")!)
+        let selectedImage = EKProperty.ImageContent(image: UIImage(named: "ic_star_selected")!)
+        
+        let initialTitle = EKProperty.LabelContent(text: "Rate our food", style: .init(font: MainFont.medium.with(size: 36), color: .black, alignment: .center))
+        let initialDescription = EKProperty.LabelContent(text: "How was it?", style: .init(font: MainFont.light.with(size: 28), color: .gray, alignment: .center))
+
+        var itemTitle = EKProperty.LabelContent(text: "💩", style: .init(font: MainFont.medium.with(size: 48), color: .black, alignment: .center))
+        var itemDescription = EKProperty.LabelContent(text: "Pooish!", style: .init(font: MainFont.light.with(size: 24), color: .black, alignment: .center))
+        let first = EKRatingItemContent(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
+        
+        itemTitle = .init(text: "🤨", style: .init(font: MainFont.medium.with(size: 48), color: .black, alignment: .center))
+        itemDescription = .init(text: "Ahhh?!", style: .init(font: MainFont.light.with(size: 24), color: .black, alignment: .center))
+        let second = EKRatingItemContent(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
+        
+        itemTitle = .init(text: "👍", style: .init(font: MainFont.medium.with(size: 48), color: .black, alignment: .center))
+        itemDescription = .init(text: "OK!", style: .init(font: MainFont.light.with(size: 24), color: .black, alignment: .center))
+        let third = EKRatingItemContent(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
+        
+        itemTitle = .init(text: "👌", style: .init(font: MainFont.medium.with(size: 48), color: .black, alignment: .center))
+        itemDescription = .init(text: "Tasty!", style: .init(font: MainFont.light.with(size: 24), color: .black, alignment: .center))
+        let forth = EKRatingItemContent(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
+        
+        itemTitle = .init(text: "😋", style: .init(font: MainFont.medium.with(size: 48), color: .black, alignment: .center))
+        itemDescription = .init(text: "Delicius!", style: .init(font: MainFont.light.with(size: 24), color: .black, alignment: .center))
+        let fifth = EKRatingItemContent(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
+        
+        // Generate buttons content
+        let lightFont = MainFont.light.with(size: 20)
+        let mediumFont = MainFont.medium.with(size: 20)
+        
+        // Close button - Just dismiss entry when the button is tapped
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: mediumFont, color: EKColor.Gray.a800)
+        let closeButtonLabel = EKProperty.LabelContent(text: "Dismiss", style: closeButtonLabelStyle)
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Gray.a800.withAlphaComponent(0.05)) {
+            SwiftEntryKit.dismiss()
+        }
+        
+        let pinkyColor = UIColor.pinky
+        
+        // Ok Button - Make transition to a new entry when the button is tapped
+        let okButtonLabelStyle = EKProperty.LabelStyle(font: lightFont, color: pinkyColor)
+        let okButtonLabel = EKProperty.LabelContent(text: "Tell us more", style: okButtonLabelStyle)
+        let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  pinkyColor.withAlphaComponent(0.05)) {
+
+        }
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, buttonHeight: 60, expandAnimatedly: true)
+        
+        let contentView = EKRatingMessageView(initialTitle: initialTitle, initialDescription: initialDescription, ratingItems: [first, second, third, forth, fifth], buttonBarContent: buttonsBarContent)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
     // Bumps a notification structured entry
     private func showNotificationMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String) {
         let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 16), color: textColor))
@@ -252,9 +305,7 @@ class PresetsViewController: UIViewController {
             SwiftEntryKit.dismiss()
         }
         let contentView = EKFormMessageView(with: title, textFieldsContent: textFields, buttonContent: button)
-//        SwiftEntryKit.display(entry: contentView, using: attributes)
-        
-        SwiftEntryKit.transform(to: contentView)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
     }
 }
 
@@ -397,6 +448,8 @@ extension PresetsViewController {
         switch row {
         case 0:
             showCustomNibView(attributes: attributes)
+        case 1:
+            showRatingView(attributes: attributes)
         default:
             break
         }

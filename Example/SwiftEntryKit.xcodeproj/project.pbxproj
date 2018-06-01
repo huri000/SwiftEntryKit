@@ -31,6 +31,7 @@
 		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
 		14B3A4FB20C073F5002306C4 /* EKTransformAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */; };
+		14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */; };
 		14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */; };
 		14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */; };
 		14B48B5A20B81C9700CE3EF4 /* EKWindowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */; };
@@ -215,6 +216,7 @@
 		14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		14B0B95020B7E4FE00D24D8A /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = "../../../Library/Developer/Xcode/DerivedData/QuickLayout-aotxzuhsyjyfzgcifoglldyfgnnw/Build/Products/Debug-iphonesimulator/QuickLayout-iOS/QuickLayout.framework"; sourceTree = "<group>"; };
 		14B3A4FA20C073F5002306C4 /* EKTransformAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKTransformAnimation.swift; sourceTree = "<group>"; };
+		14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingMessageView.swift; sourceTree = "<group>"; };
 		14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKRootViewController.swift; sourceTree = "<group>"; };
 		14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKEntryView.swift; sourceTree = "<group>"; };
 		14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKWindowProvider.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				14B48B4C20B81C9700CE3EF4 /* MessagesUtils */,
 				14B48B4F20B81C9700CE3EF4 /* EKPopUpMessageView.swift */,
 				14B48B5020B81C9700CE3EF4 /* EKMessageContentView.swift */,
+				14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */,
 			);
 			path = MessageViews;
 			sourceTree = "<group>";
@@ -993,6 +996,7 @@
 				14B48B5C20B81C9700CE3EF4 /* EKBackgroundView.swift in Sources */,
 				14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */,
 				14B48B6A20B81C9700CE3EF4 /* EKAttributes+Count.swift in Sources */,
+				14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */,
 				14B48B7520B81C9700CE3EF4 /* EKAttributes+Presets.swift in Sources */,
 				14B48B7B20B81C9700CE3EF4 /* EKNotificationMessage.swift in Sources */,
 				14B48B8620B81C9700CE3EF4 /* EKButtonBarView.swift in Sources */,
