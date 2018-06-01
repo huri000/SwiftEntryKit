@@ -27,7 +27,7 @@ public extension EKAttributes {
             public let color: UIColor
             public let offset: CGSize
             
-            public init(color: UIColor = .black, opacity: Float, radius: CGFloat, offset: CGSize) {
+            public init(color: UIColor = .black, opacity: Float, radius: CGFloat, offset: CGSize = .zero) {
                 self.color = color
                 self.radius = radius
                 self.offset = offset

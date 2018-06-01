@@ -17,7 +17,7 @@ class EKEntryView: EKStyleView {
     }
     
     // MARK: Props
-    private var backgroundView: UIView!
+    private var backgroundView: EKBackgroundView!
     private var content: Content!
     private lazy var contentView: UIView = {
         return UIView()
@@ -108,10 +108,10 @@ class EKEntryView: EKStyleView {
     
     // Apply round corners
     private func applyFrameStyle() {
-        if appliedStyle {
+        if !backgroundView.appliedStyle {
             applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
         } else {
-            contentContainerView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
+            backgroundView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
         }
     }
     
@@ -150,10 +150,8 @@ class EKEntryView: EKStyleView {
             backgroundView.layoutToSuperview(.top, offset: topInset)
             backgroundView.layoutToSuperview(.bottom, offset: bottomInset)
             
-            if attributes.position.isBottom {
-                applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
-            }
-
+            backgroundView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
+            
         default:
             contentView.insertSubview(backgroundView, at: 0)
             backgroundView.fillSuperview()
