@@ -10,6 +10,7 @@
 * [Overview](#overview)
   * [Features](#features)
 * [Example Project](#example-project)
+  * [Example Project Installation](#example-project-installation)
   * [Presets](#presets)
   * [Playground](#playground)
 * [Requirements](#requirements)
@@ -31,7 +32,7 @@
     * [Border](#border)
     * [Animations](#animations)
     * [Pop Behavior](#pop-behavior)
-    * [Status Bar Style](#status-bar-style)
+    * [Status Bar](#status-bar)
   * [Presets Usage Example](#presets-usage-example)
   * [Custom View Usage Example](#custom-view-usage-example)
   * [Dismissing an Entry](#dismissing-an-entry)
@@ -39,7 +40,6 @@
   * [Dealing With Safe Area](#dealing-with-safe-area)
   * [Dealing With Orientation Change](#dealing-with-orientation-change)
 * [Known Issues](#known-issues)
-* [Contributing](#contributing)
 * [Author](#author)
 * [License](#license)
 
@@ -69,7 +69,21 @@ Banners or Pop-Ups are called *Entries*.
 ## Example Project
 
 The example project contains various presets and examples you can use and modify as your like.
-To install the example project, `git clone` from `master` and run `SwiftEntryKitDemo` scheme.  
+
+### Example Project Installation 
+
+You can either use the terminal or git client such as Source Tree.
+*Do not download the zip since it doesn't contain QuickLayout dependency.*
+
+#### Terminal Users
+`git clone` from url using `--recurse-submodules`, likewise:
+
+```bash
+$ git clone --recurse-submodules https://github.com/huri000/SwiftEntryKit.git
+```
+
+#### Git Client (Source Tree)
+Clone from Url option should already setup QuickLayout as submodule.
 
 ### Presets
 
@@ -610,6 +624,8 @@ Orientation Change Demonstration |
 ## Known Issues
 
 **Unable to find specification for SwiftEntryKit (=X.Y.Z)** - In case you get this error please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/4).
+
+**Unable to use example project** - In case you are unable to install the example project please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/31) and the [Example Project Installation](#example-project-installation) section.
 
 ## Author
 
