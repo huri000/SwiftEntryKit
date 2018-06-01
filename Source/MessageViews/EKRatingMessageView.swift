@@ -3,7 +3,7 @@
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 6/1/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import UIKit
@@ -79,18 +79,9 @@ public class EKRatingMessageView: UIView {
     private func animateIn() {
         layoutIfNeeded()
         buttonBarView.alpha = 1
-        
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
-            
-            // Expand
             self.buttonBarView.expand()
-            
-            /* NOTE: Calling layoutIfNeeded for the whole view hierarchy.
-             Sometimes it's easier to just use frames instead of AutoLayout for
-             hierarch complexity considerations. Here the animation influences almost the
-             entire view hierarchy. */
             SwiftEntryKit.layoutIfNeeded()
-            
         }, completion: nil)
     }
 }

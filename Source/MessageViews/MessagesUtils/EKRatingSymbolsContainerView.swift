@@ -3,17 +3,17 @@
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 6/1/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import Foundation
 
-class EKRatingSymbolsContainerView: UIView {
+public class EKRatingSymbolsContainerView: UIView {
     
     private var message: EKRatingMessage!
     private var symbolsArray: [EKRatingSymbolView] = []
     
-    func setup(with message: EKRatingMessage, externalSelection: @escaping EKRatingMessage.Selection) {
+    public func setup(with message: EKRatingMessage, externalSelection: @escaping EKRatingMessage.Selection) {
         self.message = message
         let internalSelection = { [unowned self] (index: Int) in
             self.select(index: index)

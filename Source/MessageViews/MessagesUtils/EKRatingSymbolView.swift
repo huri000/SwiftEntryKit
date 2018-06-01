@@ -3,12 +3,12 @@
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 6/1/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 import Foundation
 
-class EKRatingSymbolView: UIView {
+public class EKRatingSymbolView: UIView {
     
     private let button = UIButton()
     private let imageView = UIImageView()
@@ -18,7 +18,7 @@ class EKRatingSymbolView: UIView {
     
     var selection: EKRatingMessage.Selection
     
-    var isSelected: Bool {
+    public var isSelected: Bool {
         set {
             imageView.imageContent = newValue ? selectedImage : unselectedImage
         }
@@ -27,7 +27,7 @@ class EKRatingSymbolView: UIView {
         }
     }
     
-    init(unselectedImage: EKProperty.ImageContent, selectedImage: EKProperty.ImageContent, selection: @escaping EKRatingMessage.Selection) {
+    public init(unselectedImage: EKProperty.ImageContent, selectedImage: EKProperty.ImageContent, selection: @escaping EKRatingMessage.Selection) {
         self.unselectedImage = unselectedImage
         self.selectedImage = selectedImage
         self.selection = selection
@@ -36,7 +36,7 @@ class EKRatingSymbolView: UIView {
         setupButton()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
