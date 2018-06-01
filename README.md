@@ -40,7 +40,6 @@
   * [Dealing With Safe Area](#dealing-with-safe-area)
   * [Dealing With Orientation Change](#dealing-with-orientation-change)
 * [Known Issues](#known-issues)
-* [Contributing](#contributing)
 * [Author](#author)
 * [License](#license)
 
@@ -71,21 +70,20 @@ Banners or Pop-Ups are called *Entries*.
 
 The example project contains various presets and examples you can use and modify as your like.
 
-### Example Project Installation
-SwiftEntryKit supports installation using CocoaPods or Carthage, but the example project relies on Carthage. 
-To install the example project, `git clone` from `master`.
+### Example Project Installation 
+
+You can either use the terminal or git client such as Source Tree.
+*Do not download the zip since it doesn't contain QuickLayout dependency.*
+
+#### Terminal Users
+`git clone` from url using `--recurse-submodules`, likewise:
 
 ```bash
-$ brew update
-$ brew install carthage
+$ git clone --recurse-submodules https://github.com/huri000/SwiftEntryKit.git
 ```
 
-At the Example directory:
-```bash
-$ carthage update
-```
-
-Open the project and run `SwiftEntryKitDemo` scheme.
+#### Git Client (Source Tree)
+Clone from Url option should already setup QuickLayout as submodule.
 
 ### Presets
 
@@ -627,6 +625,8 @@ Orientation Change Demonstration |
 ## Known Issues
 
 **Unable to find specification for SwiftEntryKit (=X.Y.Z)** - In case you get this error please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/4).
+
+**Unable to use example project** - In case you are unable to install the example project please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/31) and the [Example Project Installation](#example-project-installation) section.
 
 ## Author
 
