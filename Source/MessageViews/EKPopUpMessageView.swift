@@ -11,7 +11,7 @@ import UIKit
 public class EKPopUpMessageView: UIView {
 
     // MARK: Props
-    private let imageView = UIImageView()
+    private var imageView: UIImageView!
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let actionButton = UIButton()
@@ -33,15 +33,19 @@ public class EKPopUpMessageView: UIView {
     }
     
     private func setupImageView() {
+        guard let themeImage = message.themeImage else {
+            return
+        }
+        imageView = UIImageView()
         addSubview(imageView)
         imageView.layoutToSuperview(.centerX)
-        switch message.imagePosition {
+        switch themeImage.position {
         case .centerToTop(offset: let value):
             imageView.layout(.centerY, to: .top, of: self, offset: value)
         case .topToTop(offset: let value):
             imageView.layoutToSuperview(.top, offset: value)
         }
-        imageView.imageContent = message.topImage
+        imageView.imageContent = themeImage.image
     }
     
     private func setupTitleLabel() {
@@ -50,7 +54,11 @@ public class EKPopUpMessageView: UIView {
         titleLabel.textAlignment = .center
         titleLabel.labelContent = message.title
         titleLabel.layoutToSuperview(axis: .horizontally, offset: 30)
-        titleLabel.layout(.top, to: .bottom, of: imageView, offset: 20)
+        if let imageView = imageView {
+            titleLabel.layout(.top, to: .bottom, of: imageView, offset: 20)
+        } else {
+            titleLabel.layoutToSuperview(.top, offset: 20)
+        }
         titleLabel.forceContentWrap(.vertically)
     }
     

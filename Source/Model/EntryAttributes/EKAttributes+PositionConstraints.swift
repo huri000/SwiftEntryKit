@@ -22,7 +22,7 @@ public extension EKAttributes {
             /** The entry shows outs. But can optionally be colored */
             case empty(fillSafeArea: Bool)
             
-            public var isOverriden: Bool {
+            public var isOverridden: Bool {
                 switch self {
                 case .overridden:
                     return true
