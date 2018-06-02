@@ -73,17 +73,17 @@ The example project contains various presets and examples you can use and modify
 ### Example Project Installation 
 
 You can either use the terminal or git client such as Source Tree.
-*Do not download the zip since it doesn't contain QuickLayout dependency.*
+*The zip file doesn't contain a necessary dependency ([QuickLayout](https://github.com/huri000/QuickLayout)).*
 
 #### Terminal Users
-`git clone` from url using `--recurse-submodules`, likewise:
+Run `git clone` with `--recurse-submodules`, to include QuickLayout as submodule, likewise:
 
 ```bash
 $ git clone --recurse-submodules https://github.com/huri000/SwiftEntryKit.git
 ```
 
 #### Git Client (Source Tree)
-Clone from Url option should already setup QuickLayout as submodule.
+Cloning from https://github.com/huri000/SwiftEntryKit.git also setups QuickLayout as submodule.
 
 ### Presets
 
