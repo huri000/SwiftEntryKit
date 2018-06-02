@@ -93,6 +93,52 @@ class PresetsViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
+    // Show rating view
+    private func showRatingView(attributes: EKAttributes) {
+        let unselectedImage = EKProperty.ImageContent(image: UIImage(named: "ic_star_unselected")!)
+        let selectedImage = EKProperty.ImageContent(image: UIImage(named: "ic_star_selected")!)
+        
+        let initialTitle = EKProperty.LabelContent(text: "Rate our food", style: .init(font: MainFont.medium.with(size: 34), color: .black, alignment: .center))
+        let initialDescription = EKProperty.LabelContent(text: "How was it?", style: .init(font: MainFont.light.with(size: 24), color: .gray, alignment: .center))
+        
+        let items = [("💩", "Pooish!"), ("🤨", "Ahhh?!"), ("👍", "OK!"), ("👌", "Tasty!"), ("😋", "Delicius!")].map { texts -> EKProperty.EKRatingItemContent in
+            let itemTitle = EKProperty.LabelContent(text: texts.0, style: .init(font: MainFont.medium.with(size: 48), color: .black, alignment: .center))
+            let itemDescription = EKProperty.LabelContent(text: texts.1, style: .init(font: MainFont.light.with(size: 24), color: .black, alignment: .center))
+            return .init(title: itemTitle, description: itemDescription, unselectedImage: unselectedImage, selectedImage: selectedImage)
+        }
+    
+        var message: EKRatingMessage!
+
+        // Generate buttons content
+        let lightFont = MainFont.light.with(size: 20)
+        let mediumFont = MainFont.medium.with(size: 20)
+        
+        // Close button - Just dismiss entry when the button is tapped
+        let grayColor = EKColor.Gray.a800
+        let closeButtonLabelStyle = EKProperty.LabelStyle(font: mediumFont, color: grayColor)
+        let closeButtonLabel = EKProperty.LabelContent(text: "Dismiss", style: closeButtonLabelStyle)
+        let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  grayColor.withAlphaComponent(0.05)) {
+            SwiftEntryKit.dismiss()
+        }
+        
+        // Ok Button - Make transition to a new entry when the button is tapped
+        let pinkyColor = UIColor.pinky
+        let okButtonLabelStyle = EKProperty.LabelStyle(font: lightFont, color: pinkyColor)
+        let okButtonLabel = EKProperty.LabelContent(text: "Tell us more", style: okButtonLabelStyle)
+        let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  pinkyColor.withAlphaComponent(0.05)) {
+            SwiftEntryKit.dismiss()
+        }
+    
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, buttonHeight: 60, expandAnimatedly: true)
+        
+        message = EKRatingMessage(initialTitle: initialTitle, initialDescription: initialDescription, ratingItems: items, buttonBarContent: buttonsBarContent) { index in
+            // Rating selected - do something
+        }
+        
+        let contentView = EKRatingMessageView(with: message)
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
     // Bumps a notification structured entry
     private func showNotificationMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String) {
         let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 16), color: textColor))
@@ -132,12 +178,18 @@ class PresetsViewController: UIViewController {
         showPopupMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: EKColor.Gray.mid, buttonBackgroundColor: .white, image: image)
     }
     
-    private func showPopupMessage(attributes: EKAttributes, title: String, titleColor: UIColor, description: String, descriptionColor: UIColor, buttonTitleColor: UIColor, buttonBackgroundColor: UIColor, image: UIImage, imagePosition: EKPopUpMessage.ImagePosition = .topToTop(offset: 40)) {
+    private func showPopupMessage(attributes: EKAttributes, title: String, titleColor: UIColor, description: String, descriptionColor: UIColor, buttonTitleColor: UIColor, buttonBackgroundColor: UIColor, image: UIImage? = nil) {
+        
+        var themeImage: EKPopUpMessage.ThemeImage?
+        
+        if let image = image {
+            themeImage = .init(image: .init(image: image, size: CGSize(width: 60, height: 60), contentMode: .scaleAspectFit))
+        }
+        
         let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 24), color: titleColor, alignment: .center))
         let description = EKProperty.LabelContent(text: description, style: .init(font: MainFont.light.with(size: 16), color: descriptionColor, alignment: .center))
         let button = EKProperty.ButtonContent(label: .init(text: "Got it!", style: .init(font: MainFont.bold.with(size: 16), color: buttonTitleColor)), backgroundColor: buttonBackgroundColor, highlightedBackgroundColor: buttonTitleColor.withAlphaComponent(0.05))
-        let topImage = EKProperty.ImageContent(image: image, size: CGSize(width: 60, height: 60), contentMode: .scaleAspectFit)
-        let message = EKPopUpMessage(topImage: topImage, imagePosition: imagePosition, title: title, description: description, button: button) {
+        let message = EKPopUpMessage(themeImage: themeImage, title: title, description: description, button: button) {
             SwiftEntryKit.dismiss()
         }
         
@@ -173,7 +225,7 @@ class PresetsViewController: UIViewController {
             let image = UIImage(named: "ic_success")!
             let title = "Congratz!"
             let description = "Your book coupon is 5w1ft3ntr1k1t"
-            self.showPopupMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: .darkSubText, buttonBackgroundColor: .white, image: image, imagePosition: .topToTop(offset: 25))
+            self.showPopupMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: .darkSubText, buttonBackgroundColor: .white, image: image)
         }
         let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
         
@@ -395,6 +447,8 @@ extension PresetsViewController {
         switch row {
         case 0:
             showCustomNibView(attributes: attributes)
+        case 1:
+            showRatingView(attributes: attributes)
         default:
             break
         }

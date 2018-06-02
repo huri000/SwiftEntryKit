@@ -13,22 +13,40 @@ public struct EKPopUpMessage {
     /** Code block that is executed as the user taps the popup button */
     public typealias EKPopUpMessageAction = () -> ()
     
-    /** Position of the top image */
-    public enum ImagePosition {
-        case topToTop(offset: CGFloat)
-        case centerToTop(offset: CGFloat)
+    /** Popup theme image */
+    public struct ThemeImage {
+        
+        /** Position of the theme image */
+        public enum Position {
+            case topToTop(offset: CGFloat)
+            case centerToTop(offset: CGFloat)
+        }
+        
+        /** The content of the image */
+        public var image: EKProperty.ImageContent
+        
+        /** The psotion of the image */
+        public var position: Position
+        
+        /** Initializer */
+        public init(image: EKProperty.ImageContent, position: Position = .topToTop(offset: 40)) {
+            self.image = image
+            self.position = position
+        }
     }
     
+    public var themeImage: ThemeImage?
     public var title: EKProperty.LabelContent
     public var description: EKProperty.LabelContent
     public var button: EKProperty.ButtonContent
-    public var topImage: EKProperty.ImageContent
-    public var imagePosition: ImagePosition
     public var action: EKPopUpMessageAction
     
-    public init(topImage: EKProperty.ImageContent, imagePosition: ImagePosition = .topToTop(offset: 40), title: EKProperty.LabelContent, description: EKProperty.LabelContent, button: EKProperty.ButtonContent, action: @escaping EKPopUpMessageAction) {
-        self.topImage = topImage
-        self.imagePosition = imagePosition
+    var containsImage: Bool {
+        return themeImage != nil
+    }
+    
+    public init(themeImage: ThemeImage? = nil, title: EKProperty.LabelContent, description: EKProperty.LabelContent, button: EKProperty.ButtonContent, action: @escaping EKPopUpMessageAction) {
+        self.themeImage = themeImage
         self.title = title
         self.description = description
         self.button = button

@@ -78,10 +78,10 @@ public class EKAlertMessageView: EKSimpleMessageView {
     
     // MARK: Internal Animation
     private func animateIn(damping: CGFloat) {
-        layoutIfNeeded()
+        SwiftEntryKit.layoutIfNeeded()
         buttonBarView.alpha = 1
         
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
+        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews, .allowAnimatedContent], animations: {
             
             // Expand
             self.buttonBarView.expand()

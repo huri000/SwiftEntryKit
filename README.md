@@ -87,10 +87,9 @@ Clone from Url option should already setup QuickLayout as submodule.
 
 ### Presets
 
-Toasts | Notes | Floats | Popups | Alerts | Forms | Custom
+Toasts | Notes | Floats | Popups | Alerts | Forms | Rating
 --- | --- | --- | --- | --- | --- | --- 
-![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![alert_example](https://github.com/huri000/assets/blob/master/swift-entrykit/alerts.gif) | ![form_example](https://github.com/huri000/assets/blob/master/swift-entrykit/forms.gif) | ![nib_example](https://github.com/huri000/assets/blob/master/swift-entrykit/nibs.gif)
-
+![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![alert_example](https://github.com/huri000/assets/blob/master/swift-entrykit/alerts.gif) | ![form_example](https://github.com/huri000/assets/blob/master/swift-entrykit/forms.gif) | ![rating](https://github.com/huri000/assets/blob/master/swift-entrykit/rating.gif)
 
 ### Playground
 
@@ -128,7 +127,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.2.4'
+pod 'SwiftEntryKit', '0.3.0'
 ```
 
 Then, run the following command:
@@ -151,7 +150,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.2.4
+github "huri000/SwiftEntryKit" == 0.3.0
 ```
 
 ## Usage
@@ -442,7 +441,7 @@ attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0
 
 The entry is being overriden (Disappears promptly):
 ```Swift
-attributes.popBehavior = .overriden
+attributes.popBehavior = .overridden
 ```
 
 #### Status Bar

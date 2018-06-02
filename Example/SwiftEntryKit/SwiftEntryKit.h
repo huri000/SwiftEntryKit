@@ -3,7 +3,7 @@
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 5/23/18.
-//  Copyright © 2018 CocoaPods. All rights reserved.
+//  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

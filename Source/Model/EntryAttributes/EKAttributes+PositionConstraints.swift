@@ -17,14 +17,14 @@ public extension EKAttributes {
         public enum SafeArea {
             
             /** Entry overrides safe area */
-            case overriden
+            case overridden
             
             /** The entry shows outs. But can optionally be colored */
             case empty(fillSafeArea: Bool)
             
-            public var isOverriden: Bool {
+            public var isOverridden: Bool {
                 switch self {
-                case .overriden:
+                case .overridden:
                     return true
                 default:
                     return false

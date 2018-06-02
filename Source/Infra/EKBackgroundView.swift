@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EKBackgroundView: UIView {
+class EKBackgroundView: EKStyleView {
 
     // MARK: Props
     private let visualEffectView: UIVisualEffectView

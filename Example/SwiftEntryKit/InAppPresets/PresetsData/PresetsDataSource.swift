@@ -53,7 +53,7 @@ struct PresetsDataSource {
         attributes.displayDuration = .infinity
         attributes.entryBackground = .color(color: .white)
         attributes.screenBackground = .color(color: .dimmedLightBackground)
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8))
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
@@ -108,7 +108,7 @@ struct PresetsDataSource {
         attributes.exitAnimation = .translation
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.displayDuration = 4
-        attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10))
         descriptionString = "Chat message style toast"
         descriptionThumb = ThumbDesc.topToast.rawValue
         description = .init(with: attributes, title: "Top II", description: descriptionString, thumb: descriptionThumb)
@@ -140,6 +140,7 @@ struct PresetsDataSource {
         attributes.hapticFeedbackType = .success
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .satCyan)
+        attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 2))
         attributes.statusBar = .light
         descriptionString = "Absorbs (swallows) touches and the status bar becomes light"
         descriptionThumb = ThumbDesc.topNote.rawValue
@@ -184,7 +185,7 @@ struct PresetsDataSource {
         // Preset V
         attributes = .bottomNote
         attributes.hapticFeedbackType = .success
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6))
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Purple.a300, EKColor.Purple.a400, EKColor.Purple.a700], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.statusBar = .dark
         descriptionString = "Presented at the bottom / Above the notch"
@@ -208,7 +209,7 @@ struct PresetsDataSource {
         attributes.hapticFeedbackType = .success
         attributes.entryBackground = .gradient(gradient: .init(colors: [.amber, .pinky], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10))
         attributes.statusBar = .dark
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .easeOut)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
@@ -254,7 +255,7 @@ struct PresetsDataSource {
         attributes.displayDuration = .infinity
         attributes.entryBackground = .gradient(gradient: .init(colors: [UIColor(rgb: 0xfffbd5), UIColor(rgb: 0xb20a2c)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8))
         attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
         attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
@@ -296,7 +297,7 @@ struct PresetsDataSource {
         attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.7, duration: 0.3), fade: .init(from: 1, to: 0, duration: 0.3))            
         attributes.displayDuration = .infinity
         attributes.border = .value(color: .black, width: 0.5)
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 5))
         attributes.statusBar = .dark
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Top floating alert view with button bar. Smooths in animately."
@@ -316,8 +317,7 @@ struct PresetsDataSource {
         attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(fade: .init(from: 1, to: 0, duration: 0.2))
         attributes.displayDuration = .infinity
-        attributes.border = .value(color: .black, width: 0.5)
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 5, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 5))
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         descriptionString = "Center floating alert view with button bar."
         descriptionThumb = ThumbDesc.topFloat.rawValue
@@ -346,6 +346,7 @@ struct PresetsDataSource {
         
         attributes.entryInteraction = .absorbTouches
         attributes.screenInteraction = .dismiss
+        
         attributes.entryBackground = .visualEffect(style: .extraLight)
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
         attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .jolt)
@@ -375,7 +376,7 @@ struct PresetsDataSource {
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
 
         attributes.border = .value(color: UIColor(white: 0.6, alpha: 1), width: 1)
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3))
         attributes.scroll = .enabled(swipeable: false, pullbackAnimation: .jolt)
         attributes.statusBar = .light
         
@@ -386,6 +387,7 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Center Float", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
+        // Preset III
         attributes = .toast
         attributes.windowLevel = .normal
         attributes.position = .bottom
@@ -400,7 +402,7 @@ struct PresetsDataSource {
         
         attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor.Netflix.light, EKColor.Netflix.dark], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 3))
         attributes.screenBackground = .color(color: .dimmedDarkBackground)
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.statusBar = .light
@@ -440,7 +442,7 @@ struct PresetsDataSource {
                                          fade: .init(from: 1, to: 0, duration: 0.5))
         attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3),
                                                             scale: .init(from: 1, to: 0.8, duration: 0.3)))
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6, offset: .zero))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6))
         attributes.positionConstraints.verticalOffset = 10
         attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
@@ -448,10 +450,27 @@ struct PresetsDataSource {
         attributes.statusBar = .dark
         descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
-        description = .init(with: attributes, title: "View From Nib", description: descriptionString, thumb: descriptionThumb)
+        description = .init(with: attributes, title: "View from Nib", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
+        // Preset II
+        attributes = .centerFloat
+        attributes.windowLevel = .alerts
+        attributes.hapticFeedbackType = .success
+        attributes.screenInteraction = .absorbTouches
+        attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .disabled
+        attributes.screenBackground = .color(color: .dimmedLightBackground)
+        attributes.entryBackground = .color(color: UIColor.white.withAlphaComponent(0.98))
+        attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 0.8, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.4, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 1, to: 0, duration: 0.2))
+        attributes.displayDuration = .infinity
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
+        descriptionString = "Appears in the center. Fun, expressive, and rich with animations"
+        descriptionThumb = ThumbDesc.bottomPopup.rawValue
+        description = .init(with: attributes, title: "Service Rating", description: descriptionString, thumb: descriptionThumb)
+        presets.append(description)
+    
         dataSource.append(("Custom", presets))
     }
-    
 }

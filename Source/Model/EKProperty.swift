@@ -136,13 +136,30 @@ public struct EKProperty {
     /** Button bar content */
     public struct ButtonBarContent {
         public var content: [ButtonContent] = []
+        public var buttonHeight: CGFloat
         public var separatorColor: UIColor
         public var expandAnimatedly: Bool
         
-        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, expandAnimatedly: Bool) {
+        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
             self.separatorColor = separatorColor
             self.expandAnimatedly = expandAnimatedly
+            self.buttonHeight = buttonHeight
             content.append(contentsOf: buttonContents)
+        }
+    }
+    
+    /** Rating item content */
+    public struct EKRatingItemContent {
+        public var title: EKProperty.LabelContent
+        public var description: EKProperty.LabelContent
+        public var unselectedImage: EKProperty.ImageContent
+        public var selectedImage: EKProperty.ImageContent
+        
+        public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent, unselectedImage: EKProperty.ImageContent, selectedImage: EKProperty.ImageContent) {
+            self.title = title
+            self.description = description
+            self.unselectedImage = unselectedImage
+            self.selectedImage = selectedImage
         }
     }
 }
