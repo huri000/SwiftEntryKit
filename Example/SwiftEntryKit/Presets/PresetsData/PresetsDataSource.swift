@@ -121,7 +121,18 @@ struct PresetsDataSource {
         attributes.statusBar = .dark
         descriptionString = "Regular bottom toast with blurred background"
         descriptionThumb = ThumbDesc.bottomToast.rawValue
-        description = .init(with: attributes, title: "Bottom", description: descriptionString, thumb: descriptionThumb)
+        description = .init(with: attributes, title: "Bottom I", description: descriptionString, thumb: descriptionThumb)
+        toasts.append(description)
+        
+        // Preset IV
+        attributes = .bottomToast
+        attributes.windowLevel = .normal
+        attributes.entryBackground = .color(color: UIColor.white.withAlphaComponent(0.98))
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
+        attributes.statusBar = .dark
+        descriptionString = "Bottom toast without an image, appears below the status bar"
+        descriptionThumb = ThumbDesc.bottomToast.rawValue
+        description = .init(with: attributes, title: "Bottom II", description: descriptionString, thumb: descriptionThumb)
         toasts.append(description)
         
         dataSource.append(("Toasts", toasts))

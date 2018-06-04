@@ -64,12 +64,12 @@ public class EKFormMessageView: UIView {
         scrollView.layoutToSuperview(.width, .height, offset: -scrollViewVerticalOffset * 2)
     }
     
-    private func setupTitleLabel(with title: EKProperty.LabelContent) {
+    private func setupTitleLabel(with content: EKProperty.LabelContent) {
         scrollView.addSubview(titleLabel)
         titleLabel.layoutToSuperview(.top, .width)
         titleLabel.layoutToSuperview(axis: .horizontally)
         titleLabel.forceContentWrap(.vertically)
-        titleLabel.labelContent = title
+        titleLabel.content = content
     }
     
     private func setupButton(with buttonContent: EKProperty.ButtonContent) {

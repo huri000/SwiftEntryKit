@@ -10,25 +10,25 @@ import UIKit
 import QuickLayout
 
 extension UILabel {
-    var attributes: EKProperty.LabelStyle {
+    var style: EKProperty.LabelStyle {
         set {
             font = newValue.font
             textColor = newValue.color
+            textAlignment = newValue.alignment
+            numberOfLines = newValue.numberOfLines
         }
         get {
-            return EKProperty.LabelStyle(font: font, color: textColor, alignment: textAlignment)
+            return EKProperty.LabelStyle(font: font, color: textColor, alignment: textAlignment, numberOfLines: numberOfLines)
         }
     }
     
-    var labelContent: EKProperty.LabelContent {
+    var content: EKProperty.LabelContent {
         set {
             text = newValue.text
-            font = newValue.style.font
-            textColor = newValue.style.color
-            textAlignment = newValue.style.alignment
+            style = newValue.style
         }
         get {
-            return EKProperty.LabelContent(text: text ?? "", style: EKProperty.LabelStyle(font: font, color: textColor, alignment: textAlignment))
+            return EKProperty.LabelContent(text: text ?? "", style: style)
         }
     }
 }

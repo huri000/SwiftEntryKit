@@ -10,7 +10,7 @@ import UIKit
 public class EKSimpleMessageView: UIView {
 
     // MARK: Props
-    let thumbImageView = UIImageView()
+    var thumbImageView: UIImageView!
     let messageContentView = EKMessageContentView()
     
     // MARK: Setup
@@ -24,7 +24,11 @@ public class EKSimpleMessageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupThumbImageView(with content: EKProperty.ImageContent) {
+    private func setupThumbImageView(with content: EKProperty.ImageContent?) {
+        guard let content = content else {
+            return
+        }
+        thumbImageView = UIImageView()
         addSubview(thumbImageView)
         thumbImageView.imageContent = content
     }
