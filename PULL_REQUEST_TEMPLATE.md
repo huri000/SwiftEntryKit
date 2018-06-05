@@ -2,7 +2,7 @@
 *A link to the issue & short explanation*
 
 ### Goals 🥅
-*What have I tried to acheive / improve + use case example*
+*What have I tried to achieve / improve + use case example*
 
 ### Implementation Details ✏️
 *How did I implement*
