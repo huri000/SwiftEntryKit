@@ -11,7 +11,7 @@ public struct EKNotificationMessage {
     /** Image, Title, Description */
     public let simpleMessage: EKSimpleMessage
     
-    /** Optional auxilary label descriptor (For instance, it be used to display time of message) */
+    /** Optional auxiliary label descriptor (For instance, it be used to display time of message) */
     public let auxiliary: EKProperty.LabelContent?
     
     public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil) {
