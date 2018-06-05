@@ -127,7 +127,7 @@ public extension EKAttributes {
             }
         }
         
-        /** The entry can be bound to keyboard in case of appearence */
+        /** The entry can be bound to keyboard in case of appearance */
         public var keyboardRelation = KeyboardRelation.unbind
         
         /** The size of the entry */
