@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
 s.description      = <<-DESC
-SwiftEntryKit is a banner presenter library for iOS. It can be used to easily display pop-ups and notification-like views within your iOS apps. SwiftEntryKit is highly customizable but also offsers a bunch of beatiful presets that can be themed with your app fonts and colors.
+SwiftEntryKit is a banner presenter library for iOS. It can be used to easily display pop-ups and notification-like views within your iOS apps. SwiftEntryKit is highly customizable but also offsers a bunch of beautiful presets that can be themed with your app fonts and colors.
 DESC
   s.homepage         = 'https://github.com/huri000/SwiftEntryKit'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
