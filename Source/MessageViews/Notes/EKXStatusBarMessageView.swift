@@ -31,18 +31,14 @@ public class EKXStatusBarMessageView: UIView {
         set(.height, of: UIApplication.shared.statusBarFrame.maxY)
         
         addSubview(leadingLabel)
-        leadingLabel.numberOfLines = 0
-        leadingLabel.textAlignment = .center
-        leadingLabel.labelContent = leading
+        leadingLabel.content = leading
         
         leadingLabel.layoutToSuperview(axis: .vertically)
         leadingLabel.layoutToSuperview(.leading)
         leadingLabel.layoutToSuperview(.width, ratio: 0.26)
         
         addSubview(trailingLabel)
-        trailingLabel.numberOfLines = 0
-        trailingLabel.textAlignment = .center
-        trailingLabel.labelContent = trailing
+        trailingLabel.content = trailing
         
         trailingLabel.layoutToSuperview(axis: .vertically)
         trailingLabel.layoutToSuperview(.trailing)

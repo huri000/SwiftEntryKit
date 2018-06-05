@@ -21,25 +21,25 @@ public class EKMessageContentView: UIView {
     
     public var titleContent: EKProperty.LabelContent! {
         didSet {
-            titleLabel.labelContent = titleContent
+            titleLabel.content = titleContent
         }
     }
     
     public var subtitleContent: EKProperty.LabelContent! {
         didSet {
-            subtitleLabel.labelContent = subtitleContent
+            subtitleLabel.content = subtitleContent
         }
     }
     
     public var titleAttributes: EKProperty.LabelStyle! {
         didSet {
-            titleLabel.attributes = titleAttributes
+            titleLabel.style = titleAttributes
         }
     }
     
     public var subtitleAttributes: EKProperty.LabelStyle! {
         didSet {
-            subtitleLabel.attributes = subtitleAttributes
+            subtitleLabel.style = subtitleAttributes
         }
     }
     
@@ -93,7 +93,6 @@ public class EKMessageContentView: UIView {
     
     private func setupTitleLabel() {
         addSubview(titleLabel)
-        titleLabel.numberOfLines = 0
         topConstraint = titleLabel.layoutToSuperview(.top, offset: verticalMargins)
         horizontalConstraints = titleLabel.layoutToSuperview(axis: .horizontally, offset: horizontalMargins)
         titleLabel.forceContentWrap(.vertically)
@@ -101,7 +100,6 @@ public class EKMessageContentView: UIView {
     
     private func setupSubtitleLabel() {
         addSubview(subtitleLabel)
-        subtitleLabel.numberOfLines = 0
         labelsOffsetConstraint = subtitleLabel.layout(.top, to: .bottom, of: titleLabel, offset: labelsOffset)
         subtitleLabel.layout(to: .left, of: titleLabel)
         subtitleLabel.layout(to: .right, of: titleLabel)

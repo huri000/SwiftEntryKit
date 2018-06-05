@@ -39,10 +39,14 @@ public class EKAlertMessageView: EKSimpleMessageView {
             messageContentView.horizontalMargins = 16
             messageContentView.labelsOffset = 5
             
-            thumbImageView.layoutToSuperview(.top, offset: 20)
-            thumbImageView.layoutToSuperview(.centerX)
-            
-            messageContentView.layout(.top, to: .bottom, of: thumbImageView)
+            if let thumbImageView = thumbImageView {
+                thumbImageView.layoutToSuperview(.top, offset: 20)
+                thumbImageView.layoutToSuperview(.centerX)
+                messageContentView.layout(.top, to: .bottom, of: thumbImageView)
+            } else {
+                messageContentView.layoutToSuperview(.top)
+            }
+
             messageContentView.layoutToSuperview(axis: .horizontally)
             buttonBarView.layout(.top, to: .bottom, of: messageContentView)
         case .left:
@@ -50,11 +54,15 @@ public class EKAlertMessageView: EKSimpleMessageView {
             messageContentView.horizontalMargins = 0
             messageContentView.labelsOffset = 5
             
-            thumbImageView.layoutToSuperview(.top, .left, offset: 16)
+            if let thumbImageView = thumbImageView {
+                thumbImageView.layoutToSuperview(.top, .left, offset: 16)
+                messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 12)
+                messageContentView.layout(to: .top, of: thumbImageView, offset: 2)
+            } else {
+                messageContentView.layoutToSuperview(.left, .top, offset: 16)
+            }
 
-            messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 12)
             messageContentView.layoutToSuperview(.right, offset: -16)
-            messageContentView.layout(to: .top, of: thumbImageView, offset: 2)
             buttonBarView.layout(.top, to: .bottom, of: messageContentView, offset: 10)
         }
         

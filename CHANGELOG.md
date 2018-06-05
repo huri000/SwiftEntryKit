@@ -1,6 +1,13 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.3.1
+
+### Features
+
+* Alert & Notification Entries are image-less as well. The image parameter is optional, in case it has a `nil` value, the entry is generated without it.
+* Added `numberOfLines` to `EKProperty.LabelStyle`. 
+
 ## 0.3.0
 
 ### Bug Fixes

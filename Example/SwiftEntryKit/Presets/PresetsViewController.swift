@@ -140,10 +140,14 @@ class PresetsViewController: UIViewController {
     }
     
     // Bumps a notification structured entry
-    private func showNotificationMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String) {
+    private func showNotificationMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
         let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 16), color: textColor))
         let description = EKProperty.LabelContent(text: desc, style: .init(font: MainFont.light.with(size: 14), color: textColor))
-        let image = EKProperty.ImageContent(image: UIImage(named: imageName)!, size: CGSize(width: 35, height: 35))
+        var image: EKProperty.ImageContent?
+        if let imageName = imageName {
+            image = .init(image: UIImage(named: imageName)!, size: CGSize(width: 35, height: 35))
+        }
+        
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
 
@@ -377,6 +381,10 @@ extension PresetsViewController {
             let title = "15% Discount!"
             let desc = "Receive your coupon for 15% discount at Swifty Kitty Bakery"
             showNotificationMessage(attributes: attributes, title: title, desc: desc, textColor: .black, imageName: "ic_pizza")
+        case 3:
+            let title = "Simple Notification-Like Message"
+            let desc = "Robot moustache gentleman lip warmer nefarious, lip warmer robot moustache gentleman brandy crumb catcher groomed testosterone trophy nefarious, cappuccino collector testosterone trophy top gun testosterone trophy consectetur nefarious groomed brandy gentleman lip warmer robot moustache super mario crumb catcher. Toothbrush timothy dalton goose dali, louis xiii horseshoe mark lawrenson goose wario graeme souness tricky sneezes timothy dalton toothbrush louis xiii id dali?"
+            showNotificationMessage(attributes: attributes, title: title, desc: desc, textColor: .black)
         default:
             break
         }

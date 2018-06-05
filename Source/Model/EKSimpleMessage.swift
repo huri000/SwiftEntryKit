@@ -11,7 +11,7 @@ import Foundation
 public struct EKSimpleMessage {
     
     /** The image view descriptor */
-    public let image: EKProperty.ImageContent
+    public let image: EKProperty.ImageContent?
     
     /** The title label descriptor */
     public let title: EKProperty.LabelContent
@@ -19,7 +19,7 @@ public struct EKSimpleMessage {
     /** The description label descriptor */
     public let description: EKProperty.LabelContent
     
-    public init(image: EKProperty.ImageContent, title: EKProperty.LabelContent, description: EKProperty.LabelContent) {
+    public init(image: EKProperty.ImageContent? = nil, title: EKProperty.LabelContent, description: EKProperty.LabelContent) {
         self.image = image
         self.title = title
         self.description = description

@@ -46,9 +46,7 @@ public class EKNoteMessageView: UIView {
     private func setup(with content: EKProperty.LabelContent) {
         clipsToBounds = true
         addSubview(label)
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.labelContent = content
+        label.content = content
         horizontalConstrainsts = label.layoutToSuperview(axis: .horizontally, offset: horizontalOffset, priority: .must)
         verticalConstrainsts = label.layoutToSuperview(axis: .vertically, offset: verticalOffset, priority: .must)
     }

@@ -60,10 +60,14 @@ public struct EKProperty {
         /** Text Alignment */
         public var alignment: NSTextAlignment
         
-        public init(font: UIFont, color: UIColor, alignment: NSTextAlignment = .left) {
+        /** Number of lines */
+        public var numberOfLines: Int
+        
+        public init(font: UIFont, color: UIColor, alignment: NSTextAlignment = .left, numberOfLines: Int = 0) {
             self.font = font
             self.color = color
             self.alignment = alignment
+            self.numberOfLines = numberOfLines
         }
     }
     
