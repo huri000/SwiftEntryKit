@@ -273,8 +273,20 @@ class PresetsViewController: UIViewController {
             SwiftEntryKit.dismiss()
         }
         
+        let ok1Button = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
+            SwiftEntryKit.dismiss()
+        }
+        
+        let ok2Button = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
+            SwiftEntryKit.dismiss()
+        }
+        
+        let ok3Button = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
+            SwiftEntryKit.dismiss()
+        }
+        
         // Generate the content
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: okButton, laterButton, closeButton, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okButton, laterButton, closeButton, ok1Button, ok3Button, ok2Button, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
         
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
 

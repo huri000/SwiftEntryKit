@@ -21,7 +21,7 @@ public final class SwiftEntryKit {
     }
     
     /**
-     Displays a given entry view using a given attributes struct.
+     Displays a given view entry view using a given attributes struct.
      - A thread-safe method - Can be invokes from anywhere.
      - A class method - Should be called on the class.
      - parameter view: Custom view that is to be displayed
@@ -30,6 +30,19 @@ public final class SwiftEntryKit {
     public class func display(entry view: UIView, using attributes: EKAttributes) {
         execute {
             EKWindowProvider.shared.state = .entry(view: view, attributes: attributes)
+        }
+    }
+    
+    /**
+     Displays a given view controller entry view using a given attributes struct.
+     - A thread-safe method - Can be invokes from anywhere.
+     - A class method - Should be called on the class.
+     - parameter view: Custom view that is to be displayed
+     - parameter attributes: Attributes (The display properties)
+     */
+    public class func display(entry viewController: UIViewController, attributes: EKAttributes) {
+        execute {
+            EKWindowProvider.shared.state = .entryController(viewController: viewController, attributes: attributes)
         }
     }
     

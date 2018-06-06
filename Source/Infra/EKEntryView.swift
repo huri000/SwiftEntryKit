@@ -12,13 +12,25 @@ import QuickLayout
 class EKEntryView: EKStyleView {
     
     struct Content {
-        var view: UIView
+        var viewController: UIViewController!
+        var view: UIView!
         var attributes: EKAttributes
+        
+        init(viewController: UIViewController, attributes: EKAttributes) {
+            self.viewController = viewController
+            self.view = viewController.view
+            self.attributes = attributes
+        }
+        
+        init(view: UIView, attributes: EKAttributes) {
+            self.view = view
+            self.attributes = attributes
+        }
     }
     
     // MARK: Props
     private var backgroundView: EKBackgroundView!
-    private var content: Content!
+    private var content: Content
     private lazy var contentView: UIView = {
         return UIView()
     }()
@@ -37,8 +49,13 @@ class EKEntryView: EKStyleView {
     }()
 
     // MARK: Setup
-    init() {
+    init(newEntry content: Content) {
+        self.content = content
         super.init(frame: UIScreen.main.bounds)
+        setupContentView()
+        applyDropShadow()
+        applyBackgroundToContentView()
+        applyFrameStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,16 +65,6 @@ class EKEntryView: EKStyleView {
     override func layoutSubviews() {
         super.layoutSubviews()
         applyFrameStyle()
-    }
-    
-    func setup(newEntry content: Content) {
-        
-        self.content = content
-
-        setupContentView()
-        applyDropShadow()
-        applyBackgroundToContentView()
-        applyFrameStyle()        
     }
     
     func transform(to view: UIView) {
@@ -76,7 +83,7 @@ class EKEntryView: EKStyleView {
             previousHeight.priority = .defaultLow
             nextHeight.priority = .must
             
-            previousView.alpha = 0
+            previousView!.alpha = 0
 
             SwiftEntryKit.layoutIfNeeded()
             
@@ -84,7 +91,7 @@ class EKEntryView: EKStyleView {
             
             view.alpha = 0
             
-            previousView.removeFromSuperview()
+            previousView!.removeFromSuperview()
             self.removeConstraints([previousHeight, nextHeight])
 
             self.setupContentView()

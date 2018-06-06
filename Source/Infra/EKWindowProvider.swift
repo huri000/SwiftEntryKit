@@ -13,6 +13,7 @@ public class EKWindowProvider {
     public enum State {
         case transform(to: UIView)
         case entry(view: UIView, attributes: EKAttributes)
+        case entryController(viewController: UIViewController, attributes: EKAttributes)
         case main
         
         var isMain: Bool {
@@ -46,6 +47,8 @@ public class EKWindowProvider {
                 clean()
             case .entry(view: let view, attributes: let attributes):
                 setup(with: view, attributes: attributes)
+            case .entryController(viewController: let vc, attributes: let attributes):
+                setup(with: vc, attributes: attributes)
             case .transform(to: let view):
                 transform(to: view)
             }
@@ -66,23 +69,35 @@ public class EKWindowProvider {
     
     // MARK: Setup and Teardown methods
     
-    // Setup new entry
-    private func setup(with view: UIView, attributes: EKAttributes) {
-        
-        let entryVC = setupWindowAndRootVC()
-        
-        guard entryVC.canDisplay(attributes: attributes) else {
+    // Setup new view controller
+    private func setup(with viewController: UIViewController, attributes: EKAttributes) {
+        guard let entryVC = prepare(for: attributes) else {
             return
         }
-    
-        entryWindow.windowLevel = attributes.windowLevel.value
-
-        entryVC.setStatusBarStyle(for: attributes)
-        
-        let entryView = EKEntryView()
-        entryView.setup(newEntry: .init(view: view, attributes: attributes))
+        let entryView = EKEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
         entryVC.configure(newEntryView: entryView, attributes: attributes)
         self.entryView = entryView
+    }
+    
+    // Setup new view
+    private func setup(with view: UIView, attributes: EKAttributes) {
+        guard let entryVC = prepare(for: attributes) else {
+            return
+        }
+        let entryView = EKEntryView(newEntry: .init(view: view, attributes: attributes))
+        entryVC.configure(newEntryView: entryView, attributes: attributes)
+        self.entryView = entryView
+    }
+    
+    // Prepare the window and the host view controller
+    private func prepare(for attributes: EKAttributes) -> EKRootViewController? {
+        let entryVC = setupWindowAndRootVC()
+        guard entryVC.canDisplay(attributes: attributes) else {
+            return nil
+        }
+        entryWindow.windowLevel = attributes.windowLevel.value
+        entryVC.setStatusBarStyle(for: attributes)
+        return entryVC
     }
     
     // Transform current entry
