@@ -78,10 +78,6 @@ public class EKRatingMessageView: UIView {
     // MARK: Internal Animation
     private func animateIn() {
         layoutIfNeeded()
-        buttonBarView.alpha = 1
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews], animations: {
-            self.buttonBarView.expand()
-            SwiftEntryKit.layoutIfNeeded()
-        }, completion: nil)
+        buttonBarView.expand()
     }
 }

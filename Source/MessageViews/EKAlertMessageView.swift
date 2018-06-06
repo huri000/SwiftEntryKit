@@ -72,34 +72,17 @@ public class EKAlertMessageView: EKSimpleMessageView {
 
         if !message.buttonBarContent.content.isEmpty {
             if message.buttonBarContent.expandAnimatedly {
-                let damping: CGFloat = message.buttonBarContent.content.count <= 2 ? 0.4 : 0.8
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.animateIn(damping: damping)
+                    self.buttonBarView.expand()
                 }
             } else {
-                buttonBarView.alpha = 1
                 buttonBarView.expand()
-                SwiftEntryKit.layoutIfNeeded()
             }
         }
     }
     
     // MARK: Internal Animation
     private func animateIn(damping: CGFloat) {
-        SwiftEntryKit.layoutIfNeeded()
-        buttonBarView.alpha = 1
-        
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews, .allowAnimatedContent], animations: {
-            
-            // Expand
-            self.buttonBarView.expand()
-            
-            /* NOTE: Calling layoutIfNeeded for the whole view hierarchy.
-             Sometimes it's easier to just use frames instead of AutoLayout for
-             hierarch complexity considerations. Here the animation influences almost the
-             entire view hierarchy. */
-            SwiftEntryKit.layoutIfNeeded()
-            
-        }, completion: nil)
+
     }
 }

@@ -85,7 +85,10 @@ public class EKButtonBarView: UIView {
         guard !buttons.isEmpty else {
             return
         }
-        Array(buttons.dropFirst()).layout(.height, to: buttons.first!)
+        let suffix = Array(buttons.dropFirst())
+        if !suffix.isEmpty {
+            suffix.layout(.height, to: buttons.first!)
+        }
         buttons.layoutToSuperview(axis: oppositeAxis)
         buttons.spread(spreadAxis, stretchEdgesToSuperview: true)
         buttons.layout(relativeEdge, to: self, ratio: buttonEdgeRatio, priority: .must)
@@ -159,12 +162,32 @@ public class EKButtonBarView: UIView {
     }
     
     // Amination
-    func expand() {
-        compressedConstraint.priority = .defaultLow
-        expandedConstraint.priority = .must
+    public func expand() {
+        
+        let expansion = {
+            self.compressedConstraint.priority = .defaultLow
+            self.expandedConstraint.priority = .must
+            
+            /* NOTE: Calling layoutIfNeeded for the whole view hierarchy.
+             Sometimes it's easier to just use frames instead of AutoLayout for
+             hierarch complexity considerations. Here the animation influences almost the
+             entire view hierarchy. */
+            SwiftEntryKit.layoutIfNeeded()
+        }
+        
+        alpha = 1
+        if buttonBarContent.expandAnimatedly {
+            let damping: CGFloat = buttonBarContent.content.count <= 2 ? 0.4 : 0.8
+            SwiftEntryKit.layoutIfNeeded()
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews, .allowAnimatedContent], animations: {
+                expansion()
+            }, completion: nil)
+        } else {
+            expansion()
+        }
     }
     
-    func compress() {
+    public func compress() {
         compressedConstraint.priority = .must
         expandedConstraint.priority = .defaultLow
     }
