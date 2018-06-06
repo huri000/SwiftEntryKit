@@ -1,6 +1,15 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.3.3
+
+### Issues Handled:
+* [Multiple button support? #19](https://github.com/huri000/SwiftEntryKit/issues/19)
+
+### Changes:
+
+EKButtonBarView exposes `func expand()`, it
+
 ## 0.3.2
 
 ### Bug Fixes
