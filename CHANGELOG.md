@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.3.2
+
+### Bug Fixes
+
+* [EKAlertMessageView fail to layout all of the ButtonContents inside EKAlertMessage #41](https://github.com/huri000/SwiftEntryKit/issues/41)
+
 ## 0.3.1
 
 ### Features

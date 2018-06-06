@@ -85,6 +85,7 @@ public class EKButtonBarView: UIView {
         guard !buttons.isEmpty else {
             return
         }
+        Array(buttons.dropFirst()).layout(.height, to: buttons.first!)
         buttons.layoutToSuperview(axis: oppositeAxis)
         buttons.spread(spreadAxis, stretchEdgesToSuperview: true)
         buttons.layout(relativeEdge, to: self, ratio: buttonEdgeRatio, priority: .must)
