@@ -335,6 +335,24 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Center Alert View", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
+        // Preset VI
+        attributes = .centerFloat
+        attributes.windowLevel = .alerts
+        attributes.hapticFeedbackType = .success
+        attributes.screenInteraction = .absorbTouches
+        attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .disabled
+        attributes.screenBackground = .color(color: .dimmedLightBackground)
+        attributes.entryBackground = .color(color: UIColor.white.withAlphaComponent(0.98))
+        attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 0.8, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.4, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 1, to: 0, duration: 0.2))
+        attributes.displayDuration = .infinity
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
+        descriptionString = "Appears in the center. Fun, expressive, and rich with animations"
+        descriptionThumb = ThumbDesc.bottomPopup.rawValue
+        description = .init(with: attributes, title: "Service Rating", description: descriptionString, thumb: descriptionThumb)
+        presets.append(description)
+        
         dataSource.append(("Alerts & Popups", presets))
     }
     
@@ -465,23 +483,34 @@ struct PresetsDataSource {
         presets.append(description)
         
         // Preset II
-        attributes = .centerFloat
-        attributes.windowLevel = .alerts
+        attributes = .bottomFloat
         attributes.hapticFeedbackType = .success
-        attributes.screenInteraction = .absorbTouches
+        attributes.displayDuration = 3
+        attributes.screenBackground = .clear
+        attributes.entryBackground = .clear
+        attributes.screenInteraction = .forward
         attributes.entryInteraction = .absorbTouches
-        attributes.scroll = .disabled
-        attributes.screenBackground = .color(color: .dimmedLightBackground)
-        attributes.entryBackground = .color(color: UIColor.white.withAlphaComponent(0.98))
-        attributes.entranceAnimation = .init(scale: .init(from: 0.9, to: 1, duration: 0.4, spring: .init(damping: 0.8, initialVelocity: 0)), fade: .init(from: 0, to: 1, duration: 0.3))
-        attributes.exitAnimation = .init(scale: .init(from: 1, to: 0.4, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)), fade: .init(from: 1, to: 0, duration: 0.2))
-        attributes.displayDuration = .infinity
+        attributes.roundCorners = .all(radius: 5)
+        
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 0.9, initialVelocity: 0)),
+                                             scale: .init(from: 0.8, to: 1, duration: 0.5, spring: .init(damping: 0.8, initialVelocity: 0)),
+                                             fade: .init(from: 0.7, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.5),
+                                         scale: .init(from: 1, to: 0.8, duration: 0.5),
+                                         fade: .init(from: 1, to: 0, duration: 0.5))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3),
+                                                            scale: .init(from: 1, to: 0.8, duration: 0.3)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6))
+        attributes.positionConstraints.verticalOffset = 10
+        attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
-        descriptionString = "Appears in the center. Fun, expressive, and rich with animations"
-        descriptionThumb = ThumbDesc.bottomPopup.rawValue
-        description = .init(with: attributes, title: "Service Rating", description: descriptionString, thumb: descriptionThumb)
+        
+        attributes.statusBar = .dark
+        descriptionString = "Customized UIViewController that is using an injected view"
+        descriptionThumb = ThumbDesc.bottomFloat.rawValue
+        description = .init(with: attributes, title: "View Controller", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
-    
+        
         dataSource.append(("Custom", presets))
     }
 }

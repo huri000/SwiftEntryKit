@@ -42,7 +42,7 @@ public final class SwiftEntryKit {
      - parameter view: Custom view that is to be displayed
      - parameter attributes: Display properties
      */
-    public class func display(entry viewController: UIViewController, attributes: EKAttributes) {
+    public class func display(entry viewController: UIViewController, using attributes: EKAttributes) {
         execute {
             EKWindowProvider.shared.display(viewController: viewController, using: attributes)
         }

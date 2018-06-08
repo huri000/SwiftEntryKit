@@ -273,20 +273,8 @@ class PresetsViewController: UIViewController {
             SwiftEntryKit.dismiss()
         }
         
-        let ok1Button = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
-            SwiftEntryKit.dismiss()
-        }
-        
-        let ok2Button = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
-            SwiftEntryKit.dismiss()
-        }
-        
-        let ok3Button = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) {
-            SwiftEntryKit.dismiss()
-        }
-        
         // Generate the content
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: okButton, laterButton, closeButton, ok1Button, ok3Button, ok2Button, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: okButton, laterButton, closeButton, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
         
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, buttonBarContent: buttonsBarContent)
 
@@ -296,9 +284,15 @@ class PresetsViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
-    // Bumps a custom nib view
+    // Bumps a custom nib originated view
     private func showCustomNibView(attributes: EKAttributes) {
         SwiftEntryKit.display(entry: NibExampleView(), using: attributes)
+    }
+    
+    // Bumps a custom view controller that is using a view from nib
+    private func showCustomViewController(attributes: EKAttributes) {
+        let viewController = ExampleViewController(with: NibExampleView())
+        SwiftEntryKit.display(entry: viewController, using: attributes)
     }
     
     // Sign in form
@@ -445,6 +439,8 @@ extension PresetsViewController {
             showButtonBarMessage(attributes: attributes)
         case 4:
             showAlertView(attributes: attributes)
+        case 5:
+            showRatingView(attributes: attributes)
         default:
             break
         }
@@ -468,7 +464,7 @@ extension PresetsViewController {
         case 0:
             showCustomNibView(attributes: attributes)
         case 1:
-            showRatingView(attributes: attributes)
+            showCustomViewController(attributes: attributes)
         default:
             break
         }
