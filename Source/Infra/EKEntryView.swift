@@ -29,8 +29,13 @@ class EKEntryView: EKStyleView {
     }
     
     // MARK: Props
+    
+    /** Background view */
     private var backgroundView: EKBackgroundView!
-    private var content: Content
+    
+    /** The content - contains the view, view controller, attributes */
+    var content: Content
+    
     private lazy var contentView: UIView = {
         return UIView()
     }()

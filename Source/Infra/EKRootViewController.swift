@@ -10,7 +10,8 @@ import UIKit
 
 class EKRootViewController: UIViewController {
     
-    // MARK: Props
+    // MARK: - Props
+    
     private var lastAttributes: EKAttributes!
     private var tapGestureRecognizer: UITapGestureRecognizer!
     
@@ -34,7 +35,8 @@ class EKRootViewController: UIViewController {
         }
     }
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -61,16 +63,27 @@ class EKRootViewController: UIViewController {
         UIApplication.shared.set(statusBarStyle: attributes.statusBar)
     }
     
-    // MARK: Setup
-    func configure(newEntryView: UIView, attributes: EKAttributes) {
+    // MARK: - Setup
+    
+    func configure(entryView: EKEntryView) {
 
+        // In case the entry is a view controller, add the entry as child of root
+        if let viewController = entryView.content.viewController {
+            addChildViewController(viewController)
+        }
+        
+        // Extract the attributes struct
+        let attributes = entryView.attributes
+        
+        // Remove the last entry
         removeLastEntry(keepWindow: true)
 
+        // Assign attributes
         lastAttributes = attributes
-                        
+        
         let entryContentView = EKContentView(withEntryDelegate: self)
         view.addSubview(entryContentView)
-        entryContentView.setup(with: newEntryView, attributes: attributes)
+        entryContentView.setup(with: entryView)
         
         isResponsive = attributes.screenInteraction.isResponsive
     }
@@ -106,7 +119,8 @@ class EKRootViewController: UIViewController {
     }
 }
 
-// MARK: UIResponder
+// MARK: - UIResponder
+
 extension EKRootViewController {
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -120,7 +134,8 @@ extension EKRootViewController {
     }
 }
 
-// MARK: EntryScrollViewDelegate
+// MARK: - EntryScrollViewDelegate
+
 extension EKRootViewController: EntryContentViewDelegate {
     
     func changeToActive(withAttributes attributes: EKAttributes) {

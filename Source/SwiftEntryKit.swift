@@ -12,56 +12,58 @@ import Foundation
  */
 public final class SwiftEntryKit {
     
-    // Cannot be instantiated or inherited.
+    /** Cannot be instantiated, customized, inherited. */
     private init() {}
     
-    /** Returns true if an entry is currently displayed */
+    /** Returns true if an entry is currently displayed.
+     Not thread safe - should be called from the main queue only in order to receive a reliable result.
+     */
     public class var isCurrentlyDisplaying: Bool {
         return EKAttributes.isDisplaying
     }
     
     /**
-     Displays a given view entry view using a given attributes struct.
-     - A thread-safe method - Can be invokes from anywhere.
+     Displays a given entry view using an attributes struct.
+     - A thread-safe method - Can be invokes from any thread.
      - A class method - Should be called on the class.
      - parameter view: Custom view that is to be displayed
-     - parameter attributes: Attributes (The display properties)
+     - parameter attributes: Display properties
      */
     public class func display(entry view: UIView, using attributes: EKAttributes) {
         execute {
-            EKWindowProvider.shared.state = .entry(view: view, attributes: attributes)
+            EKWindowProvider.shared.display(view: view, using: attributes)
         }
     }
     
     /**
-     Displays a given view controller entry view using a given attributes struct.
-     - A thread-safe method - Can be invokes from anywhere.
+     Displays a given entry view controller using an attributes struct.
+     - A thread-safe method - Can be invokes from any thread.
      - A class method - Should be called on the class.
      - parameter view: Custom view that is to be displayed
-     - parameter attributes: Attributes (The display properties)
+     - parameter attributes: Display properties
      */
     public class func display(entry viewController: UIViewController, attributes: EKAttributes) {
         execute {
-            EKWindowProvider.shared.state = .entryController(viewController: viewController, attributes: attributes)
+            EKWindowProvider.shared.display(viewController: viewController, using: attributes)
         }
     }
     
     /**
      ALPHA FEATURE: Transform the previous entry to the current one using the previous attributes struct.
-     - A thread-safe method - Can be invokes from anywhere.
+     - A thread-safe method - Can be invokes from any thread.
      - A class method - Should be called on the class.
      - This feature hasn't been fully tested. Use with caution.
      - parameter view: Custom view that is to be displayed instead of the currently displayed entry
      */
     public class func transform(to view: UIView) {
         execute {
-            EKWindowProvider.shared.state = .transform(to: view)
+            EKWindowProvider.shared.transform(to: view)
         }
     }
     
     /**
-     Dismisses the currently presented entry and removes the presented window instance.
-     - A thread-safe method - Can be invokes from anywhere.
+     Dismisses the currently presented entry and removes the presented window instance after the exit animation is concluded.
+     - A thread-safe method - Can be invokes from any thread.
      - A class method - Should be called on the class.
      */
     public class func dismiss() {
@@ -73,27 +75,12 @@ public final class SwiftEntryKit {
     /**
      Layout the view hierarchy that is rooted in the window.
      - In case you use complex animations, you can call it to refresh the AutoLayout mechanism on the entire view hierarchy.
-     - A thread-safe method - Can be invokes from anywhere.
+     - A thread-safe method - Can be invokes from any thread.
      - A class method - Should be called on the class.
      */
     public class func layoutIfNeeded() {
         execute {
             EKWindowProvider.shared.layoutIfNeeded()
-        }
-    }
-}
-
-// MARK: Private
-private extension SwiftEntryKit {
-    
-    // A Precaution: Executes a UI action on the main thread, thus letting any of the class methods of SwiftEntryKit to be invokes even from a background thread.
-    private class func execute(action: @escaping () -> ()) {
-        if Thread.isMainThread {
-            action()
-        } else {
-            DispatchQueue.main.async {
-                action()
-            }
         }
     }
 }
