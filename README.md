@@ -35,6 +35,7 @@
     * [Status Bar](#status-bar)
   * [Presets Usage Example](#presets-usage-example)
   * [Custom View Usage Example](#custom-view-usage-example)
+  * [Displaying a View Controller](#displaying-a-view-controller)
   * [Dismissing an Entry](#dismissing-an-entry)
   * [Swiping And Rubber Banding](#swiping-and-rubber-banding)
   * [Dealing With Safe Area](#dealing-with-safe-area)
