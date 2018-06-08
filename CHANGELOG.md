@@ -1,6 +1,14 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.4.0
+
+### Features
+
+#### [Use UIViewController as an entry #40](https://github.com/huri000/SwiftEntryKit/issues/40)
+Developers can now use a customized view controller as an entry.
+A sample has been added to the custom presets section in example project.
+
 ## 0.3.3
 
 ### Issues Handled:

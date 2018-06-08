@@ -8,24 +8,9 @@
 
 import UIKit
 
-public class EKWindowProvider {
+final class EKWindowProvider {
     
-    public enum State {
-        case transform(to: UIView)
-        case entry(view: UIView, attributes: EKAttributes)
-        case main
-        
-        var isMain: Bool {
-            switch self {
-            case .main:
-                return true
-            default:
-                return false
-            }
-        }
-    }
-    
-    // Safe area insets
+    /** The artificial safe area insets */
     static var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
             return EKWindowProvider.shared.entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
@@ -35,62 +20,36 @@ public class EKWindowProvider {
         }
     }
     
-    // Shared
+    /** Single access point */
     static let shared = EKWindowProvider()
-
-    // State
-    public internal(set) var state: State = .main {
-        didSet {
-            switch state {
-            case .main:
-                clean()
-            case .entry(view: let view, attributes: let attributes):
-                setup(with: view, attributes: attributes)
-            case .transform(to: let view):
-                transform(to: view)
-            }
-        }
-    }
     
-    // Entry window
+    /** Current entry window */
     var entryWindow: EKWindow!
     
-    // Root view controller
+    /** Returns the root view controller if it is instantiated */
     var rootVC: EKRootViewController? {
         return entryWindow?.rootViewController as? EKRootViewController
     }
     
     private weak var entryView: EKEntryView!
 
+    /** Cannot be instantiated, customized, inherited */
     private init() {}
     
-    // MARK: Setup and Teardown methods
+    // MARK: - Setup and Teardown methods
     
-    // Setup new entry
-    private func setup(with view: UIView, attributes: EKAttributes) {
-        
+    // Prepare the window and the host view controller
+    private func prepare(for attributes: EKAttributes) -> EKRootViewController? {
         let entryVC = setupWindowAndRootVC()
-        
         guard entryVC.canDisplay(attributes: attributes) else {
-            return
+            return nil
         }
-    
         entryWindow.windowLevel = attributes.windowLevel.value
-
         entryVC.setStatusBarStyle(for: attributes)
-        
-        let entryView = EKEntryView()
-        entryView.setup(newEntry: .init(view: view, attributes: attributes))
-        entryVC.configure(newEntryView: entryView, attributes: attributes)
-        self.entryView = entryView
+        return entryVC
     }
     
-    // Transform current entry
-    private func transform(to view: UIView) {
-        entryView?.transform(to: view)
-    }
-    
-    // Setup window and root view controller
+    /** Boilerplate generic setup for entry-window and root-view-controller  */
     private func setupWindowAndRootVC() -> EKRootViewController {
         let entryVC: EKRootViewController
         if entryWindow == nil {
@@ -102,11 +61,40 @@ public class EKWindowProvider {
         return entryVC
     }
     
-    private func clean() {
+    // MARK: - Exposed Actions
+    
+    /** Transform current entry to view */
+    func transform(to view: UIView) {
+        entryView?.transform(to: view)
+    }
+    
+    /** Display a view using attributes */
+    func display(view: UIView, using attributes: EKAttributes) {
+        guard let entryVC = prepare(for: attributes) else {
+            return
+        }
+        let entryView = EKEntryView(newEntry: .init(view: view, attributes: attributes))
+        entryVC.configure(entryView: entryView)
+        self.entryView = entryView
+    }
+    
+    /** Display a view controller using attributes */
+    func display(viewController: UIViewController, using attributes: EKAttributes) {
+        guard let entryVC = prepare(for: attributes) else {
+            return
+        }
+        let entryView = EKEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
+        entryVC.configure(entryView: entryView)
+        self.entryView = entryView
+    }
+    
+    /** Clear all entries immediately and display to the main window */
+    func displayMainWindow() {
         entryWindow = nil
         UIApplication.shared.keyWindow?.makeKeyAndVisible()
     }
     
+    /** Dismiss the current entry */
     func dismiss() {
         guard let rootVC = rootVC else {
             return
@@ -114,6 +102,7 @@ public class EKWindowProvider {
         rootVC.animateOutLastEntry()
     }
     
+    /** Layout the window view-hierarchy if needed */
     func layoutIfNeeded() {
         entryWindow?.layoutIfNeeded()
     }

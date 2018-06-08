@@ -58,10 +58,12 @@ class EKContentView: UIView {
     private var keyboardState = KeyboardState.hidden
     
     // Data source
-    private var attributes: EKAttributes!
+    private var attributes: EKAttributes {
+        return contentView.attributes
+    }
     
     // Content
-    private var contentView: UIView!
+    private var contentView: EKEntryView!
     
     // MARK: Setup
     required init?(coder aDecoder: NSCoder) {
@@ -74,9 +76,8 @@ class EKContentView: UIView {
     }
     
     // Called from outer scope with a presentable view and attributes
-    func setup(with contentView: UIView, attributes: EKAttributes) {
+    func setup(with contentView: EKEntryView) {
         
-        self.attributes = attributes
         self.contentView = contentView
         
         // Setup attributes
@@ -444,15 +445,16 @@ class EKContentView: UIView {
     
     // Remove self from superview
     func removeFromSuperview(keepWindow: Bool) {
-        guard let _ = superview else {
+        guard superview != nil else {
             return
         }
         super.removeFromSuperview()
+        contentView.content.viewController?.removeFromParentViewController()
         if EKAttributes.count > 0 {
             EKAttributes.count -= 1
         }
         if !keepWindow && !EKAttributes.isDisplaying {
-            EKWindowProvider.shared.state = .main
+            EKWindowProvider.shared.displayMainWindow()
         }
     }
     

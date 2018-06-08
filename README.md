@@ -127,7 +127,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.3.3'
+pod 'SwiftEntryKit', '0.4.0'
 ```
 
 Then, run the following command:
@@ -150,7 +150,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.3.3
+github "huri000/SwiftEntryKit" == 0.4.0
 ```
 
 ## Usage
@@ -551,6 +551,13 @@ let customView = UIView()
 
 // Display the view with the configuration
 SwiftEntryKit.display(entry: customView, using: attributes)
+```
+
+### Displaying a View Controller
+As from version 0.4.0, view controllers are supported as well.
+
+```Swift
+SwiftEntryKit.display(entry: customViewController, using: attributes)
 ```
 
 ### Dismissing an Entry
