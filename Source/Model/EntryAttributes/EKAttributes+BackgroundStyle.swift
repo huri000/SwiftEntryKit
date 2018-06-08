@@ -11,13 +11,13 @@ import UIKit
 public extension EKAttributes {
     
     /** The background style property */
-    public enum BackgroundStyle {
+    public enum BackgroundStyle: Equatable {
         
         /** Gradient background style */
         public struct Gradient {
-            public let colors: [UIColor]
-            public let startPoint: CGPoint
-            public let endPoint: CGPoint
+            public var colors: [UIColor]
+            public var startPoint: CGPoint
+            public var endPoint: CGPoint
             
             public init(colors: [UIColor], startPoint: CGPoint, endPoint: CGPoint) {
                 self.colors = colors
@@ -40,5 +40,28 @@ public extension EKAttributes {
         
         /** Clear background style */
         case clear
+        
+        /** == operator overload */
+        public static func == (lhs: EKAttributes.BackgroundStyle, rhs: EKAttributes.BackgroundStyle) -> Bool {
+            switch (lhs, rhs) {
+            case (visualEffect(style: let leftStyle), visualEffect(style: let rightStyle)):
+                return leftStyle == rightStyle
+            case (color(color: let leftColor), color(color: let rightColor)):
+                return leftColor == rightColor
+            case (image(image: let leftImage), image(image: let rightImage)):
+                return leftImage == rightImage
+            case (gradient(gradient: let leftGradient), gradient(gradient: let rightGradient)):
+                for (leftColor, rightColor) in zip(leftGradient.colors, rightGradient.colors) {
+                    guard leftColor == rightColor else {
+                        return false
+                    }
+                }
+                return leftGradient.startPoint == rightGradient.startPoint && leftGradient.endPoint == rightGradient.endPoint
+            case (clear, clear):
+                return true
+            default:
+                return false
+            }
+        }
     }
 }

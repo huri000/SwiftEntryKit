@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.4.1
+
+### Issues Handled
+
+[Keep Background Unchanged when 2 Consecutive Entry Screen Backgrounds Match #46](https://github.com/huri000/SwiftEntryKit/issues/46)
+
 ## 0.4.0
 
 ### Features
