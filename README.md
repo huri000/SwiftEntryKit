@@ -553,6 +553,13 @@ let customView = UIView()
 SwiftEntryKit.display(entry: customView, using: attributes)
 ```
 
+### Displaying a View Controller
+As from version 0.4.0, view controllers are supported as well.
+
+```Swift
+SwiftEntryKit.display(entry: customViewController, using: attributes)
+```
+
 ### Dismissing an Entry
 You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, likewise:
 ```Swift
