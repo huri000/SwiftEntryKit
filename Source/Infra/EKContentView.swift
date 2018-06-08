@@ -11,7 +11,7 @@ import QuickLayout
 
 protocol EntryContentViewDelegate: class {
     func changeToActive(withAttributes attributes: EKAttributes)
-    func changeToInactive(withAttributes attributes: EKAttributes)
+    func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool)
 }
 
 class EKContentView: UIView {
@@ -319,7 +319,7 @@ class EKContentView: UIView {
         }
         
         outDispatchWorkItem?.cancel()
-        entryDelegate?.changeToInactive(withAttributes: attributes)
+        entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: pushOut)
         
         if case .animated(animation: let animation) = attributes.popBehavior, pushOut {
             animateOut(with: animation, outTranslationType: .pop)
@@ -439,7 +439,7 @@ class EKContentView: UIView {
     // Removes the view promptly - DOES NOT animate out
     func removePromptly(keepWindow: Bool = true) {
         outDispatchWorkItem?.cancel()
-        entryDelegate?.changeToInactive(withAttributes: attributes)
+        entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: false)
         removeFromSuperview(keepWindow: keepWindow)
     }
     
@@ -632,7 +632,7 @@ extension EKContentView {
     
     private func stretchOut(usingSwipe type: OutTranslation, duration: TimeInterval) {
         outDispatchWorkItem?.cancel()
-        entryDelegate?.changeToInactive(withAttributes: attributes)
+        entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: false)
         
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.translateOut(withType: type)

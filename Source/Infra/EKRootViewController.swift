@@ -75,10 +75,12 @@ class EKRootViewController: UIViewController {
         // Extract the attributes struct
         let attributes = entryView.attributes
         
-        // Remove the last entry
-        removeLastEntry(keepWindow: true)
-
         // Assign attributes
+        let previousAttributes = lastAttributes
+        
+        // Remove the last entry
+        removeLastEntry(lastAttributes: previousAttributes, keepWindow: true)
+        
         lastAttributes = attributes
         
         let entryContentView = EKContentView(withEntryDelegate: self)
@@ -97,7 +99,7 @@ class EKRootViewController: UIViewController {
     }
 
     // Removes last entry - can keep the window 'ON' if necessary
-    private func removeLastEntry(keepWindow: Bool) {
+    private func removeLastEntry(lastAttributes: EKAttributes?, keepWindow: Bool) {
         guard let attributes = lastAttributes else {
             return
         }
@@ -142,11 +144,28 @@ extension EKRootViewController: EntryContentViewDelegate {
         changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)
     }
     
-    func changeToInactive(withAttributes attributes: EKAttributes) {
+    func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool) {
         guard EKAttributes.count <= 1 else {
             return
         }
-        changeBackground(to: .clear, duration: attributes.exitAnimation.totalDuration)
+        
+        let clear = {
+            self.changeBackground(to: .clear, duration: attributes.exitAnimation.totalDuration)
+        }
+        
+        guard pushOut else {
+            clear()
+            return
+        }
+        
+        guard let lastBackroundStyle = lastAttributes?.screenBackground else {
+            clear()
+            return
+        }
+        
+        if lastBackroundStyle != attributes.screenBackground {
+            clear()
+        }
     }
     
     private func changeBackground(to style: EKAttributes.BackgroundStyle, duration: TimeInterval) {
