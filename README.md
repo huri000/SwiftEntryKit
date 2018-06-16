@@ -26,6 +26,7 @@
     * [User Interaction](#user-interaction)
     * [Scroll Behavior](#scroll-behavior)
     * [Haptic Feedback](#haptic-feedback)
+    * [Lifecycle Events](#lifecycle-events)
     * [Background Style](#background-style)
     * [Shadow](#shadow)
     * [Round Corners](#round-corners)
@@ -55,15 +56,16 @@ Banners or Pop-Ups are called *Entries*.
 - The entries are displayed in a separated UIWindow (of type EKWindow), so the user is able to navigate the app freely while entries are being displayed in a non intrusive manner.
 - The kit offers some beautiful [presets](#presets) that can be themed with your app colors and fonts.
 - **Customization**: Entries are highly customizable
-  - [x] Can be displayed at the top or the bottom of the screen.
+  - [x] Can be displayed either at the top, center, or the bottom of the screen.
   - [x] Can be displayed within or outside the screen's safe area.
   - [x] Can be stylized: have a border, drop-shadow and round corners.
   - [x] Their content's and the screen's background can be blurred, dimmed, colored or have a gradient style.
   - [x] Transition animations are customizable - Entrance, Exit and Pop (by another entry).
   - [x] The user interactions with the entry or the screen can be intercepted.
   - [x] Entries have an optional rubber banding effect in panning.
-  - [x] Entries can be optionally dismissed by a simple swipe gesture.
+  - [x] Entries can be optionally dismissed using a simple swipe gesture.
   - [x] Entries have display priority attribute. That means that an entry can be dismissed only be other entry with equal or higher priority. 
+  - [x] Entries can be optionally injected with lifecycle events: *will* and *did* appear/disappear.
   - [x] The status bar style is settable for the display duration of the entry.
   - [x] SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
 
@@ -128,7 +130,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.4.1'
+pod 'SwiftEntryKit', '0.4.2'
 ```
 
 Then, run the following command:
@@ -151,7 +153,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.4.1
+github "huri000/SwiftEntryKit" == 0.4.2
 ```
 
 ## Usage
@@ -343,6 +345,27 @@ attributes.scroll = .edgeCrossingDisabled(swipeable: true)
 #### [Haptic Feedback](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/feedback/)
 The device can produce a haptic feedback, thus adding an additional sensory depth to each entry.
 
+#### Lifecycle Events
+Events can be injected to the entry so that they are to be called during its lifecycle.
+
+```Swift
+attributes.lifecycleEvents.willAppear = {
+    // Executed before the entry animates inside 
+}
+
+attributes.lifecycleEvents.didAppear = {
+    // Executed after the entry animates inside
+}
+
+attributes.lifecycleEvents.willDisappear = {
+    // Executed before the entry animates outside
+}
+
+attributes.lifecycleEvents.didDisappear = {
+    // Executed after the entry animates outside
+}
+```
+
 #### Background Style
 The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
 
@@ -485,6 +508,7 @@ public struct EKAttributes
     public var entryInteraction: UserInteraction
     public var scroll: Scroll
     public var hapticFeedbackType: NotificationHapticFeedback
+    public var lifecycleEvents: LifecycleEvents
 
     // Theme & Style
     public var entryBackground: BackgroundStyle
@@ -566,8 +590,17 @@ You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, 
 ```Swift
 SwiftEntryKit.dismiss()
 ```
-This will dismiss the entry animatedly using it's *exitAnimation* attribute and on comletion it'll remove the window as well.
+This dismisses the entry animatedly using its *exitAnimation* attribute and on comletion, the window would be removed as well.
 
+#### Using a completion handler
+
+Inject a trailing closure to be executed after the entry dismissal.
+
+```Swift
+SwiftEntryKit.dismiss {
+    // Executed right after the entry has been dismissed
+}
+```
 
 ### Is Currently Displaying
 Inquire whether an entry is currently displayed:

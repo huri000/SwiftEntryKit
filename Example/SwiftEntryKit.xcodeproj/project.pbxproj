@@ -17,6 +17,7 @@
 		143F3AAC2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */; };
 		143F3AAE2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */; };
 		143F3AB22090B7F0009F3719 /* ScrollSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */; };
+		144E51BD20D56E150051FDCA /* EKAttributes+LifecycleActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E51BC20D56E150051FDCA /* EKAttributes+LifecycleActions.swift */; };
 		145F56B820B84ACA0027EB67 /* EKAttributes+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F56B720B84ACA0027EB67 /* EKAttributes+StatusBar.swift */; };
 		145F56BB20B863220027EB67 /* UIApplication+EKAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */; };
 		14665621209204A5008FB96D /* AnimationSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14665620209204A5008FB96D /* AnimationSelectionTableViewCell.swift */; };
@@ -207,6 +208,7 @@
 		143F3AAB2090B312009F3719 /* UserInteractionSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInteractionSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		143F3AAD2090B4E2009F3719 /* HapticFeedbackSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedbackSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		144E51BC20D56E150051FDCA /* EKAttributes+LifecycleActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKAttributes+LifecycleActions.swift"; sourceTree = "<group>"; };
 		14580CCA20B7F4FB001AF703 /* DemoAppInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DemoAppInfo.plist; sourceTree = "<group>"; };
 		145F56B720B84ACA0027EB67 /* EKAttributes+StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKAttributes+StatusBar.swift"; sourceTree = "<group>"; };
 		145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EKAppearance.swift"; sourceTree = "<group>"; };
@@ -464,6 +466,7 @@
 			isa = PBXGroup;
 			children = (
 				14B48B3120B81C9700CE3EF4 /* EKAttributes.swift */,
+				144E51BC20D56E150051FDCA /* EKAttributes+LifecycleActions.swift */,
 				14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */,
 				14B48B3C20B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift */,
 				14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */,
@@ -989,6 +992,7 @@
 				14B48B7120B81C9700CE3EF4 /* EKAttributes+Animation.swift in Sources */,
 				14B3A51A20C16E44002306C4 /* EKRatingSymbolsContainerView.swift in Sources */,
 				14B48B8820B81C9700CE3EF4 /* EKMessageContentView.swift in Sources */,
+				144E51BD20D56E150051FDCA /* EKAttributes+LifecycleActions.swift in Sources */,
 				14B48B6F20B81C9700CE3EF4 /* EKAttributes+Validations.swift in Sources */,
 				14B48B6620B81C9700CE3EF4 /* UIView+Shadow.swift in Sources */,
 				14B48B7A20B81C9700CE3EF4 /* EKPopUpMessage.swift in Sources */,

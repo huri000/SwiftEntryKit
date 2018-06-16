@@ -118,7 +118,9 @@ class PresetsViewController: UIViewController {
         let closeButtonLabelStyle = EKProperty.LabelStyle(font: mediumFont, color: grayColor)
         let closeButtonLabel = EKProperty.LabelContent(text: "Dismiss", style: closeButtonLabelStyle)
         let closeButton = EKProperty.ButtonContent(label: closeButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  grayColor.withAlphaComponent(0.05)) {
-            SwiftEntryKit.dismiss()
+            SwiftEntryKit.dismiss {
+                // Here you may perform a completion handler
+            }
         }
         
         // Ok Button - Make transition to a new entry when the button is tapped

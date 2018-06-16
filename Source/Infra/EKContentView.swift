@@ -57,6 +57,9 @@ class EKContentView: UIView {
 
     private var keyboardState = KeyboardState.hidden
     
+    // Dismissal handler
+    var dismissHandler: SwiftEntryKit.DismissCompletionHandler?
+    
     // Data source
     private var attributes: EKAttributes {
         return contentView.attributes
@@ -79,6 +82,9 @@ class EKContentView: UIView {
     func setup(with contentView: EKEntryView) {
         
         self.contentView = contentView
+        
+        // Execute willAppear lifecycle action if needed
+        contentView.attributes.lifecycleEvents.willAppear?()
         
         // Setup attributes
         setupAttributes()
@@ -314,6 +320,10 @@ class EKContentView: UIView {
     
     // Animate out
     func animateOut(pushOut: Bool) {
+        
+        // Execute willDisappear action if needed
+        contentView.attributes.lifecycleEvents.willDisappear?()
+        
         if attributes.positionConstraints.keyboardRelation.isBound {
             endEditing(true)
         }
@@ -387,9 +397,18 @@ class EKContentView: UIView {
                 self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
             }
         }
-                
+        
         entryDelegate?.changeToActive(withAttributes: attributes)
-
+        
+        // Execute didAppear action if needed
+        if animation.containsAnimation {
+            DispatchQueue.main.asyncAfter(deadline: .now() + animation.maxDuration) {
+                self.contentView.attributes.lifecycleEvents.didAppear?()
+            }
+        } else {
+            contentView.attributes.lifecycleEvents.didAppear?()
+        }
+        
         scheduleAnimateOut()
     }
     
@@ -448,8 +467,17 @@ class EKContentView: UIView {
         guard superview != nil else {
             return
         }
+        
+        // Execute didDisappear action if needed
+        contentView.content.attributes.lifecycleEvents.didDisappear?()
+        
+        // Execute dismiss handler if needed
+        dismissHandler?()
+        
+        // Remove the view from its superview and in a case of a view controller, from its parent controller.
         super.removeFromSuperview()
         contentView.content.viewController?.removeFromParentViewController()
+        
         if EKAttributes.count > 0 {
             EKAttributes.count -= 1
         }

@@ -111,7 +111,8 @@ class EKRootViewController: UIViewController {
     }
     
     // Make last entry exit using exitAnimation - animatedly
-    func animateOutLastEntry() {
+    func animateOutLastEntry(completionHandler: SwiftEntryKit.DismissCompletionHandler? = nil) {
+        lastEntry?.dismissHandler = completionHandler
         lastEntry?.animateOut(pushOut: false)
     }
     

@@ -48,6 +48,9 @@ public struct EKAttributes {
     /** Generate haptic feedback once the entry is displayed */
     public var hapticFeedbackType = NotificationHapticFeedback.none
     
+    /** Describes the actions that take place when the entry appears or is being dismissed */
+    public var lifecycleEvents = LifecycleEvents()
+    
     // MARK: Theme & Style Attributes
     
     /** Describes the entry's background appearance while it shows */

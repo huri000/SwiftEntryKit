@@ -1,6 +1,15 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.4.2
+
+### Features
+
+[Feature request: Callback when presented and dismissed #50](https://github.com/huri000/SwiftEntryKit/issues/50)
+
+- Added a `LifecycleActions` construct to `EKAttributes`. It contains the following optional callbacks: willAppear, didAppear, willDisappear, didDisappear for the currently displayed entry.
+- Added an optional completion handler for `SwiftEntryKit` `dismiss` method.
+
 ## 0.4.1
 
 ### Issues Handled
