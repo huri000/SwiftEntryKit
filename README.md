@@ -594,7 +594,7 @@ This dismisses the entry animatedly using its *exitAnimation* attribute and on c
 
 #### Using a completion handler
 
-Use a trailing closure as completion handler to the dismiss mechanism.
+Inject a trailing closure to be executed after the entry dismissal.
 
 ```Swift
 SwiftEntryKit.dismiss {
