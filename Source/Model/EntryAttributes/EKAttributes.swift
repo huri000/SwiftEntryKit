@@ -78,4 +78,7 @@ public struct EKAttributes {
     
     /** Describes the previous entry behaviour when a new entry with higher display-priority shows */
     public var popBehavior = PopBehavior.animated(animation: .translation)
+    
+    /** Describes the actions that take place when the entry appears or is being dismissed */
+    public var lifecycleActions = LifecycleActions()
 }
