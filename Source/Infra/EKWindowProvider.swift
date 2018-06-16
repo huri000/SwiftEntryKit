@@ -95,11 +95,11 @@ final class EKWindowProvider {
     }
     
     /** Dismiss the current entry */
-    func dismiss() {
+    func dismiss(with completion: SwiftEntryKit.DismissCompletionHandler? = nil) {
         guard let rootVC = rootVC else {
             return
         }
-        rootVC.animateOutLastEntry()
+        rootVC.animateOutLastEntry(completionHandler: completion)
     }
     
     /** Layout the window view-hierarchy if needed */

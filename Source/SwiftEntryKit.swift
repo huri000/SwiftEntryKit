@@ -12,6 +12,9 @@ import Foundation
  */
 public final class SwiftEntryKit {
     
+    /** Completion handler for the dismissal method */
+    public typealias DismissCompletionHandler = () -> Void
+    
     /** Cannot be instantiated, customized, inherited. */
     private init() {}
     
@@ -65,10 +68,11 @@ public final class SwiftEntryKit {
      Dismisses the currently presented entry and removes the presented window instance after the exit animation is concluded.
      - A thread-safe method - Can be invokes from any thread.
      - A class method - Should be called on the class.
+     - parameter completion: A completion handler that is to be called right after the entry is dismissed (After the animation is concluded).
      */
-    public class func dismiss() {
+    public class func dismiss(with completion: DismissCompletionHandler? = nil) {
         execute {
-            EKWindowProvider.shared.dismiss()
+            EKWindowProvider.shared.dismiss(with: completion)
         }
     }
     

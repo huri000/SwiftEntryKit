@@ -153,6 +153,23 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: .satCyan)
         attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 2))
         attributes.statusBar = .light
+        
+        attributes.lifecycleEvents.willAppear = {
+            print("will appear action goes here")
+        }
+        
+        attributes.lifecycleEvents.didAppear = {
+            print("did appear action goes here")
+        }
+        
+        attributes.lifecycleEvents.willDisappear = {
+            print("will disappear action goes here")
+        }
+        
+        attributes.lifecycleEvents.didDisappear = {
+            print("did disappear action goes here")
+        }
+        
         descriptionString = "Absorbs (swallows) touches and the status bar becomes light"
         descriptionThumb = ThumbDesc.topNote.rawValue
         description = .init(with: attributes, title: "Top Standard Note", description: descriptionString, thumb: descriptionThumb)
