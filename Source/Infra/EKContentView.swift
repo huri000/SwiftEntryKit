@@ -453,7 +453,7 @@ class EKContentView: UIView {
         }
     }
 
-    // MARK: Remvoe entry
+    // MARK: Remove entry
     
     // Removes the view promptly - DOES NOT animate out
     func removePromptly(keepWindow: Bool = true) {
@@ -548,7 +548,7 @@ extension EKContentView {
             return
         }
         
-        // Convert the user info into keyboard attributs
+        // Convert the user info into keyboard attributes
         guard let keyboardAtts = KeyboardAttributes(withRawValue: userInfo) else {
             return
         }
