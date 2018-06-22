@@ -69,6 +69,7 @@ class EKEntryView: EKStyleView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        contentView.layoutIfNeeded()
         applyFrameStyle()
     }
     
@@ -120,11 +121,7 @@ class EKEntryView: EKStyleView {
     
     // Apply round corners
     private func applyFrameStyle() {
-        if !backgroundView.appliedStyle {
-            applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
-        } else {
-            backgroundView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
-        }
+        backgroundView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
     }
     
     // Apply drop shadow
@@ -146,7 +143,7 @@ class EKEntryView: EKStyleView {
         backgroundView.background = attributes.entryBackground
         
         switch attributes.positionConstraints.safeArea {
-        case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea:
+        case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea: // Safe area filled with color
             insertSubview(backgroundView, at: 0)
             backgroundView.layoutToSuperview(axis: .horizontally)
             
@@ -161,10 +158,7 @@ class EKEntryView: EKStyleView {
             
             backgroundView.layoutToSuperview(.top, offset: topInset)
             backgroundView.layoutToSuperview(.bottom, offset: bottomInset)
-            
-            backgroundView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
-            
-        default:
+        default: // Float case or a Toast with unfilled safe area
             contentView.insertSubview(backgroundView, at: 0)
             backgroundView.fillSuperview()
         }

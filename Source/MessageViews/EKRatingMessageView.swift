@@ -69,6 +69,7 @@ public class EKRatingMessageView: UIView {
     private func setupButtonBarView() {
         buttonBarView = EKButtonBarView(with: message.buttonBarContent)
         buttonBarView.clipsToBounds = true
+        buttonBarView.alpha = 0
         addSubview(buttonBarView)
         buttonBarView.layout(.top, to: .bottom, of: symbolsView, offset: 30)
         buttonBarView.layoutToSuperview(.bottom)
