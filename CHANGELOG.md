@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.4.3
+
+### Bug Fixes
+
+[Shadow won't work with round corners #55](https://github.com/huri000/SwiftEntryKit/issues/55)
+
 ## 0.4.2
 
 ### Features
