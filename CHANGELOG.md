@@ -5,7 +5,8 @@ Any notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
-[Shadow won't work with round corners #55](https://github.com/huri000/SwiftEntryKit/issues/55)
+- [Shadow won't work with round corners #55](https://github.com/huri000/SwiftEntryKit/issues/55)
+- Small fix related to `EKRatingMessageView` initial presentation.
 
 ## 0.4.2
 
@@ -14,7 +15,7 @@ Any notable changes to this project will be documented in this file.
 [Feature request: Callback when presented and dismissed #50](https://github.com/huri000/SwiftEntryKit/issues/50)
 
 - Added a `LifecycleEvents` construct to `EKAttributes`. It contains the following optional callbacks: willAppear, didAppear, willDisappear, didDisappear for the currently displayed entry.
-- Added an optional completion handler for `SwiftEntryKit` `dismiss` method.
+- Added an optional completion handler for `SwiftEntryKit`'s `dismiss` method.
 
 ## 0.4.1
 
