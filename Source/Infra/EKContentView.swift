@@ -548,7 +548,7 @@ extension EKContentView {
             return
         }
         
-        // Convert the user info into keyboard attributs
+        // Convert the user info into keyboard attributes
         guard let keyboardAtts = KeyboardAttributes(withRawValue: userInfo) else {
             return
         }

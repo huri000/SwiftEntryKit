@@ -1,6 +1,19 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.0
+
+### Features
+
+Handled the issue *[Exclude keyWindow occupancy #56](https://github.com/huri000/SwiftEntryKit/issues/56)* by adding an additional parameter `rollbackWindow` to `SwiftEntryKit.display` methods.
+
+The  revised interface is as follows:
+
+`public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow = default)`
+`public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow = default)`
+
+After the entry has been dismissed, SwiftEntryKit rolls back to the given window value. By default it is the application key window.
+
 ## 0.4.3
 
 ### Bug Fixes
