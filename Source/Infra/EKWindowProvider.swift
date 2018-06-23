@@ -32,7 +32,7 @@ final class EKWindowProvider {
     }
     
     /** A window to go back to when the last entry has been dismissed */
-    private weak var rollbackWindow: UIWindow!
+    private var rollbackWindow: UIWindow!
     
     private weak var entryView: EKEntryView!
 
