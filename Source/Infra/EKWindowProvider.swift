@@ -31,6 +31,9 @@ final class EKWindowProvider {
         return entryWindow?.rootViewController as? EKRootViewController
     }
     
+    /** A window to go back to when the last entry has been dismissed */
+    private weak var rollbackWindow: UIWindow!
+    
     private weak var entryView: EKEntryView!
 
     /** Cannot be instantiated, customized, inherited */
@@ -69,29 +72,31 @@ final class EKWindowProvider {
     }
     
     /** Display a view using attributes */
-    func display(view: UIView, using attributes: EKAttributes) {
+    func display(view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow) {
         guard let entryVC = prepare(for: attributes) else {
             return
         }
         let entryView = EKEntryView(newEntry: .init(view: view, attributes: attributes))
         entryVC.configure(entryView: entryView)
         self.entryView = entryView
+        self.rollbackWindow = rollbackWindow
     }
     
     /** Display a view controller using attributes */
-    func display(viewController: UIViewController, using attributes: EKAttributes) {
+    func display(viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow) {
         guard let entryVC = prepare(for: attributes) else {
             return
         }
         let entryView = EKEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
         entryVC.configure(entryView: entryView)
         self.entryView = entryView
+        self.rollbackWindow = rollbackWindow
     }
     
     /** Clear all entries immediately and display to the main window */
     func displayMainWindow() {
         entryWindow = nil
-        UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        rollbackWindow?.makeKeyAndVisible()
     }
     
     /** Dismiss the current entry */
@@ -102,7 +107,7 @@ final class EKWindowProvider {
         rootVC.animateOutLastEntry(completionHandler: completion)
     }
     
-    /** Layout the window view-hierarchy if needed */
+    /** Layout the view-hierarchy rooted in the window */
     func layoutIfNeeded() {
         entryWindow?.layoutIfNeeded()
     }

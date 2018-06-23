@@ -37,6 +37,7 @@
   * [Presets Usage Example](#presets-usage-example)
   * [Custom View Usage Example](#custom-view-usage-example)
   * [Displaying a View Controller](#displaying-a-view-controller)
+  * [Alternative Rollback Window](#alternative-rollback-window)
   * [Dismissing an Entry](#dismissing-an-entry)
   * [Swiping And Rubber Banding](#swiping-and-rubber-banding)
   * [Dealing With Safe Area](#dealing-with-safe-area)
@@ -130,7 +131,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.4.3'
+pod 'SwiftEntryKit', '0.5.0'
 ```
 
 Then, run the following command:
@@ -153,7 +154,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.4.3
+github "huri000/SwiftEntryKit" == 0.5.0
 ```
 
 ## Usage
@@ -584,6 +585,14 @@ As from version 0.4.0, view controllers are supported as well.
 ```Swift
 SwiftEntryKit.display(entry: customViewController, using: attributes)
 ```
+
+### Alternative Rollback Window
+By default the app key window becomes the key again right after SwiftEntryKit has finished displaying the entry, but that can be changed using `rollbackWindow` parameter.
+
+```Swift
+SwiftEntryKit.display(entry: view, using: attributes, rollbackWindow: alternativeWindow)
+```
+After the entry has been dismissed, the given alternative window would become the key instead of the app key-window.
 
 ### Dismissing an Entry
 You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, likewise:
