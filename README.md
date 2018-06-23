@@ -587,12 +587,13 @@ SwiftEntryKit.display(entry: customViewController, using: attributes)
 ```
 
 ### Alternative Rollback Window
-By default the app key window becomes the key again right after SwiftEntryKit has finished displaying the entry, but that can be changed using `rollbackWindow` parameter.
+By default, the window held by the application delegate becomes the key again right after SwiftEntryKit has finished displaying the entry.
+This behavior can be changed using `rollbackWindow` parameter.
 
 ```Swift
 SwiftEntryKit.display(entry: view, using: attributes, rollbackWindow: alternativeWindow)
 ```
-After the entry has been dismissed, the given alternative window would become the key instead of the app key-window.
+After the entry has been dismissed, the given window `alternativeWindow` would become the key instead of the window that is held by the application delegate.
 
 ### Dismissing an Entry
 You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, likewise:
