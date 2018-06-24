@@ -32,7 +32,7 @@ final class EKWindowProvider {
     }
     
     /** A window to go back to when the last entry has been dismissed */
-    private var rollbackWindow: UIWindow!
+    private var rollbackWindow: SwiftEntryKit.RollbackWindow!
     
     private weak var entryView: EKEntryView!
 
@@ -72,7 +72,7 @@ final class EKWindowProvider {
     }
     
     /** Display a view using attributes */
-    func display(view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow? = nil) {
+    func display(view: UIView, using attributes: EKAttributes, rollbackWindow: SwiftEntryKit.RollbackWindow) {
         guard let entryVC = prepare(for: attributes) else {
             return
         }
@@ -83,7 +83,7 @@ final class EKWindowProvider {
     }
     
     /** Display a view controller using attributes */
-    func display(viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow? = nil) {
+    func display(viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: SwiftEntryKit.RollbackWindow) {
         guard let entryVC = prepare(for: attributes) else {
             return
         }
@@ -96,10 +96,11 @@ final class EKWindowProvider {
     /** Clear all entries immediately and display to the main window */
     func displayMainWindow() {
         entryWindow = nil
-        if let rollbackWindow = rollbackWindow {
-            rollbackWindow.makeKeyAndVisible()
-        } else {
+        switch rollbackWindow! {
+        case .main:
             UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        case .custom(window: let window):
+            window.makeKeyAndVisible()
         }
     }
     
