@@ -591,7 +591,7 @@ By default, the window held by the application delegate becomes the key again ri
 This behavior can be changed using `rollbackWindow` parameter.
 
 ```Swift
-SwiftEntryKit.display(entry: view, using: attributes, rollbackWindow: alternativeWindow)
+SwiftEntryKit.display(entry: view, using: attributes, rollbackWindow: .custom(window: alternativeWindow))
 ```
 After the entry has been dismissed, the given window `alternativeWindow` would become the key instead of the window that is held by the application delegate.
 
