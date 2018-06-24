@@ -33,7 +33,7 @@ public final class SwiftEntryKit {
      - parameter attributes: Display properties
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is the application key window
      */
-    public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow = UIApplication.shared.keyWindow!) {
+    public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow? = nil) {
         execute {
             EKWindowProvider.shared.display(view: view, using: attributes, rollbackWindow: rollbackWindow)
         }
@@ -47,7 +47,7 @@ public final class SwiftEntryKit {
      - parameter attributes: Display properties
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is the application key window
      */
-    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow = UIApplication.shared.keyWindow!) {
+    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow? = nil) {
         execute {
             EKWindowProvider.shared.display(viewController: viewController, using: attributes, rollbackWindow: rollbackWindow)
         }

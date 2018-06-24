@@ -72,7 +72,7 @@ final class EKWindowProvider {
     }
     
     /** Display a view using attributes */
-    func display(view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow) {
+    func display(view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow? = nil) {
         guard let entryVC = prepare(for: attributes) else {
             return
         }
@@ -83,7 +83,7 @@ final class EKWindowProvider {
     }
     
     /** Display a view controller using attributes */
-    func display(viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow) {
+    func display(viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow? = nil) {
         guard let entryVC = prepare(for: attributes) else {
             return
         }
@@ -96,7 +96,11 @@ final class EKWindowProvider {
     /** Clear all entries immediately and display to the main window */
     func displayMainWindow() {
         entryWindow = nil
-        rollbackWindow?.makeKeyAndVisible()
+        if let rollbackWindow = rollbackWindow {
+            rollbackWindow.makeKeyAndVisible()
+        } else {
+            UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        }
     }
     
     /** Dismiss the current entry */
