@@ -12,6 +12,12 @@ import Foundation
  */
 public final class SwiftEntryKit {
     
+    /** The window to rollback to after dismissal */
+    public enum RollbackWindow {
+        case main
+        case custom(window: UIWindow)
+    }
+    
     /** Completion handler for the dismissal method */
     public typealias DismissCompletionHandler = () -> Void
     
@@ -31,9 +37,9 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class
      - parameter view: Custom view that is to be displayed
      - parameter attributes: Display properties
-     - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is the application key window
+     - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* which is the app main window
      */
-    public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: UIWindow = UIApplication.shared.keyWindow!) {
+    public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
         execute {
             EKWindowProvider.shared.display(view: view, using: attributes, rollbackWindow: rollbackWindow)
         }
@@ -45,9 +51,9 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class
      - parameter view: Custom view that is to be displayed
      - parameter attributes: Display properties
-     - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is the application key window
+     - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* - which is the app main window
      */
-    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: UIWindow = UIApplication.shared.keyWindow!) {
+    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
         execute {
             EKWindowProvider.shared.display(viewController: viewController, using: attributes, rollbackWindow: rollbackWindow)
         }
