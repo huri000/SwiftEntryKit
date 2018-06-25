@@ -16,7 +16,6 @@ class EKWindow: UIWindow {
         super.init(frame: UIScreen.main.bounds)
         backgroundColor = .clear
         rootViewController = rootVC
-        makeKeyAndVisible()
     }
     
     required init?(coder aDecoder: NSCoder) {
