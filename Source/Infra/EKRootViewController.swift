@@ -24,6 +24,14 @@ class EKRootViewController: UIViewController {
         return EKWrapperView()
     }()
     
+    private var statusBar: EKAttributes.StatusBar? = nil {
+        didSet {
+            if let statusBar = statusBar {
+                UIApplication.shared.set(statusBarStyle: statusBar)
+            }
+        }
+    }
+    
     private var lastEntry: EKContentView? {
         return view.subviews.last as? EKContentView
     }
@@ -33,6 +41,10 @@ class EKRootViewController: UIViewController {
             wrapperView.isAbleToReceiveTouches = isResponsive
             EKWindowProvider.shared.entryWindow.isAbleToReceiveTouches = isResponsive
         }
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBar?.appearance.style ?? previousStatusBar.appearance.style
     }
     
     // MARK: - Lifecycle
@@ -55,12 +67,13 @@ class EKRootViewController: UIViewController {
     
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.set(statusBarStyle: previousStatusBar)
+        
+        statusBar = previousStatusBar
     }
     
     // Set status bar
     func setStatusBarStyle(for attributes: EKAttributes) {
-        UIApplication.shared.set(statusBarStyle: attributes.statusBar)
+        statusBar = attributes.statusBar
     }
     
     // MARK: - Setup
@@ -88,6 +101,9 @@ class EKRootViewController: UIViewController {
         entryContentView.setup(with: entryView)
         
         isResponsive = attributes.screenInteraction.isResponsive
+        if previousAttributes?.statusBar != attributes.statusBar {
+            setNeedsStatusBarAppearanceUpdate()
+        }
     }
         
     // Check priority precedence for a given entry
