@@ -1,6 +1,11 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.2
+
+### Bug Fixes:
+- [iPhone X issue with presenting Alert right after previous was closed #62](https://github.com/huri000/SwiftEntryKit/issues/62)
+
 ## 0.5.1
 
 Rollback window bug fix
