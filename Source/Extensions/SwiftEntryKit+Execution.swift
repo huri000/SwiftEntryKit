@@ -14,12 +14,8 @@ extension SwiftEntryKit {
      Executes a UI action on the main thread, thus letting any of the class methods of SwiftEntryKit to be invokes even from a background thread.
      */
     static func execute(action: @escaping () -> ()) {
-        if Thread.isMainThread {
+        DispatchQueue.main.async {
             action()
-        } else {
-            DispatchQueue.main.async {
-                action()
-            }
         }
     }
 }

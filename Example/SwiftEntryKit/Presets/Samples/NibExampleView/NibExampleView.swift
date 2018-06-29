@@ -12,11 +12,17 @@ class NibExampleView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        fromNib()
+        setup()
     }
     
     init() {
         super.init(frame: .zero)
+        setup()
+    }
+    
+    private func setup() {
         fromNib()
+        clipsToBounds = true
+        layer.cornerRadius = 5
     }
 }
