@@ -31,7 +31,6 @@
 		149D0A1220AF1EE7000AA6C4 /* FormFieldPresetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D0A1120AF1EE7000AA6C4 /* FormFieldPresetFactory.swift */; };
 		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
-		14A6AAB220CA5B2C005F3D81 /* SwiftEntryKit+Execution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6AAB120CA5B2C005F3D81 /* SwiftEntryKit+Execution.swift */; };
 		14A6AAC420CA7208005F3D81 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6AAC320CA7208005F3D81 /* ExampleViewController.swift */; };
 		14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */; };
 		14B3A51220C16B64002306C4 /* EKRatingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51120C16B64002306C4 /* EKRatingMessage.swift */; };
@@ -220,7 +219,6 @@
 		149D0A1120AF1EE7000AA6C4 /* FormFieldPresetFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormFieldPresetFactory.swift; sourceTree = "<group>"; };
 		14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsDataSource.swift; sourceTree = "<group>"; };
 		14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
-		14A6AAB120CA5B2C005F3D81 /* SwiftEntryKit+Execution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftEntryKit+Execution.swift"; sourceTree = "<group>"; };
 		14A6AAC320CA7208005F3D81 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		14B0B95020B7E4FE00D24D8A /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = "../../../Library/Developer/Xcode/DerivedData/QuickLayout-aotxzuhsyjyfzgcifoglldyfgnnw/Build/Products/Debug-iphonesimulator/QuickLayout-iOS/QuickLayout.framework"; sourceTree = "<group>"; };
 		14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingMessageView.swift; sourceTree = "<group>"; };
@@ -438,7 +436,6 @@
 		14B48B2520B81C9700CE3EF4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				14A6AAB120CA5B2C005F3D81 /* SwiftEntryKit+Execution.swift */,
 				14B48B2620B81C9700CE3EF4 /* UIView+Utils.swift */,
 				14B48B2720B81C9700CE3EF4 /* UIRectCorner+Short.swift */,
 				14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */,
@@ -1037,7 +1034,6 @@
 				14B48B6820B81C9700CE3EF4 /* EKProperty.swift in Sources */,
 				14B48B6520B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift in Sources */,
 				14B3A51620C16BC3002306C4 /* EKSimpleMessage.swift in Sources */,
-				14A6AAB220CA5B2C005F3D81 /* SwiftEntryKit+Execution.swift in Sources */,
 				14B48B5D20B81C9700CE3EF4 /* EKWrapperView.swift in Sources */,
 				14B48B6320B81C9700CE3EF4 /* UIView+Utils.swift in Sources */,
 				14B3A51820C16D7A002306C4 /* EKRatingSymbolView.swift in Sources */,

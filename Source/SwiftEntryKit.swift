@@ -40,7 +40,7 @@ public final class SwiftEntryKit {
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* which is the app main window
      */
     public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
-        execute {
+        DispatchQueue.main.async {
             EKWindowProvider.shared.display(view: view, using: attributes, rollbackWindow: rollbackWindow)
         }
     }
@@ -54,7 +54,7 @@ public final class SwiftEntryKit {
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* - which is the app main window
      */
     public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
-        execute {
+        DispatchQueue.main.async {
             EKWindowProvider.shared.display(viewController: viewController, using: attributes, rollbackWindow: rollbackWindow)
         }
     }
@@ -67,7 +67,7 @@ public final class SwiftEntryKit {
      - parameter view: Custom view that is to be displayed instead of the currently displayed entry
      */
     public class func transform(to view: UIView) {
-        execute {
+        DispatchQueue.main.async {
             EKWindowProvider.shared.transform(to: view)
         }
     }
@@ -79,7 +79,7 @@ public final class SwiftEntryKit {
      - parameter completion: A completion handler that is to be called right after the entry is dismissed (After the animation is concluded).
      */
     public class func dismiss(with completion: DismissCompletionHandler? = nil) {
-        execute {
+        DispatchQueue.main.async {
             EKWindowProvider.shared.dismiss(with: completion)
         }
     }
@@ -91,8 +91,12 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class.
      */
     public class func layoutIfNeeded() {
-        execute {
+        if Thread.isMainThread {
             EKWindowProvider.shared.layoutIfNeeded()
+        } else {
+            DispatchQueue.main.async {
+                EKWindowProvider.shared.layoutIfNeeded()
+            }
         }
     }
 }

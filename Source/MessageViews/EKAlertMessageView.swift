@@ -80,9 +80,4 @@ public class EKAlertMessageView: EKSimpleMessageView {
             }
         }
     }
-    
-    // MARK: Internal Animation
-    private func animateIn(damping: CGFloat) {
-
-    }
 }

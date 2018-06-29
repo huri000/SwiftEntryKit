@@ -1,6 +1,15 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.3
+
+### Feature:
+- [EKNotificationMessage has broken layout #64](https://github.com/huri000/SwiftEntryKit/issues/64) - Add margins to `EKNotificationMessage`.
+
+### Bug Fixes:
+- Animations of alert and EKRatingMessageView.
+- Constraints conflict in EKRatingMessageView
+
 ## 0.5.2
 
 ### Bug Fixes:
