@@ -6,7 +6,16 @@
 //  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
+import UIKit
+
 public struct EKNotificationMessage {
+    
+    public struct Margins {
+        public var edgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        public var titleToDescription: CGFloat = 5
+        
+        public static var `default` = Margins()
+    }
     
     /** Image, Title, Description */
     public let simpleMessage: EKSimpleMessage
@@ -14,8 +23,12 @@ public struct EKNotificationMessage {
     /** Optional auxiliary label descriptor (For instance, it be used to display time of message) */
     public let auxiliary: EKProperty.LabelContent?
     
-    public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil) {
+    /** Defines the vertical and horizontal margins */
+    public let margins: Margins
+    
+    public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil, margins: Margins = .default) {
         self.simpleMessage = simpleMessage
         self.auxiliary = auxiliary
+        self.margins = margins
     }
 }
