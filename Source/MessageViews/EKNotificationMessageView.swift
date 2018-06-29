@@ -17,7 +17,7 @@ public class EKNotificationMessageView: EKSimpleMessageView {
     public init(with message: EKNotificationMessage) {
         super.init(with: message.simpleMessage)
         setupAuxLabel(with: message.auxiliary)
-        layoutContent(with: message.margins)
+        layoutContent(with: message.insets)
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -33,30 +33,30 @@ public class EKNotificationMessageView: EKSimpleMessageView {
         addSubview(auxLabel)
     }
     
-    private func layoutContent(with margins: EKNotificationMessage.Margins) {
+    private func layoutContent(with insets: EKNotificationMessage.Insets) {
         
         messageContentView.verticalMargins = 0
         messageContentView.horizontalMargins = 0
-        messageContentView.labelsOffset = margins.titleToDescription
+        messageContentView.labelsOffset = insets.titleToDescription
         
         if let thumbImageView = thumbImageView {
-            thumbImageView.layoutToSuperview(.left, offset: margins.edgeInsets.left)
-            thumbImageView.layoutToSuperview(.top, offset: margins.edgeInsets.top)
+            thumbImageView.layoutToSuperview(.left, offset: insets.contentInsets.left)
+            thumbImageView.layoutToSuperview(.top, offset: insets.contentInsets.top)
             messageContentView.layout(.left, to: .right, of: thumbImageView, offset: 12)
             messageContentView.layout(to: .top, of: thumbImageView, offset: 4)
         } else {
-            messageContentView.layoutToSuperview(.left, offset: margins.edgeInsets.left)
-            messageContentView.layoutToSuperview(.top, offset: margins.edgeInsets.top)
+            messageContentView.layoutToSuperview(.left, offset: insets.contentInsets.left)
+            messageContentView.layoutToSuperview(.top, offset: insets.contentInsets.top)
         }
 
         if let auxLabel = auxLabel {
-            auxLabel.layoutToSuperview(.right, offset: -margins.edgeInsets.right)
-            auxLabel.layoutToSuperview(.top, offset: margins.edgeInsets.top + 2)
+            auxLabel.layoutToSuperview(.right, offset: -insets.contentInsets.right)
+            auxLabel.layoutToSuperview(.top, offset: insets.contentInsets.top + 2)
             auxLabel.forceContentWrap()
             messageContentView.layout(.right, to: .left, of: auxLabel)
         } else {
-            messageContentView.layoutToSuperview(.right, offset: -margins.edgeInsets.right)
+            messageContentView.layoutToSuperview(.right, offset: -insets.contentInsets.right)
         }
-        messageContentView.layoutToSuperview(.bottom, offset: -margins.edgeInsets.bottom)
+        messageContentView.layoutToSuperview(.bottom, offset: -insets.contentInsets.bottom)
     }
 }

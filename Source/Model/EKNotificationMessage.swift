@@ -10,11 +10,16 @@ import UIKit
 
 public struct EKNotificationMessage {
     
-    public struct Margins {
-        public var edgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    /** Insets of the content of the message */
+    public struct Insets {
+        
+        /** The insets of the content of the message, from the top, bottom, left, right */
+        public var contentInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        
+        /** The distance between the title and the description */
         public var titleToDescription: CGFloat = 5
         
-        public static var `default` = Margins()
+        public static var `default` = Insets()
     }
     
     /** Image, Title, Description */
@@ -24,11 +29,11 @@ public struct EKNotificationMessage {
     public let auxiliary: EKProperty.LabelContent?
     
     /** Defines the vertical and horizontal margins */
-    public let margins: Margins
+    public let insets: Insets
     
-    public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil, margins: Margins = .default) {
+    public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil, insets: Insets = .default) {
         self.simpleMessage = simpleMessage
         self.auxiliary = auxiliary
-        self.margins = margins
+        self.insets = insets
     }
 }
