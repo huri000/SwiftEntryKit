@@ -50,7 +50,7 @@ public class EKRatingMessageView: UIView {
         addSubview(messageContentView)
         messageContentView.verticalMargins = 20
         messageContentView.horizontalMargins = 30
-        messageContentView.layoutToSuperview(axis: .horizontally)
+        messageContentView.layoutToSuperview(axis: .horizontally, priority: .must)
         messageContentView.layoutToSuperview(.top, offset: 10)
     }
     
@@ -63,7 +63,7 @@ public class EKRatingMessageView: UIView {
             self.animateIn()
         }
         symbolsView.layoutToSuperview(.centerX)
-        symbolsView.layout(.top, to: .bottom, of: messageContentView, offset: 10)
+        symbolsView.layout(.top, to: .bottom, of: messageContentView, offset: 10, priority: .must)
     }
 
     private func setupButtonBarView() {
