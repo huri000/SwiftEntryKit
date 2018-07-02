@@ -31,6 +31,10 @@ public final class SwiftEntryKit {
         return EKAttributes.isDisplaying
     }
     
+    /** Make key window or not for entry window, default will be false
+     */
+    public static var makeKeyWindowForDisplay: Bool = false
+    
     /**
      Displays a given entry view using an attributes struct.
      - A thread-safe method - Can be invokes from any thread
