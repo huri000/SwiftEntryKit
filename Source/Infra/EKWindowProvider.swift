@@ -42,7 +42,7 @@ final class EKWindowProvider {
     // MARK: - Setup and Teardown methods
     
     // Prepare the window and the host view controller
-    private func prepare(for attributes: EKAttributes) -> EKRootViewController? {
+    private func prepare(for attributes: EKAttributes, presentInsideKeyWindow: Bool) -> EKRootViewController? {
         let entryVC = setupWindowAndRootVC()
         guard entryVC.canDisplay(attributes: attributes) else {
             return nil
@@ -50,7 +50,7 @@ final class EKWindowProvider {
         entryVC.setStatusBarStyle(for: attributes)
 
         entryWindow.windowLevel = attributes.windowLevel.value
-        if SwiftEntryKit.makeKeyWindowForDisplay {
+        if presentInsideKeyWindow {
             entryWindow.makeKeyAndVisible()
         } else {
             entryWindow.isHidden = false
@@ -79,8 +79,8 @@ final class EKWindowProvider {
     }
     
     /** Display a view using attributes */
-    func display(view: UIView, using attributes: EKAttributes, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        guard let entryVC = prepare(for: attributes) else {
+    func display(view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
+        guard let entryVC = prepare(for: attributes, presentInsideKeyWindow: presentInsideKeyWindow) else {
             return
         }
         let entryView = EKEntryView(newEntry: .init(view: view, attributes: attributes))
@@ -90,8 +90,8 @@ final class EKWindowProvider {
     }
     
     /** Display a view controller using attributes */
-    func display(viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        guard let entryVC = prepare(for: attributes) else {
+    func display(viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
+        guard let entryVC = prepare(for: attributes, presentInsideKeyWindow: presentInsideKeyWindow) else {
             return
         }
         let entryView = EKEntryView(newEntry: .init(viewController: viewController, attributes: attributes))

@@ -24,16 +24,13 @@ public final class SwiftEntryKit {
     /** Cannot be instantiated, customized, inherited. */
     private init() {}
     
-    /** Returns true if an entry is currently displayed.
+    /**
+     Returns true if an entry is currently displayed.
      Not thread safe - should be called from the main queue only in order to receive a reliable result.
      */
     public class var isCurrentlyDisplaying: Bool {
         return EKAttributes.isDisplaying
     }
-    
-    /** Make key window or not for entry window, default will be false
-     */
-    public static var makeKeyWindowForDisplay: Bool = false
     
     /**
      Displays a given entry view using an attributes struct.
@@ -41,11 +38,12 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class
      - parameter view: Custom view that is to be displayed
      - parameter attributes: Display properties
+     - parameter presentInsideKeyWindow: Indicates whether the entry window should become the key window.
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* which is the app main window
      */
-    public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
+    public class func display(entry view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool = false, rollbackWindow: RollbackWindow = .main) {
         DispatchQueue.main.async {
-            EKWindowProvider.shared.display(view: view, using: attributes, rollbackWindow: rollbackWindow)
+            EKWindowProvider.shared.display(view: view, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
         }
     }
     
@@ -55,11 +53,12 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class
      - parameter view: Custom view that is to be displayed
      - parameter attributes: Display properties
+     - parameter presentInsideKeyWindow: Indicates whether the entry window should become the key window.
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* - which is the app main window
      */
-    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
+    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool = false, rollbackWindow: RollbackWindow = .main) {
         DispatchQueue.main.async {
-            EKWindowProvider.shared.display(viewController: viewController, using: attributes, rollbackWindow: rollbackWindow)
+            EKWindowProvider.shared.display(viewController: viewController, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
         }
     }
     
