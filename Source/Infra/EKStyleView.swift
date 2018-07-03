@@ -20,12 +20,15 @@ class EKStyleView: UIView {
         
         let size = CGSize(width: cornerRadius, height: cornerRadius)
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: size)
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = path.cgPath
-        layer.mask = maskLayer
+        
+        if !corners.isEmpty && cornerRadius > 0 {
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = path.cgPath
+            layer.mask = maskLayer
+        }
         
         if let borderValues = border.borderValues {
-            borderLayer.path = maskLayer.path
+            borderLayer.path = path.cgPath
             borderLayer.fillColor = UIColor.clear.cgColor
             borderLayer.strokeColor = borderValues.color.cgColor
             borderLayer.lineWidth = borderValues.width

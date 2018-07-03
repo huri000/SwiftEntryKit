@@ -470,7 +470,9 @@ attributes.popBehavior = .overridden
 ```
 
 #### Status Bar
-The status bar appearance can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+The status bar appearance can be modified during the display of the entry. 
+
+We support both *View controller-based status bar appearance* or not.
 
 Setting the status bar style is fairly simple:
 

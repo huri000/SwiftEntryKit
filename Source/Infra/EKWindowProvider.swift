@@ -47,8 +47,15 @@ final class EKWindowProvider {
         guard entryVC.canDisplay(attributes: attributes) else {
             return nil
         }
-        entryWindow.windowLevel = attributes.windowLevel.value
         entryVC.setStatusBarStyle(for: attributes)
+
+        entryWindow.windowLevel = attributes.windowLevel.value
+        if SwiftEntryKit.makeKeyWindowForDisplay {
+            entryWindow.makeKeyAndVisible()
+        } else {
+            entryWindow.isHidden = false
+        }
+
         return entryVC
     }
     
