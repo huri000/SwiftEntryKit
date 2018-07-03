@@ -67,7 +67,6 @@ class EKRootViewController: UIViewController {
     
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         statusBar = previousStatusBar
     }
     

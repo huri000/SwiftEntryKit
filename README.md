@@ -131,7 +131,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.5.3'
+pod 'SwiftEntryKit', '0.5.4'
 ```
 
 Then, run the following command:
@@ -154,7 +154,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.5.3
+github "huri000/SwiftEntryKit" == 0.5.4
 ```
 
 ## Usage
@@ -471,10 +471,9 @@ attributes.popBehavior = .overridden
 
 #### Status Bar
 The status bar appearance can be modified during the display of the entry. 
+SwiftEntryKit supports both *View controller-based status bar appearance* and manual setting. 
 
-We support both *View controller-based status bar appearance* or not.
-
-Setting the status bar style is fairly simple:
+Setting the status bar style is fairly simple - 
 
 Status bar becomes visible and gets a light style:
 ```Swift

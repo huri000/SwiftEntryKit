@@ -1,6 +1,21 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.4
+
+### Changes
+
+#### Status Bar Style Appearance 
+SwiftEntryKit supports applications that defines status bar behaviour that is based on the presented view controller. The related [issue](https://github.com/huri000/SwiftEntryKit/issues/66).
+
+#### Key Window
+Setting the entry window is key is not the default behavior anymore. The API 
+`public class func display(entry view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool = default, rollbackWindow: RollbackWindow = default)`
+`public class func display(entry viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool = default, rollbackWindow: RollbackWindow = default)`
+
+#### Visual Effect View Mask (Entry Background)
+Performed only when really needed
+
 ## 0.5.3
 
 ### Feature:
