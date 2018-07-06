@@ -46,6 +46,10 @@ class EKRootViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBar?.appearance.style ?? previousStatusBar.appearance.style
     }
+
+    override var prefersStatusBarHidden: Bool {
+        return !(statusBar?.appearance.visible ?? previousStatusBar.appearance.visible)
+    }
     
     // MARK: - Lifecycle
     
