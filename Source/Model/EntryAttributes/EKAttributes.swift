@@ -11,8 +11,13 @@ import UIKit
 
 public struct EKAttributes {
     
-    /** Init with default attributes */
-    public init() {}
+    // MARK: Identification
+    
+    /**
+     A settable **optional** name that matches the entry-attributes.
+     - Nameless entries cannot be inquired using *SwiftEntryKit.isCurrentlyDisplaying(entryNamed: _) -> Bool*
+     */
+    public var name: String?
     
     // MARK: Display Attributes
     
@@ -81,4 +86,7 @@ public struct EKAttributes {
     
     /** Describes the previous entry behaviour when a new entry with higher display-priority shows */
     public var popBehavior = PopBehavior.animated(animation: .translation)
+    
+    /** Init with default attributes */
+    public init() {}
 }
