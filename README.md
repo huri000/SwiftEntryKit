@@ -18,6 +18,7 @@
 * [Usage](#usage)
   * [Quick Usage](#quick-usage)
   * [Entry Attributes](#entry-attributes)
+    * [Name](#name)
     * [Window Level](#window-level)
     * [Display Position](#display-position)
     * [Display Priority](#display-priority)
