@@ -18,7 +18,7 @@
 * [Usage](#usage)
   * [Quick Usage](#quick-usage)
   * [Entry Attributes](#entry-attributes)
-    * [Name](#name)
+    * [Entry Name](#entry-name)
     * [Window Level](#window-level)
     * [Display Position](#display-position)
     * [Display Priority](#display-priority)
@@ -195,7 +195,7 @@ var attributes = EKAttributes()
 
 Below are the properties that can be modified in the *EKAttributes*:
 
-#### Name
+#### Entry Name
 Entries can have names.
 When an EKAttributes struct is instantiated, it is nameless, meaning, the `name` property is `nil`. 
 It is recommended to set a meaningful name for an entry.
