@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension EKAttributes {
+public extension EKAttributes {
     
     /** Describes the event of scroll user interaction */
     public enum Scroll {

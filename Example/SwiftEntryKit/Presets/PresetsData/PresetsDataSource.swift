@@ -148,6 +148,7 @@ struct PresetsDataSource {
 
         // Preset I
         attributes = .topNote
+        attributes.name = "Top Note"
         attributes.hapticFeedbackType = .success
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .satCyan)

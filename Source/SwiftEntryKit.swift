@@ -25,11 +25,22 @@ public final class SwiftEntryKit {
     private init() {}
     
     /**
-     Returns true if an entry is currently displayed.
-     Not thread safe - should be called from the main queue only in order to receive a reliable result.
+     Returns true if **any** entry is currently displayed.
+     - Not a thread safe - should be called from the main queue only in order to receive a reliable result.
+     - Convenience computed variable. Using it is the same as invoking **isCurrentlyDisplaying() -> Bool** (witohut the name of the entry).
      */
     public class var isCurrentlyDisplaying: Bool {
-        return EKAttributes.isDisplaying
+        return isCurrentlyDisplaying()
+    }
+    
+    /**
+     Returns true if an entry with a given name is currently displayed.
+     - Not a thread safe - should be called from the main queue only in order to receive a reliable result.
+     - If invoked with *name* = *nil* or without the parameter value, it will return *true* if **any** entry is currently displayed.
+     - parameter name: The name of the entry. Its default value is *nil*.
+     */
+    public class func isCurrentlyDisplaying(entryNamed name: String? = nil) -> Bool {
+        return EKWindowProvider.shared.isCurrentlyDisplaying(entryNamed: name)
     }
     
     /**

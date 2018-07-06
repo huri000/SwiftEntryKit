@@ -1,6 +1,26 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.5
+
+### Bug Fix
+
+#### Status Bar Visibility
+Status bar visibility using a view controller based status bar appearance
+
+### Improvements
+
+#### Entry Name
+Entry can have a name. That property can be optionally set.
+Also,  `SwiftEntryKit` is added a new method:
+
+```Swift 
+public class func isCurrentlyDisplaying(entryNamed name: String? = default) -> Bool
+````
+
+It can be used to inquire if a certain entry is currently displayed. 
+It might prove helpful to troubleshoot some issues using it, and it also a boilerplate for future developments.
+
 ## 0.5.4
 
 ### Changes

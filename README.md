@@ -131,7 +131,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.5.4'
+pod 'SwiftEntryKit', '0.5.5'
 ```
 
 Then, run the following command:
@@ -154,7 +154,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.5.4
+github "huri000/SwiftEntryKit" == 0.5.5
 ```
 
 ## Usage
@@ -193,6 +193,22 @@ var attributes = EKAttributes()
 ```
 
 Below are the properties that can be modified in the *EKAttributes*:
+
+#### Name
+Entries can have names.
+When an EKAttributes struct is instantiated, it is nameless, meaning, the `name` property is `nil`. 
+It is recommended to set a meaningful name for an entry.
+
+```Swift 
+attributes.name = "Top Note"
+```
+
+Entries with names can be specifically referred to later, for example, you can inquire whether a **specific** entry is currently displayed:
+```Swift
+if SwiftEntryKit.isCurrentlyDisplaying(entryNamed: "Top Note") {
+    /* Do your things */
+}
+```
 
 #### Window Level
 Entries can be displayed above the application main window, above the status bar, above the alerts window or even have a custom level (UIWindowLevel).
@@ -498,6 +514,9 @@ EKAttributes' interface is as follows:
 ```Swift
 public struct EKAttributes
 
+    // Identification
+    public var name: String?
+
     // Display
     public var windowLevel: WindowLevel
     public var position: Position
@@ -617,6 +636,13 @@ SwiftEntryKit.dismiss {
 Inquire whether an entry is currently displayed:
 ```Swift
 if SwiftEntryKit.isCurrentlyDisplaying {
+    /* Do your things */
+}
+```
+
+Inquire whether a **specific** entry is currently displayed using the `name` property inside `EKAttributes`.
+```Swift
+if SwiftEntryKit.isCurrentlyDisplaying(entryNamed: "Top Note") {
     /* Do your things */
 }
 ```

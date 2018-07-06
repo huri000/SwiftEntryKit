@@ -483,7 +483,7 @@ class EKContentView: UIView {
             EKAttributes.count -= 1
         }
         if !keepWindow && !EKAttributes.isDisplaying {
-            EKWindowProvider.shared.displayMainWindow()
+            EKWindowProvider.shared.displayRollbackWindow()
         }
     }
     

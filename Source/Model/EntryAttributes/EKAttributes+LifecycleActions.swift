@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension EKAttributes {
+public extension EKAttributes {
 
     /** Contains optionally injected events that take place during the entry lifecycle */
     public struct LifecycleEvents {

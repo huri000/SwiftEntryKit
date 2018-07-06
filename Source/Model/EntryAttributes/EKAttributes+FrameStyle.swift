@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension EKAttributes {
+public extension EKAttributes {
     
     /** Corner radius of the entry - Specifies the corners */
     public enum RoundCorners {
