@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.6
+
+### Bug Fixes:
+
+[App freezes on iOS 9.3.2 when displaying an entry and there is one shown already #73](https://github.com/huri000/SwiftEntryKit/issues/73)
+
 ## 0.5.5
 
 ### Bug Fix
