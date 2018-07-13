@@ -69,7 +69,6 @@ class EKEntryView: EKStyleView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.layoutIfNeeded()
         applyFrameStyle()
     }
     

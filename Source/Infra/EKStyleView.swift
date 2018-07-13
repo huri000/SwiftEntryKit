@@ -11,9 +11,15 @@ class EKStyleView: UIView {
         return CAShapeLayer()
     }()
     
+    private var roundCorners: EKAttributes.RoundCorners!
+    private var border: EKAttributes.Border!
+    
     var appliedStyle = false
     
     func applyFrameStyle(roundCorners: EKAttributes.RoundCorners, border: EKAttributes.Border) {
+        self.roundCorners = roundCorners
+        self.border = border
+        
         var cornerRadius: CGFloat = 0
         var corners: UIRectCorner = []
         (corners, cornerRadius) = roundCorners.cornerValues ?? ([], 0)
@@ -37,5 +43,13 @@ class EKStyleView: UIView {
         }
         
         appliedStyle = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let roundCorners = roundCorners, let border = border else {
+            return
+        }
+        applyFrameStyle(roundCorners: roundCorners, border: border)
     }
 }
