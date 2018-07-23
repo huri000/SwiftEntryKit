@@ -621,7 +621,7 @@ You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, 
 ```Swift
 SwiftEntryKit.dismiss()
 ```
-This dismisses the entry animatedly using its *exitAnimation* attribute and on comletion, the window would be removed as well.
+This dismisses the entry animatedly using its *exitAnimation* attribute and on completion, the window would be removed as well.
 
 #### Using a completion handler
 
