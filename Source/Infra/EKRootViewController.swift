@@ -145,7 +145,7 @@ class EKRootViewController: UIViewController {
 
 extension EKRootViewController {
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch lastAttributes.screenInteraction.defaultAction {
         case .dismissEntry:
             lastEntry?.animateOut(pushOut: false)
