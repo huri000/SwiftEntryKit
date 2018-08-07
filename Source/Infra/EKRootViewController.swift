@@ -34,6 +34,15 @@ class EKRootViewController: UIViewController {
             EKWindowProvider.shared.entryWindow.isAbleToReceiveTouches = isResponsive
         }
     }
+
+    // Rotation lock control
+    override var shouldAutorotate: Bool {
+        if lastAttributes == nil {
+            return true
+        }
+
+        return lastAttributes.enableRotate
+    }
     
     // MARK: - Lifecycle
     
