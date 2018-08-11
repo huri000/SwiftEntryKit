@@ -1,6 +1,16 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.7
+
+### Changes:
+
+Dismiss entries using `touchesEnded` instead of `touchesBegan`. 
+
+### Issues Fixed
+
+[Deployment target is 9.3, not 9.0 #78](https://github.com/huri000/SwiftEntryKit/issues/78)
+
 ## 0.5.6
 
 ### Bug Fixes:
