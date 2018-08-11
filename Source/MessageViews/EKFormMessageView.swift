@@ -93,7 +93,7 @@ public class EKFormMessageView: UIView {
     
     private func extractTextFieldsContent() {
         for (content, textField) in zip(textFieldsContent, textFieldViews) {
-            content.outputWrapper.text = textField.text
+            content.contentWrapper.text = textField.text
         }
     }
     

@@ -18,7 +18,12 @@ public class EKTextField: UIView {
     private let textField = UITextField()
     
     var text: String {
-        return textField.text ?? ""
+        set {
+            textField.text = newValue
+        }
+        get {
+            return textField.text ?? ""
+        }
     }
     
     init(with content: EKProperty.TextFieldContent) {
@@ -47,7 +52,6 @@ public class EKTextField: UIView {
         textField.set(.height, of: EKTextField.totalHeight)
         textField.layout(.leading, to: .trailing, of: imageView)
         textField.layoutToSuperview(.top, .trailing)
-        
         imageView.layout(to: .centerY, of: textField)
     }
     

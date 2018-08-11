@@ -1,6 +1,18 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.5.8
+
+### Issues Resolved:
+
+#### Allow injecting content into text field in form entry preset
+[How to set the value (not placeholder) to textfield for Forms preset? #79](https://github.com/huri000/SwiftEntryKit/issues/79)
+
+To support text injection to `EKTextField`, some minor changes have been done:
+1. `EKTextField`'s `text` property has a setter now.
+2. `TextFieldContent`'s `output` has been changed to `textContent` and has a setter now.
+3. `outputWrapper` - changed to `contentWrapper`.
+
 ## 0.5.7
 
 ### Changes:
