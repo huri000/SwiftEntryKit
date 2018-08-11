@@ -112,7 +112,7 @@ public struct EKProperty {
     public struct TextFieldContent {
         
         // NOTE: Intentionally a reference type
-        class Output {
+        class ContentWrapper {
             var text = ""
         }
         
@@ -122,9 +122,14 @@ public struct EKProperty {
         public var placeholder: LabelContent
         public var textStyle: LabelStyle
         public var bottomBorderColor: UIColor
-        let outputWrapper = Output()
-        public var output: String {
-            return outputWrapper.text
+        let contentWrapper = ContentWrapper()
+        public var textContent: String {
+            set {
+                contentWrapper.text = newValue
+            }
+            get {
+                return contentWrapper.text
+            }
         }
         
         public init(keyboardType: UIKeyboardType = .default, placeholder: LabelContent, textStyle: LabelStyle, isSecure: Bool = false, leadingImage: UIImage? = nil, bottomBorderColor: UIColor = .clear) {
