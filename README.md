@@ -329,7 +329,7 @@ This is very useful when you want to display an unintrusive content like banners
 attributes.screenInteraction = .forward
 ```
 
-Pass additional actions that are invokes when the user taps the entry:
+Pass additional actions that are invoked when the user taps the entry:
 ```Swift
 let action = {
     // Do something useful
