@@ -460,6 +460,9 @@ class EKContentView: UIView {
     func removePromptly(keepWindow: Bool = true) {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: false)
+        
+        // Execute willDisappear action if needed
+        self.contentView.content.attributes.lifecycleEvents.willDisappear?()
         removeFromSuperview(keepWindow: keepWindow)
     }
     
@@ -666,6 +669,8 @@ extension EKContentView {
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.translateOut(withType: type)
         }, completion: { finished in
+            // Execute willDisappear action if needed
+            self.contentView.content.attributes.lifecycleEvents.willDisappear?()
             self.removeFromSuperview(keepWindow: false)
         })
     }
