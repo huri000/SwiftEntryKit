@@ -460,9 +460,7 @@ class EKContentView: UIView {
     func removePromptly(keepWindow: Bool = true) {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: false)
-        
-        // Execute willDisappear action if needed
-        self.contentView.content.attributes.lifecycleEvents.willDisappear?()
+        contentView.content.attributes.lifecycleEvents.willDisappear?()
         removeFromSuperview(keepWindow: keepWindow)
     }
     
@@ -665,12 +663,10 @@ extension EKContentView {
     private func stretchOut(usingSwipe type: OutTranslation, duration: TimeInterval) {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: false)
-        
+        contentView.content.attributes.lifecycleEvents.willDisappear?()
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.translateOut(withType: type)
         }, completion: { finished in
-            // Execute willDisappear action if needed
-            self.contentView.content.attributes.lifecycleEvents.willDisappear?()
             self.removeFromSuperview(keepWindow: false)
         })
     }

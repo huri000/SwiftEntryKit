@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+
+## 0.5.9
+
+### Issue [#85](https://github.com/huri000/SwiftEntryKit/pull/86)
+Lifecycle event `willDisappear` does not get called on swipe and prompt removeal of entry.
+
 ## 0.5.8
 
 ### Issues Resolved:
