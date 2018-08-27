@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension EKAttributes {
+public extension EKAttributes {
     
     /** Describes the entry behavior when a new entry shows (with equal or higher display-priority) */
     public enum PopBehavior {

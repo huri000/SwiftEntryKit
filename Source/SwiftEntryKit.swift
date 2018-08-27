@@ -24,11 +24,23 @@ public final class SwiftEntryKit {
     /** Cannot be instantiated, customized, inherited. */
     private init() {}
     
-    /** Returns true if an entry is currently displayed.
-     Not thread safe - should be called from the main queue only in order to receive a reliable result.
+    /**
+     Returns true if **any** entry is currently displayed.
+     - Not a thread safe - should be called from the main queue only in order to receive a reliable result.
+     - Convenience computed variable. Using it is the same as invoking **isCurrentlyDisplaying() -> Bool** (witohut the name of the entry).
      */
     public class var isCurrentlyDisplaying: Bool {
-        return EKAttributes.isDisplaying
+        return isCurrentlyDisplaying()
+    }
+    
+    /**
+     Returns true if an entry with a given name is currently displayed.
+     - Not a thread safe - should be called from the main queue only in order to receive a reliable result.
+     - If invoked with *name* = *nil* or without the parameter value, it will return *true* if **any** entry is currently displayed.
+     - parameter name: The name of the entry. Its default value is *nil*.
+     */
+    public class func isCurrentlyDisplaying(entryNamed name: String? = nil) -> Bool {
+        return EKWindowProvider.shared.isCurrentlyDisplaying(entryNamed: name)
     }
     
     /**
@@ -37,11 +49,12 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class
      - parameter view: Custom view that is to be displayed
      - parameter attributes: Display properties
+     - parameter presentInsideKeyWindow: Indicates whether the entry window should become the key window.
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* which is the app main window
      */
-    public class func display(entry view: UIView, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
-        execute {
-            EKWindowProvider.shared.display(view: view, using: attributes, rollbackWindow: rollbackWindow)
+    public class func display(entry view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool = false, rollbackWindow: RollbackWindow = .main) {
+        DispatchQueue.main.async {
+            EKWindowProvider.shared.display(view: view, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
         }
     }
     
@@ -51,11 +64,12 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class
      - parameter view: Custom view that is to be displayed
      - parameter attributes: Display properties
+     - parameter presentInsideKeyWindow: Indicates whether the entry window should become the key window.
      - parameter rollbackWindow: After the entry has been dismissed, SwiftEntryKit rolls back to the given window. By default it is *.main* - which is the app main window
      */
-    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: RollbackWindow = .main) {
-        execute {
-            EKWindowProvider.shared.display(viewController: viewController, using: attributes, rollbackWindow: rollbackWindow)
+    public class func display(entry viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool = false, rollbackWindow: RollbackWindow = .main) {
+        DispatchQueue.main.async {
+            EKWindowProvider.shared.display(viewController: viewController, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
         }
     }
     
@@ -67,7 +81,7 @@ public final class SwiftEntryKit {
      - parameter view: Custom view that is to be displayed instead of the currently displayed entry
      */
     public class func transform(to view: UIView) {
-        execute {
+        DispatchQueue.main.async {
             EKWindowProvider.shared.transform(to: view)
         }
     }
@@ -79,7 +93,7 @@ public final class SwiftEntryKit {
      - parameter completion: A completion handler that is to be called right after the entry is dismissed (After the animation is concluded).
      */
     public class func dismiss(with completion: DismissCompletionHandler? = nil) {
-        execute {
+        DispatchQueue.main.async {
             EKWindowProvider.shared.dismiss(with: completion)
         }
     }
@@ -91,8 +105,12 @@ public final class SwiftEntryKit {
      - A class method - Should be called on the class.
      */
     public class func layoutIfNeeded() {
-        execute {
+        if Thread.isMainThread {
             EKWindowProvider.shared.layoutIfNeeded()
+        } else {
+            DispatchQueue.main.async {
+                EKWindowProvider.shared.layoutIfNeeded()
+            }
         }
     }
 }

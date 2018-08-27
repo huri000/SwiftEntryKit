@@ -82,6 +82,7 @@ extension UITextField {
             font = newValue.textStyle.font
             textAlignment = newValue.textStyle.alignment
             isSecureTextEntry = newValue.isSecure
+            text = newValue.textContent
         }
         get {
             fatalError("textFieldContent doesn't have a getter")

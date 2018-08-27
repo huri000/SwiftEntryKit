@@ -11,21 +11,30 @@ class EKStyleView: UIView {
         return CAShapeLayer()
     }()
     
+    private var roundCorners: EKAttributes.RoundCorners!
+    private var border: EKAttributes.Border!
+    
     var appliedStyle = false
     
     func applyFrameStyle(roundCorners: EKAttributes.RoundCorners, border: EKAttributes.Border) {
+        self.roundCorners = roundCorners
+        self.border = border
+        
         var cornerRadius: CGFloat = 0
         var corners: UIRectCorner = []
         (corners, cornerRadius) = roundCorners.cornerValues ?? ([], 0)
         
         let size = CGSize(width: cornerRadius, height: cornerRadius)
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: size)
-        let maskLayer = CAShapeLayer()
-        maskLayer.path = path.cgPath
-        layer.mask = maskLayer
+        
+        if !corners.isEmpty && cornerRadius > 0 {
+            let maskLayer = CAShapeLayer()
+            maskLayer.path = path.cgPath
+            layer.mask = maskLayer
+        }
         
         if let borderValues = border.borderValues {
-            borderLayer.path = maskLayer.path
+            borderLayer.path = path.cgPath
             borderLayer.fillColor = UIColor.clear.cgColor
             borderLayer.strokeColor = borderValues.color.cgColor
             borderLayer.lineWidth = borderValues.width
@@ -34,5 +43,13 @@ class EKStyleView: UIView {
         }
         
         appliedStyle = true
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let roundCorners = roundCorners, let border = border else {
+            return
+        }
+        applyFrameStyle(roundCorners: roundCorners, border: border)
     }
 }

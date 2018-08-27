@@ -1,6 +1,89 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+
+## 0.5.9
+
+### Issue [#85](https://github.com/huri000/SwiftEntryKit/pull/86)
+Lifecycle event `willDisappear` does not get called on swipe and prompt removeal of entry.
+
+## 0.5.8
+
+### Issues Resolved:
+
+#### Allow injecting content into text field in form entry preset
+[How to set the value (not placeholder) to textfield for Forms preset? #79](https://github.com/huri000/SwiftEntryKit/issues/79)
+
+To support text injection to `EKTextField`, some minor changes have been done:
+1. `EKTextField`'s `text` property has a setter now.
+2. `TextFieldContent`'s `output` has been changed to `textContent` and has a setter now.
+3. `outputWrapper` - changed to `contentWrapper`.
+
+## 0.5.7
+
+### Changes:
+
+Dismiss entries using `touchesEnded` instead of `touchesBegan`. 
+
+### Issues Fixed
+
+[Deployment target is 9.3, not 9.0 #78](https://github.com/huri000/SwiftEntryKit/issues/78)
+
+## 0.5.6
+
+### Bug Fixes:
+
+[App freezes on iOS 9.3.2 when displaying an entry and there is one shown already #73](https://github.com/huri000/SwiftEntryKit/issues/73)
+
+## 0.5.5
+
+### Bug Fix
+
+#### Status Bar Visibility
+Status bar visibility using a view controller based status bar appearance
+
+### Improvements
+
+#### Entry Name
+Entry can have a name. That property can be optionally set.
+Also,  `SwiftEntryKit` is added a new method:
+
+```Swift 
+public class func isCurrentlyDisplaying(entryNamed name: String? = default) -> Bool
+````
+
+It can be used to inquire if a certain entry is currently displayed. 
+It might prove helpful to troubleshoot some issues using it, and it also a boilerplate for future developments.
+
+## 0.5.4
+
+### Changes
+
+#### Status Bar Style Appearance 
+SwiftEntryKit supports applications that defines status bar behaviour that is based on the presented view controller. The related [issue](https://github.com/huri000/SwiftEntryKit/issues/66).
+
+#### Key Window
+Setting the entry window is key is not the default behavior anymore. The API 
+`public class func display(entry view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool = default, rollbackWindow: RollbackWindow = default)`
+`public class func display(entry viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool = default, rollbackWindow: RollbackWindow = default)`
+
+#### Visual Effect View Mask (Entry Background)
+Performed only when really needed
+
+## 0.5.3
+
+### Feature:
+- [EKNotificationMessage has broken layout #64](https://github.com/huri000/SwiftEntryKit/issues/64) - Add margins to `EKNotificationMessage`.
+
+### Bug Fixes:
+- Animations of alert and EKRatingMessageView.
+- Constraints conflict in EKRatingMessageView
+
+## 0.5.2
+
+### Bug Fixes:
+- [iPhone X issue with presenting Alert right after previous was closed #62](https://github.com/huri000/SwiftEntryKit/issues/62)
+
 ## 0.5.1
 
 Rollback window bug fix

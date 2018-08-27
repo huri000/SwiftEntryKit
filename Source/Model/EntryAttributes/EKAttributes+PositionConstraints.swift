@@ -12,7 +12,9 @@ public extension EKAttributes {
     
     /** Describes the frame of the entry. It's limitations, width and offset from the anchor (top / bottom of the screen) */
     public struct PositionConstraints {
-        
+        /** Autorotate Enable/Disable */
+        public var isRotationEnabled: Bool = true
+
         /** Describes safe area relation */
         public enum SafeArea {
             

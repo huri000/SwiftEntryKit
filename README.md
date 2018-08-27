@@ -18,6 +18,7 @@
 * [Usage](#usage)
   * [Quick Usage](#quick-usage)
   * [Entry Attributes](#entry-attributes)
+    * [Entry Name](#entry-name)
     * [Window Level](#window-level)
     * [Display Position](#display-position)
     * [Display Priority](#display-priority)
@@ -131,7 +132,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.5.1'
+pod 'SwiftEntryKit', '0.5.9'
 ```
 
 Then, run the following command:
@@ -154,7 +155,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.5.1
+github "huri000/SwiftEntryKit" == 0.5.9
 ```
 
 ## Usage
@@ -193,6 +194,22 @@ var attributes = EKAttributes()
 ```
 
 Below are the properties that can be modified in the *EKAttributes*:
+
+#### Entry Name
+Entries can have names.
+When an EKAttributes struct is instantiated, it is nameless, meaning, the `name` property is `nil`. 
+It is recommended to set a meaningful name for an entry.
+
+```Swift 
+attributes.name = "Top Note"
+```
+
+Entries with names can be specifically referred to later, for example, you can inquire whether a **specific** entry is currently displayed:
+```Swift
+if SwiftEntryKit.isCurrentlyDisplaying(entryNamed: "Top Note") {
+    /* Do your things */
+}
+```
 
 #### Window Level
 Entries can be displayed above the application main window, above the status bar, above the alerts window or even have a custom level (UIWindowLevel).
@@ -312,7 +329,7 @@ This is very useful when you want to display an unintrusive content like banners
 attributes.screenInteraction = .forward
 ```
 
-Pass additional actions that are invokes when the user taps the entry:
+Pass additional actions that are invoked when the user taps the entry:
 ```Swift
 let action = {
     // Do something useful
@@ -470,9 +487,10 @@ attributes.popBehavior = .overridden
 ```
 
 #### Status Bar
-The status bar appearance can be modified during the display of the entry. In order to enable this feature, set *View controller-based status bar appearance* to *NO* in your project's info.plist file.
+The status bar appearance can be modified during the display of the entry. 
+SwiftEntryKit supports both *View controller-based status bar appearance* and manual setting. 
 
-Setting the status bar style is fairly simple:
+Setting the status bar style is fairly simple - 
 
 Status bar becomes visible and gets a light style:
 ```Swift
@@ -496,6 +514,9 @@ EKAttributes' interface is as follows:
 
 ```Swift
 public struct EKAttributes
+
+    // Identification
+    public var name: String?
 
     // Display
     public var windowLevel: WindowLevel
@@ -600,7 +621,7 @@ You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, 
 ```Swift
 SwiftEntryKit.dismiss()
 ```
-This dismisses the entry animatedly using its *exitAnimation* attribute and on comletion, the window would be removed as well.
+This dismisses the entry animatedly using its *exitAnimation* attribute and on completion, the window would be removed as well.
 
 #### Using a completion handler
 
@@ -616,6 +637,13 @@ SwiftEntryKit.dismiss {
 Inquire whether an entry is currently displayed:
 ```Swift
 if SwiftEntryKit.isCurrentlyDisplaying {
+    /* Do your things */
+}
+```
+
+Inquire whether a **specific** entry is currently displayed using the `name` property inside `EKAttributes`.
+```Swift
+if SwiftEntryKit.isCurrentlyDisplaying(entryNamed: "Top Note") {
     /* Do your things */
 }
 ```

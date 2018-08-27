@@ -42,13 +42,20 @@ final class EKWindowProvider {
     // MARK: - Setup and Teardown methods
     
     // Prepare the window and the host view controller
-    private func prepare(for attributes: EKAttributes) -> EKRootViewController? {
+    private func prepare(for attributes: EKAttributes, presentInsideKeyWindow: Bool) -> EKRootViewController? {
         let entryVC = setupWindowAndRootVC()
         guard entryVC.canDisplay(attributes: attributes) else {
             return nil
         }
-        entryWindow.windowLevel = attributes.windowLevel.value
         entryVC.setStatusBarStyle(for: attributes)
+
+        entryWindow.windowLevel = attributes.windowLevel.value
+        if presentInsideKeyWindow {
+            entryWindow.makeKeyAndVisible()
+        } else {
+            entryWindow.isHidden = false
+        }
+
         return entryVC
     }
     
@@ -66,14 +73,29 @@ final class EKWindowProvider {
     
     // MARK: - Exposed Actions
     
+    /**
+     Returns *true* if the currently displayed entry has the given name.
+     In case *name* has the value of *nil*, the result is *true* if any entry is currently displayed.
+     */
+    func isCurrentlyDisplaying(entryNamed name: String?) -> Bool {
+        guard let entryView = entryView else {
+            return false
+        }
+        if let name = name { // Test for names equality
+            return entryView.content.attributes.name == name
+        } else { // Return true by default if the name is *nil*
+            return true
+        }
+    }
+    
     /** Transform current entry to view */
     func transform(to view: UIView) {
         entryView?.transform(to: view)
     }
     
     /** Display a view using attributes */
-    func display(view: UIView, using attributes: EKAttributes, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        guard let entryVC = prepare(for: attributes) else {
+    func display(view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
+        guard let entryVC = prepare(for: attributes, presentInsideKeyWindow: presentInsideKeyWindow) else {
             return
         }
         let entryView = EKEntryView(newEntry: .init(view: view, attributes: attributes))
@@ -83,8 +105,8 @@ final class EKWindowProvider {
     }
     
     /** Display a view controller using attributes */
-    func display(viewController: UIViewController, using attributes: EKAttributes, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        guard let entryVC = prepare(for: attributes) else {
+    func display(viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
+        guard let entryVC = prepare(for: attributes, presentInsideKeyWindow: presentInsideKeyWindow) else {
             return
         }
         let entryView = EKEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
@@ -93,9 +115,10 @@ final class EKWindowProvider {
         self.rollbackWindow = rollbackWindow
     }
     
-    /** Clear all entries immediately and display to the main window */
-    func displayMainWindow() {
+    /** Clear all entries immediately and display to the rollback window */
+    func displayRollbackWindow() {
         entryWindow = nil
+        entryView = nil
         switch rollbackWindow! {
         case .main:
             UIApplication.shared.keyWindow?.makeKeyAndVisible()

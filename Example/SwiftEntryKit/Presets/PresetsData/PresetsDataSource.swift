@@ -148,6 +148,7 @@ struct PresetsDataSource {
 
         // Preset I
         attributes = .topNote
+        attributes.name = "Top Note"
         attributes.hapticFeedbackType = .success
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .satCyan)
@@ -478,7 +479,6 @@ struct PresetsDataSource {
         attributes.entryBackground = .clear
         attributes.screenInteraction = .forward
         attributes.entryInteraction = .absorbTouches
-        attributes.roundCorners = .all(radius: 5)
         
         attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 0.9, initialVelocity: 0)),
                                              scale: .init(from: 0.8, to: 1, duration: 0.5, spring: .init(damping: 0.8, initialVelocity: 0)),
@@ -507,7 +507,6 @@ struct PresetsDataSource {
         attributes.entryBackground = .clear
         attributes.screenInteraction = .forward
         attributes.entryInteraction = .absorbTouches
-        attributes.roundCorners = .all(radius: 5)
         
         attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 0.9, initialVelocity: 0)),
                                              scale: .init(from: 0.8, to: 1, duration: 0.5, spring: .init(damping: 0.8, initialVelocity: 0)),

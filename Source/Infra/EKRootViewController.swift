@@ -24,6 +24,14 @@ class EKRootViewController: UIViewController {
         return EKWrapperView()
     }()
     
+    private var statusBar: EKAttributes.StatusBar? = nil {
+        didSet {
+            if let statusBar = statusBar {
+                UIApplication.shared.set(statusBarStyle: statusBar)
+            }
+        }
+    }
+    
     private var lastEntry: EKContentView? {
         return view.subviews.last as? EKContentView
     }
@@ -41,7 +49,15 @@ class EKRootViewController: UIViewController {
             return true
         }
 
-        return lastAttributes.enableRotate
+        return lastAttributes.positionConstraints.isRotationEnabled
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return statusBar?.appearance.style ?? previousStatusBar.appearance.style
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return !(statusBar?.appearance.visible ?? previousStatusBar.appearance.visible)
     }
     
     // MARK: - Lifecycle
@@ -64,12 +80,12 @@ class EKRootViewController: UIViewController {
     
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.set(statusBarStyle: previousStatusBar)
+        statusBar = previousStatusBar
     }
     
     // Set status bar
     func setStatusBarStyle(for attributes: EKAttributes) {
-        UIApplication.shared.set(statusBarStyle: attributes.statusBar)
+        statusBar = attributes.statusBar
     }
     
     // MARK: - Setup
@@ -97,6 +113,9 @@ class EKRootViewController: UIViewController {
         entryContentView.setup(with: entryView)
         
         isResponsive = attributes.screenInteraction.isResponsive
+        if previousAttributes?.statusBar != attributes.statusBar {
+            setNeedsStatusBarAppearanceUpdate()
+        }
     }
         
     // Check priority precedence for a given entry
@@ -135,7 +154,7 @@ class EKRootViewController: UIViewController {
 
 extension EKRootViewController {
     
-    override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch lastAttributes.screenInteraction.defaultAction {
         case .dismissEntry:
             lastEntry?.animateOut(pushOut: false)

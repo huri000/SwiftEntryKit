@@ -344,19 +344,19 @@ class EKContentView: UIView {
         superview?.layoutIfNeeded()
         
         if let translation = animation.translate {
-            performAnimation(with: translation) { [weak self] in
+            performAnimation(out: true, with: translation) { [weak self] in
                 self?.translateOut(withType: outTranslationType)
             }
         }
         
         if let fade = animation.fade {
-            performAnimation(with: fade, preAction: { self.alpha = fade.start }) {
+            performAnimation(out: true, with: fade, preAction: { self.alpha = fade.start }) {
                 self.alpha = fade.end
             }
         }
         
         if let scale = animation.scale {
-            performAnimation(with: scale, preAction: { self.transform = CGAffineTransform(scaleX: scale.start, y: scale.start) }) {
+            performAnimation(out: true, with: scale, preAction: { self.transform = CGAffineTransform(scaleX: scale.start, y: scale.start) }) {
                 self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
             }
         }
@@ -381,19 +381,19 @@ class EKContentView: UIView {
         superview?.layoutIfNeeded()
         
         if let translation = animation.translate {
-            performAnimation(with: translation, action: translateIn)
+            performAnimation(out: false, with: translation, action: translateIn)
         } else {
             translateIn()
         }
         
         if let fade = animation.fade {
-            performAnimation(with: fade, preAction: { self.alpha = fade.start }) {
+            performAnimation(out: false, with: fade, preAction: { self.alpha = fade.start }) {
                 self.alpha = fade.end
             }
         }
         
         if let scale = animation.scale {
-            performAnimation(with: scale, preAction: { self.transform = CGAffineTransform(scaleX: scale.start, y: scale.start) }) {
+            performAnimation(out: false, with: scale, preAction: { self.transform = CGAffineTransform(scaleX: scale.start, y: scale.start) }) {
                 self.transform = CGAffineTransform(scaleX: scale.end, y: scale.end)
             }
         }
@@ -439,8 +439,9 @@ class EKContentView: UIView {
     }
     
     // Perform animation - translate / scale / fade
-    private func performAnimation(with animation: EKAnimation, preAction: @escaping () -> () = {}, action: @escaping () -> ()) {
-        let options: UIViewAnimationOptions = [.curveEaseOut, .beginFromCurrentState]
+    private func performAnimation(out: Bool, with animation: EKAnimation, preAction: @escaping () -> () = {}, action: @escaping () -> ()) {
+        let curve: UIViewAnimationOptions = out ? .curveEaseIn : .curveEaseOut
+        let options: UIViewAnimationOptions = [curve, .beginFromCurrentState]
         preAction()
         if let spring = animation.spring {
             UIView.animate(withDuration: animation.duration, delay: animation.delay, usingSpringWithDamping: spring.damping, initialSpringVelocity: spring.initialVelocity, options: options, animations: {
@@ -459,6 +460,7 @@ class EKContentView: UIView {
     func removePromptly(keepWindow: Bool = true) {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: false)
+        contentView.content.attributes.lifecycleEvents.willDisappear?()
         removeFromSuperview(keepWindow: keepWindow)
     }
     
@@ -482,7 +484,7 @@ class EKContentView: UIView {
             EKAttributes.count -= 1
         }
         if !keepWindow && !EKAttributes.isDisplaying {
-            EKWindowProvider.shared.displayMainWindow()
+            EKWindowProvider.shared.displayRollbackWindow()
         }
     }
     
@@ -661,7 +663,7 @@ extension EKContentView {
     private func stretchOut(usingSwipe type: OutTranslation, duration: TimeInterval) {
         outDispatchWorkItem?.cancel()
         entryDelegate?.changeToInactive(withAttributes: attributes, pushOut: false)
-        
+        contentView.content.attributes.lifecycleEvents.willDisappear?()
         UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 4, options: [.allowUserInteraction, .beginFromCurrentState], animations: {
             self.translateOut(withType: type)
         }, completion: { finished in
