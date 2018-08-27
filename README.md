@@ -256,7 +256,7 @@ Display for 2 seconds:
 attributes.displayDuration = 2
 ```
 
-Display for an infinate duration
+Display for an infinite duration
 ```Swift
 attributes.displayDuration = .infinity
 ```
