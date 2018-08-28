@@ -112,7 +112,7 @@ class AttributesCreation: QuickSpec {
                 attributes = EKAttributes()
             }
             
-            it("displays for infinate time") {
+            it("displays for infinite time") {
                 duration = .infinity
                 attributes.displayDuration = duration
                 

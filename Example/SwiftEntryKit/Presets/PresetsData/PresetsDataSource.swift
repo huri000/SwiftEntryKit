@@ -183,7 +183,7 @@ struct PresetsDataSource {
         attributes.popBehavior = .animated(animation: .translation)
         attributes.entryBackground = .color(color: .pinky)
         attributes.statusBar = .light
-        descriptionString = "Appears for an infinate duration"
+        descriptionString = "Appears for an infinite duration"
         descriptionThumb = ThumbDesc.topNote.rawValue
         description = .init(with: attributes, title: "Top Processing Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)

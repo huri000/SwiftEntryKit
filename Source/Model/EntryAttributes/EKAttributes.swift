@@ -31,7 +31,7 @@ public struct EKAttributes {
     public var displayPriority = DisplayPriority.normal
     
     /** Describes how long the entry is displayed before it is dismissed */
-    public var displayDuration: DisplayDuration = 2 // Use .infinity for infinate duration
+    public var displayDuration: DisplayDuration = 2 // Use .infinity for infinite duration
     
     /** The frame attributes of the entry */
     public var positionConstraints = PositionConstraints()

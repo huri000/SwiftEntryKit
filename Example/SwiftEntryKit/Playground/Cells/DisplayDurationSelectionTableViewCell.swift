@@ -14,7 +14,7 @@ class DisplayDurationSelectionTableViewCell: SelectionTableViewCell {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Display Duration"
         descriptionValue = "How long the entry is displayed"
-        insertSegments(by: ["2 Seconds", "4 Seconds", "Infinate"])
+        insertSegments(by: ["2 Seconds", "4 Seconds", "infinite"])
         selectSegment()
     }
     
