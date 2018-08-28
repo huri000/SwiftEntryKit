@@ -19,7 +19,6 @@
 		143F3AB22090B7F0009F3719 /* ScrollSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143F3AB12090B7F0009F3719 /* ScrollSelectionTableViewCell.swift */; };
 		144E51BD20D56E150051FDCA /* EKAttributes+LifecycleActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 144E51BC20D56E150051FDCA /* EKAttributes+LifecycleActions.swift */; };
 		145F56B820B84ACA0027EB67 /* EKAttributes+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F56B720B84ACA0027EB67 /* EKAttributes+StatusBar.swift */; };
-		145F56BB20B863220027EB67 /* UIApplication+EKAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */; };
 		14665621209204A5008FB96D /* AnimationSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14665620209204A5008FB96D /* AnimationSelectionTableViewCell.swift */; };
 		147A9A612092682E00A49D7A /* SelectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A602092682E00A49D7A /* SelectionHeaderView.swift */; };
 		147A9A6320926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */; };
@@ -208,7 +207,6 @@
 		144E51BC20D56E150051FDCA /* EKAttributes+LifecycleActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKAttributes+LifecycleActions.swift"; sourceTree = "<group>"; };
 		14580CCA20B7F4FB001AF703 /* DemoAppInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DemoAppInfo.plist; sourceTree = "<group>"; };
 		145F56B720B84ACA0027EB67 /* EKAttributes+StatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKAttributes+StatusBar.swift"; sourceTree = "<group>"; };
-		145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EKAppearance.swift"; sourceTree = "<group>"; };
 		14665620209204A5008FB96D /* AnimationSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		147A9A602092682E00A49D7A /* SelectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionHeaderView.swift; sourceTree = "<group>"; };
 		147A9A6220926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxWidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -451,7 +449,6 @@
 				14B48B2720B81C9700CE3EF4 /* UIRectCorner+Short.swift */,
 				14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */,
 				14B48B2920B81C9700CE3EF4 /* UIView+Shadow.swift */,
-				145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1016,7 +1013,6 @@
 				14B48B6020B81C9700CE3EF4 /* UIView+Responder.swift in Sources */,
 				14B48B8120B81C9700CE3EF4 /* EKXStatusBarMessageView.swift in Sources */,
 				14B48B7220B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift in Sources */,
-				145F56BB20B863220027EB67 /* UIApplication+EKAppearance.swift in Sources */,
 				14B48B7720B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift in Sources */,
 				14B48B6E20B81C9700CE3EF4 /* EKAttributes+Duration.swift in Sources */,
 				14B48B6420B81C9700CE3EF4 /* UIRectCorner+Short.swift in Sources */,

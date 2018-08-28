@@ -26,9 +26,7 @@ class EKRootViewController: UIViewController {
     
     private var statusBar: EKAttributes.StatusBar? = nil {
         didSet {
-            if let statusBar = statusBar {
-                UIApplication.shared.set(statusBarStyle: statusBar)
-            }
+            setNeedsStatusBarAppearanceUpdate()
         }
     }
     
