@@ -86,7 +86,7 @@ public struct EKAttributes {
     
     /** Describes the previous entry behaviour when a new entry with higher display-priority shows */
     public var popBehavior = PopBehavior.animated(animation: .translation)
-    
+
     /** Init with default attributes */
     public init() {}
 }
