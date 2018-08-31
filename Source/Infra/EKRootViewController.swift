@@ -43,12 +43,10 @@ class EKRootViewController: UIViewController {
         }
     }
 
-    // Rotation lock control
     override var shouldAutorotate: Bool {
         if lastAttributes == nil {
             return true
         }
-
         return lastAttributes.positionConstraints.isRotationEnabled
     }
     
