@@ -272,8 +272,8 @@ The default value of `displayDuration` is `2`.
 #### Position Constraints 
 Constraints that tie the entry tightly to the screen context, for example: Height, Width, Max Width, Max Height, Additional Vertical Offset & Safe Area related info.
 
-- Entries that support auto-layout - Their height is inferred from the constraints that applied to them.
-- Entries that don't support auto-layout - The exact size must be explicitly set using `positionConstraints`'s `size` property.
+- Entries that support Auto Layout - Their height is inferred from the constraints that applied to them.
+- Entries that don't support Auto Layout - Their exact size must be explicitly set using `positionConstraints`'s `size` property.
 
 For example:
 
