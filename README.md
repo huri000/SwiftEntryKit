@@ -273,7 +273,7 @@ The default value of `displayDuration` is `2`.
 Constraints that tie the entry tightly to the screen context, for example: Height, Width, Max Width, Max Height, Additional Vertical Offset & Safe Area related info.
 
 - Entries that support auto-layout - Their height is inferred from the constraints that applied to them.
-- Entries that don't support auto-layout - The exact size of the entry must be explicitly set using `positionConstraints`'s `size` and `maxSize` properties.
+- Entries that don't support auto-layout - The exact size must be explicitly set using `positionConstraints`'s `size` property.
 
 For example:
 
@@ -353,8 +353,9 @@ let action = {
 attributes.entryInteraction.customTapActions.append(action)
 ```
 
-The default value of `screenInteraction` is `forward`.
-The default value of `entryInteraction` is `dismiss`.
+The default value of `screenInteraction` is `.forward`.
+
+The default value of `entryInteraction` is `.dismiss`.
 
 #### Scroll Behavior
 Describes the entry behavior when it's being scrolled, that is, dismissal by a swipe gesture and a rubber band effect much similar to a UIScrollView.
