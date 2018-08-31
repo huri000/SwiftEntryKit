@@ -132,7 +132,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.5.9'
+pod 'SwiftEntryKit', '0.6.0'
 ```
 
 Then, run the following command:
@@ -155,7 +155,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.5.9
+github "huri000/SwiftEntryKit" == 0.6.0
 ```
 
 ## Usage
@@ -220,13 +220,17 @@ attributes.windowLevel = .normal
 ```
 This causes the entry to appear above the application key window and below the status bar.
 
+The default value of `windowLevel` is `.statusBar`.
+
 #### Display Position
 The entry can be displayed either at the *top*, *center*, or the *bottom* of the screen.
 
-For example, set the display position to *top*, likewise:
+For example, set the display position to *bottom*, likewise:
 ```Swift 
-attributes.position = .top
+attributes.position = .bottom
 ```
+
+The default value of `position` is `.top`.
 
 #### Display Priority 
 The display priority of the entry determines whether it dismisses other entries or be dismissed by them. 
@@ -248,12 +252,14 @@ SwiftEntryKit.display(entry: view2, using: normalPriorityAttributes)
 
 *view2* won't be displayed!
 
+The default value of `displayPriority` is `.normal`.
+
 #### Display Duration
 The display duration of the entry (Counted from the moment the entry has finished it's entrance animation and until the exit animation begins).
 
-Display for 2 seconds:
+Display for 4 seconds:
 ```Swift
-attributes.displayDuration = 2
+attributes.displayDuration = 4
 ```
 
 Display for an infinite duration
@@ -261,8 +267,13 @@ Display for an infinite duration
 attributes.displayDuration = .infinity
 ```
 
+The default value of `displayDuration` is `2`.
+
 #### Position Constraints 
-Constraints that tie the entry tightly to the screen contexts, for example: Height, Width, Max Width, Max Height, Additional Vertical Offset & Safe Area related info.
+Constraints that tie the entry tightly to the screen context, for example: Height, Width, Max Width, Max Height, Additional Vertical Offset & Safe Area related info.
+
+- Entries that support auto-layout - Their height is inferred from the constraints that applied to them.
+- Entries that don't support auto-layout - The exact size of the entry must be explicitly set using `positionConstraints`'s `size` and `maxSize` properties.
 
 For example:
 
@@ -288,9 +299,14 @@ That snippet implies that the safe area insets should be kept and not be a part 
 attributes.positionConstraints.safeArea = .empty(fillSafeArea: false)
 ```
 
-Vertical Offset - An additional offset that can be applied to the entry (Other than the safe area).
+Vertical Offset - an additional offset that can be applied to the entry (Other than the safe area).
 ```Swift
 attributes.positionConstraints.verticalOffset = 10
+```
+
+Autorotation - whether the entry autorotates along with the orientation of the device. Defaults to `true`.
+```Swift
+attributes.positionConstraints.isRotationEnabled = false
 ```
 
 Keyboard Releation - used to bind an entry to the keyboard once the keyboard is displayed.
@@ -337,6 +353,9 @@ let action = {
 attributes.entryInteraction.customTapActions.append(action)
 ```
 
+The default value of `screenInteraction` is `forward`.
+The default value of `entryInteraction` is `dismiss`.
+
 #### Scroll Behavior
 Describes the entry behavior when it's being scrolled, that is, dismissal by a swipe gesture and a rubber band effect much similar to a UIScrollView.
 
@@ -360,8 +379,12 @@ Enable swipe but disable stretch:
 attributes.scroll = .edgeCrossingDisabled(swipeable: true)
 ```
 
+The default value of `scroll` is `.enabled(swipeable: true, pullbackAnimation: .jolt)`.
+
 #### [Haptic Feedback](https://developer.apple.com/ios/human-interface-guidelines/user-interaction/feedback/)
 The device can produce a haptic feedback, thus adding an additional sensory depth to each entry.
+
+The default value of `hapticFeedbackType` is `.none`.
 
 #### Lifecycle Events
 Events can be injected to the entry so that they are to be called during its lifecycle.
@@ -387,7 +410,7 @@ attributes.lifecycleEvents.didDisappear = {
 #### Background Style
 The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
 
-The default value is *.clear*. This example implies clear background for both the entry and the screen:
+The following example implies clear background for both the entry and the screen:
 ```Swift
 attributes.entryBackground = .clear
 attributes.screenBackground = .clear
@@ -410,6 +433,8 @@ Visual Effect entry background:
 attributes.entryBackground = .visualEffect(style: .light)
 ```
 
+The default value of `entryBackground` and `screenBackground` is `.clear`. 
+
 #### Shadow
 The shadow that surrounds the entry.
 
@@ -422,6 +447,8 @@ Disable shadow around the entry:
 ```Swift
 attributes.shadow = .none
 ```
+
+The default value of `shadow` is `.none`. 
 
 #### Round Corners
 Round corners around the entry.
@@ -446,6 +473,8 @@ No round corners:
 attributes.roundCorners = .none
 ```
 
+The default value of `roundCorners` is `.none`. 
+
 #### Border
 The border around the entry.
 
@@ -458,6 +487,8 @@ No border:
 ```Swift
 attributes.border = .none
 ```
+
+The default value of `border` is `.none`. 
 
 #### Animations
 Describes how the entry animates into and out of the screen. 
@@ -473,6 +504,8 @@ attributes.entranceAnimation = .init(
                  fade: .init(from: 0.8, to: 1, duration: 0.3))
 ```
 
+The default value of `entranceAnimation` and `exitAnimation` is `.translation` - The entry translates in or out, respectively, with duration of 0.3 seconds. 
+
 #### Pop Behavior
 Describes the entry behavior when it's being popped (dismissed by an entry with equal / higher display-priority.
 
@@ -485,6 +518,8 @@ The entry is being overriden (Disappears promptly):
 ```Swift
 attributes.popBehavior = .overridden
 ```
+
+The default value of `popBehavior` is `.animated(animation: .translation)` - It translates out with duration of 0.3 seconds. 
 
 #### Status Bar
 The status bar appearance can be modified during the display of the entry. 
@@ -510,7 +545,9 @@ attributes.statusBar = .inferred
 In case there is an already presenting entry with lower/equal display priority, the status bar will change it's style
 When the entry is removed the status bar gets it's initial style back.
 
-EKAttributes' interface is as follows:
+The default value of `statusBar` is `.inferred`. 
+
+#### EKAttributes' interface is as follows:
 
 ```Swift
 public struct EKAttributes
