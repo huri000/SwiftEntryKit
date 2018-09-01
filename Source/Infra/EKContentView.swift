@@ -12,6 +12,7 @@ import QuickLayout
 protocol EntryContentViewDelegate: class {
     func changeToActive(withAttributes attributes: EKAttributes)
     func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool)
+    func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool)
 }
 
 class EKContentView: UIView {
@@ -373,9 +374,7 @@ class EKContentView: UIView {
     
     // Animate in
     private func animateIn() {
-        
-        EKAttributes.count += 1
-        
+                
         let animation = attributes.entranceAnimation
         
         superview?.layoutIfNeeded()
@@ -480,12 +479,7 @@ class EKContentView: UIView {
         super.removeFromSuperview()
         contentView.content.viewController?.removeFromParentViewController()
         
-        if EKAttributes.count > 0 {
-            EKAttributes.count -= 1
-        }
-        if !keepWindow && !EKAttributes.isDisplaying {
-            EKWindowProvider.shared.displayRollbackWindow()
-        }
+        entryDelegate.didFinishDisplaying(entry: contentView, keepWindowActive: keepWindow)
     }
     
     deinit {

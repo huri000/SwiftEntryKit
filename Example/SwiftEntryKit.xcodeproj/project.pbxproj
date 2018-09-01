@@ -56,7 +56,6 @@
 		14B48B6720B81C9700CE3EF4 /* SwiftEntryKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2A20B81C9700CE3EF4 /* SwiftEntryKit.swift */; };
 		14B48B6820B81C9700CE3EF4 /* EKProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2C20B81C9700CE3EF4 /* EKProperty.swift */; };
 		14B48B6920B81C9700CE3EF4 /* EKAttributes+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2E20B81C9700CE3EF4 /* EKAttributes+Shadow.swift */; };
-		14B48B6A20B81C9700CE3EF4 /* EKAttributes+Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */; };
 		14B48B6B20B81C9700CE3EF4 /* EKAttributes+Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3020B81C9700CE3EF4 /* EKAttributes+Position.swift */; };
 		14B48B6C20B81C9700CE3EF4 /* EKAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3120B81C9700CE3EF4 /* EKAttributes.swift */; };
 		14B48B6D20B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */; };
@@ -104,6 +103,8 @@
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* PresetsViewController.swift */; };
 		14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */; };
+		14F3FD86213A6ED900CA3010 /* EKEntryCacher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3FD85213A6ED900CA3010 /* EKEntryCacher.swift */; };
+		14F3FD8F213A708100CA3010 /* SwiftEntryKit+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3FD8E213A708100CA3010 /* SwiftEntryKit+Configuration.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
@@ -245,7 +246,6 @@
 		14B48B2A20B81C9700CE3EF4 /* SwiftEntryKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftEntryKit.swift; sourceTree = "<group>"; };
 		14B48B2C20B81C9700CE3EF4 /* EKProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKProperty.swift; sourceTree = "<group>"; };
 		14B48B2E20B81C9700CE3EF4 /* EKAttributes+Shadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Shadow.swift"; sourceTree = "<group>"; };
-		14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Count.swift"; sourceTree = "<group>"; };
 		14B48B3020B81C9700CE3EF4 /* EKAttributes+Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Position.swift"; sourceTree = "<group>"; };
 		14B48B3120B81C9700CE3EF4 /* EKAttributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKAttributes.swift; sourceTree = "<group>"; };
 		14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+UserInteraction.swift"; sourceTree = "<group>"; };
@@ -295,6 +295,8 @@
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* PresetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
+		14F3FD85213A6ED900CA3010 /* EKEntryCacher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKEntryCacher.swift; sourceTree = "<group>"; };
+		14F3FD8E213A708100CA3010 /* SwiftEntryKit+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftEntryKit+Configuration.swift"; sourceTree = "<group>"; };
 		2029C59B0572812CFEEAE4CC /* Pods-SwiftEntryKitDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftEntryKitDemo/Pods-SwiftEntryKitDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		2235372EA387E104A274207F /* Pods_SwiftEntryKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A856CAE48665E23BC76CB3B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				14B48B2120B81C9700CE3EF4 /* Utils */,
 				14B48B2520B81C9700CE3EF4 /* Extensions */,
 				14B48B2A20B81C9700CE3EF4 /* SwiftEntryKit.swift */,
+				14F3FD8E213A708100CA3010 /* SwiftEntryKit+Configuration.swift */,
 				14B48B2B20B81C9700CE3EF4 /* Model */,
 				14B48B4120B81C9700CE3EF4 /* MessageViews */,
 			);
@@ -422,10 +425,11 @@
 		14B48B1820B81C9700CE3EF4 /* Infra */ = {
 			isa = PBXGroup;
 			children = (
-				14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */,
-				14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */,
+				14F3FD85213A6ED900CA3010 /* EKEntryCacher.swift */,
 				14B48B1B20B81C9700CE3EF4 /* EKWindowProvider.swift */,
 				14B48B1C20B81C9700CE3EF4 /* EKWindow.swift */,
+				14B48B1920B81C9700CE3EF4 /* EKRootViewController.swift */,
+				14B48B1A20B81C9700CE3EF4 /* EKEntryView.swift */,
 				14B48B1D20B81C9700CE3EF4 /* EKBackgroundView.swift */,
 				14B48B1E20B81C9700CE3EF4 /* EKWrapperView.swift */,
 				14B48B1F20B81C9700CE3EF4 /* EKContentView.swift */,
@@ -477,7 +481,6 @@
 				144E51BC20D56E150051FDCA /* EKAttributes+LifecycleActions.swift */,
 				14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */,
 				14B48B3C20B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift */,
-				14B48B2F20B81C9700CE3EF4 /* EKAttributes+Count.swift */,
 				14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayPriority.swift */,
 				14B48B3320B81C9700CE3EF4 /* EKAttributes+Duration.swift */,
 				14B48B3E20B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift */,
@@ -991,6 +994,7 @@
 				14B48B8820B81C9700CE3EF4 /* EKMessageContentView.swift in Sources */,
 				144E51BD20D56E150051FDCA /* EKAttributes+LifecycleActions.swift in Sources */,
 				14B48B6F20B81C9700CE3EF4 /* EKAttributes+Validations.swift in Sources */,
+				14F3FD86213A6ED900CA3010 /* EKEntryCacher.swift in Sources */,
 				14B48B6620B81C9700CE3EF4 /* UIView+Shadow.swift in Sources */,
 				14B48B7A20B81C9700CE3EF4 /* EKPopUpMessage.swift in Sources */,
 				14B48B6920B81C9700CE3EF4 /* EKAttributes+Shadow.swift in Sources */,
@@ -1023,9 +1027,9 @@
 				14B48B5C20B81C9700CE3EF4 /* EKBackgroundView.swift in Sources */,
 				14B3A51420C16BAC002306C4 /* EKAlertMessage.swift in Sources */,
 				14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */,
-				14B48B6A20B81C9700CE3EF4 /* EKAttributes+Count.swift in Sources */,
 				14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */,
 				14B48B7520B81C9700CE3EF4 /* EKAttributes+Presets.swift in Sources */,
+				14F3FD8F213A708100CA3010 /* SwiftEntryKit+Configuration.swift in Sources */,
 				14B48B7B20B81C9700CE3EF4 /* EKNotificationMessage.swift in Sources */,
 				14B48B8620B81C9700CE3EF4 /* EKButtonBarView.swift in Sources */,
 				14B48B5E20B81C9700CE3EF4 /* EKContentView.swift in Sources */,
