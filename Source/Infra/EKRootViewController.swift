@@ -10,7 +10,7 @@ import UIKit
 
 protocol EntryPresenterDelegate: class {
     var isResponsiveToTouches: Bool { set get }
-    func dequeueNextEntry()
+    func displayPendingEntryIfNeeded()
 }
 
 class EKRootViewController: UIViewController {
@@ -191,7 +191,7 @@ extension EKRootViewController: EntryContentViewDelegate {
             return
         }
         
-        delegate.dequeueNextEntry()
+        delegate.displayPendingEntryIfNeeded()
     }
     
     func changeToActive(withAttributes attributes: EKAttributes) {

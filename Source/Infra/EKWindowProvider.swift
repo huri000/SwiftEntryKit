@@ -33,16 +33,14 @@ final class EKWindowProvider: EntryPresenterDelegate {
     
     /** A window to go back to when the last entry has been dismissed */
     private var rollbackWindow: SwiftEntryKit.RollbackWindow!
+
+    /** Entry queueing heuristic  */
+    private let entryQueue = EKAttributes.DisplayManner.QueueingHeuristic.value.heuristic
     
     private weak var entryView: EKEntryView!
 
-    /** Entry caching heuristics - must be injected */
-    var entryCacher: EntryCachingHeuristic = EKEntryChronologicalCacher()
-    
     /** Cannot be instantiated, customized, inherited */
     private init() {}
-    
-    // MARK: - EntryPresenterDelegate
     
     var isResponsiveToTouches: Bool {
         set {
@@ -50,15 +48,6 @@ final class EKWindowProvider: EntryPresenterDelegate {
         }
         get {
             return entryWindow.isAbleToReceiveTouches
-        }
-    }
-    
-    // FIXME: fix rollback window and presentINsideKeyWindow
-    func dequeueNextEntry() {
-        if let nextEntry = entryCacher.next {
-            show(entryView: nextEntry, presentInsideKeyWindow: false, rollbackWindow: rollbackWindow)
-        } else {
-            EKWindowProvider.shared.displayRollbackWindow()
         }
     }
     
@@ -92,6 +81,23 @@ final class EKWindowProvider: EntryPresenterDelegate {
             entryVC = rootVC!
         }
         return entryVC
+    }
+    
+    /**
+     Privately used to display an entry
+     */
+    private func display(entryView: EKEntryView, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
+        switch entryView.attributes.displayManner {
+        case .override(priority: _, dropEnqueuedEntries: let dropEnqueuedEntries):
+            if dropEnqueuedEntries {
+                entryQueue.removeAll()
+            }
+            show(entryView: entryView, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
+        case .enqueue where isCurrentlyDisplaying():
+            entryQueue.enqueue(entry: .init(view: entryView, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow))
+        case .enqueue:
+            show(entryView: entryView, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
+        }
     }
     
     // MARK: - Exposed Actions
@@ -128,17 +134,6 @@ final class EKWindowProvider: EntryPresenterDelegate {
         display(entryView: entryView, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
     }
     
-    private func display(entryView: EKEntryView, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        switch entryView.attributes.displayManner {
-        case .override:
-            show(entryView: entryView, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
-        case .enqueue where isCurrentlyDisplaying():
-            entryCacher.insert(entry: entryView)
-        case .enqueue:
-            show(entryView: entryView, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
-        }
-    }
-    
     /** Clear all entries immediately and display to the rollback window */
     func displayRollbackWindow() {
         entryWindow = nil
@@ -148,6 +143,15 @@ final class EKWindowProvider: EntryPresenterDelegate {
             UIApplication.shared.keyWindow?.makeKeyAndVisible()
         case .custom(window: let window):
             window.makeKeyAndVisible()
+        }
+    }
+    
+    /** Display a pending entry if there is any inside the queue */
+    func displayPendingEntryIfNeeded() {
+        if let next = entryQueue.dequeue() {
+            show(entryView: next.view, presentInsideKeyWindow: next.presentInsideKeyWindow, rollbackWindow: next.rollbackWindow)
+        } else {
+            displayRollbackWindow()
         }
     }
     

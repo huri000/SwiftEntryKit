@@ -15,10 +15,16 @@ fileprivate extension Int {
 
 public extension EKAttributes {
     
+    /**
+     Describes the manner on which the entry is pushed and displayed.
+     See the various values of more explanation.
+     */
     public enum DisplayManner {
         
-        /** The display priority of the entry - Determines whether is can be overriden by other entries.
-         Must be in range [0...1000] */
+        /**
+         The display priority of the entry - Determines whether is can be overriden by other entries.
+         Must be in range [0...1000]
+         */
         public struct Priority : Hashable, Equatable, RawRepresentable, Comparable {
             public var rawValue: Int
             
@@ -45,23 +51,60 @@ public extension EKAttributes {
             }
         }
         
-        case override(priority: Priority)
+        /**
+         Describes the queueing heoristic of entries
+         */
+        public enum QueueingHeuristic {
+            
+            /** Determines the heuristic which the entry-queue is based on */
+            public static var value = QueueingHeuristic.chronological
+            
+            /** Chronological - FIFO */
+            case chronological
+            
+            /** Ordered by priority */
+            case priority
+            
+            /** Returns the caching heuristics - The machanism that determines the order of queue */
+            var heuristic: EntryCachingHeuristic {
+                switch self {
+                case .chronological:
+                    return EKEntryChronologicalQueue()
+                case .priority:
+                    return EKEntryPriorityQueue()
+                }
+            }
+        }
+        
+        /**
+         Describes an *overriding* behavior for a new entry.
+         - In case no previous entry that is presented - display the new entry.
+         - In case there is an entry that is presented - override it using the new entry. Also optionally drop all previously enqueue entries, if there are any.
+         */
+        case override(priority: Priority, dropEnqueuedEntries: Bool)
+        
+        /**
+         Describes FIFO behavior for entry presentation.
+         - In case no previous entry that is presented - display the new entry.
+         - In case there is an entry that is presented - enqueue the new entry.
+         */
         case enqueue(priority: Priority)
         
+        /** Setter / Getter for the display priority */
         public var priority: Priority {
             set {
                 switch self {
                 case .enqueue(priority: _):
                     self = .enqueue(priority: newValue)
-                case .override(priority: _):
-                    self = .override(priority: newValue)
+                case .override(priority: _, dropEnqueuedEntries: let dropEnqueuedEntries):
+                    self = .override(priority: newValue, dropEnqueuedEntries: dropEnqueuedEntries)
                 }
             }
             get {
                 switch self {
                 case .enqueue(priority: let priority):
                     return priority
-                case .override(priority: let priority):
+                case .override(priority: let priority, dropEnqueuedEntries: _):
                     return priority
                 }
             }

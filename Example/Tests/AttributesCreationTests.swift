@@ -60,12 +60,12 @@ class AttributesCreation: QuickSpec {
             }
             
             it("is initialized with custom display priority") {
-                let custom1 = EKAttributes.DisplayManner.override(priority: .init(999))
+                let custom1 = EKAttributes.DisplayManner.override(priority: .init(999), dropEnqueuedEntries: true)
                 attributes.displayManner.priority = custom1.priority
                 expect(attributes.displayManner.priority).to(equal(custom1.priority))
                 expect(attributes.displayManner.priority.rawValue).to(equal(999))
                 
-                let custom2 = EKAttributes.DisplayManner.override(priority: .init(1))
+                let custom2 = EKAttributes.DisplayManner.override(priority: .init(1), dropEnqueuedEntries: true)
                 attributes.displayManner.priority = custom2.priority
                 expect(attributes.displayManner.priority).to(equal(custom2.priority))
                 expect(attributes.displayManner.priority.rawValue).to(equal(1))
