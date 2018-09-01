@@ -17,18 +17,6 @@ public extension EKAttributes {
     
     public enum DisplayManner {
         
-        public enum Order {
-            case chronological
-            case priority(value: Priority)
-            
-            public var priority: Priority? {
-                if case .priority(value: let priority) = self {
-                    return priority
-                }
-                return nil
-            }
-        }
-        
         /** The display priority of the entry - Determines whether is can be overriden by other entries.
          Must be in range [0...1000] */
         public struct Priority : Hashable, Equatable, RawRepresentable, Comparable {
@@ -58,13 +46,25 @@ public extension EKAttributes {
         }
         
         case override(priority: Priority)
-        case enqueued(order: Order)
+        case enqueue(priority: Priority)
         
-        public var queueOrder: Order? {
-            if case .enqueued(order: let order) = self {
-                return order
+        public var priority: Priority {
+            set {
+                switch self {
+                case .enqueue(priority: _):
+                    self = .enqueue(priority: newValue)
+                case .override(priority: _):
+                    self = .override(priority: newValue)
+                }
             }
-            return nil
+            get {
+                switch self {
+                case .enqueue(priority: let priority):
+                    return priority
+                case .override(priority: let priority):
+                    return priority
+                }
+            }
         }
     }
 }

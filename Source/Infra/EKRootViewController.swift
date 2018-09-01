@@ -8,9 +8,16 @@
 
 import UIKit
 
+protocol EntryPresenterDelegate: class {
+    var isResponsiveToTouches: Bool { set get }
+    func dequeueNextEntry()
+}
+
 class EKRootViewController: UIViewController {
     
     // MARK: - Props
+    
+    private unowned let delegate: EntryPresenterDelegate
     
     private var lastAttributes: EKAttributes!
     
@@ -42,13 +49,11 @@ class EKRootViewController: UIViewController {
     private var lastEntry: EKContentView? {
         return view.subviews.last as? EKContentView
     }
-    
-    private(set) var entryCacher: EntryCachingHeuristic
-    
+        
     private var isResponsive = false {
         didSet {
             wrapperView.isAbleToReceiveTouches = isResponsive
-            EKWindowProvider.shared.entryWindow.isAbleToReceiveTouches = isResponsive
+            delegate.isResponsiveToTouches = isResponsive
         }
     }
 
@@ -73,8 +78,8 @@ class EKRootViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(using queueingOrder: SwiftEntryKit.Configuration.EntryQueueOrder) {
-        entryCacher = queueingOrder.cachingHeuristic
+    public init(with delegate: EntryPresenterDelegate) {
+        self.delegate = delegate
         previousStatusBar = .currentStatusBar
         super.init(nibName: nil, bundle: nil)
     }
@@ -131,7 +136,7 @@ class EKRootViewController: UIViewController {
         guard let lastAttributes = lastAttributes else {
             return true
         }
-        return attributes.displayPriority >= lastAttributes.displayPriority
+        return attributes.displayManner.priority >= lastAttributes.displayManner.priority
     }
 
     // Removes last entry - can keep the window 'ON' if necessary
@@ -178,9 +183,15 @@ extension EKRootViewController {
 extension EKRootViewController: EntryContentViewDelegate {
     
     func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool) {
-        if !keepWindowActive && !isDisplaying && entryCacher.isEmpty {
-            EKWindowProvider.shared.displayRollbackWindow()
+        guard !isDisplaying else {
+            return
         }
+        
+        guard !keepWindowActive else {
+            return
+        }
+        
+        delegate.dequeueNextEntry()
     }
     
     func changeToActive(withAttributes attributes: EKAttributes) {

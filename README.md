@@ -238,10 +238,10 @@ An entry can be dismissed only by an entry with an equal or a higher display pri
 
 ```Swift
 let highPriorityAttributes = EKAttributes()
-highPriorityAttributes.displayPriority = .high
+highPriorityAttributes.displayManner.priority = .high
 
 let normalPriorityAttributes = EKAttributes()
-normalPriorityAttributes.displayPriority = .normal
+normalPriorityAttributes.displayManner.priority = .normal
 
 // Display high priority entry
 SwiftEntryKit.display(entry: view1, using: highPriorityAttributes)

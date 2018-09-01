@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol EntryCachingHeuristic {
+protocol EntryCachingHeuristic: class {
     var entryViews: [EKEntryView] { set get }
     var isEmpty: Bool { get }
-    mutating func insert(entry: EKEntryView)
-    mutating func remove(entry: EKEntryView)
-    mutating func removeAll()
+    func insert(entry: EKEntryView)
+    func remove(entry: EKEntryView)
+    func removeAll()
 }
 
 extension EntryCachingHeuristic {
@@ -23,46 +23,44 @@ extension EntryCachingHeuristic {
     }
     
     var next: EKEntryView? {
-        mutating get {
-            guard let first = entryViews.first else {
-                return nil
-            }
-            entryViews.removeFirst()
-            return first
+        guard let first = entryViews.first else {
+            return nil
         }
+        entryViews.removeFirst()
+        return first
     }
     
-    mutating func remove(entry: EKEntryView) {
+    func remove(entry: EKEntryView) {
         guard let index = entryViews.index(of: entry) else {
             return
         }
         entryViews.remove(at: index)
     }
     
-    mutating func removeAll() {
+    func removeAll() {
         entryViews.removeAll()
     }
 }
 
-struct EKEntryChronologicalCacher: EntryCachingHeuristic {
+class EKEntryChronologicalCacher: EntryCachingHeuristic {
     
     // Array of entries ready for presentation
     var entryViews: [EKEntryView] = []
     
-    mutating func insert(entry: EKEntryView) {
+    func insert(entry: EKEntryView) {
         entryViews.append(entry)
     }
 }
 
-struct EKEntryPriorityCacher: EntryCachingHeuristic {
+class EKEntryPriorityCacher: EntryCachingHeuristic {
     
     // Array of entries ready for presentation
     var entryViews: [EKEntryView] = []
     
-    mutating func insert(entry: EKEntryView) {
-        let entryPriority = entry.attributes.displayManner.queueOrder!.priority!
+    func insert(entry: EKEntryView) {
+        let entryPriority = entry.attributes.displayManner.priority
         let index = entryViews.index {
-            return entryPriority <= $0.attributes.displayManner.queueOrder!.priority!
+            return entryPriority <= $0.attributes.displayManner.priority
         }
         if let index = index {
             entryViews.insert(entry, at: index)
