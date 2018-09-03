@@ -102,6 +102,17 @@ final class EKWindowProvider: EntryPresenterDelegate {
     
     // MARK: - Exposed Actions
     
+    func queueContains(entryNamed name: String? = nil) -> Bool {
+        if name == nil && !entryQueue.isEmpty {
+            return true
+        }
+        if let name = name {
+            return entryQueue.contains(entryNamed: name)
+        } else {
+            return false
+        }
+    }
+    
     /**
      Returns *true* if the currently displayed entry has the given name.
      In case *name* has the value of *nil*, the result is *true* if any entry is currently displayed.
@@ -155,12 +166,21 @@ final class EKWindowProvider: EntryPresenterDelegate {
         }
     }
     
-    /** Dismiss the current entry */
-    func dismiss(with completion: SwiftEntryKit.DismissCompletionHandler? = nil) {
+    /** Dismiss entries according to a given descriptor */
+    func dismiss(_ descriptor: SwiftEntryKit.EntryDismissalDescriptor, with completion: SwiftEntryKit.DismissCompletionHandler? = nil) {
         guard let rootVC = rootVC else {
             return
         }
-        rootVC.animateOutLastEntry(completionHandler: completion)
+        
+        switch descriptor {
+        case .current:
+            rootVC.animateOutLastEntry(completionHandler: completion)
+        case .queue:
+            entryQueue.removeAll()
+        case .all:
+            rootVC.animateOutLastEntry(completionHandler: completion)
+            entryQueue.removeAll()
+        }
     }
     
     /** Layout the view-hierarchy rooted in the window */
@@ -168,7 +188,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
         entryWindow?.layoutIfNeeded()
     }
     
-    /** Show entry view */
+    /** Privately using to prepare the root view controller and show the entry immediately */
     private func show(entryView: EKEntryView, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
         guard let entryVC = prepare(for: entryView.attributes, presentInsideKeyWindow: presentInsideKeyWindow) else {
             return

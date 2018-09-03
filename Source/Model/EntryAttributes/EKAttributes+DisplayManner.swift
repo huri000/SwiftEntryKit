@@ -25,7 +25,7 @@ public extension EKAttributes {
          The display priority of the entry - Determines whether is can be overriden by other entries.
          Must be in range [0...1000]
          */
-        public struct Priority : Hashable, Equatable, RawRepresentable, Comparable {
+        public struct Priority: Hashable, Equatable, RawRepresentable, Comparable {
             public var rawValue: Int
             
             public var hashValue: Int {
@@ -52,7 +52,7 @@ public extension EKAttributes {
         }
         
         /**
-         Describes the queueing heoristic of entries
+         Describes the queueing heoristic of entries.
          */
         public enum QueueingHeuristic {
             
@@ -65,7 +65,7 @@ public extension EKAttributes {
             /** Ordered by priority */
             case priority
             
-            /** Returns the caching heuristics - The machanism that determines the order of queue */
+            /** Returns the caching heuristics mechanism that determines the priority in queue */
             var heuristic: EntryCachingHeuristic {
                 switch self {
                 case .chronological:
@@ -78,15 +78,15 @@ public extension EKAttributes {
         
         /**
          Describes an *overriding* behavior for a new entry.
-         - In case no previous entry that is presented - display the new entry.
-         - In case there is an entry that is presented - override it using the new entry. Also optionally drop all previously enqueue entries, if there are any.
+         - In case no previous entry is currently presented, display the new entry.
+         - In case there is an entry that is currently presented - override it using the new entry. Also optionally drop all previously enqueued entries.
          */
         case override(priority: Priority, dropEnqueuedEntries: Bool)
         
         /**
-         Describes FIFO behavior for entry presentation.
-         - In case no previous entry that is presented - display the new entry.
-         - In case there is an entry that is presented - enqueue the new entry.
+         Describes a FIFO behavior for an entry presentation.
+         - In case no previous entry is currently presented, display the new entry.
+         - In case there is an entry that is currently presented - enqueue the new entry, an present it just after the previous one is dismissed.
          */
         case enqueue(priority: Priority)
         
@@ -117,7 +117,6 @@ public extension EKAttributes {
  High priority entry overrides any other entry including another equal priority one.
  You can you on of the values (.max, high, normal, low, min) and also set your own values. */
 public extension EKAttributes.DisplayManner.Priority {
-    
     public static let maxRawValue = 1000
     public static let highRawValue = 750
     public static let normalRawValue = 500

@@ -23,12 +23,18 @@ protocol EntryCachingHeuristic: class {
     
     func remove(entry: CachedEntry)
     func removeAll()
+    
+    func contains(entryNamed name: String) -> Bool
 }
 
 extension EntryCachingHeuristic {
     
     var isEmpty: Bool {
         return entries.isEmpty
+    }
+    
+    func contains(entryNamed name: String) -> Bool {
+        return entries.contains { $0.view.attributes.name == name }
     }
     
     func dequeue() -> CachedEntry? {
