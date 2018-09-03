@@ -57,7 +57,7 @@ public extension EKAttributes {
         public enum QueueingHeuristic {
             
             /** Determines the heuristic which the entry-queue is based on */
-            public static var value = QueueingHeuristic.chronological
+            public static var value = QueueingHeuristic.priority
             
             /** Chronological - FIFO */
             case chronological
@@ -89,6 +89,15 @@ public extension EKAttributes {
          - In case there is an entry that is currently presented - enqueue the new entry, an present it just after the previous one is dismissed.
          */
         case enqueue(priority: Priority)
+        
+        var isEnqueue: Bool {
+            switch self {
+            case .enqueue:
+                return true
+            default:
+                return false
+            }
+        }
         
         /** Setter / Getter for the display priority */
         public var priority: Priority {

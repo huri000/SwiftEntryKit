@@ -56,7 +56,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
     // Prepare the window and the host view controller
     private func prepare(for attributes: EKAttributes, presentInsideKeyWindow: Bool) -> EKRootViewController? {
         let entryVC = setupWindowAndRootVC()
-        guard entryVC.canDisplay(attributes: attributes) else {
+        guard entryVC.canDisplay(attributes: attributes) || attributes.displayManner.isEnqueue else {
             return nil
         }
         entryVC.setStatusBarStyle(for: attributes)
