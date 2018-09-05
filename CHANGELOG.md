@@ -1,6 +1,29 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.7.0
+
+### Feature - Queue of Entries
+
+`displayPriority` is no longer nested inside `EKAttributes`. It has been replaced by another construct called `precedence`.
+`precedence` defines the manner in which new entry is treated in case there is another displayed entry right now. 
+
+- Please review the README.md and the API documentation for additional information.
+- See [Issue #103](https://github.com/huri000/SwiftEntryKit/issues/103) for feature basic requirements.
+
+#### Backward Compatibility
+
+Be aware that `0.7.0` breaks previous releases. 
+In order to adjust to previous behavior, just replace any instance of:
+
+```Swift
+attributes.displayPriority = value
+````
+To the following:
+```Swift
+attributes.precedence = .override(priority: value, dropEnqueuedEntries: false)
+````
+
 ## 0.6.0
 
 ### Autorotation flag for entries - [pull-request](https://github.com/huri000/SwiftEntryKit/pull/80)

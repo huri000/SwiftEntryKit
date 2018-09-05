@@ -19,7 +19,7 @@ class PrioritySelectionTableViewCell: SelectionTableViewCell {
     }
     
     private func selectSegment() {
-        switch attributesWrapper.attributes.displayManner.priority {
+        switch attributesWrapper.attributes.precedence.priority {
         case .normal:
             segmentedControl.selectedSegmentIndex = 0
         case .high:
@@ -34,11 +34,11 @@ class PrioritySelectionTableViewCell: SelectionTableViewCell {
     @objc override func segmentChanged() {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            attributesWrapper.attributes.displayManner.priority = .normal
+            attributesWrapper.attributes.precedence.priority = .normal
         case 1:
-            attributesWrapper.attributes.displayManner.priority = .high
+            attributesWrapper.attributes.precedence.priority = .high
         case 2:
-            attributesWrapper.attributes.displayManner.priority = .max
+            attributesWrapper.attributes.precedence.priority = .max
         default:
             break
         }

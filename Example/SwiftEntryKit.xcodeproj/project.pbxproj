@@ -64,7 +64,7 @@
 		14B48B7020B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3520B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift */; };
 		14B48B7120B81C9700CE3EF4 /* EKAttributes+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */; };
 		14B48B7220B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3720B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift */; };
-		14B48B7320B81C9700CE3EF4 /* EKAttributes+DisplayManner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayManner.swift */; };
+		14B48B7320B81C9700CE3EF4 /* EKAttributes+Precedence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3820B81C9700CE3EF4 /* EKAttributes+Precedence.swift */; };
 		14B48B7420B81C9700CE3EF4 /* EKAttributes+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3920B81C9700CE3EF4 /* EKAttributes+Scroll.swift */; };
 		14B48B7520B81C9700CE3EF4 /* EKAttributes+Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3A20B81C9700CE3EF4 /* EKAttributes+Presets.swift */; };
 		14B48B7620B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */; };
@@ -253,7 +253,7 @@
 		14B48B3520B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+PopBehavior.swift"; sourceTree = "<group>"; };
 		14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Animation.swift"; sourceTree = "<group>"; };
 		14B48B3720B81C9700CE3EF4 /* EKAttributes+PositionConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+PositionConstraints.swift"; sourceTree = "<group>"; };
-		14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayManner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+DisplayManner.swift"; sourceTree = "<group>"; };
+		14B48B3820B81C9700CE3EF4 /* EKAttributes+Precedence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Precedence.swift"; sourceTree = "<group>"; };
 		14B48B3920B81C9700CE3EF4 /* EKAttributes+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Scroll.swift"; sourceTree = "<group>"; };
 		14B48B3A20B81C9700CE3EF4 /* EKAttributes+Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+Presets.swift"; sourceTree = "<group>"; };
 		14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+WindowLevel.swift"; sourceTree = "<group>"; };
@@ -478,7 +478,7 @@
 				144E51BC20D56E150051FDCA /* EKAttributes+LifecycleActions.swift */,
 				14B48B3620B81C9700CE3EF4 /* EKAttributes+Animation.swift */,
 				14B48B3C20B81C9700CE3EF4 /* EKAttributes+BackgroundStyle.swift */,
-				14B48B3820B81C9700CE3EF4 /* EKAttributes+DisplayManner.swift */,
+				14B48B3820B81C9700CE3EF4 /* EKAttributes+Precedence.swift */,
 				14B48B3320B81C9700CE3EF4 /* EKAttributes+Duration.swift */,
 				14B48B3E20B81C9700CE3EF4 /* EKAttributes+FrameStyle.swift */,
 				14B48B3D20B81C9700CE3EF4 /* EKAttributes+HapticFeedback.swift */,
@@ -1042,7 +1042,7 @@
 				14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */,
 				14B48B8320B81C9700CE3EF4 /* EKProcessingNoteMessageView.swift in Sources */,
 				14B48B8020B81C9700CE3EF4 /* EKNoteMessageView.swift in Sources */,
-				14B48B7320B81C9700CE3EF4 /* EKAttributes+DisplayManner.swift in Sources */,
+				14B48B7320B81C9700CE3EF4 /* EKAttributes+Precedence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

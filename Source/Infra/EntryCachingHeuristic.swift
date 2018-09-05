@@ -71,9 +71,9 @@ class EKEntryPriorityQueue: EntryCachingHeuristic {
     var entries: [CachedEntry] = []
     
     func enqueue(entry: CachedEntry) {
-        let entryPriority = entry.view.attributes.displayManner.priority
+        let entryPriority = entry.view.attributes.precedence.priority
         let index = entries.index {
-            return entryPriority > $0.view.attributes.displayManner.priority
+            return entryPriority > $0.view.attributes.precedence.priority
         }
         if let index = index {
             entries.insert(entry, at: index)

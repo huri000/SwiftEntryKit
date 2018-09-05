@@ -1,5 +1,5 @@
 //
-//  EKAttributes+Priority.swift
+//  EKAttributes+Precedence.swift
 //  SwiftEntryKit
 //
 //  Created by Daniel Huri on 4/29/18.
@@ -9,7 +9,7 @@ import Foundation
 
 fileprivate extension Int {
     var isValidDisplayPriority: Bool {
-        return self >= EKAttributes.DisplayManner.Priority.minRawValue && self <= EKAttributes.DisplayManner.Priority.maxRawValue
+        return self >= EKAttributes.Precedence.Priority.minRawValue && self <= EKAttributes.Precedence.Priority.maxRawValue
     }
 }
 
@@ -19,7 +19,7 @@ public extension EKAttributes {
      Describes the manner on which the entry is pushed and displayed.
      See the various values of more explanation.
      */
-    public enum DisplayManner {
+    public enum Precedence {
         
         /**
          The display priority of the entry - Determines whether is can be overriden by other entries.
@@ -125,7 +125,7 @@ public extension EKAttributes {
  Entries are ignored as a higher priority entry is being displayed.
  High priority entry overrides any other entry including another equal priority one.
  You can you on of the values (.max, high, normal, low, min) and also set your own values. */
-public extension EKAttributes.DisplayManner.Priority {
+public extension EKAttributes.Precedence.Priority {
     public static let maxRawValue = 1000
     public static let highRawValue = 750
     public static let normalRawValue = 500
@@ -133,10 +133,10 @@ public extension EKAttributes.DisplayManner.Priority {
     public static let minRawValue = 0
 
     /** Max - the highest possible priority of an entry. Can override only entries with *max* priority */
-    public static let max = EKAttributes.DisplayManner.Priority(rawValue: maxRawValue)
-    public static let high = EKAttributes.DisplayManner.Priority(rawValue: highRawValue)
-    public static let normal = EKAttributes.DisplayManner.Priority(rawValue: normalRawValue)
-    public static let low = EKAttributes.DisplayManner.Priority(rawValue: lowRawValue)
-    public static let min = EKAttributes.DisplayManner.Priority(rawValue: minRawValue)
+    public static let max = EKAttributes.Precedence.Priority(rawValue: maxRawValue)
+    public static let high = EKAttributes.Precedence.Priority(rawValue: highRawValue)
+    public static let normal = EKAttributes.Precedence.Priority(rawValue: normalRawValue)
+    public static let low = EKAttributes.Precedence.Priority(rawValue: lowRawValue)
+    public static let min = EKAttributes.Precedence.Priority(rawValue: minRawValue)
 }
 

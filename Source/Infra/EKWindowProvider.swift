@@ -35,7 +35,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
     private var rollbackWindow: SwiftEntryKit.RollbackWindow!
 
     /** Entry queueing heuristic  */
-    private let entryQueue = EKAttributes.DisplayManner.QueueingHeuristic.value.heuristic
+    private let entryQueue = EKAttributes.Precedence.QueueingHeuristic.value.heuristic
     
     private weak var entryView: EKEntryView!
 
@@ -56,7 +56,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
     // Prepare the window and the host view controller
     private func prepare(for attributes: EKAttributes, presentInsideKeyWindow: Bool) -> EKRootViewController? {
         let entryVC = setupWindowAndRootVC()
-        guard entryVC.canDisplay(attributes: attributes) || attributes.displayManner.isEnqueue else {
+        guard entryVC.canDisplay(attributes: attributes) || attributes.precedence.isEnqueue else {
             return nil
         }
         entryVC.setStatusBarStyle(for: attributes)
@@ -87,7 +87,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
      Privately used to display an entry
      */
     private func display(entryView: EKEntryView, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        switch entryView.attributes.displayManner {
+        switch entryView.attributes.precedence {
         case .override(priority: _, dropEnqueuedEntries: let dropEnqueuedEntries):
             if dropEnqueuedEntries {
                 entryQueue.removeAll()

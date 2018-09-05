@@ -30,45 +30,45 @@ class AttributesCreation: QuickSpec {
             }
             
             it("is initialized with max display priority") {
-                attributes.displayManner.priority = .max
-                expect(attributes.displayManner.priority).to(equal(.max))
-                expect(attributes.displayManner.priority.rawValue).to(equal(EKAttributes.DisplayManner.Priority.maxRawValue))
+                attributes.precedence.priority = .max
+                expect(attributes.precedence.priority).to(equal(.max))
+                expect(attributes.precedence.priority.rawValue).to(equal(EKAttributes.Precedence.Priority.maxRawValue))
             }
             
             it("is initialized with high display priority") {
-                attributes.displayManner.priority = .high
-                expect(attributes.displayManner.priority).to(equal(.high))
-                expect(attributes.displayManner.priority.rawValue).to(equal(EKAttributes.DisplayManner.Priority.highRawValue))
+                attributes.precedence.priority = .high
+                expect(attributes.precedence.priority).to(equal(.high))
+                expect(attributes.precedence.priority.rawValue).to(equal(EKAttributes.Precedence.Priority.highRawValue))
             }
             
             it("is initialized with high display priority") {
-                attributes.displayManner.priority = .normal
-                expect(attributes.displayManner.priority).to(equal(.normal))
-                expect(attributes.displayManner.priority.rawValue).to(equal(EKAttributes.DisplayManner.Priority.normalRawValue))
+                attributes.precedence.priority = .normal
+                expect(attributes.precedence.priority).to(equal(.normal))
+                expect(attributes.precedence.priority.rawValue).to(equal(EKAttributes.Precedence.Priority.normalRawValue))
             }
             
             it("is initialized with low display priority") {
-                attributes.displayManner.priority = .low
-                expect(attributes.displayManner.priority).to(equal(.low))
-                expect(attributes.displayManner.priority.rawValue).to(equal(EKAttributes.DisplayManner.Priority.lowRawValue))
+                attributes.precedence.priority = .low
+                expect(attributes.precedence.priority).to(equal(.low))
+                expect(attributes.precedence.priority.rawValue).to(equal(EKAttributes.Precedence.Priority.lowRawValue))
             }
             
             it("is initialized with min display priority") {
-                attributes.displayManner.priority = .min
-                expect(attributes.displayManner.priority).to(equal(.min))
-                expect(attributes.displayManner.priority.rawValue).to(equal(EKAttributes.DisplayManner.Priority.minRawValue))
+                attributes.precedence.priority = .min
+                expect(attributes.precedence.priority).to(equal(.min))
+                expect(attributes.precedence.priority.rawValue).to(equal(EKAttributes.Precedence.Priority.minRawValue))
             }
             
             it("is initialized with custom display priority") {
-                let custom1 = EKAttributes.DisplayManner.override(priority: .init(999), dropEnqueuedEntries: true)
-                attributes.displayManner.priority = custom1.priority
-                expect(attributes.displayManner.priority).to(equal(custom1.priority))
-                expect(attributes.displayManner.priority.rawValue).to(equal(999))
+                let custom1 = EKAttributes.Precedence.override(priority: .init(999), dropEnqueuedEntries: true)
+                attributes.precedence.priority = custom1.priority
+                expect(attributes.precedence.priority).to(equal(custom1.priority))
+                expect(attributes.precedence.priority.rawValue).to(equal(999))
                 
-                let custom2 = EKAttributes.DisplayManner.override(priority: .init(1), dropEnqueuedEntries: true)
-                attributes.displayManner.priority = custom2.priority
-                expect(attributes.displayManner.priority).to(equal(custom2.priority))
-                expect(attributes.displayManner.priority.rawValue).to(equal(1))
+                let custom2 = EKAttributes.Precedence.override(priority: .init(1), dropEnqueuedEntries: true)
+                attributes.precedence.priority = custom2.priority
+                expect(attributes.precedence.priority).to(equal(custom2.priority))
+                expect(attributes.precedence.priority.rawValue).to(equal(1))
                 
                 expect(custom2.priority).to(beLessThan(custom1.priority))
             }

@@ -12,7 +12,7 @@ import Foundation
  */
 public final class SwiftEntryKit {
     
-    /** Describes the a single or multiple entries in various states */
+    /** Describes the a single or multiple entries for possible dismissal states */
     public enum EntryDismissalDescriptor {
         
         /** Describes all the entries that are in the queue and pending for presentation */
