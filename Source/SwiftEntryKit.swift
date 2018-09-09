@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- A stateless, threadsafe entry point that contains the display and the dismissal logic of entries.
+ A stateless, threadsafe (unless described otherwise) entry point that contains the display and the dismissal logic of entries.
  */
 public final class SwiftEntryKit {
     

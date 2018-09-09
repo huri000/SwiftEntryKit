@@ -24,6 +24,7 @@
     * [Precedence](#precedence)
       * [Override](#override)
       * [Enqueue](#enqueue)
+        * [Heuristics](#heuristics)
       * [Display Priority](#display-priority)
     * [Display Duration](#display-duration)
     * [Position Constraints](#position-constraints)
@@ -255,16 +256,32 @@ In case  `dropEnqueuedEntries` is `true`, the entry-queue is flushed as the new 
 ##### Enqueue
 If the queue is empty, display the entry immediately, otherwise, insert the entry into the queue until its turn to show arrives.
 
-There are 2 possible heuristics for entries prioritization in the queue:
-
-- Display Priority Queue: The entries are sorted by their [display priority](#display-priority), then by chronological order.
-- Chronological Queue: The entries are sorted only by their chronological order (standard queue).
-
 Example for setting `.enqueue` precedence with `.normal` display priority: 
 
 ```Swift 
 attributes.precedence = .enqueue(priority: .normal)
 ```
+
+###### Heuristics
+
+There are 2 possible heuristics for entries prioritization in the queue:
+
+- Display Priority Queue: The entries are sorted by their [display priority](#display-priority), then by chronological order.
+- Chronological Queue: The entries are sorted only by their chronological order (standard queue).
+
+Select the heuristic that suits you best by doing the following, only once, before using `SwiftEntryKit` to display entries.
+
+```Swift 
+EKAttributes.Precedence.QueueingHeuristic.value = .priority
+```
+
+Or:
+
+```Swift 
+EKAttributes.Precedence.QueueingHeuristic.value = .chronological
+```
+
+The default value of `EKAttributes.Precedence.QueueingHeuristic.value` is `.priority`.
 
 The default value of precedence is `.override(priority: .normal, dropEnqueuedEntries: false)`.
 
@@ -718,6 +735,12 @@ Dismiss a specific entry by name - either currently displayed or enqueued. All t
 
 ```Swift
 SwiftEntryKit.dismiss(.specific(entryName: "Entry Name"))
+```
+
+Dismiss any entry with a lower or equal display priority of `.normal`.
+
+```Swift
+SwiftEntryKit.dismiss(.prioritizedLowerOrEqualTo(priority: .normal))
 ```
 
 #### Using a completion handler

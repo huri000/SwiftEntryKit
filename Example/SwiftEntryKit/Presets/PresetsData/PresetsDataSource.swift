@@ -94,7 +94,6 @@ struct PresetsDataSource {
         attributes.entranceAnimation = .init(translate: .init(duration: 0.3), scale: .init(from: 1.07, to: 1, duration: 0.3))
         attributes.exitAnimation = .init(translate: .init(duration: 0.3))
         attributes.statusBar = .hidden
-        attributes.precedence = .override(priority: .max, dropEnqueuedEntries: true)
         attributes.scroll = .edgeCrossingDisabled(swipeable: false)
         descriptionString = "Regular toast that appears at the top. Hides status Bar."
         descriptionThumb = ThumbDesc.topToast.rawValue
@@ -107,7 +106,6 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: .darkChatMessage)
         attributes.entranceAnimation = .translation
         attributes.exitAnimation = .translation
-        attributes.precedence = .enqueue(priority: .high)
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.displayDuration = 4
         attributes.shadow = .active(with: .init(color: .darkChatMessage, opacity: 0.5, radius: 10))
@@ -121,7 +119,6 @@ struct PresetsDataSource {
         attributes.entryBackground = .visualEffect(style: .light)
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.statusBar = .dark
-        attributes.precedence = .enqueue(priority: .high)
         descriptionString = "Regular bottom toast with blurred background"
         descriptionThumb = ThumbDesc.bottomToast.rawValue
         description = .init(with: attributes, title: "Bottom I", description: descriptionString, thumb: descriptionThumb)
@@ -133,7 +130,6 @@ struct PresetsDataSource {
         attributes.entryBackground = .color(color: UIColor.white.withAlphaComponent(0.98))
         attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         attributes.statusBar = .dark
-        attributes.precedence = .enqueue(priority: .high)
         descriptionString = "Bottom toast without an image, appears below the status bar"
         descriptionThumb = ThumbDesc.bottomToast.rawValue
         description = .init(with: attributes, title: "Bottom II", description: descriptionString, thumb: descriptionThumb)
