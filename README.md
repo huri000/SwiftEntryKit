@@ -136,7 +136,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.6.0'
+pod 'SwiftEntryKit', '0.7.0'
 ```
 
 Then, run the following command:
@@ -159,7 +159,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.6.0
+github "huri000/SwiftEntryKit" == 0.7.0
 ```
 
 ## Usage
@@ -286,7 +286,7 @@ The default value of `EKAttributes.Precedence.QueueingHeuristic.value` is `.prio
 The default value of precedence is `.override(priority: .normal, dropEnqueuedEntries: false)`.
 
 ##### Display Priority 
-The display priority of the entry determines whether it dismisses other entries or be dismissed by them. 
+The display priority of the entry determines whether it dismisses other entries or is dismissed by them. 
 An entry can be dismissed only by an entry with an equal or a higher display priority.
 
 ```Swift
