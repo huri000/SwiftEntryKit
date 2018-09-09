@@ -15,14 +15,17 @@ public final class SwiftEntryKit {
     /** Describes the a single or multiple entries for possible dismissal states */
     public enum EntryDismissalDescriptor {
         
-        /** Describes all the entries that are in the queue and pending for presentation */
-        case queue
+        /** Describes specific entry / entries with name */
+        case specific(entryName: String)
+        
+        /** Describes all the entries that are currently in the queue and pending presentation */
+        case enqueued
         
         /** Describes all the entries */
         case all
         
-        /** Describes the current entry */
-        case current
+        /** Describes the currently displayed entry */
+        case displayed
     }
     
     /** The window to rollback to after dismissal */
@@ -127,10 +130,10 @@ public final class SwiftEntryKit {
      Dismisses the currently presented entry and removes the presented window instance after the exit animation is concluded.
      - A thread-safe method - Can be invokes from any thread.
      - A class method - Should be called on the class.
-     - parameter descriptor: A descriptor for the entries that are to be dismissed
+     - parameter descriptor: A descriptor for the entries that are to be dismissed. The default value is *.displayed*.
      - parameter completion: A completion handler that is to be called right after the entry is dismissed (After the animation is concluded).
      */
-    public class func dismiss(_ descriptor: EntryDismissalDescriptor = .current, with completion: DismissCompletionHandler? = nil) {
+    public class func dismiss(_ descriptor: EntryDismissalDescriptor = .displayed, with completion: DismissCompletionHandler? = nil) {
         DispatchQueue.main.async {
             EKWindowProvider.shared.dismiss(descriptor, with: completion)
         }

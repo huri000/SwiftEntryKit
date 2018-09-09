@@ -173,9 +173,14 @@ final class EKWindowProvider: EntryPresenterDelegate {
         }
         
         switch descriptor {
-        case .current:
+        case .displayed:
             rootVC.animateOutLastEntry(completionHandler: completion)
-        case .queue:
+        case .specific(entryName: let name):
+            if entryView?.attributes.name == name {
+                rootVC.animateOutLastEntry(completionHandler: completion)
+            }
+            entryQueue.removeEntries(by: name)
+        case .enqueued:
             entryQueue.removeAll()
         case .all:
             rootVC.animateOutLastEntry(completionHandler: completion)

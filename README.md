@@ -236,24 +236,24 @@ attributes.position = .bottom
 The default value of `position` is `.top`.
 
 #### Precedence
-The precedence of an entry describes the manner in which entries are pushed in. 
-The precedence attribute offers 2 approaches for managing the presentation priority of multiple entries.
+The precedence attribute of an entry describes the manner in which entries are pushed in. It offers 2 approaches for managing the presentation priority of multiple simultanious entries.
 
 ##### Override
 If the [display priority](#display-priority) is equal or higher than the currently displayed entry, override it.
 
-Example for setting `.override` precedence with `.max` display priority while ignoring entries that are already enqueued (leaving them to display after the current entry is dismissed).
+Example for setting `.override` precedence with `.max` display priority while ignoring entries that are already enqueued (leaving them to display after the new entry is dismissed).
 
 ```Swift 
 attributes.precedence = .override(priority: .max, dropEnqueuedEntries: false)
 ```
 
-You can optionally flush the entries that are inside the queue - 
+You can optionally flush the entries that are inside the queue.
+
 In case  `dropEnqueuedEntries` is `false`, enqueued entries remain in the queue. The first enqueued entry will show right after the new entry pops out. 
 In case  `dropEnqueuedEntries` is `true`, the entry-queue is flushed as the new entry is being displayed.
 
 ##### Enqueue
-If the queue is empty, display the entry at once, otherwise, insert the entry into the queue until its turn to show arrives.
+If the queue is empty, display the entry immediately, otherwise, insert the entry into the queue until its turn to show arrives.
 
 There are 2 possible heuristics for entries prioritization in the queue:
 
@@ -697,7 +697,7 @@ SwiftEntryKit.dismiss()
 Or:
 
 ```Swift
-SwiftEntryKit.dismiss(.current)
+SwiftEntryKit.dismiss(.displayed)
 ```
 
 This dismisses the entry animatedly using its *exitAnimation* attribute and on completion, the window would be removed as well.
@@ -708,10 +708,16 @@ You can dismiss the currently displayed entry and flush the queue as well, likew
 SwiftEntryKit.dismiss(.all)
 ```
 
-Only flush the queue, leaving any currently displayed entry to its natural lifecycle.
+Only flush the queue, leaving any currently displayed entry to its natural lifecycle:
 
 ```Swift
 SwiftEntryKit.dismiss(.queue)
+```
+
+Dismiss a specific entry by name - either currently displayed or enqueued. All the entries with the given name are dismissed.
+
+```Swift
+SwiftEntryKit.dismiss(.specific(entryName: "Entry Name"))
 ```
 
 #### Using a completion handler

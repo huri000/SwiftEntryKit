@@ -21,6 +21,7 @@ protocol EntryCachingHeuristic: class {
     func dequeue() -> CachedEntry?
     func enqueue(entry: CachedEntry)
     
+    func removeEntries(by name: String)
     func remove(entry: CachedEntry)
     func removeAll()
     
@@ -43,6 +44,12 @@ extension EntryCachingHeuristic {
         }
         entries.removeFirst()
         return first
+    }
+    
+    func removeEntries(by name: String) {
+        while let index = (entries.index { $0.view.attributes.name == name }) {
+            entries.remove(at: index)
+        }
     }
     
     func remove(entry: CachedEntry) {
