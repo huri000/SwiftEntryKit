@@ -176,15 +176,20 @@ final class EKWindowProvider: EntryPresenterDelegate {
         case .displayed:
             rootVC.animateOutLastEntry(completionHandler: completion)
         case .specific(entryName: let name):
+            entryQueue.removeEntries(by: name)
             if entryView?.attributes.name == name {
                 rootVC.animateOutLastEntry(completionHandler: completion)
             }
-            entryQueue.removeEntries(by: name)
+        case .prioritizedLowerOrEqualTo(priority: let priorityThreshold):
+            entryQueue.removeEntries(withPriorityLowerOrEqualTo: priorityThreshold)
+            if let currentPriority = entryView?.attributes.precedence.priority, currentPriority <= priorityThreshold {
+                rootVC.animateOutLastEntry(completionHandler: completion)
+            }
         case .enqueued:
             entryQueue.removeAll()
         case .all:
-            rootVC.animateOutLastEntry(completionHandler: completion)
             entryQueue.removeAll()
+            rootVC.animateOutLastEntry(completionHandler: completion)
         }
     }
     

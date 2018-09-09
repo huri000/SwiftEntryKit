@@ -22,6 +22,7 @@ protocol EntryCachingHeuristic: class {
     func enqueue(entry: CachedEntry)
     
     func removeEntries(by name: String)
+    func removeEntries(withPriorityLowerOrEqualTo priority: EKAttributes.Precedence.Priority)
     func remove(entry: CachedEntry)
     func removeAll()
     
@@ -44,6 +45,12 @@ extension EntryCachingHeuristic {
         }
         entries.removeFirst()
         return first
+    }
+    
+    func removeEntries(withPriorityLowerOrEqualTo priority: EKAttributes.Precedence.Priority) {
+        while let index = (entries.index { $0.view.attributes.precedence.priority <= priority }) {
+            entries.remove(at: index)
+        }
     }
     
     func removeEntries(by name: String) {

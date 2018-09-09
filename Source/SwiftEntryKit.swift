@@ -18,6 +18,9 @@ public final class SwiftEntryKit {
         /** Describes specific entry / entries with name */
         case specific(entryName: String)
         
+        /** Describes a group of entries with lower or equal display priority */
+        case prioritizedLowerOrEqualTo(priority: EKAttributes.Precedence.Priority)
+        
         /** Describes all the entries that are currently in the queue and pending presentation */
         case enqueued
         
