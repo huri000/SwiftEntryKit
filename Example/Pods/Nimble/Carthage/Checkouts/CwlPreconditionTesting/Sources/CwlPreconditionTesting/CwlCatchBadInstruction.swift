@@ -21,7 +21,6 @@
 import Foundation
 
 #if SWIFT_PACKAGE
-	import CwlCatchException
 	import CwlMachBadInstructionHandler
 #endif
 
@@ -35,16 +34,6 @@ import Foundation
 		let r = f()
 		guard r == KERN_SUCCESS else {
 			throw NSError(domain: NSMachErrorDomain, code: Int(r), userInfo: nil)
-		}
-	}
-	
-	extension execTypesCountTuple {
-		mutating func pointer<R>(in block: (UnsafeMutablePointer<T>) -> R) -> R {
-			return withUnsafeMutablePointer(to: &self) { p -> R in
-				return p.withMemoryRebound(to: T.self, capacity: EXC_TYPES_COUNT) { ptr -> R in
-					return block(ptr)
-				}
-			}
 		}
 	}
 	
@@ -78,16 +67,22 @@ import Foundation
 		var currentExceptionPort: mach_port_t = 0
 		var handlerThread: pthread_t? = nil
 		
-		mutating func withUnsafeMutablePointers<R>(in block: (UnsafeMutablePointer<exception_mask_t>, UnsafeMutablePointer<mach_port_t>, UnsafeMutablePointer<exception_behavior_t>, UnsafeMutablePointer<thread_state_flavor_t>) -> R) -> R {
-			return masks.pointer { masksPtr in
-				return ports.pointer { portsPtr in
-					return behaviors.pointer { behaviorsPtr in
-						return flavors.pointer { flavorsPtr in
-							return block(masksPtr, portsPtr, behaviorsPtr, flavorsPtr)
+		static func internalMutablePointers<R>(_ m: UnsafeMutablePointer<execTypesCountTuple<exception_mask_t>>, _ c: UnsafeMutablePointer<mach_msg_type_number_t>, _ p: UnsafeMutablePointer<execTypesCountTuple<mach_port_t>>, _ b: UnsafeMutablePointer<execTypesCountTuple<exception_behavior_t>>, _ f: UnsafeMutablePointer<execTypesCountTuple<thread_state_flavor_t>>, _ block: (UnsafeMutablePointer<exception_mask_t>, UnsafeMutablePointer<mach_msg_type_number_t>,  UnsafeMutablePointer<mach_port_t>, UnsafeMutablePointer<exception_behavior_t>, UnsafeMutablePointer<thread_state_flavor_t>) -> R) -> R {
+			return m.withMemoryRebound(to: exception_mask_t.self, capacity: 1) { masksPtr in
+				return c.withMemoryRebound(to: mach_msg_type_number_t.self, capacity: 1) { countPtr in
+					return p.withMemoryRebound(to: mach_port_t.self, capacity: 1) { portsPtr in
+						return b.withMemoryRebound(to: exception_behavior_t.self, capacity: 1) { behaviorsPtr in
+							return f.withMemoryRebound(to: thread_state_flavor_t.self, capacity: 1) { flavorsPtr in
+								return block(masksPtr, countPtr, portsPtr, behaviorsPtr, flavorsPtr)
+							}
 						}
 					}
 				}
 			}
+		}
+		
+		mutating func withUnsafeMutablePointers<R>(in block: @escaping (UnsafeMutablePointer<exception_mask_t>, UnsafeMutablePointer<mach_msg_type_number_t>, UnsafeMutablePointer<mach_port_t>, UnsafeMutablePointer<exception_behavior_t>, UnsafeMutablePointer<thread_state_flavor_t>) -> R) -> R {
+			return MachContext.internalMutablePointers(&masks, &count, &ports, &behaviors, &flavors, block)
 		}
 	}
 	
@@ -102,8 +97,9 @@ import Foundation
 			// Request the next mach message from the port
 			request.Head.msgh_local_port = context.currentExceptionPort
 			request.Head.msgh_size = UInt32(MemoryLayout<request_mach_exception_raise_t>.size)
+			let requestSize = request.Head.msgh_size
 			try kernCheck { request.withMsgHeaderPointer { requestPtr in
-				mach_msg(requestPtr, MACH_RCV_MSG | MACH_RCV_INTERRUPT, 0, request.Head.msgh_size, context.currentExceptionPort, 0, UInt32(MACH_PORT_NULL))
+				mach_msg(requestPtr, MACH_RCV_MSG | MACH_RCV_INTERRUPT, 0, requestSize, context.currentExceptionPort, 0, UInt32(MACH_PORT_NULL))
 			} }
 			
 			// Prepare the reply structure
@@ -121,13 +117,14 @@ import Foundation
 				
 				handledfirstException = true
 			} else {
-				// If multiple fatal errors occur, don't handle subsequent errors (let the program crash)
+				// If multiple fatal errors occur, don't handle subsquent errors (let the program crash)
 				reply.RetCode = KERN_FAILURE
 			}
 			
 			// Send the reply
+			let replySize = reply.Head.msgh_size
 			try kernCheck { reply.withMsgHeaderPointer { replyPtr in
-				mach_msg(replyPtr, MACH_SEND_MSG, reply.Head.msgh_size, 0, UInt32(MACH_PORT_NULL), 0, UInt32(MACH_PORT_NULL))
+				mach_msg(replyPtr, MACH_SEND_MSG, replySize, 0, UInt32(MACH_PORT_NULL), 0, UInt32(MACH_PORT_NULL))
 			} }
 		} catch let error as NSError where (error.domain == NSMachErrorDomain && (error.code == Int(MACH_RCV_PORT_CHANGED) || error.code == Int(MACH_RCV_INVALID_NAME))) {
 			// Port was already closed before we started or closed while we were listening.
@@ -170,14 +167,15 @@ import Foundation
 				mach_port_insert_right(mach_task_self_, context.currentExceptionPort, context.currentExceptionPort, MACH_MSG_TYPE_MAKE_SEND)
 			}
 			
-			try kernCheck { context.withUnsafeMutablePointers { masksPtr, portsPtr, behaviorsPtr, flavorsPtr in
+			let currentExceptionPtr = context.currentExceptionPort
+			try kernCheck { context.withUnsafeMutablePointers { masksPtr, countPtr, portsPtr, behaviorsPtr, flavorsPtr in
 				// 3. Apply the mach port as the handler for this thread
-				thread_swap_exception_ports(mach_thread_self(), EXC_MASK_BAD_INSTRUCTION, context.currentExceptionPort, Int32(bitPattern: UInt32(EXCEPTION_STATE) | MACH_EXCEPTION_CODES), x86_THREAD_STATE64, masksPtr, &context.count, portsPtr, behaviorsPtr, flavorsPtr)
+				thread_swap_exception_ports(mach_thread_self(), EXC_MASK_BAD_INSTRUCTION, currentExceptionPtr, Int32(bitPattern: UInt32(EXCEPTION_STATE) | MACH_EXCEPTION_CODES), x86_THREAD_STATE64, masksPtr, countPtr, portsPtr, behaviorsPtr, flavorsPtr)
 			} }
 			
-			defer { context.withUnsafeMutablePointers { masksPtr, portsPtr, behaviorsPtr, flavorsPtr in
+			defer { context.withUnsafeMutablePointers { masksPtr, countPtr, portsPtr, behaviorsPtr, flavorsPtr in
 				// 6. Unapply the mach port
-				_ = thread_swap_exception_ports(mach_thread_self(), EXC_MASK_BAD_INSTRUCTION, 0, EXCEPTION_DEFAULT, THREAD_STATE_NONE, masksPtr, &context.count, portsPtr, behaviorsPtr, flavorsPtr)
+				_ = thread_swap_exception_ports(mach_thread_self(), EXC_MASK_BAD_INSTRUCTION, 0, EXCEPTION_DEFAULT, THREAD_STATE_NONE, masksPtr, countPtr, portsPtr, behaviorsPtr, flavorsPtr)
 			} }
 			
 			try withUnsafeMutablePointer(to: &context) { c throws in

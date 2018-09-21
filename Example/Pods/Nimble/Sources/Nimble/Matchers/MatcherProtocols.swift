@@ -31,8 +31,8 @@ extension Matcher {
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
 /// Objective-C interface to the Swift variant of Matcher.
 @objc public protocol NMBMatcher {
-    func matches(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool
-    func doesNotMatch(_ actualBlock: @escaping () -> NSObject!, failureMessage: FailureMessage, location: SourceLocation) -> Bool
+    func matches(_ actualBlock: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool
+    func doesNotMatch(_ actualBlock: @escaping () -> NSObject?, failureMessage: FailureMessage, location: SourceLocation) -> Bool
 }
 #endif
 
@@ -46,8 +46,8 @@ public protocol NMBContainer {
 //extension NSHashTable : NMBContainer {} // Corelibs Foundation does not include this class yet
 #endif
 
-extension NSArray : NMBContainer {}
-extension NSSet : NMBContainer {}
+extension NSArray: NMBContainer {}
+extension NSSet: NMBContainer {}
 
 /// Protocol for types that support only beEmpty(), haveCount() matchers
 public protocol NMBCollection {
@@ -55,32 +55,32 @@ public protocol NMBCollection {
 }
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-extension NSHashTable : NMBCollection {} // Corelibs Foundation does not include these classes yet
-extension NSMapTable : NMBCollection {}
+extension NSHashTable: NMBCollection {} // Corelibs Foundation does not include these classes yet
+extension NSMapTable: NMBCollection {}
 #endif
 
-extension NSSet : NMBCollection {}
-extension NSIndexSet : NMBCollection {}
-extension NSDictionary : NMBCollection {}
+extension NSSet: NMBCollection {}
+extension NSIndexSet: NMBCollection {}
+extension NSDictionary: NMBCollection {}
 
 /// Protocol for types that support beginWith(), endWith(), beEmpty() matchers
 public protocol NMBOrderedCollection: NMBCollection {
     func object(at index: Int) -> Any
 }
 
-extension NSArray : NMBOrderedCollection {}
+extension NSArray: NMBOrderedCollection {}
 
 public protocol NMBDoubleConvertible {
     var doubleValue: CDouble { get }
 }
 
-extension Double : NMBDoubleConvertible {
+extension Double: NMBDoubleConvertible {
     public var doubleValue: CDouble {
         return self
     }
 }
 
-extension Float : NMBDoubleConvertible {
+extension Float: NMBDoubleConvertible {
     public var doubleValue: CDouble {
         return CDouble(self)
     }
@@ -92,7 +92,7 @@ extension CGFloat: NMBDoubleConvertible {
     }
 }
 
-extension NSNumber : NMBDoubleConvertible {
+extension NSNumber: NMBDoubleConvertible {
 }
 
 private let dateFormatter: DateFormatter = {
@@ -142,12 +142,12 @@ public protocol NMBComparable {
 }
 #endif
 
-extension NSNumber : NMBComparable {
+extension NSNumber: NMBComparable {
     public func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult {
         return compare(otherObject as! NSNumber)
     }
 }
-extension NSString : NMBComparable {
+extension NSString: NMBComparable {
     public func NMB_compare(_ otherObject: NMBComparable!) -> ComparisonResult {
         return compare(otherObject as! String)
     }
