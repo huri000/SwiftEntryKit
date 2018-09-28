@@ -11,6 +11,8 @@ env:
 
 # travis cache isn't kept between builds
 before_install:
+  - rvm use system
+  - sudo gem install cocoapods -v '1.5.3'  
   - pod repo update
 
 script:
