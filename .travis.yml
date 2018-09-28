@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.3
+osx_image: xcode9.4
 cache: cocoapods
 podfile: Example/Podfile
 
@@ -7,15 +7,15 @@ env:
   global:
     - WORKSPACE=Example/SwiftEntryKit.xcworkspace
     - SCHEME=SwiftEntryKitDemo
-    - TEST_SDK=iphonesimulator
 
 # travis cache isn't kept between builds
 before_install:
+  - rvm use system
+  - sudo gem install cocoapods -v '1.5.3'  
   - pod repo update
 
 script:
 - set -o pipefail
-- brew upgrade carthage
 - carthage update --use-submodules
 - xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -configuration Debug | xcpretty
 - bash <(curl -s https://codecov.io/bash) -J 'SwiftEntryKit'

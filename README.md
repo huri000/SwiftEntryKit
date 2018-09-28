@@ -21,7 +21,11 @@
     * [Entry Name](#entry-name)
     * [Window Level](#window-level)
     * [Display Position](#display-position)
-    * [Display Priority](#display-priority)
+    * [Precedence](#precedence)
+      * [Override](#override)
+      * [Enqueue](#enqueue)
+        * [Heuristics](#heuristics)
+      * [Display Priority](#display-priority)
     * [Display Duration](#display-duration)
     * [Position Constraints](#position-constraints)
     * [User Interaction](#user-interaction)
@@ -132,7 +136,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.6.1'
+pod 'SwiftEntryKit', '0.7.0'
 ```
 
 Then, run the following command:
@@ -155,7 +159,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.6.1
+github "huri000/SwiftEntryKit" == 0.7.0
 ```
 
 ## Usage
@@ -232,16 +236,65 @@ attributes.position = .bottom
 
 The default value of `position` is `.top`.
 
-#### Display Priority 
-The display priority of the entry determines whether it dismisses other entries or be dismissed by them. 
+#### Precedence
+The precedence attribute of an entry describes the manner in which entries are pushed in. It offers 2 approaches for managing the presentation priority of multiple simultanious entries.
+
+##### Override
+If the [display priority](#display-priority) is equal or higher than the currently displayed entry, override it.
+
+Example for setting `.override` precedence with `.max` display priority while ignoring entries that are already enqueued (leaving them to display after the new entry is dismissed).
+
+```Swift 
+attributes.precedence = .override(priority: .max, dropEnqueuedEntries: false)
+```
+
+You can optionally flush the entries that are inside the queue.
+
+In case  `dropEnqueuedEntries` is `false`, enqueued entries remain in the queue. The first enqueued entry will show right after the new entry pops out. 
+In case  `dropEnqueuedEntries` is `true`, the entry-queue is flushed as the new entry is being displayed.
+
+##### Enqueue
+If the queue is empty, display the entry immediately, otherwise, insert the entry into the queue until its turn to show arrives.
+
+Example for setting `.enqueue` precedence with `.normal` display priority: 
+
+```Swift 
+attributes.precedence = .enqueue(priority: .normal)
+```
+
+###### Heuristics
+
+There are 2 possible heuristics for entries prioritization in the queue:
+
+- Display Priority Queue: The entries are sorted by their [display priority](#display-priority), then by chronological order.
+- Chronological Queue: The entries are sorted only by their chronological order (standard queue).
+
+Select the heuristic that suits you best by doing the following, only once, before using `SwiftEntryKit` to display entries.
+
+```Swift 
+EKAttributes.Precedence.QueueingHeuristic.value = .priority
+```
+
+Or:
+
+```Swift 
+EKAttributes.Precedence.QueueingHeuristic.value = .chronological
+```
+
+The default value of `EKAttributes.Precedence.QueueingHeuristic.value` is `.priority`.
+
+The default value of precedence is `.override(priority: .normal, dropEnqueuedEntries: false)`.
+
+##### Display Priority 
+The display priority of the entry determines whether it dismisses other entries or is dismissed by them. 
 An entry can be dismissed only by an entry with an equal or a higher display priority.
 
 ```Swift
 let highPriorityAttributes = EKAttributes()
-highPriorityAttributes.displayPriority = .high
+highPriorityAttributes.precedence.priority = .high
 
 let normalPriorityAttributes = EKAttributes()
-normalPriorityAttributes.displayPriority = .normal
+normalPriorityAttributes.precedence.priority = .normal
 
 // Display high priority entry
 SwiftEntryKit.display(entry: view1, using: highPriorityAttributes)
@@ -251,8 +304,6 @@ SwiftEntryKit.display(entry: view2, using: normalPriorityAttributes)
 ```
 
 *view2* won't be displayed!
-
-The default value of `displayPriority` is `.normal`.
 
 #### Display Duration
 The display duration of the entry (Counted from the moment the entry has finished it's entrance animation and until the exit animation begins).
@@ -559,7 +610,7 @@ public struct EKAttributes
     // Display
     public var windowLevel: WindowLevel
     public var position: Position
-    public var displayPriority: DisplayPriority
+    public var precedence: Precedence
     public var displayDuration: DisplayDuration
     public var positionConstraints: PositionConstraints
 
@@ -655,11 +706,42 @@ SwiftEntryKit.display(entry: view, using: attributes, rollbackWindow: .custom(wi
 After the entry has been dismissed, the given window `alternativeWindow` would become the key instead of the window that is held by the application delegate.
 
 ### Dismissing an Entry
-You can dismiss an entry by simply invoke *dismiss* in the SwiftEntryKit class, likewise:
+You can dismiss the currently displayed entry by simply invoke *dismiss* in the SwiftEntryKit class, likewise:
+
 ```Swift
 SwiftEntryKit.dismiss()
 ```
+Or:
+
+```Swift
+SwiftEntryKit.dismiss(.displayed)
+```
+
 This dismisses the entry animatedly using its *exitAnimation* attribute and on completion, the window would be removed as well.
+
+You can dismiss the currently displayed entry and flush the queue as well, likewise:
+
+```Swift
+SwiftEntryKit.dismiss(.all)
+```
+
+Only flush the queue, leaving any currently displayed entry to its natural lifecycle:
+
+```Swift
+SwiftEntryKit.dismiss(.queue)
+```
+
+Dismiss a specific entry by name - either currently displayed or enqueued. All the entries with the given name are dismissed.
+
+```Swift
+SwiftEntryKit.dismiss(.specific(entryName: "Entry Name"))
+```
+
+Dismiss any entry with a lower or equal display priority of `.normal`.
+
+```Swift
+SwiftEntryKit.dismiss(.prioritizedLowerOrEqualTo(priority: .normal))
+```
 
 #### Using a completion handler
 
@@ -682,6 +764,21 @@ if SwiftEntryKit.isCurrentlyDisplaying {
 Inquire whether a **specific** entry is currently displayed using the `name` property inside `EKAttributes`.
 ```Swift
 if SwiftEntryKit.isCurrentlyDisplaying(entryNamed: "Top Note") {
+/* Do your things */
+}
+```
+
+### Queue Contains
+Inquire whether the queue of entries is not empty:
+```Swift
+if SwiftEntryKit.isQueueEmpty {
+    /* Do your things */
+}
+```
+
+Inquire whether the queue of entries contains an entry with name:
+```Swift
+if SwiftEntryKit.queueContains(entryNamed: "Custom-Name") {
     /* Do your things */
 }
 ```

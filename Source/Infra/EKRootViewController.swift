@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol EntryPresenterDelegate: class {
+    var isResponsiveToTouches: Bool { set get }
+    func displayPendingEntryIfNeeded()
+}
+
 class EKRootViewController: UIViewController {
     
     // MARK: - Props
     
+    private unowned let delegate: EntryPresenterDelegate
+    
     private var lastAttributes: EKAttributes!
-    private var tapGestureRecognizer: UITapGestureRecognizer!
     
     private let backgroundView = EKBackgroundView()
 
@@ -32,14 +38,22 @@ class EKRootViewController: UIViewController {
         }
     }
     
+    fileprivate var displayingEntryCount: Int {
+        return view.subviews.count
+    }
+    
+    fileprivate var isDisplaying: Bool {
+        return lastEntry != nil
+    }
+    
     private var lastEntry: EKContentView? {
         return view.subviews.last as? EKContentView
     }
-    
-    private var isResponsive: Bool = false {
+        
+    private var isResponsive = false {
         didSet {
             wrapperView.isAbleToReceiveTouches = isResponsive
-            EKWindowProvider.shared.entryWindow.isAbleToReceiveTouches = isResponsive
+            delegate.isResponsiveToTouches = isResponsive
         }
     }
 
@@ -64,7 +78,8 @@ class EKRootViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init() {
+    public init(with delegate: EntryPresenterDelegate) {
+        self.delegate = delegate
         previousStatusBar = .currentStatusBar
         super.init(nibName: nil, bundle: nil)
     }
@@ -121,7 +136,7 @@ class EKRootViewController: UIViewController {
         guard let lastAttributes = lastAttributes else {
             return true
         }
-        return attributes.displayPriority >= lastAttributes.displayPriority
+        return attributes.precedence.priority >= lastAttributes.precedence.priority
     }
 
     // Removes last entry - can keep the window 'ON' if necessary
@@ -167,12 +182,24 @@ extension EKRootViewController {
 
 extension EKRootViewController: EntryContentViewDelegate {
     
+    func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool) {
+        guard !isDisplaying else {
+            return
+        }
+        
+        guard !keepWindowActive else {
+            return
+        }
+        
+        delegate.displayPendingEntryIfNeeded()
+    }
+    
     func changeToActive(withAttributes attributes: EKAttributes) {
         changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)
     }
     
     func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool) {
-        guard EKAttributes.count <= 1 else {
+        guard displayingEntryCount <= 1 else {
             return
         }
         
