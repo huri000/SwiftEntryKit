@@ -121,6 +121,12 @@ class EKEntryView: EKStyleView {
     // Apply round corners
     private func applyFrameStyle() {
         backgroundView.applyFrameStyle(roundCorners: attributes.roundCorners, border: attributes.border)
+        
+        // round corners of content view, to be sure, that buttons have same corner radius.
+        if case .all(let cornerRadius) = content.attributes.roundCorners {
+            content.view.layer.cornerRadius = cornerRadius
+            content.view.layer.masksToBounds = true
+        }
     }
     
     // Apply drop shadow
