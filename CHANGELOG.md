@@ -1,6 +1,25 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.7.1
+
+### Feature - Add a way to make a specific text field first responder in `EKFormMessageView`
+
+Related issue: [Best way to present keyboard #107](https://github.com/huri000/SwiftEntryKit/issues/107).
+The window must be a key window, so setting `presentInsideKeyWindow` to `true` is necessary to achieve that goal. Likewise:
+
+```Swift
+SwiftEntryKit.display(entry: formMessageView, using: attributes, presentInsideKeyWindow: true)
+```
+
+It is recommended to set `lifecycleEvents.didAppear` to  perform the keyboard showing action. For example:
+
+```Swift
+attributes.lifecycleEvents.didAppear = {
+    formMessageView.becomeFirstResponder(with: 0)
+}
+```
+
 ## 0.7.0
 
 ### Feature - Queue of Entries
