@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.7.2
+
+### Bug Fixes
+
+(numberOfLines property #111)https://github.com/huri000/SwiftEntryKit/issues/111] - Allow multiple lines in image notes.
+
 ## 0.7.1
 
 ### Feature - Add a way to make a specific text field first responder in `EKFormMessageView`
