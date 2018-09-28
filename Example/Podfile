@@ -1,13 +1,13 @@
 target 'SwiftEntryKitDemo' do
-	platform :ios, '9.0'
-	use_frameworks!
-	pod 'SwiftEntryKit', :path => '../'
+    platform :ios, '9.0'
+    use_frameworks!
+    pod 'SwiftEntryKit', :path => '../'
 end
 
 target 'SwiftEntryKitTests' do
-	platform :ios, '9.0'
-	use_frameworks!
-	pod 'SwiftEntryKit', :path => '../'
-    pod 'Quick', '1.2.0'
-    pod 'Nimble', '7.0.2'
+    platform :ios, '9.0'
+    use_frameworks!
+    pod 'SwiftEntryKit', :path => '../'
+    pod 'Quick', '1.3.2'
+    pod 'Nimble', '7.3.1'
 end

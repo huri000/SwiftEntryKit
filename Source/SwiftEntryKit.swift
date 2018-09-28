@@ -75,7 +75,7 @@ public final class SwiftEntryKit {
     
     /**
      ALPHA FEATURE: Transform the previous entry to the current one using the previous attributes struct.
-     - A thread-safe method - Can be invokes from any thread.
+     - A thread-safe method - Can be invoked from any thread.
      - A class method - Should be called on the class.
      - This feature hasn't been fully tested. Use with caution.
      - parameter view: Custom view that is to be displayed instead of the currently displayed entry
@@ -88,7 +88,7 @@ public final class SwiftEntryKit {
     
     /**
      Dismisses the currently presented entry and removes the presented window instance after the exit animation is concluded.
-     - A thread-safe method - Can be invokes from any thread.
+     - A thread-safe method - Can be invoked from any thread.
      - A class method - Should be called on the class.
      - parameter completion: A completion handler that is to be called right after the entry is dismissed (After the animation is concluded).
      */
@@ -101,7 +101,7 @@ public final class SwiftEntryKit {
     /**
      Layout the view hierarchy that is rooted in the window.
      - In case you use complex animations, you can call it to refresh the AutoLayout mechanism on the entire view hierarchy.
-     - A thread-safe method - Can be invokes from any thread.
+     - A thread-safe method - Can be invoked from any thread.
      - A class method - Should be called on the class.
      */
     public class func layoutIfNeeded() {
