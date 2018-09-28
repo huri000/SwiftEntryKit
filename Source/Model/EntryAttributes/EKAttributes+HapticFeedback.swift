@@ -18,7 +18,7 @@ public extension EKAttributes {
         case none
         
         @available(iOS 10.0, *)
-        var value: UINotificationFeedbackType? {
+        var value: UINotificationFeedbackGenerator.FeedbackType? {
             switch self {
             case .success:
                 return .success

@@ -81,19 +81,19 @@ public struct EKProperty {
         public var size: CGSize?
     
         /** Content mode */
-        public var contentMode: UIViewContentMode
+        public var contentMode: UIView.ContentMode
         
         /** Shuld the image can rounded */
         public var makeRound: Bool
     
-        public init(image: UIImage, size: CGSize? = nil, contentMode: UIViewContentMode = .scaleToFill, makeRound: Bool = false) {
+        public init(image: UIImage, size: CGSize? = nil, contentMode: UIView.ContentMode = .scaleToFill, makeRound: Bool = false) {
             self.image = image
             self.size = size
             self.contentMode = contentMode
             self.makeRound = makeRound
         }
         
-        public init(imageName: String, size: CGSize? = nil, contentMode: UIViewContentMode = .scaleToFill, makeRound: Bool = false) {
+        public init(imageName: String, size: CGSize? = nil, contentMode: UIView.ContentMode = .scaleToFill, makeRound: Bool = false) {
             self.init(image: UIImage(named: imageName)!, size: size, contentMode: contentMode, makeRound: makeRound)
         }
         

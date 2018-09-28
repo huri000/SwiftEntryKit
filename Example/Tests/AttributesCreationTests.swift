@@ -146,7 +146,7 @@ class AttributesCreation: QuickSpec {
                 windowLevel = .normal
                 attributes.windowLevel = windowLevel
                 
-                expect(attributes.windowLevel.value).to(equal(UIWindowLevelNormal))
+                expect(attributes.windowLevel.value).to(equal(.normal))
                 expect(attributes.validateWindowLevel).to(beTrue())
                 expect(attributes.isValid).to(beTrue())
             }
@@ -155,7 +155,7 @@ class AttributesCreation: QuickSpec {
                 windowLevel = .statusBar
                 attributes.windowLevel = windowLevel
                 
-                expect(attributes.windowLevel.value).to(equal(UIWindowLevelStatusBar))
+                expect(attributes.windowLevel.value).to(equal(.statusBar))
                 expect(attributes.validateWindowLevel).to(beTrue())
                 expect(attributes.isValid).to(beTrue())
             }
@@ -164,13 +164,13 @@ class AttributesCreation: QuickSpec {
                 windowLevel = .alerts
                 attributes.windowLevel = windowLevel
                 
-                expect(attributes.windowLevel.value).to(equal(UIWindowLevelAlert))
+                expect(attributes.windowLevel.value).to(equal(.alert))
                 expect(attributes.validateWindowLevel).to(beTrue())
                 expect(attributes.isValid).to(beTrue())
             }
             
             it("is has a custom level") {
-                let level: UIWindowLevel = 1
+                let level = UIWindow.Level(rawValue: 1)
                 windowLevel = .custom(level: level)
                 attributes.windowLevel = windowLevel
                 
@@ -180,7 +180,7 @@ class AttributesCreation: QuickSpec {
             }
             
             it("is cannot have negative level") {
-                let level: UIWindowLevel = -1
+                let level = UIWindow.Level(rawValue: -1)
                 windowLevel = .custom(level: level)
                 attributes.windowLevel = windowLevel
                 

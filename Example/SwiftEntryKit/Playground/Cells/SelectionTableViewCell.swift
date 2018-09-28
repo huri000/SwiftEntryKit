@@ -53,7 +53,7 @@ class SelectionTableViewCell: SelectionBaseCell {
         }
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupTitleLabel()
         setupDescriptionLabel()
@@ -86,8 +86,8 @@ class SelectionTableViewCell: SelectionBaseCell {
     private func setupSegmentedControl() {
         contentView.addSubview(segmentedControl)
         segmentedControl.tintColor = UIColor(rgb: 0x37474f)
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: MainFont.light.with(size: 15)], for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: MainFont.medium.with(size: 15)], for: .selected)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: MainFont.light.with(size: 15)], for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: MainFont.medium.with(size: 15)], for: .selected)
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
         segmentedControl.layout(.top, to: .bottom, of: descriptionLabel, offset: 10)
         segmentedControl.layoutToSuperview(axis: .horizontally, offset: 20)
