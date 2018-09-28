@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.7.2
+
+### Bug Fixes
+
+
+
 ## 0.7.1
 
 ### Feature - Add a way to make a specific text field first responder in `EKFormMessageView`

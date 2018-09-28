@@ -19,6 +19,8 @@ public class EKAccessoryNoteMessageView: UIView {
         
         addSubview(contentView)
         contentView.layoutToSuperview(.centerX, .top, .bottom)
+        contentView.layoutToSuperview(.left, relation: .greaterThanOrEqual, offset: 16)
+        contentView.layoutToSuperview(.right, relation: .lessThanOrEqual, offset: -16)
         
         noteMessageView = EKNoteMessageView(with: content)
         noteMessageView.horizontalOffset = 8
