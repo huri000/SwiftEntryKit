@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode9.3
+osx_image: xcode9.4
 cache: cocoapods
 podfile: Example/Podfile
 
@@ -7,7 +7,6 @@ env:
   global:
     - WORKSPACE=Example/SwiftEntryKit.xcworkspace
     - SCHEME=SwiftEntryKitDemo
-    - TEST_SDK=iphonesimulator
 
 # travis cache isn't kept between builds
 before_install:
