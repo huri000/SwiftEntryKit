@@ -17,7 +17,7 @@ public class EKTextField: UIView {
     private let imageView = UIImageView()
     private let textField = UITextField()
     
-    var text: String {
+    public var text: String {
         set {
             textField.text = newValue
         }
@@ -26,7 +26,7 @@ public class EKTextField: UIView {
         }
     }
     
-    init(with content: EKProperty.TextFieldContent) {
+    public init(with content: EKProperty.TextFieldContent) {
         self.content = content
         super.init(frame: UIScreen.main.bounds)
         setupImageView()
@@ -63,5 +63,9 @@ public class EKTextField: UIView {
         separatorView.set(.height, of: 1)
         separatorView.layoutToSuperview(.bottom)
         separatorView.layoutToSuperview(axis: .horizontally, offset: 10)
+    }
+    
+    public func makeFirstResponder() {
+        textField.becomeFirstResponder()
     }
 }

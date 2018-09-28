@@ -309,14 +309,17 @@ class PresetsViewController: UIViewController {
     }
     
     // Sign up form
-    private func showSignupForm(attributes: EKAttributes, style: FormStyle) {
+    private func showSignupForm(attributes: inout EKAttributes, style: FormStyle) {
         let title = EKProperty.LabelContent(text: "Fill your personal details", style: style.title)
         let textFields = FormFieldPresetFactory.fields(by: [.fullName, .mobile, .email, .password], style: style)
         let button = EKProperty.ButtonContent(label: .init(text: "Continue", style: style.buttonTitle), backgroundColor: style.buttonBackground, highlightedBackgroundColor: style.buttonBackground.withAlphaComponent(0.8)) {
             SwiftEntryKit.dismiss()
         }
         let contentView = EKFormMessageView(with: title, textFieldsContent: textFields, buttonContent: button)
-        SwiftEntryKit.display(entry: contentView, using: attributes)
+        attributes.lifecycleEvents.didAppear = {
+            contentView.becomeFirstResponder(with: 0)
+        }
+        SwiftEntryKit.display(entry: contentView, using: attributes, presentInsideKeyWindow: true)
     }
 }
 
@@ -453,9 +456,11 @@ extension PresetsViewController {
         case 0:
             showSigninForm(attributes: attributes, style: .light)
         case 1:
-            showSignupForm(attributes: attributes, style: .light)
+            var attributes = attributes
+            showSignupForm(attributes: &attributes, style: .light)
         case 2:
-            showSignupForm(attributes: attributes, style: .dark)
+            var attributes = attributes
+            showSignupForm(attributes: &attributes, style: .dark)
         default:
             break
         }
