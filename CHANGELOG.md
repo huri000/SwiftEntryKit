@@ -3,7 +3,11 @@ Any notable changes to this project will be documented in this file.
 
 ## 0.8.0
 
-Adjustments for Swift 4.2. Issue: Swift 4.2 Support #108
+### Enhancements
+
+Adjustments for Swift 4.2. 
+
+Related Issue: [Swift 4.2 Support #108](https://github.com/huri000/SwiftEntryKit/issues/108)
 
 ## 0.7.2
 
