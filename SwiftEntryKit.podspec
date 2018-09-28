@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'SwiftEntryKit'
-  s.version = '0.7.2'
+  s.version = '0.8.0'
   s.summary = 'A simple banner and pop-up displayer for iOS. Written in Swift.'
   s.platform = :ios
   s.ios.deployment_target = '9.0'
@@ -23,5 +23,5 @@ DESC
   s.source           = { :git => 'https://github.com/huri000/SwiftEntryKit.git', :tag => s.version.to_s }
   s.source_files = 'Source/**/*'
   s.frameworks = 'UIKit'
-  s.dependency 'QuickLayout', '2.0.2'
+  s.dependency 'QuickLayout', '2.1.0'
 end

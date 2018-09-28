@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.0
+
+Adjustments for Swift 4.2.
+
 ## 0.7.2
 
 ### Bug Fixes

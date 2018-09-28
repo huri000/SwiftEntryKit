@@ -66,8 +66,8 @@ class PlaygroundViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
         tableView.register(Cells.header, forHeaderFooterViewReuseIdentifier: Cells.header.className)
         Cells.cells.forEach { cells in
             cells.forEach { tableView.register($0, forCellReuseIdentifier: $0.className) }

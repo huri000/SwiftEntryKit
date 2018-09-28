@@ -25,8 +25,8 @@ class PresetsViewController: UIViewController {
     
     private func setupTableView() {
         view.addSubview(tableView)
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
         tableView.register(PresetTableViewCell.self, forCellReuseIdentifier: PresetTableViewCell.className)
         tableView.register(SelectionHeaderView.self, forHeaderFooterViewReuseIdentifier: SelectionHeaderView.className)
         tableView.dataSource = self

@@ -21,7 +21,7 @@ extension EKAttributes {
     }
     
     var validateWindowLevel: Bool {
-        return windowLevel.value >= UIWindowLevelNormal
+        return windowLevel.value >= .normal
     }
     
     var isValid: Bool {
