@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.6.1
+
+### Adjustments for Xcode 10.
+
 ## 0.6.0
 
 ### Autorotation flag for entries - [pull-request](https://github.com/huri000/SwiftEntryKit/pull/80)
