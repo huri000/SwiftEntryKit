@@ -837,8 +837,11 @@ Orientation Change Demonstration |
 ![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
 
 ### Swift and Objective-C Interoperability
-SwiftEntryKit's API uses syntax there is Swift exclusive, therefore, it doesn't support Objective-C projects by design.
-Yet, it is easy to integrate SwiftEntryKit into an Objective-C project using a simple *.swift* class that is a sort of adapter or mediator between your code and SwiftEntryKit's API. 
+SwiftEntryKit's API uses the Swift language exclusive syntax (enums, associated values, and more). 
+Therefore, `SwiftEntryKit` cannot be referenced directly from an Objective-C file (*.m*, *.h* or *.mm*).
+
+Yet, it is pretty easy to integrate SwiftEntryKit into an Objective-C project using a simple *.swift* class that is a sort of adapter between `SwiftEntryKit` and your Objective-C code.
+
 [This project](https://github.com/huri000/ObjcEntryKitExample) demonstrates that using Carthage and CocoaPods.  
 
 ## Known Issues
