@@ -44,9 +44,10 @@
   * [Displaying a View Controller](#displaying-a-view-controller)
   * [Alternative Rollback Window](#alternative-rollback-window)
   * [Dismissing an Entry](#dismissing-an-entry)
-  * [Swiping And Rubber Banding](#swiping-and-rubber-banding)
+  * [Swiping and Rubber Banding](#swiping-and-rubber-banding)
   * [Dealing With Safe Area](#dealing-with-safe-area)
   * [Dealing With Orientation Change](#dealing-with-orientation-change)
+  * [Swift and Objective-C Interoperability](#swift-and-objective-c-interoperability)
 * [Known Issues](#known-issues)
 * [Author](#author)
 * [License](#license)
@@ -834,6 +835,11 @@ SwiftEntryKit.display(entry: customView, using: attributes)
 Orientation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
+
+### Swift and Objective-C Interoperability
+SwiftEntryKit's API uses syntax there is Swift exclusive, therefore, it doesn't support Objective-C projects by design.
+Yet, it is easy to integrate SwiftEntryKit into an Objective-C project using a simple *.swift* class that is a sort of adapter or mediator between your code and SwiftEntryKit's API. 
+[This project](https://github.com/huri000/ObjcEntryKitExample) demonstrates that using Carthage and CocoaPods.  
 
 ## Known Issues
 
