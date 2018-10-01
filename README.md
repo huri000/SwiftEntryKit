@@ -68,7 +68,7 @@ Banners or Pop-Ups are called *Entries*.
   - [x] Can be stylized: have a [border](#border), [drop-shadow](#shadow) and [round corners](#round-corners).
   - [x] Their content's and the screen's background can be blurred, dimmed, colored or have a gradient [style](#background-style).
   - [x] Transition [animations](#animations) are customizable - Entrance, Exit and Pop (by another entry).
-  - [x] The user interactions with the entry or the screen can be intercepted.
+  - [x] The [user interaction](#user-interaction) with the entry or the screen can be intercepted.
   - [x] Entries can be enqueued or override previous entries using the [precedence](#precedence) attribute.
   - [x] Entries have [display priority](#display-priority) attribute. That means that an entry can be dismissed only be other entry with equal or higher priority. 
   - [x] Entries have an optional rubber banding effect in panning.
