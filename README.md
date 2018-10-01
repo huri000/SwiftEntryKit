@@ -63,17 +63,18 @@ Banners or Pop-Ups are called *Entries*.
 - The entries are displayed in a separated UIWindow (of type EKWindow), so the user is able to navigate the app freely while entries are being displayed in a non intrusive manner.
 - The kit offers some beautiful [presets](#presets) that can be themed with your app colors and fonts.
 - **Customization**: Entries are highly customizable
-  - [x] Can be displayed either at the top, center, or the bottom of the screen.
+  - [x] Can be [positioned](#display-position) either at the top, center, or the bottom of the screen.
   - [x] Can be displayed within or outside the screen's safe area.
-  - [x] Can be stylized: have a border, drop-shadow and round corners.
-  - [x] Their content's and the screen's background can be blurred, dimmed, colored or have a gradient style.
-  - [x] Transition animations are customizable - Entrance, Exit and Pop (by another entry).
+  - [x] Can be stylized: have a [border](#border), [drop-shadow](#shadow) and [round corners](#round-corners).
+  - [x] Their content's and the screen's background can be blurred, dimmed, colored or have a gradient [style](#background-style).
+  - [x] Transition [animations](#animations) are customizable - Entrance, Exit and Pop (by another entry).
   - [x] The user interactions with the entry or the screen can be intercepted.
+  - [x] Entries can be enqueued or override previous entries using the [precedence](#precedence) attribute.
+  - [x] Entries have [display priority](#display-priority) attribute. That means that an entry can be dismissed only be other entry with equal or higher priority. 
   - [x] Entries have an optional rubber banding effect in panning.
-  - [x] Entries can be optionally dismissed using a simple swipe gesture.
-  - [x] Entries have display priority attribute. That means that an entry can be dismissed only be other entry with equal or higher priority. 
-  - [x] Entries can be optionally injected with lifecycle events: *will* and *did* appear/disappear.
-  - [x] The status bar style is settable for the display duration of the entry.
+  - [x] Entries can be optionally dismissed using a simple [swipe gesture](#swiping-and-rubber-banding).
+  - [x] Entries can be optionally injected with [lifecycle events](#lifecycle-events): *will* and *did* appear/disappear.
+  - [x] The [status bar style](#status-bar) is settable for the display duration of the entry.
   - [x] SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
 
 ## Example Project
@@ -122,6 +123,8 @@ The Playground Screen | Top Toast Sample
 
 ## Installation
 
+SwiftEntryKit is compatible with Xcode 10 as of release *0.8.0*. Developers who are still using Xcode 9.x.y can install release 0.7.2, or lower versions.
+
 ### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
@@ -138,6 +141,21 @@ platform :ios, '9.0'
 use_frameworks!
 
 pod 'SwiftEntryKit', '0.8.0'
+```
+
+As of release *0.8.0*, if your work environment is Xcode 10 but your project's Swift version is below 4.2, specify this in your `Podfile` to avoid Swift compatibility errors:
+
+```Swift
+swift_4_2_pod_targets = ['SwiftEntryKit', 'QuickLayout']
+post_install do | installer |
+    installer.pods_project.targets.each do |target|
+        if swift_4_2_pod_targets.include?(target.name)
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
+end
 ```
 
 Then, run the following command:
