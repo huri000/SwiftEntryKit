@@ -123,7 +123,7 @@ The Playground Screen | Top Toast Sample
 
 ## Installation
 
-SwiftEntryKit is compatible with Xcode 10 as of release *0.8.0*. Developers who are still using Xcode 9.x.y can install release 0.7.2, or lower versions.
+SwiftEntryKit is compatible with Xcode 10 as of release *0.8.1*. Developers who are still using Xcode 9.x.y can install release 0.7.2, or lower versions.
 
 ### CocoaPods
 
@@ -140,22 +140,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.8.0'
-```
-
-As of release *0.8.0*, if your work environment is Xcode 10 but your project's Swift version is below 4.2, specify this in your `Podfile` to avoid Swift compatibility errors:
-
-```Swift
-swift_4_2_pod_targets = ['SwiftEntryKit', 'QuickLayout']
-post_install do | installer |
-    installer.pods_project.targets.each do |target|
-        if swift_4_2_pod_targets.include?(target.name)
-            target.build_configurations.each do |config|
-                config.build_settings['SWIFT_VERSION'] = '4.2'
-            end
-        end
-    end
-end
+pod 'SwiftEntryKit', '0.8.1'
 ```
 
 Then, run the following command:
@@ -178,7 +163,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.8.0
+github "huri000/SwiftEntryKit" == 0.8.1
 ```
 
 ## Usage
@@ -864,7 +849,7 @@ Yet, it is pretty easy to integrate SwiftEntryKit into an Objective-C project us
 
 ## Known Issues
 
-As of release *0.8.0*, SwiftEntryKit is compatible with Swift 4.2.
+As of release *0.8.1*, SwiftEntryKit is compatible with Xcode 10
 Developers who are still using Xcode 9.x.y can install release *0.7.2*.
 Other possible workarounds: [Swift 4.2 Support](https://github.com/huri000/SwiftEntryKit/issues/108#issuecomment-425374479)
 

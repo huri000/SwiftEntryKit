@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.1
+
+Apply a necessary fix for Xcode 10 and older than 4.2 Swift version compatibility.
+
 ## 0.8.0
 
 ### Enhancements
