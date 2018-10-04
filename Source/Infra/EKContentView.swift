@@ -296,6 +296,7 @@ class EKContentView: UIView {
         }
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
         tapGestureRecognizer.numberOfTapsRequired = 1
+        tapGestureRecognizer.cancelsTouchesInView = false
         addGestureRecognizer(tapGestureRecognizer)
     }
     

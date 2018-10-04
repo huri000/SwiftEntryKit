@@ -1,6 +1,11 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.2
+
+### Bug Fixes:
+[Issue #119](https://github.com/huri000/SwiftEntryKit/issues/119) - Entry tap gesture doesn't cancel touches inside the entry view. 
+
 ## 0.8.1
 
 Apply a necessary fix for Xcode 10 and older than 4.2 Swift version compatibility.
