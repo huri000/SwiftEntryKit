@@ -123,7 +123,8 @@ The Playground Screen | Top Toast Sample
 
 ## Installation
 
-SwiftEntryKit is compatible with Xcode 10 as of release *0.8.1*. Developers who are still using Xcode 9.x.y can install release 0.7.2, or lower versions.
+SwiftEntryKit is compatible with Xcode 10 as of release *0.8.1*. 
+Developers who use Xcode 9.x.y can install release 0.7.2, or any lower version.
 
 ### CocoaPods
 
@@ -140,7 +141,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.8.1'
+pod 'SwiftEntryKit', '0.8.2'
 ```
 
 Then, run the following command:
@@ -163,7 +164,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.8.1
+github "huri000/SwiftEntryKit" == 0.8.2
 ```
 
 ## Usage
@@ -849,9 +850,8 @@ Yet, it is pretty easy to integrate SwiftEntryKit into an Objective-C project us
 
 ## Known Issues
 
-As of release *0.8.1*, SwiftEntryKit is compatible with Xcode 10
+As of release *0.8.1*, SwiftEntryKit is compatible with Xcode 10. 
 Developers who are still using Xcode 9.x.y can install release *0.7.2*.
-Other possible workarounds: [Swift 4.2 Support](https://github.com/huri000/SwiftEntryKit/issues/108#issuecomment-425374479)
 
 **Unable to find specification for SwiftEntryKit (=X.Y.Z)** - In case you get this error please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/4).
 
