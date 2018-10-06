@@ -195,7 +195,7 @@ The kit will replace the application main window with the EKWindow instance and 
 
 ### Entry Attributes
 
-*EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes struct is necessary to describe the entry's presentation, position inside the screen, the display duration, it's frame constraints (if needed), it's styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
+*EKAttributes* is the entry's descriptor. Each time an entry is displayed, an EKAttributes struct is necessary to describe the entry's presentation, position inside the screen, the display duration, its frame constraints (if needed), its styling (corners, border and shadow), the user interaction events, the animations (in / out) and more.
 
 Create a mutable EKAttributes structure likewise:
 ```Swift
@@ -311,7 +311,7 @@ SwiftEntryKit.display(entry: view2, using: normalPriorityAttributes)
 *view2* won't be displayed!
 
 #### Display Duration
-The display duration of the entry (Counted from the moment the entry has finished it's entrance animation and until the exit animation begins).
+The display duration of the entry (Counted from the moment the entry has finished its entrance animation and until the exit animation begins).
 
 Display for 4 seconds:
 ```Swift
@@ -379,7 +379,7 @@ The extreme situation might occur as the device orientation is landscape and the
 #### User Interaction
 The entry and the screen can be interacted by the user. User interaction be can intercepted in various ways:
 
-An interaction (Any touch whatsoever) with the entry delays it's exit by 3s:
+An interaction (Any touch whatsoever) with the entry delays its exit by 3s:
 ```Swift
 attributes.entryInteraction = .delayExit(by: 3)
 ```
@@ -599,8 +599,8 @@ The status bar appearance is inferred from the previous context (won't be change
 attributes.statusBar = .inferred
 ```
 
-In case there is an already presenting entry with lower/equal display priority, the status bar will change it's style
-When the entry is removed the status bar gets it's initial style back.
+In case there is an already presenting entry with lower/equal display priority, the status bar will change its style. 
+When the entry is removed, the status bar gets its initial style back.
 
 The default value of `statusBar` is `.inferred`. 
 
@@ -678,7 +678,7 @@ SwiftEntryKit.display(entry: contentView, using: attributes)
 // Create a basic toast that appears at the top
 var attributes = EKAttributes.topToast
 
-// Set it's background to white
+// Set its background to white
 attributes.entryBackground = .color(color: .white)
 
 // Animate in and out using default translation
