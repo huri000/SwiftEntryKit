@@ -123,8 +123,8 @@ The Playground Screen | Top Toast Sample
 
 ## Installation
 
-SwiftEntryKit is compatible with Xcode 10 as of release *0.8.1*. 
-Developers who use Xcode 9.x.y can install release 0.7.2, or any lower version.
+SwiftEntryKit is compatible with Swift 4.2 as of release *0.8.1*. 
+Developers who use lower Swift version can install release *0.7.2*.
 
 ### CocoaPods
 
