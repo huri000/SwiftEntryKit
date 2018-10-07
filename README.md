@@ -850,9 +850,6 @@ Yet, it is pretty easy to integrate SwiftEntryKit into an Objective-C project us
 
 ## Known Issues
 
-As of release *0.8.1*, SwiftEntryKit is compatible with Xcode 10. 
-Developers who are still using Xcode 9.x.y can install release *0.7.2*.
-
 **Unable to find specification for SwiftEntryKit (=X.Y.Z)** - In case you get this error please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/4).
 
 **Unable to use example project** - In case you are unable to install the example project please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/31) and the [Example Project Installation](#example-project-installation) section.
