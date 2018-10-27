@@ -1,6 +1,11 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.3
+
+### Bug Fixes:
+[Issue #132](https://github.com/huri000/SwiftEntryKit/issues/132) - Background dimmed view is NOT animating.
+
 ## 0.8.2
 
 ### Bug Fixes:
