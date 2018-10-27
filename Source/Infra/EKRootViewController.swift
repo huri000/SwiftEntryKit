@@ -38,8 +38,12 @@ class EKRootViewController: UIViewController {
         }
     }
     
+    /*
+     Count the total amount of currently displaying entries,
+     meaning, total subviews less one - the backgorund of the entry
+     */
     fileprivate var displayingEntryCount: Int {
-        return view.subviews.count
+        return view.subviews.count - 1
     }
     
     fileprivate var isDisplaying: Bool {
@@ -194,10 +198,6 @@ extension EKRootViewController: EntryContentViewDelegate {
         delegate.displayPendingEntryIfNeeded()
     }
     
-    func changeToActive(withAttributes attributes: EKAttributes) {
-        changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)
-    }
-    
     func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool) {
         guard displayingEntryCount <= 1 else {
             return
@@ -220,6 +220,10 @@ extension EKRootViewController: EntryContentViewDelegate {
         if lastBackroundStyle != attributes.screenBackground {
             clear()
         }
+    }
+    
+    func changeToActive(withAttributes attributes: EKAttributes) {
+        changeBackground(to: attributes.screenBackground, duration: attributes.entranceAnimation.totalDuration)
     }
     
     private func changeBackground(to style: EKAttributes.BackgroundStyle, duration: TimeInterval) {
