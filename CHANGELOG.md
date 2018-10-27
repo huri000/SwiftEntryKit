@@ -1,6 +1,11 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.4
+
+### Bug Fixes:
+[Issue #131](https://github.com/huri000/SwiftEntryKit/issues/131) - `EKAttributes.PositionConstraints` initializer parameter isn't referenced in implementation.
+
 ## 0.8.3
 
 ### Bug Fixes:
