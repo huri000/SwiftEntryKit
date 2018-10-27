@@ -168,7 +168,7 @@ public extension EKAttributes {
         public init(verticalOffset: CGFloat = 0, size: Size = .sizeToWidth, maxSize: Size = .intrinsic) {
             self.verticalOffset = verticalOffset
             self.size = size
-            self.maxSize = .intrinsic
+            self.maxSize = maxSize
         }
     }
 }
