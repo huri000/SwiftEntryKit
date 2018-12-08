@@ -21,8 +21,6 @@ struct PresetsDataSource {
         case topFloat = "ic_top_float"
         case statusBarNote = "ic_sb_note"
         case topNote = "ic_top_note"
-//        case bottomNote = "ic_bottom_toast"
-//        case centerPopup = "ic_center_popup"
         case bottomPopup = "ic_bottom_popup"
     }
     

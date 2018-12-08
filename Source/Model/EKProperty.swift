@@ -35,11 +35,6 @@ public struct EKProperty {
             self.contentEdgeInset = contentEdgeInset
             self.action = action
         }
-        
-        // Returns the height of the label using edge inset property to calculate additional margins to the height
-        func height(by width: CGFloat) -> CGFloat {
-            return label.height(by: width) + contentEdgeInset * 2
-        }
     }
     
     /** Label content descriptor */
@@ -54,10 +49,6 @@ public struct EKProperty {
         public init(text: String, style: LabelStyle) {
             self.text = text
             self.style = style
-        }
-        
-        func height(by width: CGFloat) -> CGFloat {
-            return text.height(by: style.font, width: width)
         }
     }
     
@@ -160,12 +151,12 @@ public struct EKProperty {
         public var content: [ButtonContent] = []
         public var separatorColor: UIColor
         public var expandAnimatedly: Bool
-        public var minimumButtonHeight: CGFloat
+        public var buttonHeight: CGFloat
         
-        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, minimumButtonHeight: CGFloat = 50, expandAnimatedly: Bool) {
+        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
             self.separatorColor = separatorColor
             self.expandAnimatedly = expandAnimatedly
-            self.minimumButtonHeight = minimumButtonHeight
+            self.buttonHeight = buttonHeight
             content.append(contentsOf: buttonContents)
         }
     }

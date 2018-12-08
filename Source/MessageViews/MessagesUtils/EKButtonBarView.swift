@@ -33,24 +33,19 @@ public class EKButtonBarView: UIView {
     }()
     
     private(set) lazy var intrinsicHeight: CGFloat = {
-        var height: CGFloat
+        var height: CGFloat = 0
         switch buttonBarContent.content.count {
         case 0:
-            height = 1
+            height += 1
         case 1...verticalSpreadThreshold:
-            height = 1
-            for (buttonView, buttonContent) in zip(buttonViews, buttonBarContent.content) {
-                height = max(buttonContent.height(by: buttonView.bounds.width), height)
-            }
-            height = max(buttonBarContent.minimumButtonHeight, height)
+            height += buttonBarContent.buttonHeight
         default:
-            height = 0
-            for (buttonView, buttonContent) in zip(buttonViews, buttonBarContent.content) {
-                height += max(buttonContent.height(by: buttonView.bounds.width), buttonBarContent.minimumButtonHeight)
+            for _ in 1...buttonBarContent.content.count {
+                height += buttonBarContent.buttonHeight
             }
         }
         return height
-    }() 
+    }()
     
     private var compressedConstraint: NSLayoutConstraint!
     private lazy var expandedConstraint: NSLayoutConstraint = {
@@ -80,7 +75,7 @@ public class EKButtonBarView: UIView {
         
         compressedConstraint = set(.height, of: 1, priority: .must)
     }
-    
+
     private func setupButtonBarContent() {
         for content in buttonBarContent.content {
             let buttonView = EKButtonView(content: content)
@@ -136,7 +131,6 @@ public class EKButtonBarView: UIView {
             setupSeperatorView(after: button)
         }
     }
-    
     
     // Amination
     public func expand() {

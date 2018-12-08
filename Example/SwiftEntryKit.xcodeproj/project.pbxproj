@@ -101,7 +101,6 @@
 		14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CD1209118DA0019AE7F /* NibExampleView.swift */; };
 		14D18CD4209118E90019AE7F /* NibExampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D18CD3209118E90019AE7F /* NibExampleView.xib */; };
 		14DF7B6A21BBCD4D0058B2BB /* EKButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF7B6921BBCD4D0058B2BB /* EKButtonView.swift */; };
-		14DF7B7421BBD39A0058B2BB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF7B7321BBD39A0058B2BB /* String+Utils.swift */; };
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* PresetsViewController.swift */; };
 		14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */; };
@@ -295,7 +294,6 @@
 		14D18CD1209118DA0019AE7F /* NibExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibExampleView.swift; sourceTree = "<group>"; };
 		14D18CD3209118E90019AE7F /* NibExampleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NibExampleView.xib; sourceTree = "<group>"; };
 		14DF7B6921BBCD4D0058B2BB /* EKButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKButtonView.swift; sourceTree = "<group>"; };
-		14DF7B7321BBD39A0058B2BB /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* PresetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
@@ -442,7 +440,6 @@
 			isa = PBXGroup;
 			children = (
 				14B48B2620B81C9700CE3EF4 /* UIView+Utils.swift */,
-				14DF7B7321BBD39A0058B2BB /* String+Utils.swift */,
 				14B48B2720B81C9700CE3EF4 /* UIRectCorner+Short.swift */,
 				14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */,
 				14B48B2920B81C9700CE3EF4 /* UIView+Shadow.swift */,
@@ -1052,7 +1049,6 @@
 				14B48B7B20B81C9700CE3EF4 /* EKNotificationMessage.swift in Sources */,
 				14B48B8620B81C9700CE3EF4 /* EKButtonBarView.swift in Sources */,
 				14B48B5E20B81C9700CE3EF4 /* EKContentView.swift in Sources */,
-				14DF7B7421BBD39A0058B2BB /* String+Utils.swift in Sources */,
 				14B48B6D20B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift in Sources */,
 				14B48B7F20B81C9700CE3EF4 /* EKImageNoteMessageView.swift in Sources */,
 				14B48B6820B81C9700CE3EF4 /* EKProperty.swift in Sources */,
