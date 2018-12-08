@@ -15,21 +15,30 @@ public struct EKProperty {
         
         public typealias Action = () -> ()
         
-        /** Button's title label content descriptor */
+        /** Button title label content descriptor */
         public var label: LabelContent
         
-        /** Button's background color */
+        /** Button background color */
         public var backgroundColor: UIColor
         public var highlightedBackgroundColor: UIColor
 
+        /** Content edge inset */
+        public var contentEdgeInset: CGFloat
+        
         /** Action */
         public var action: Action?
         
-        public init(label: LabelContent, backgroundColor: UIColor, highlightedBackgroundColor: UIColor, action: @escaping Action = {}) {
+        public init(label: LabelContent, backgroundColor: UIColor, highlightedBackgroundColor: UIColor, contentEdgeInset: CGFloat = 5, action: @escaping Action = {}) {
             self.label = label
             self.backgroundColor = backgroundColor
             self.highlightedBackgroundColor = highlightedBackgroundColor
+            self.contentEdgeInset = contentEdgeInset
             self.action = action
+        }
+        
+        // Returns the height of the label using edge inset property to calculate additional margins to the height
+        func height(by width: CGFloat) -> CGFloat {
+            return label.height(by: width) + contentEdgeInset * 2
         }
     }
     
@@ -45,6 +54,10 @@ public struct EKProperty {
         public init(text: String, style: LabelStyle) {
             self.text = text
             self.style = style
+        }
+        
+        func height(by width: CGFloat) -> CGFloat {
+            return text.height(by: style.font, width: width)
         }
     }
     
@@ -145,14 +158,14 @@ public struct EKProperty {
     /** Button bar content */
     public struct ButtonBarContent {
         public var content: [ButtonContent] = []
-        public var buttonHeight: CGFloat
         public var separatorColor: UIColor
         public var expandAnimatedly: Bool
+        public var minimumButtonHeight: CGFloat
         
-        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
+        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, minimumButtonHeight: CGFloat = 50, expandAnimatedly: Bool) {
             self.separatorColor = separatorColor
             self.expandAnimatedly = expandAnimatedly
-            self.buttonHeight = buttonHeight
+            self.minimumButtonHeight = minimumButtonHeight
             content.append(contentsOf: buttonContents)
         }
     }

@@ -18,7 +18,7 @@ import QuickLayout
 public class EKButtonBarView: UIView {
     
     // MARK: Props
-    private var buttons: [UIButton] = []
+    private var buttonViews: [EKButtonView] = []
     
     /** Threshold for spreading the buttons inside in a vertical manner */
     private let verticalSpreadThreshold: Int
@@ -33,21 +33,29 @@ public class EKButtonBarView: UIView {
     }()
     
     private(set) lazy var intrinsicHeight: CGFloat = {
-        let buttonHeight: CGFloat = buttonBarContent.buttonHeight
-        let height: CGFloat
+        var height: CGFloat
         switch buttonBarContent.content.count {
         case 0:
             height = 1
         case 1...verticalSpreadThreshold:
-            height = buttonHeight
+            height = 1
+            for (buttonView, buttonContent) in zip(buttonViews, buttonBarContent.content) {
+                height = max(buttonContent.height(by: buttonView.bounds.width), height)
+            }
+            height = max(buttonBarContent.minimumButtonHeight, height)
         default:
-            height = buttonHeight * CGFloat(buttons.count)
+            height = 0
+            for (buttonView, buttonContent) in zip(buttonViews, buttonBarContent.content) {
+                height += max(buttonContent.height(by: buttonView.bounds.width), buttonBarContent.minimumButtonHeight)
+            }
         }
         return height
-    }()
+    }() 
     
     private var compressedConstraint: NSLayoutConstraint!
-    private var expandedConstraint: NSLayoutConstraint!
+    private lazy var expandedConstraint: NSLayoutConstraint = {
+        return set(.height, of: intrinsicHeight, priority: .defaultLow)
+    }()
 
     // MARK: Setup
     required public init?(coder aDecoder: NSCoder) {
@@ -71,27 +79,28 @@ public class EKButtonBarView: UIView {
         setupSeparatorViews()
         
         compressedConstraint = set(.height, of: 1, priority: .must)
-        expandedConstraint = set(.height, of: intrinsicHeight, priority: .defaultLow)
     }
     
     private func setupButtonBarContent() {
-        for (index, buttonContent) in buttonBarContent.content.enumerated() {
-            setButton(for: buttonContent, index: index)
+        for content in buttonBarContent.content {
+            let buttonView = EKButtonView(content: content)
+            addSubview(buttonView)
+            buttonViews.append(buttonView)
         }
         layoutButtons()
     }
     
     private func layoutButtons() {
-        guard !buttons.isEmpty else {
+        guard !buttonViews.isEmpty else {
             return
         }
-        let suffix = Array(buttons.dropFirst())
+        let suffix = Array(buttonViews.dropFirst())
         if !suffix.isEmpty {
-            suffix.layout(.height, to: buttons.first!)
+            suffix.layout(.height, to: buttonViews.first!)
         }
-        buttons.layoutToSuperview(axis: oppositeAxis)
-        buttons.spread(spreadAxis, stretchEdgesToSuperview: true)
-        buttons.layout(relativeEdge, to: self, ratio: buttonEdgeRatio, priority: .must)
+        buttonViews.layoutToSuperview(axis: oppositeAxis)
+        buttonViews.spread(spreadAxis, stretchEdgesToSuperview: true)
+        buttonViews.layout(relativeEdge, to: self, ratio: buttonEdgeRatio, priority: .must)
     }
     
     private func setupTopSeperatorView() {
@@ -102,20 +111,20 @@ public class EKButtonBarView: UIView {
         topSeparatorView.backgroundColor = buttonBarContent.separatorColor
     }
     
-    private func setupSeperatorView(after button: UIButton) {
+    private func setupSeperatorView(after view: UIView) {
         let midSepView = UIView()
         addSubview(midSepView)
         let sepAttribute: NSLayoutConstraint.Attribute
-        let buttonAtt: NSLayoutConstraint.Attribute
+        let buttonAttribute: NSLayoutConstraint.Attribute
         switch oppositeAxis {
         case .vertically:
             sepAttribute = .centerX
-            buttonAtt = .right
+            buttonAttribute = .right
         case .horizontally:
             sepAttribute = .centerY
-            buttonAtt = .bottom
+            buttonAttribute = .bottom
         }
-        midSepView.layout(sepAttribute, to: buttonAtt, of: button)
+        midSepView.layout(sepAttribute, to: buttonAttribute, of: view)
         midSepView.set(relativeEdge, of: 1)
         midSepView.layoutToSuperview(axis: oppositeAxis)
         midSepView.backgroundColor = buttonBarContent.separatorColor
@@ -123,43 +132,11 @@ public class EKButtonBarView: UIView {
     
     private func setupSeparatorViews() {
         setupTopSeperatorView()
-        for button in buttons.dropLast() {
+        for button in buttonViews.dropLast() {
             setupSeperatorView(after: button)
         }
     }
     
-    // MARK: Setup Buttons
-    private func setButton(for content: EKProperty.ButtonContent, index: Int) {
-        let button = UIButton()
-        button.tag = index
-        addEvents(to: button)
-        set(button: button, with: content)
-        addSubview(button)
-        buttons.append(button)
-    }
-    
-    // Style & Text
-    private func set(button: UIButton, with content: EKProperty.ButtonContent) {
-        button.setTitle(content.label.text, for: .normal)
-        button.setTitleColor(content.label.style.color, for: .normal)
-        button.titleLabel?.font = content.label.style.font
-        button.backgroundColor = content.backgroundColor
-    }
-    
-    private func setBackground(for button: UIButton, by content: EKProperty.ButtonContent, isHighlighted: Bool) {
-        if isHighlighted {
-            button.backgroundColor = content.highlightedBackgroundColor
-        } else {
-            button.backgroundColor = content.backgroundColor
-        }
-    }
-    
-    // Add Selectors
-    private func addEvents(to button: UIButton) {
-        button.addTarget(self, action: #selector(buttonTouchUp(_:)), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        button.addTarget(self, action: #selector(buttonTouchDown(_:)), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUpInside(_:)), for: .touchUpInside)
-    }
     
     // Amination
     public func expand() {
@@ -190,18 +167,5 @@ public class EKButtonBarView: UIView {
     public func compress() {
         compressedConstraint.priority = .must
         expandedConstraint.priority = .defaultLow
-    }
-
-    // MARK: Buttons Selectors
-    @objc func buttonTouchUpInside(_ button: UIButton) {
-        buttonBarContent.content[button.tag].action?()
-    }
-    
-    @objc func buttonTouchDown(_ button: UIButton) {
-        setBackground(for: button, by: buttonBarContent.content[button.tag], isHighlighted: true)
-    }
-    
-    @objc func buttonTouchUp(_ button: UIButton) {
-        setBackground(for: button, by: buttonBarContent.content[button.tag], isHighlighted: false)
     }
 }
