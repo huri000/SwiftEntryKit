@@ -1,7 +1,7 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
-## 0.8.5
+## 0.8.6
 [Issue #121](https://github.com/huri000/SwiftEntryKit/issues/121) - Long title for alert buttons.
 
 ## 0.8.4
