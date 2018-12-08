@@ -131,7 +131,7 @@ class PresetsViewController: UIViewController {
             SwiftEntryKit.dismiss()
         }
     
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, buttonHeight: 60, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
         
         message = EKRatingMessage(initialTitle: initialTitle, initialDescription: initialDescription, ratingItems: items, buttonBarContent: buttonsBarContent) { index in
             // Rating selected - do something
@@ -207,7 +207,7 @@ class PresetsViewController: UIViewController {
         
         // Generate textual content
         let title = EKProperty.LabelContent(text: "Dear Reader!", style: .init(font: MainFont.medium.with(size: 15), color: .black))
-        let description = EKProperty.LabelContent(text: "Get a coupon for a free book now", style: .init(font: MainFont.light.with(size: 13), color: .black))
+        let description = EKProperty.LabelContent(text: "Get your coupon for a free book now", style: .init(font: MainFont.light.with(size: 13), color: .black))
         let image = EKProperty.ImageContent(imageName: "ic_books", size: CGSize(width: 35, height: 35), contentMode: .scaleAspectFit)
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
         
@@ -223,7 +223,7 @@ class PresetsViewController: UIViewController {
         
         // Ok Button - Make transition to a new entry when the button is tapped
         let okButtonLabelStyle = EKProperty.LabelStyle(font: buttonFont, color: EKColor.Teal.a600)
-        let okButtonLabel = EKProperty.LabelContent(text: "SHOW ME", style: okButtonLabelStyle)
+        let okButtonLabel = EKProperty.LabelContent(text: "WHY NOT! LET ME HAVE IT NOW", style: okButtonLabelStyle)
         let okButton = EKProperty.ButtonContent(label: okButtonLabel, backgroundColor: .clear, highlightedBackgroundColor:  EKColor.Teal.a600.withAlphaComponent(0.05)) { [unowned self] in
             var attributes = self.dataSource.bottomAlertAttributes
             attributes.entryBackground = .color(color: EKColor.Teal.a600)
@@ -233,7 +233,7 @@ class PresetsViewController: UIViewController {
             let description = "Your book coupon is 5w1ft3ntr1k1t"
             self.showPopupMessage(attributes: attributes, title: title, titleColor: .white, description: description, descriptionColor: .white, buttonTitleColor: .darkSubText, buttonBackgroundColor: .white, image: image)
         }
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, buttonHeight: 60, expandAnimatedly: true)
         
         // Generate the content
         let alertMessage = EKAlertMessage(simpleMessage: simpleMessage, imagePosition: .left, buttonBarContent: buttonsBarContent)

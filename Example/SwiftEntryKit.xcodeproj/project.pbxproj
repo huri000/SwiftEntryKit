@@ -100,6 +100,7 @@
 		14D18CCF209105290019AE7F /* WidthSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */; };
 		14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D18CD1209118DA0019AE7F /* NibExampleView.swift */; };
 		14D18CD4209118E90019AE7F /* NibExampleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D18CD3209118E90019AE7F /* NibExampleView.xib */; };
+		14DF7B6A21BBCD4D0058B2BB /* EKButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF7B6921BBCD4D0058B2BB /* EKButtonView.swift */; };
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* PresetsViewController.swift */; };
 		14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */; };
@@ -292,6 +293,7 @@
 		14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CD1209118DA0019AE7F /* NibExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibExampleView.swift; sourceTree = "<group>"; };
 		14D18CD3209118E90019AE7F /* NibExampleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NibExampleView.xib; sourceTree = "<group>"; };
+		14DF7B6921BBCD4D0058B2BB /* EKButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKButtonView.swift; sourceTree = "<group>"; };
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* PresetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				14B48B4D20B81C9700CE3EF4 /* EKTextField.swift */,
+				14DF7B6921BBCD4D0058B2BB /* EKButtonView.swift */,
 				14B48B4E20B81C9700CE3EF4 /* EKButtonBarView.swift */,
 				14B3A51720C16D7A002306C4 /* EKRatingSymbolView.swift */,
 				14B3A51920C16E44002306C4 /* EKRatingSymbolsContainerView.swift */,
@@ -1041,6 +1044,7 @@
 				14B3A51420C16BAC002306C4 /* EKAlertMessage.swift in Sources */,
 				14B48B5820B81C9700CE3EF4 /* EKRootViewController.swift in Sources */,
 				14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */,
+				14DF7B6A21BBCD4D0058B2BB /* EKButtonView.swift in Sources */,
 				14B48B7520B81C9700CE3EF4 /* EKAttributes+Presets.swift in Sources */,
 				14B48B7B20B81C9700CE3EF4 /* EKNotificationMessage.swift in Sources */,
 				14B48B8620B81C9700CE3EF4 /* EKButtonBarView.swift in Sources */,

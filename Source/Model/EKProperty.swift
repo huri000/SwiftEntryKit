@@ -15,20 +15,24 @@ public struct EKProperty {
         
         public typealias Action = () -> ()
         
-        /** Button's title label content descriptor */
+        /** Button title label content descriptor */
         public var label: LabelContent
         
-        /** Button's background color */
+        /** Button background color */
         public var backgroundColor: UIColor
         public var highlightedBackgroundColor: UIColor
 
+        /** Content edge inset */
+        public var contentEdgeInset: CGFloat
+        
         /** Action */
         public var action: Action?
         
-        public init(label: LabelContent, backgroundColor: UIColor, highlightedBackgroundColor: UIColor, action: @escaping Action = {}) {
+        public init(label: LabelContent, backgroundColor: UIColor, highlightedBackgroundColor: UIColor, contentEdgeInset: CGFloat = 5, action: @escaping Action = {}) {
             self.label = label
             self.backgroundColor = backgroundColor
             self.highlightedBackgroundColor = highlightedBackgroundColor
+            self.contentEdgeInset = contentEdgeInset
             self.action = action
         }
     }
@@ -145,9 +149,9 @@ public struct EKProperty {
     /** Button bar content */
     public struct ButtonBarContent {
         public var content: [ButtonContent] = []
-        public var buttonHeight: CGFloat
         public var separatorColor: UIColor
         public var expandAnimatedly: Bool
+        public var buttonHeight: CGFloat
         
         public init(with buttonContents: ButtonContent..., separatorColor: UIColor, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
             self.separatorColor = separatorColor
