@@ -28,6 +28,12 @@ public class EKButtonBarView: UIView {
     private let oppositeAxis: QLAxis
     private let relativeEdge: NSLayoutConstraint.Attribute
     
+    var bottomCornerRadius: CGFloat = 0 {
+        didSet {
+            adjustRoundCornersIfNecessary()
+        }
+    }
+    
     private lazy var buttonEdgeRatio: CGFloat = {
         return 1.0 / CGFloat(self.buttonBarContent.content.count)
     }()
@@ -74,6 +80,11 @@ public class EKButtonBarView: UIView {
         setupSeparatorViews()
         
         compressedConstraint = set(.height, of: 1, priority: .must)
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        adjustRoundCornersIfNecessary()
     }
 
     private func setupButtonBarContent() {
@@ -161,5 +172,13 @@ public class EKButtonBarView: UIView {
     public func compress() {
         compressedConstraint.priority = .must
         expandedConstraint.priority = .defaultLow
+    }
+    
+    private func adjustRoundCornersIfNecessary() {
+        let size = CGSize(width: bottomCornerRadius, height: bottomCornerRadius)
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: .bottom, cornerRadii: size)
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+        layer.mask = maskLayer
     }
 }

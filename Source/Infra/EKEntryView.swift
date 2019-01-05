@@ -25,6 +25,15 @@ class EKEntryView: EKStyleView {
         init(view: UIView, attributes: EKAttributes) {
             self.view = view
             self.attributes = attributes
+            adjustAppearanceIfNeeded()
+        }
+        
+        /* Complementary logic for bug #117 */
+        private func adjustAppearanceIfNeeded() {
+            guard let view = view as? EntryAppearanceDescriptor else {
+                return
+            }
+            view.bottomCornerRadius = attributes.roundCorners.cornerValues?.radius ?? 0
         }
     }
     

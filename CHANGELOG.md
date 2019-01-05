@@ -1,6 +1,12 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.7
+
+### Bug Fixes:
+
+[Issue #117](https://github.com/huri000/SwiftEntryKit/issues/117) - Round buttons in alert.
+
 ## 0.8.6
 [Issue #121](https://github.com/huri000/SwiftEntryKit/issues/121) - Long title for alert buttons.
 

@@ -7,12 +7,20 @@
 
 import UIKit
 
-public class EKAlertMessageView: EKSimpleMessageView {
+public class EKAlertMessageView: EKSimpleMessageView, EntryAppearanceDescriptor {
     
     // MARK: Props
-    private var buttonBarView: EKButtonBarView!
+    var buttonBarView: EKButtonBarView!
     private var buttonsBarCompressedConstraint: NSLayoutConstraint!
     private var buttonsBarExpandedConstraint: NSLayoutConstraint!
+    
+    // MARK: EntryAppearenceDescriptor
+    
+    var bottomCornerRadius: CGFloat = 0 {
+        didSet {
+            buttonBarView.bottomCornerRadius = bottomCornerRadius
+        }
+    }
     
     // MARK: Setup
     public init(with message: EKAlertMessage) {
@@ -32,7 +40,6 @@ public class EKAlertMessageView: EKSimpleMessageView {
     }
     
     func layoutContent(with message: EKAlertMessage) {
-
         switch message.imagePosition {
         case .top:
             messageContentView.verticalMargins = 16
