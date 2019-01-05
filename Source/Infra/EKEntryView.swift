@@ -61,6 +61,7 @@ class EKEntryView: EKStyleView {
         applyDropShadow()
         applyBackgroundToContentView()
         applyFrameStyle()
+        adjustInnerContentAppearanceIfNeeded()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -116,6 +117,14 @@ class EKEntryView: EKStyleView {
         contentView.fillSuperview()
         contentView.layoutToSuperview(axis: .vertically)
         contentView.layoutToSuperview(axis: .horizontally)
+    }
+
+    // Complementary logic for issue #117
+    private func adjustInnerContentAppearanceIfNeeded() {
+        guard let view = content.view as? EntryAppearanceDescriptor else {
+            return
+        }
+        view.bottomCornerRadius = attributes.roundCorners.cornerValues?.radius ?? 0
     }
     
     // Apply round corners
