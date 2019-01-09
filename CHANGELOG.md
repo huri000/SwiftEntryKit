@@ -1,6 +1,13 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.8
+
+### Bug Fixes:
+
+[Issue #109](https://github.com/huri000/SwiftEntryKit/issues/109) - StatusBar appareance when moving to another UIViewController.
+[Issue #143](https://github.com/huri000/SwiftEntryKit/issues/143) - Orientation incorrect when set to .portraitUpsideDown on iPhone.
+
 ## 0.8.7
 
 ### Bug Fixes:

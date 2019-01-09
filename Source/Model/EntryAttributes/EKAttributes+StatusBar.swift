@@ -16,6 +16,9 @@ public extension EKAttributes {
         /** The appearance of the status bar */
         public typealias Appearance = (visible: Bool, style: UIStatusBarStyle)
         
+        /** Ignored. Status bar is ignored by entries with this apperance value*/
+        case ignored
+        
         /** Hidden. Doesn't apply to iPhone X */
         case hidden
         
@@ -42,6 +45,8 @@ public extension EKAttributes {
                 return StatusBar.currentAppearance
             case .hidden:
                 return (false, StatusBar.currentStyle)
+            case .ignored:
+                fatalError("There is no defined appearance for an ignored status bar")
             }
         }
         
