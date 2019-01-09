@@ -5,8 +5,32 @@ Any notable changes to this project will be documented in this file.
 
 ### Bug Fixes:
 
-[Issue #109](https://github.com/huri000/SwiftEntryKit/issues/109) - StatusBar appareance when moving to another UIViewController.
-[Issue #143](https://github.com/huri000/SwiftEntryKit/issues/143) - Orientation incorrect when set to .portraitUpsideDown on iPhone.
+[Issue #109](https://github.com/huri000/SwiftEntryKit/issues/109) - StatusBar appareance when moving to another UIViewController. Added another tatus bar type - `.ignored`. Using this ignores the status bar when the entry enters/exits the screen.
+
+[Issue #143](https://github.com/huri000/SwiftEntryKit/issues/143) - Orientation incorrect when set to .portraitUpsideDown on iPhone. 
+Changed `isRotationEnabled` to `Rotation` structure. 
+
+```Swift
+/** Rotation related position constraints */
+    public struct Rotation {
+
+    /** Attributes of supported interface orientations */
+    public enum SupportedInterfaceOrientation {
+
+        /** Uses standard supported interface orientation (target specification in general settings) */
+        case standard
+
+        /** Supports all orinetations */
+        case all
+    }
+
+    /** Autorotate the entry along with the device orientation */
+    public var isEnabled: Bool
+
+    /** The screen autorotates with accordance to this option */
+    public var supportedInterfaceOrientations: SwiftEntryKit.EKAttributes.PositionConstraints.Rotation.SupportedInterfaceOrientation
+}
+```
 
 ## 0.8.7
 
