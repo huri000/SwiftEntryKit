@@ -12,7 +12,7 @@ Changed `isRotationEnabled` to `Rotation` structure.
 
 ```Swift
 /** Rotation related position constraints */
-    public struct Rotation {
+public struct Rotation {
 
     /** Attributes of supported interface orientations */
     public enum SupportedInterfaceOrientation {
