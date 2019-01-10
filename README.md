@@ -362,7 +362,7 @@ attributes.positionConstraints.verticalOffset = 10
 
 Autorotation - whether the entry autorotates along with the orientation of the device. Defaults to `true`.
 ```Swift
-attributes.positionConstraints.isRotationEnabled = false
+attributes.positionConstraints.rotation.isEnabled = false
 ```
 
 Keyboard Releation - used to bind an entry to the keyboard once the keyboard is displayed.
