@@ -491,7 +491,7 @@ struct PresetsDataSource {
         attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
         attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
         
-        attributes.statusBar = .dark
+        attributes.statusBar = .ignored
         descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
         description = .init(with: attributes, title: "View from Nib", description: descriptionString, thumb: descriptionThumb)

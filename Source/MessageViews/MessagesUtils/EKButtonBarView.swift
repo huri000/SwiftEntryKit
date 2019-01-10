@@ -20,9 +20,6 @@ public class EKButtonBarView: UIView {
     // MARK: Props
     private var buttonViews: [EKButtonView] = []
     
-    /** Threshold for spreading the buttons inside in a vertical manner */
-    private let verticalSpreadThreshold: Int
-    
     private let buttonBarContent: EKProperty.ButtonBarContent
     private let spreadAxis: QLAxis
     private let oppositeAxis: QLAxis
@@ -43,7 +40,7 @@ public class EKButtonBarView: UIView {
         switch buttonBarContent.content.count {
         case 0:
             height += 1
-        case 1...verticalSpreadThreshold:
+        case 1...buttonBarContent.horizontalDistributionThreshold:
             height += buttonBarContent.buttonHeight
         default:
             for _ in 1...buttonBarContent.content.count {
@@ -63,10 +60,9 @@ public class EKButtonBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(with buttonBarContent: EKProperty.ButtonBarContent, verticalSpreadThreshold: Int = 2) {
-        self.verticalSpreadThreshold = verticalSpreadThreshold
+    public init(with buttonBarContent: EKProperty.ButtonBarContent) {
         self.buttonBarContent = buttonBarContent
-        if buttonBarContent.content.count <= verticalSpreadThreshold {
+        if buttonBarContent.content.count <= buttonBarContent.horizontalDistributionThreshold {
             spreadAxis = .horizontally
             oppositeAxis = .vertically
             relativeEdge = .width

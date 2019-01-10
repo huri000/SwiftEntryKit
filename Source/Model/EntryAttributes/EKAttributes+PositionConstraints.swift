@@ -127,8 +127,30 @@ public extension EKAttributes {
             }
         }
         
-        /** Autorotate the entry along with the device orientation enabled / disabled */
-        public var isRotationEnabled = true
+        /** Rotation related position constraints */
+        public struct Rotation {
+            
+            /** Attributes of supported interface orientations */
+            public enum SupportedInterfaceOrientation {
+                
+                /** Uses standard supported interface orientation (target specification in general settings) */
+                case standard
+                
+                /** Supports all orinetations */
+                case all
+            }
+            
+            /** Autorotate the entry along with the device orientation */
+            public var isEnabled = true
+            
+            /** The screen autorotates with accordance to this option */
+            public var supportedInterfaceOrientations = SupportedInterfaceOrientation.standard
+            
+            public init() {}
+        }
+        
+        /** The rotation attributes of the entry */
+        public var rotation = Rotation()
         
         /** The entry can be bound to keyboard in case of appearance */
         public var keyboardRelation = KeyboardRelation.unbind

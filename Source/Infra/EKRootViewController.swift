@@ -23,20 +23,9 @@ class EKRootViewController: UIViewController {
     
     private let backgroundView = EKBackgroundView()
 
-    // Previous status bar style
-    private let previousStatusBar: EKAttributes.StatusBar
-    
     private lazy var wrapperView: EKWrapperView = {
         return EKWrapperView()
     }()
-    
-    private var statusBar: EKAttributes.StatusBar? = nil {
-        didSet {
-            if let statusBar = statusBar {
-                UIApplication.shared.set(statusBarStyle: statusBar)
-            }
-        }
-    }
     
     /*
      Count the total amount of currently displaying entries,
@@ -65,14 +54,43 @@ class EKRootViewController: UIViewController {
         if lastAttributes == nil {
             return true
         }
-        return lastAttributes.positionConstraints.isRotationEnabled
+        return lastAttributes.positionConstraints.rotation.isEnabled
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        guard let lastAttributes = lastAttributes else {
+            return super.supportedInterfaceOrientations
+        }
+        switch lastAttributes.positionConstraints.rotation.supportedInterfaceOrientations {
+        case .standard:
+            return super.supportedInterfaceOrientations
+        case .all:
+            return .all
+        }
+    }
+    
+    // Previous status bar style
+    private let previousStatusBar: EKAttributes.StatusBar
+    
+    private var statusBar: EKAttributes.StatusBar? = nil {
+        didSet {
+            if let statusBar = statusBar, ![statusBar, oldValue].contains(.ignored) {
+                UIApplication.shared.set(statusBarStyle: statusBar)
+            }
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
+        if [previousStatusBar, statusBar].contains(.ignored) {
+            return super.preferredStatusBarStyle
+        }
         return statusBar?.appearance.style ?? previousStatusBar.appearance.style
     }
 
     override var prefersStatusBarHidden: Bool {
+        if [previousStatusBar, statusBar].contains(.ignored) {
+            return super.prefersStatusBarHidden
+        }
         return !(statusBar?.appearance.visible ?? previousStatusBar.appearance.visible)
     }
     
@@ -132,6 +150,10 @@ class EKRootViewController: UIViewController {
         isResponsive = attributes.screenInteraction.isResponsive
         if previousAttributes?.statusBar != attributes.statusBar {
             setNeedsStatusBarAppearanceUpdate()
+        }
+        
+        if shouldAutorotate {
+            UIViewController.attemptRotationToDeviceOrientation()
         }
     }
         

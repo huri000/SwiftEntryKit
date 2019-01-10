@@ -131,7 +131,7 @@ class PresetsViewController: UIViewController {
             SwiftEntryKit.dismiss()
         }
     
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(with: closeButton, okButton, separatorColor: EKColor.Gray.light, horizontalDistributionThreshold: 1, expandAnimatedly: true)
         
         message = EKRatingMessage(initialTitle: initialTitle, initialDescription: initialDescription, ratingItems: items, buttonBarContent: buttonsBarContent) { index in
             // Rating selected - do something
