@@ -5,8 +5,10 @@ Any notable changes to this project will be documented in this file.
 
 ### Bug Fixes:
 
+#### #109
 [Issue #109](https://github.com/huri000/SwiftEntryKit/issues/109) - StatusBar appareance when moving to another UIViewController. Added another tatus bar type - `.ignored`. Using this ignores the status bar when the entry enters/exits the screen.
 
+#### #143
 [Issue #143](https://github.com/huri000/SwiftEntryKit/issues/143) - Orientation incorrect when set to .portraitUpsideDown on iPhone. 
 Changed `isRotationEnabled` to `Rotation` structure. 
 
@@ -31,6 +33,10 @@ public struct Rotation {
     public var supportedInterfaceOrientations: SwiftEntryKit.EKAttributes.PositionConstraints.Rotation.SupportedInterfaceOrientation
 }
 ```
+
+#### Button Bar Horizontal Distribution Threshold
+`EKProperty.ButtonBarContent` supports an upper horizontal threshold for its button distribution.
+`EKProperty.ButtonBarContent` has an `Int` property named `horizontalDistributionThreshold`. It must be positive.
 
 ## 0.8.7
 
