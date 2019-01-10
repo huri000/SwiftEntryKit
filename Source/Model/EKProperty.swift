@@ -148,13 +148,28 @@ public struct EKProperty {
     
     /** Button bar content */
     public struct ButtonBarContent {
+        
+        /** Button content array */
         public var content: [ButtonContent] = []
+        
+        /** The color of the separator */
         public var separatorColor: UIColor
+        
+        /** Upper threshold for the number of buttons (*ButtonContent*) for horizontal distribution. Must be a positive value */
+        public var horizontalDistributionThreshold: Int
+        
+        /** Determines whether the buttons expands animately */
         public var expandAnimatedly: Bool
+        
+        /** The height of each button. All are equally distributed in their axis */
         public var buttonHeight: CGFloat
         
-        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
+        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, horizontalDistributionThreshold: Int = 2, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
+            guard horizontalDistributionThreshold > 0 else {
+                fatalError("horizontalDistributionThreshold Must have a positive value!")
+            }
             self.separatorColor = separatorColor
+            self.horizontalDistributionThreshold = horizontalDistributionThreshold
             self.expandAnimatedly = expandAnimatedly
             self.buttonHeight = buttonHeight
             content.append(contentsOf: buttonContents)
