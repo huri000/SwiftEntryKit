@@ -3,7 +3,19 @@ import Foundation
 internal func identityAsString(_ value: Any?) -> String {
     let anyObject: AnyObject?
 #if os(Linux)
-    anyObject = value as? AnyObject
+    #if swift(>=4.0)
+        #if !swift(>=4.1.50)
+            anyObject = value as? AnyObject
+        #else
+            anyObject = value as AnyObject?
+        #endif
+    #else
+        #if !swift(>=3.4)
+            anyObject = value as? AnyObject
+        #else
+            anyObject = value as AnyObject?
+        #endif
+    #endif
 #else
     anyObject = value as AnyObject?
 #endif
@@ -144,7 +156,9 @@ extension Data: TestOutputStringConvertible {
 ///     will return the result of constructing a string from the value.
 ///
 /// - SeeAlso: `TestOutputStringConvertible`
-public func stringify<T>(_ value: T) -> String {
+public func stringify<T>(_ value: T?) -> String {
+    guard let value = value else { return "nil" }
+
     if let value = value as? TestOutputStringConvertible {
         return value.testDescription
     }
@@ -154,14 +168,6 @@ public func stringify<T>(_ value: T) -> String {
     }
 
     return String(describing: value)
-}
-
-/// -SeeAlso: `stringify<T>(value: T)`
-public func stringify<T>(_ value: T?) -> String {
-    if let unboxed = value {
-        return stringify(unboxed)
-    }
-    return "nil"
 }
 
 #if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)

@@ -1,11 +1,12 @@
 # QuickLayout
-[![Platform](http://img.shields.io/badge/platform-iOS|tvOS-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action)
+
+[![Platform](https://img.shields.io/cocoapods/p/QuickLayout.svg?style=flat)](http://cocoapods.org/pods/QuickLayout)
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat
 )](https://developer.apple.com/swift)
 ![](https://travis-ci.org/huri000/QuickLayout.svg?branch=master)
 [![Version](https://img.shields.io/cocoapods/v/QuickLayout.svg?style=flat-square)](http://cocoapods.org/pods/QuickLayout)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Coverage Status](https://coveralls.io/repos/github/huri000/QuickLayout/badge.svg)](https://coveralls.io/github/huri000/QuickLayout)
+[![codecov](https://codecov.io/gh/huri000/QuickLayout/branch/master/graph/badge.svg)](https://codecov.io/gh/huri000/QuickLayout)
 [![License](https://img.shields.io/cocoapods/l/QuickLayout.svg?style=flat-square)](http://cocoapods.org/pods/QuickLayout)
 
 ![image](https://github.com/huri000/assets/blob/master/quick-layout/logo.png)
@@ -52,10 +53,10 @@ You can harness the power of QuickLayout to align your interface programmaticall
 ## The **WHY**
 Why should you use QuickLayout?
 - QuickLayout  drastically shortens the amount of code in case you ever need to write the view hierarchy.
-- The QuickLayout methods declarations are very descriptive and clear.
-- QuickLayout is fully documented, and contains most of the Auto Layout constructs that an App requires.
-- It supplies a common Auto Layout language for all platforms iOS / macOS / tvOS. 
-- Layout a `UIView` or `NSView` or an array of views using the instances themselves, without even creating a single NSLayoutConstraint.
+- It provides a common Auto Layout API for iOS, tvOS and macOS.
+- QuickLayout contains most of the Auto Layout constructs an iOS App requires.
+- The QuickLayout method declarations are very descriptive and clear. It is fully documented!
+- Layout a `UIView` or `NSView` or an array of views using the instances themselves, without even creating a single NSLayoutConstraint instance.
 
 ## Naming Convension
 As of version 2.0.0, QuickLayout supports tvOS and macOS as well as iOS. Therefore, a few adjustments have been made. 
@@ -89,7 +90,7 @@ $ gem install cocoapods
 To integrate QuickLayout into your Xcode project using CocoaPods, specify the following in your `Podfile`:
 
 ```ruby
-pod 'QuickLayout', '2.0.0'
+pod 'QuickLayout', '2.1.1'
 ```
 
 Then, run the following command:
@@ -112,7 +113,7 @@ $ brew install carthage
 To integrate QuickLayout into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/QuickLayout" ~> 2.0.0
+github "huri000/QuickLayout" == 2.1.1
 ```
 
 #### Manually
@@ -426,3 +427,4 @@ Daniel Huri (huri000@gmail.com)
 ## License
 
 QuickLayout is available under the MIT license. See the LICENSE file for more info.
+

@@ -23,7 +23,7 @@ public class EKButtonBarView: UIView {
     private let buttonBarContent: EKProperty.ButtonBarContent
     private let spreadAxis: QLAxis
     private let oppositeAxis: QLAxis
-    private let relativeEdge: NSLayoutAttribute
+    private let relativeEdge: NSLayoutConstraint.Attribute
     
     private lazy var buttonEdgeRatio: CGFloat = {
         return 1.0 / CGFloat(self.buttonBarContent.content.count)
@@ -97,8 +97,8 @@ public class EKButtonBarView: UIView {
     private func setupSeperatorView(after button: UIButton) {
         let midSepView = UIView()
         addSubview(midSepView)
-        let sepAttribute: NSLayoutAttribute
-        let buttonAtt: NSLayoutAttribute
+        let sepAttribute: NSLayoutConstraint.Attribute
+        let buttonAtt: NSLayoutConstraint.Attribute
         switch oppositeAxis {
         case .vertically:
             sepAttribute = .centerX

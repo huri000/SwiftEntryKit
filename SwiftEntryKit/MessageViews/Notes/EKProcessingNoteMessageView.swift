@@ -30,14 +30,14 @@ public class EKProcessingNoteMessageView: EKAccessoryNoteMessageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public init(with content: EKProperty.LabelContent, activityIndicator: UIActivityIndicatorViewStyle) {
+    public init(with content: EKProperty.LabelContent, activityIndicator: UIActivityIndicatorView.Style) {
         super.init(frame: UIScreen.main.bounds)
         setup(with: content, activityIndicator: activityIndicator)
     }
     
-    private func setup(with content: EKProperty.LabelContent, activityIndicator: UIActivityIndicatorViewStyle, setProcessing: Bool = true) {
+    private func setup(with content: EKProperty.LabelContent, activityIndicator: UIActivityIndicatorView.Style, setProcessing: Bool = true) {
         activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.activityIndicatorViewStyle = activityIndicator
+        activityIndicatorView.style = activityIndicator
         isProcessing = setProcessing
         accessoryView = activityIndicatorView
         super.setup(with: content)

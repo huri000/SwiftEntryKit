@@ -23,17 +23,17 @@ public extension EKAttributes {
         case normal
         
         /** Custom level */
-        case custom(level: UIWindowLevel)
+        case custom(level: UIWindow.Level)
         
         /** Returns the raw value - the window level itself */
-        public var value: UIWindowLevel {
+        public var value: UIWindow.Level {
             switch self {
             case .alerts:
-                return UIWindowLevelAlert
+                return UIWindow.Level.alert
             case .statusBar:
-                return UIWindowLevelStatusBar
+                return UIWindow.Level.statusBar
             case .normal:
-                return UIWindowLevelNormal
+                return UIWindow.Level.normal
             case .custom(level: let level):
                 return level
             }
