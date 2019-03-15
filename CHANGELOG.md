@@ -1,6 +1,20 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 0.8.9
+
+### Features:
+
+#### #155 
+[Issue #155](https://github.com/huri000/SwiftEntryKit/issues/155) - Setting textfield cursor color for EKProperty.TextFieldContent.
+
+`TextFieldContent` receives `tintColor` from now on.
+
+#### #160
+[Issue #160](https://github.com/huri000/SwiftEntryKit/issues/160) - Animation with sequence of images
+
+From now on developers are able to sequence-animate and transform-animate every image within the presets using one of the designated public initializers available for `EKProperty.ImageContent`.
+
 ## 0.8.8
 
 ### Bug Fixes:
