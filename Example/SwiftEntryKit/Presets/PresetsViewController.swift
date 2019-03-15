@@ -60,6 +60,22 @@ class PresetsViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
+    private func showAnimatingImageNote(attributes: EKAttributes) {
+        
+        // Set note label content
+        let text = "Up and charge"
+        let style = EKProperty.LabelStyle(font: MainFont.light.with(size: 14), color: .black, alignment: .center)
+        let labelContent = EKProperty.LabelContent(text: text, style: style)
+        let sequence = (0...5).map { "battery\($0)" }
+        let animationDuration: TimeInterval = 1
+        let animation = EKProperty.ImageContent.TransformAnimation.animate(duration: animationDuration, options: [.curveEaseInOut], transform: .init(scaleX: 1.1, y: 1.1))
+        let imageContent = EKProperty.ImageContent(imagesNames: sequence, imageSequenceAnimationDuration: animationDuration, animation: animation, size: CGSize(width: 16, height: 16), contentMode: .scaleAspectFit)
+        
+        let contentView = EKImageNoteMessageView(with: labelContent, imageContent: imageContent)
+        
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
     // Bumps an infinite processing note
     private func showProcessingNote(attributes: EKAttributes) {
         let text = "Waiting for the goodies to arrive!"
@@ -410,8 +426,10 @@ extension PresetsViewController {
         case 2:
             showImageNote(attributes: attributes)
         case 3:
-            showStatusBarMessage(attributes: attributes)
+            showAnimatingImageNote(attributes: attributes)
         case 4:
+            showStatusBarMessage(attributes: attributes)
+        case 5:
             showNote(attributes: attributes)
         default:
             break
