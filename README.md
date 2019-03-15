@@ -54,7 +54,7 @@
 
 ## Overview
 
-SwiftEntryKit is a simple and versatile pop-up presenter written in Swift.
+SwiftEntryKit is a simple and versatile content presenter written in Swift.
 
 ### Features
 
@@ -75,7 +75,7 @@ Banners or pop-ups are called *Entries*.
   - [x] Entries can be optionally dismissed using a simple [swipe gesture](#swiping-and-rubber-banding).
   - [x] Entries can be optionally injected with [lifecycle events](#lifecycle-events): *will* and *did* appear/disappear.
   - [x] The [status bar style](#status-bar) is settable for the display duration of the entry.
-  - [x] SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
+  - [x] Supports [navigation controllers](#presets) & [custom views](#custom-view-usage-example) as well!
 
 ## Example Project
 
