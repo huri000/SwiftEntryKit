@@ -100,6 +100,7 @@ extension UITextField {
             textAlignment = newValue.textStyle.alignment
             isSecureTextEntry = newValue.isSecure
             text = newValue.textContent
+            tintColor = newValue.tintColor
         }
         get {
             fatalError("textFieldContent doesn't have a getter")
