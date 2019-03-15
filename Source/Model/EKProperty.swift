@@ -125,6 +125,7 @@ public struct EKProperty {
         public var leadingImage: UIImage!
         public var placeholder: LabelContent
         public var textStyle: LabelStyle
+        public var tintColor: UIColor!
         public var bottomBorderColor: UIColor
         let contentWrapper = ContentWrapper()
         public var textContent: String {
@@ -136,10 +137,11 @@ public struct EKProperty {
             }
         }
         
-        public init(keyboardType: UIKeyboardType = .default, placeholder: LabelContent, textStyle: LabelStyle, isSecure: Bool = false, leadingImage: UIImage? = nil, bottomBorderColor: UIColor = .clear) {
+        public init(keyboardType: UIKeyboardType = .default, placeholder: LabelContent, tintColor: UIColor? = nil, textStyle: LabelStyle, isSecure: Bool = false, leadingImage: UIImage? = nil, bottomBorderColor: UIColor = .clear) {
             self.keyboardType = keyboardType
             self.placeholder = placeholder
             self.textStyle = textStyle
+            self.tintColor = tintColor
             self.isSecure = isSecure
             self.leadingImage = leadingImage
             self.bottomBorderColor = bottomBorderColor
