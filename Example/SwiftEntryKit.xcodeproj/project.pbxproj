@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		142D493C223C1E7F00020ABF /* ExampleNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D493B223C1E7F00020ABF /* ExampleNavigationViewController.swift */; };
+		142D4947223C1F5A00020ABF /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D4945223C1F5A00020ABF /* ContactsViewController.swift */; };
+		142D4948223C1F5A00020ABF /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D4946223C1F5A00020ABF /* ContactsViewController.xib */; };
+		142D494B223C204700020ABF /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142D4949223C204700020ABF /* DescriptionViewController.swift */; };
+		142D494C223C204700020ABF /* DescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142D494A223C204700020ABF /* DescriptionViewController.xib */; };
 		14333AE3208FA09E00DCFC7B /* PresetDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14333AE2208FA09E00DCFC7B /* PresetDescription.swift */; };
 		143C6A2220B54E4A00F7DD89 /* SwiftEntryKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 143C6A2020B54E4A00F7DD89 /* SwiftEntryKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		143C6A2520B54E4A00F7DD89 /* SwiftEntryKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143C6A1E20B54E4A00F7DD89 /* SwiftEntryKit.framework */; };
@@ -196,6 +201,11 @@
 
 /* Begin PBXFileReference section */
 		0048C08F1E2C0A9CAE65F67E /* Pods_SwiftEntryKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		142D493B223C1E7F00020ABF /* ExampleNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleNavigationViewController.swift; sourceTree = "<group>"; };
+		142D4945223C1F5A00020ABF /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		142D4946223C1F5A00020ABF /* ContactsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
+		142D4949223C204700020ABF /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		142D494A223C204700020ABF /* DescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionViewController.xib; sourceTree = "<group>"; };
 		1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickLayout.xcodeproj; path = ../Carthage/Checkouts/QuickLayout/Example/QuickLayout.xcodeproj; sourceTree = "<group>"; };
 		1430769C20B5E5970069BA1B /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = ../Carthage/Build/iOS/QuickLayout.framework; sourceTree = "<group>"; };
 		14333AE2208FA09E00DCFC7B /* PresetDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDescription.swift; sourceTree = "<group>"; };
@@ -346,6 +356,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		142D4944223C1F1B00020ABF /* ExampleNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				142D493B223C1E7F00020ABF /* ExampleNavigationViewController.swift */,
+				142D4945223C1F5A00020ABF /* ContactsViewController.swift */,
+				142D4946223C1F5A00020ABF /* ContactsViewController.xib */,
+				142D4949223C204700020ABF /* DescriptionViewController.swift */,
+				142D494A223C204700020ABF /* DescriptionViewController.xib */,
+			);
+			path = ExampleNavigationController;
+			sourceTree = "<group>";
+		};
 		1430767820B5E3C00069BA1B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,6 +555,7 @@
 		14C729C6209447CA0060D267 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				142D4944223C1F1B00020ABF /* ExampleNavigationController */,
 				14A6AABB20CA71D9005F3D81 /* ExampleViewController */,
 				14D18CD0209118950019AE7F /* NibExampleView */,
 			);
@@ -887,8 +910,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				142D4948223C1F5A00020ABF /* ContactsViewController.xib in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				142D494C223C204700020ABF /* DescriptionViewController.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 				14D18CD4209118E90019AE7F /* NibExampleView.xib in Resources */,
 			);
@@ -1078,9 +1103,12 @@
 				14D18CCF209105290019AE7F /* WidthSelectionTableViewCell.swift in Sources */,
 				14C75E082096430D0002465E /* PrioritySelectionTableViewCell.swift in Sources */,
 				147A9A6320926A7500A49D7A /* MaxWidthSelectionTableViewCell.swift in Sources */,
+				142D494B223C204700020ABF /* DescriptionViewController.swift in Sources */,
 				14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */,
 				14C89500208E81BF003D8CE3 /* PositionSelectionTableViewCell.swift in Sources */,
 				14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */,
+				142D493C223C1E7F00020ABF /* ExampleNavigationViewController.swift in Sources */,
+				142D4947223C1F5A00020ABF /* ContactsViewController.swift in Sources */,
 				14D18CD2209118DA0019AE7F /* NibExampleView.swift in Sources */,
 				1496D952209CC2AF002CBB22 /* UIView+Nib.swift in Sources */,
 				14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */,

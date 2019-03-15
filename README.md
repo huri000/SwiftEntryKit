@@ -54,7 +54,7 @@
 
 ## Overview
 
-SwiftEntryKit is a simple and versatile pop-up presenter written in Swift.
+SwiftEntryKit is a simple and versatile content presenter written in Swift.
 
 ### Features
 
@@ -75,7 +75,7 @@ Banners or pop-ups are called *Entries*.
   - [x] Entries can be optionally dismissed using a simple [swipe gesture](#swiping-and-rubber-banding).
   - [x] Entries can be optionally injected with [lifecycle events](#lifecycle-events): *will* and *did* appear/disappear.
   - [x] The [status bar style](#status-bar) is settable for the display duration of the entry.
-  - [x] SwiftEntryKit supports [custom views](#custom-view-usage-example) as well.
+  - [x] Supports [navigation controllers](#presets) & [custom views](#custom-view-usage-example) as well!
 
 ## Example Project
 
@@ -98,9 +98,9 @@ Cloning from https://github.com/huri000/SwiftEntryKit.git also setups QuickLayou
 
 ### Presets
 
-Toasts | Notes | Floats | Popups | Alerts | Forms | Rating
---- | --- | --- | --- | --- | --- | --- 
-![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![alert_example](https://github.com/huri000/assets/blob/master/swift-entrykit/alerts.gif) | ![form_example](https://github.com/huri000/assets/blob/master/swift-entrykit/forms.gif) | ![rating](https://github.com/huri000/assets/blob/master/swift-entrykit/rating.gif)
+Toasts | Notes | Floats | Popups | Alerts | Forms | Rating | Custom
+--- | --- | --- | --- | --- | --- | --- | ---
+![toasts_example](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) | ![notes_example](https://github.com/huri000/assets/blob/master/swift-entrykit/notes.gif) | ![floats_example](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) | ![popup_example](https://github.com/huri000/assets/blob/master/swift-entrykit/popups.gif) | ![alert_example](https://github.com/huri000/assets/blob/master/swift-entrykit/alerts.gif) | ![form_example](https://github.com/huri000/assets/blob/master/swift-entrykit/forms.gif) | ![rating_example](https://github.com/huri000/assets/blob/master/swift-entrykit/rating.gif) | ![custom_example](https://github.com/huri000/assets/blob/master/swift-entrykit/custom.gif)
 
 ### Playground
 
