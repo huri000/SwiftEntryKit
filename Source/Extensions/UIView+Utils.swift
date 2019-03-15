@@ -50,7 +50,9 @@ extension UIButton {
 extension UIImageView {
     var imageContent: EKProperty.ImageContent {
         set {
-            image = newValue.image
+            stopAnimating()
+            animationImages = newValue.images
+            animationDuration = newValue.imageSequenceAnimationDuration
             contentMode = newValue.contentMode
             
             if let size = newValue.size {
@@ -60,11 +62,26 @@ extension UIImageView {
                 forceContentWrap()
             }
             
-            layoutIfNeeded()
-            
-            if newValue.makeRound {
+            if newValue.makesRound {
                 clipsToBounds = true
-                layer.cornerRadius = max(bounds.width, bounds.height) * 0.5
+                if let size = newValue.size {
+                    layer.cornerRadius = min(size.width, size.height) * 0.5
+                } else {
+                    layoutIfNeeded()
+                    layer.cornerRadius = min(bounds.width, bounds.height) * 0.5
+                }
+            }
+            
+            startAnimating()
+            
+            if case .animate(duration: let duration, options: let options, transform: let transform) = newValue.animation {
+                let options: UIView.AnimationOptions = [.repeat, .autoreverse, options]
+                // A hack that forces the animation to run on the main thread on one of the next run loops
+                DispatchQueue.main.async {
+                    UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+                        self.transform = transform
+                    }, completion: nil)
+                }
             }
         }
         get {

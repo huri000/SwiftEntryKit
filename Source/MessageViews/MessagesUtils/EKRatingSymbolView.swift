@@ -23,7 +23,7 @@ public class EKRatingSymbolView: UIView {
             imageView.imageContent = newValue ? selectedImage : unselectedImage
         }
         get {
-            return imageView.image == selectedImage.image
+            return imageView.animationImages == selectedImage.images
         }
     }
     
