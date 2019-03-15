@@ -302,6 +302,13 @@ class PresetsViewController: UIViewController {
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
+    // Bumps a navigation controller
+    private func showNavigationController(with attributes: EKAttributes) {
+        let viewController = ContactsViewController()
+        let navigationController = ExampleNavigationViewController(rootViewController: viewController)
+        SwiftEntryKit.display(entry: navigationController, using: attributes)
+    }
+    
     // Bumps a custom nib originated view
     private func showCustomNibView(attributes: EKAttributes) {
         SwiftEntryKit.display(entry: NibExampleView(), using: attributes)
@@ -358,6 +365,8 @@ extension PresetsViewController: UITableViewDelegate, UITableViewDataSource {
             formCellSelected(with: attributes, row: indexPath.row)
         case 5:
             customCellSelected(with: attributes, row: indexPath.row)
+        case 6:
+            showNavigationController(with: attributes)
         default:
             break
         }
@@ -487,8 +496,10 @@ extension PresetsViewController {
     private func customCellSelected(with attributes: EKAttributes, row: Int) {
         switch row {
         case 0:
-            showCustomNibView(attributes: attributes)
+            showNavigationController(with: attributes)
         case 1:
+            showCustomNibView(attributes: attributes)
+        case 2:
             showCustomViewController(attributes: attributes)
         default:
             break

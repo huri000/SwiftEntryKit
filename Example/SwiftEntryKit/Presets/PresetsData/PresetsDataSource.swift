@@ -484,30 +484,25 @@ struct PresetsDataSource {
         
         // Preset I
         attributes = .bottomFloat
-        attributes.hapticFeedbackType = .success
-        attributes.displayDuration = 3
-        attributes.screenBackground = .clear
-        attributes.entryBackground = .clear
-        attributes.screenInteraction = .forward
+        attributes.displayDuration = .infinity
+        attributes.screenBackground = .color(color: .dimmedLightBackground)
+        attributes.entryBackground = .color(color: .white)
+        attributes.screenInteraction = .dismiss
         attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .edgeCrossingDisabled(swipeable: true)
         
-        attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 0.9, initialVelocity: 0)),
-                                             scale: .init(from: 0.8, to: 1, duration: 0.5, spring: .init(damping: 0.8, initialVelocity: 0)),
-                                             fade: .init(from: 0.7, to: 1, duration: 0.3))
-        attributes.exitAnimation = .init(translate: .init(duration: 0.5),
-                                         scale: .init(from: 1, to: 0.8, duration: 0.5),
-                                         fade: .init(from: 1, to: 0, duration: 0.5))
-        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3),
-                                                            scale: .init(from: 1, to: 0.8, duration: 0.3)))
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 1, initialVelocity: 0)))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.35))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.35)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6))
-        attributes.positionConstraints.verticalOffset = 10
-        attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
-        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
+        attributes.positionConstraints.size = .init(width: .fill, height: .ratio(value: 0.6))
+        attributes.positionConstraints.verticalOffset = 0
+        attributes.positionConstraints.safeArea = .overridden
         
-        attributes.statusBar = .ignored
-        descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
-        descriptionThumb = ThumbDesc.bottomFloat.rawValue
-        description = .init(with: attributes, title: "View from Nib", description: descriptionString, thumb: descriptionThumb)
+        attributes.statusBar = .dark
+        descriptionString = "Navigation flow with multiple view controllers"
+        descriptionThumb = ThumbDesc.bottomPopup.rawValue
+        description = .init(with: attributes, title: "Navigation Flow", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
         // Preset II
@@ -536,6 +531,34 @@ struct PresetsDataSource {
         descriptionString = "Customized UIViewController that is using an injected view"
         descriptionThumb = ThumbDesc.bottomFloat.rawValue
         description = .init(with: attributes, title: "View Controller", description: descriptionString, thumb: descriptionThumb)
+        presets.append(description)
+        
+        // Preset III
+        attributes = .bottomFloat
+        attributes.hapticFeedbackType = .success
+        attributes.displayDuration = 3
+        attributes.screenBackground = .clear
+        attributes.entryBackground = .clear
+        attributes.screenInteraction = .forward
+        attributes.entryInteraction = .absorbTouches
+        
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.5, spring: .init(damping: 0.9, initialVelocity: 0)),
+                                             scale: .init(from: 0.8, to: 1, duration: 0.5, spring: .init(damping: 0.8, initialVelocity: 0)),
+                                             fade: .init(from: 0.7, to: 1, duration: 0.3))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.5),
+                                         scale: .init(from: 1, to: 0.8, duration: 0.5),
+                                         fade: .init(from: 1, to: 0, duration: 0.5))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3),
+                                                            scale: .init(from: 1, to: 0.8, duration: 0.3)))
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6))
+        attributes.positionConstraints.verticalOffset = 10
+        attributes.positionConstraints.size = .init(width: .offset(value: 20), height: .intrinsic)
+        attributes.positionConstraints.maxSize = .init(width: .constant(value: UIScreen.main.minEdge), height: .intrinsic)
+        
+        attributes.statusBar = .ignored
+        descriptionString = "Customized view that is initialized by a nib file, it is additionally added various attributes such as round corners and a mild shadow"
+        descriptionThumb = ThumbDesc.bottomFloat.rawValue
+        description = .init(with: attributes, title: "View from Nib", description: descriptionString, thumb: descriptionThumb)
         presets.append(description)
         
         dataSource.append(("Custom", presets))
