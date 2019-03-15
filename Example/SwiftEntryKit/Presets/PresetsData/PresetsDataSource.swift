@@ -200,6 +200,19 @@ struct PresetsDataSource {
         notes.append(description)
         
         // Preset IV
+        attributes = .topNote
+        attributes.hapticFeedbackType = .success
+        attributes.displayDuration = 5
+        attributes.popBehavior = .animated(animation: .translation)
+        attributes.entryBackground = .color(color: .white)
+        attributes.statusBar = .dark
+        attributes.shadow = .active(with: .init(opacity: 0.2, radius: 1))
+        descriptionString = "Appears for 5 seconds. Has a thin shadow. Displays image animation. Generates success notification haptic feedback"
+        descriptionThumb = ThumbDesc.topNote.rawValue
+        description = .init(with: attributes, title: "Top Animating Image Note", description: descriptionString, thumb: descriptionThumb)
+        notes.append(description)
+        
+        // Preset V
         attributes = .statusBar
         attributes.hapticFeedbackType = .success
         attributes.popBehavior = .animated(animation: .translation)
@@ -209,7 +222,7 @@ struct PresetsDataSource {
         description = .init(with: attributes, title: "Status Bar Note", description: descriptionString, thumb: descriptionThumb)
         notes.append(description)
         
-        // Preset V
+        // Preset VI
         attributes = .bottomNote
         attributes.hapticFeedbackType = .success
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 6))
