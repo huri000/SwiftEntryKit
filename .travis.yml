@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode10
+osx_image: xcode10.2
 cache: cocoapods
 podfile: Example/Podfile
 
@@ -11,7 +11,7 @@ env:
 # travis cache isn't kept between builds
 before_install:
   - rvm use system
-  - sudo gem install cocoapods -v '1.5.3'  
+  - sudo gem install cocoapods -v '1.6.1'  
   - pod repo update
 
 script:
