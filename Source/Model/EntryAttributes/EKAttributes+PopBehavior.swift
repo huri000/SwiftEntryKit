@@ -10,7 +10,7 @@ import Foundation
 public extension EKAttributes {
     
     /** Describes the entry behavior when a new entry shows (with equal or higher display-priority) */
-    public enum PopBehavior {
+    enum PopBehavior {
                 
         /** The entry disappears promptly (Does not animates out) when a new one shows */
         case overridden

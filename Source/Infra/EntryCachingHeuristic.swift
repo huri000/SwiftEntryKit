@@ -48,19 +48,19 @@ extension EntryCachingHeuristic {
     }
     
     func removeEntries(withPriorityLowerOrEqualTo priority: EKAttributes.Precedence.Priority) {
-        while let index = (entries.index { $0.view.attributes.precedence.priority <= priority }) {
+        while let index = (entries.firstIndex { $0.view.attributes.precedence.priority <= priority }) {
             entries.remove(at: index)
         }
     }
     
     func removeEntries(by name: String) {
-        while let index = (entries.index { $0.view.attributes.name == name }) {
+        while let index = (entries.firstIndex { $0.view.attributes.name == name }) {
             entries.remove(at: index)
         }
     }
     
     func remove(entry: CachedEntry) {
-        guard let index = (entries.index { $0.view == entry.view }) else {
+        guard let index = (entries.firstIndex { $0.view == entry.view }) else {
             return
         }
         entries.remove(at: index)
@@ -86,7 +86,7 @@ class EKEntryPriorityQueue: EntryCachingHeuristic {
     
     func enqueue(entry: CachedEntry) {
         let entryPriority = entry.view.attributes.precedence.priority
-        let index = entries.index {
+        let index = entries.firstIndex {
             return entryPriority > $0.view.attributes.precedence.priority
         }
         if let index = index {

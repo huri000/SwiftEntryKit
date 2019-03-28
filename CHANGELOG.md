@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.0.0
+
+Swift 5 / Xcode 10.2 compatible.
+
 ## 0.8.9
 
 ### Features:

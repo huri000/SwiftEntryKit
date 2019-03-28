@@ -123,8 +123,9 @@ The Playground Screen | Top Toast Sample
 
 ## Installation
 
+SwiftEntryKit is compatible with Swift 5 as of release *1.0.0*. 
 SwiftEntryKit is compatible with Swift 4.2 as of release *0.8.1*. 
-Developers who use lower Swift version can install release *0.7.2*.
+Developers who use lower Swift version should install release *0.7.2*.
 
 ### CocoaPods
 
@@ -141,7 +142,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '0.8.9'
+pod 'SwiftEntryKit', '1.0.0'
 ```
 
 Then, run the following command:
@@ -164,7 +165,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 0.8.9
+github "huri000/SwiftEntryKit" == 1.0.0
 ```
 
 ## Usage

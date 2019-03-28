@@ -12,7 +12,7 @@ import UIKit
 public extension EKAttributes {
 
     /** The shadow around the entry */
-    public enum Shadow {
+    enum Shadow {
         
         /** No shadow */
         case none

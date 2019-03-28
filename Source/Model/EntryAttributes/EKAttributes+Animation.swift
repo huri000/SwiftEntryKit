@@ -24,7 +24,7 @@ protocol EKRangeAnimation: EKAnimation {
 public extension EKAttributes {
     
     /** Describes an animation that can be performed on the entry */
-    public struct Animation {
+    struct Animation {
     
         /** Describes properties for a spring animation that can be performed on the entry */
         public struct Spring {
