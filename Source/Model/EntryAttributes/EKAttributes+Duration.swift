@@ -8,5 +8,5 @@
 import Foundation
 
 public extension EKAttributes {
-    public typealias DisplayDuration = TimeInterval
+    typealias DisplayDuration = TimeInterval
 }

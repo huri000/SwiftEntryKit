@@ -11,7 +11,7 @@ import UIKit
 public extension EKAttributes {
     
     /** Status bar appearance */
-    public enum StatusBar {
+    enum StatusBar {
         
         /** The appearance of the status bar */
         public typealias Appearance = (visible: Bool, style: UIStatusBarStyle)

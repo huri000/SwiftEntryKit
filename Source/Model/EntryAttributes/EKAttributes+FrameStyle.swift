@@ -10,7 +10,7 @@ import Foundation
 public extension EKAttributes {
     
     /** Corner radius of the entry - Specifies the corners */
-    public enum RoundCorners {
+    enum RoundCorners {
         
         /** *None* of the corners will be round */
         case none
@@ -48,7 +48,7 @@ public extension EKAttributes {
     }
     
     /** The border around the entry */
-    public enum Border {
+    enum Border {
         
         /** No border */
         case none

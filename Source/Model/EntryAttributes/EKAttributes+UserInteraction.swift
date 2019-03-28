@@ -11,7 +11,7 @@ import Foundation
 public extension EKAttributes {
     
     /** Describes the user interaction events that are triggered as the user taps the entry / screen */
-    public struct UserInteraction {
+    struct UserInteraction {
         
         /** Code that is executed when the user taps the entry / screen */
         public typealias Action = () -> ()

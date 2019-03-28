@@ -19,7 +19,7 @@ public extension EKAttributes {
      Describes the manner on which the entry is pushed and displayed.
      See the various values of more explanation.
      */
-    public enum Precedence {
+    enum Precedence {
         
         /**
          The display priority of the entry - Determines whether is can be overriden by other entries.
@@ -126,17 +126,17 @@ public extension EKAttributes {
  High priority entry overrides any other entry including another equal priority one.
  You can you on of the values (.max, high, normal, low, min) and also set your own values. */
 public extension EKAttributes.Precedence.Priority {
-    public static let maxRawValue = 1000
-    public static let highRawValue = 750
-    public static let normalRawValue = 500
-    public static let lowRawValue = 250
-    public static let minRawValue = 0
+    static let maxRawValue = 1000
+    static let highRawValue = 750
+    static let normalRawValue = 500
+    static let lowRawValue = 250
+    static let minRawValue = 0
 
     /** Max - the highest possible priority of an entry. Can override only entries with *max* priority */
-    public static let max = EKAttributes.Precedence.Priority(rawValue: maxRawValue)
-    public static let high = EKAttributes.Precedence.Priority(rawValue: highRawValue)
-    public static let normal = EKAttributes.Precedence.Priority(rawValue: normalRawValue)
-    public static let low = EKAttributes.Precedence.Priority(rawValue: lowRawValue)
-    public static let min = EKAttributes.Precedence.Priority(rawValue: minRawValue)
+    static let max = EKAttributes.Precedence.Priority(rawValue: maxRawValue)
+    static let high = EKAttributes.Precedence.Priority(rawValue: highRawValue)
+    static let normal = EKAttributes.Precedence.Priority(rawValue: normalRawValue)
+    static let low = EKAttributes.Precedence.Priority(rawValue: lowRawValue)
+    static let min = EKAttributes.Precedence.Priority(rawValue: minRawValue)
 }
 

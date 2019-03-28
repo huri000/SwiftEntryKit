@@ -19,7 +19,7 @@ public extension QLView {
      Force hugging and compression resistance for the given axes, using variadic parameter.
      - parameter axes: The axes
      */
-    public func forceContentWrap(_ axes: QLAxis...) {
+    func forceContentWrap(_ axes: QLAxis...) {
         if axes.contains(.vertically) {
             verticalHuggingPriority = .required
             verticalCompressionResistancePriority = .required
@@ -33,7 +33,7 @@ public extension QLView {
     /**
      Force hugging and compression resistance vertically and horizontally.
      */
-    public func forceContentWrap() {
+    func forceContentWrap() {
         contentHuggingPriority = .required
         contentCompressionResistancePriority = .required
     }
@@ -41,7 +41,7 @@ public extension QLView {
     /**
      Vertical hugging priority
      */
-    public var verticalHuggingPriority: QLPriority {
+    var verticalHuggingPriority: QLPriority {
         set {
             setContentHuggingPriority(newValue, for: .vertical)
         }
@@ -53,7 +53,7 @@ public extension QLView {
     /**
      Horizontal hugging priority
      */
-    public var horizontalHuggingPriority: QLPriority {
+    var horizontalHuggingPriority: QLPriority {
         set {
             setContentHuggingPriority(newValue, for: .horizontal)
         }
@@ -65,7 +65,7 @@ public extension QLView {
     /**
      Content hugging priority (Vertical & Horizontal)
      */
-    public var contentHuggingPriority: QLPriorityPair {
+    var contentHuggingPriority: QLPriorityPair {
         set {
             horizontalHuggingPriority = newValue.horizontal
             verticalHuggingPriority = newValue.vertical
@@ -78,7 +78,7 @@ public extension QLView {
     /**
      Vertical content compression resistance priority
      */
-    public var verticalCompressionResistancePriority: QLPriority {
+    var verticalCompressionResistancePriority: QLPriority {
         set {
             setContentCompressionResistancePriority(newValue, for: .vertical)
         }
@@ -90,7 +90,7 @@ public extension QLView {
     /**
      Horizontal content compression resistance priority
      */
-    public var horizontalCompressionResistancePriority: QLPriority {
+    var horizontalCompressionResistancePriority: QLPriority {
         set {
             setContentCompressionResistancePriority(newValue, for: .horizontal)
         }
@@ -102,7 +102,7 @@ public extension QLView {
     /**
     Content compression resistance priority (Vertical & Horizontal)
      */
-    public var contentCompressionResistancePriority: QLPriorityPair {
+    var contentCompressionResistancePriority: QLPriorityPair {
         set {
             horizontalCompressionResistancePriority = newValue.horizontal
             verticalCompressionResistancePriority = newValue.vertical
