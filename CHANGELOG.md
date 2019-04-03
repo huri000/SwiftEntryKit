@@ -1,6 +1,17 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.0.1
+
+### Bug Fixes:
+
+#### #171
+[Issue #171](https://github.com/huri000/SwiftEntryKit/issues/171) - Unable to dismiss a ViewControllerEntry in Xcode 10.2 (work in Xcode 10.1).
+Diagnosis: 
+Only on Xcode 10.2. Probably be a Swift compiler bug. 
+Reproduced using Release configuration. 
+The compiler mistreats `UserInteraction.isResponsive` thus it always returns `false` when used on `attributes.screenInteraction`.
+
 ## 1.0.0
 
 Swift 5 / Xcode 10.2 compatible.
