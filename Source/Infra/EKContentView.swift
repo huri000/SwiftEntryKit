@@ -291,13 +291,15 @@ class EKContentView: UIView {
     
     // Setup tap gesture
     private func setupTapGestureRecognizer() {
-        guard attributes.entryInteraction.isResponsive else {
+        switch attributes.entryInteraction.defaultAction {
+        case .forward:
             return
+        default:
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
+            tapGestureRecognizer.numberOfTapsRequired = 1
+            tapGestureRecognizer.cancelsTouchesInView = false
+            addGestureRecognizer(tapGestureRecognizer)
         }
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        tapGestureRecognizer.cancelsTouchesInView = false
-        addGestureRecognizer(tapGestureRecognizer)
     }
     
     // Generate a haptic feedback if needed
