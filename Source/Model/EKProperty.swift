@@ -196,6 +196,10 @@ public struct EKProperty {
         public var buttonHeight: CGFloat
         
         public init(with buttonContents: ButtonContent..., separatorColor: UIColor, horizontalDistributionThreshold: Int = 2, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
+            self.init(with: buttonContents, separatorColor: separatorColor, horizontalDistributionThreshold: horizontalDistributionThreshold, buttonHeight: buttonHeight, expandAnimatedly: expandAnimatedly)
+        }
+        
+        public init(with buttonContents: [ButtonContent], separatorColor: UIColor, horizontalDistributionThreshold: Int = 2, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
             guard horizontalDistributionThreshold > 0 else {
                 fatalError("horizontalDistributionThreshold Must have a positive value!")
             }
