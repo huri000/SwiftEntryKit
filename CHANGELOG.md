@@ -1,6 +1,11 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.0.2
+
+### Issues: 
+#### #187 - ButtonBarContent` initialized with multiple buttons received as either variadic parameter or array.
+
 ## 1.0.1
 
 ### Bug Fixes:
