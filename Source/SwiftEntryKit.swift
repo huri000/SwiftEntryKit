@@ -5,7 +5,7 @@
 //  Created by Daniel Huri on 4/29/18.
 //
 
-import Foundation
+import UIKit
 
 /**
  A stateless, threadsafe (unless described otherwise) entry point that contains the display and the dismissal logic of entries.

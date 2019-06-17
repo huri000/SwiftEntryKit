@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIRectCorner {
     static let top: UIRectCorner = [.topLeft, .topRight]

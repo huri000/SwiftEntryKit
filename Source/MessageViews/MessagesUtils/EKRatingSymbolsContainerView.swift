@@ -6,7 +6,7 @@
 //  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public class EKRatingSymbolsContainerView: UIView {
     

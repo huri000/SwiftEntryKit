@@ -6,7 +6,7 @@
 //  Copyright (c) 2018 huri000@gmail.com. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct HapticFeedbackGenerator {
     @available(iOS 10.0, *)

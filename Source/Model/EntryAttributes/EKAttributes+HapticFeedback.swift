@@ -5,7 +5,7 @@
 //  Created by Daniel Huri on 5/1/18.
 //
 
-import Foundation
+import UIKit
 
 public extension EKAttributes {
     
