@@ -117,6 +117,7 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		84CE3889AADBD1B954B70D38 /* Pods_SwiftEntryKitDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CD0600AA305918A0DE0FA97 /* Pods_SwiftEntryKitDemo.framework */; };
+		D5955FD622BA7D9E00438630 /* EKAttributes+HomeIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5955FCE22BA7D9E00438630 /* EKAttributes+HomeIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -323,6 +324,7 @@
 		86A2A11DAE03D7659C49A223 /* Pods-SwiftEntryKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftEntryKitTests.release.xcconfig"; path = "Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		95588DF24DD5C09472F48E7E /* Pods_SwiftEntryKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD0600AA305918A0DE0FA97 /* Pods_SwiftEntryKitDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftEntryKitDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5955FCE22BA7D9E00438630 /* EKAttributes+HomeIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+HomeIndicator.swift"; sourceTree = "<group>"; };
 		EFEC60E1244126F18ABBB375 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F1F450C1E75BEC09B67F526C /* SwiftEntryKit.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SwiftEntryKit.podspec; path = ../SwiftEntryKit.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
@@ -507,6 +509,7 @@
 				14B48B3220B81C9700CE3EF4 /* EKAttributes+UserInteraction.swift */,
 				14B48B3420B81C9700CE3EF4 /* EKAttributes+Validations.swift */,
 				14B48B3B20B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift */,
+				D5955FCE22BA7D9E00438630 /* EKAttributes+HomeIndicator.swift */,
 			);
 			path = EntryAttributes;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 				14B48B6F20B81C9700CE3EF4 /* EKAttributes+Validations.swift in Sources */,
 				14F3FD86213A6ED900CA3010 /* EntryCachingHeuristic.swift in Sources */,
 				14B48B6620B81C9700CE3EF4 /* UIView+Shadow.swift in Sources */,
+				D5955FD622BA7D9E00438630 /* EKAttributes+HomeIndicator.swift in Sources */,
 				14B48B7A20B81C9700CE3EF4 /* EKPopUpMessage.swift in Sources */,
 				14B48B6920B81C9700CE3EF4 /* EKAttributes+Shadow.swift in Sources */,
 				14B48B8220B81C9700CE3EF4 /* EKAccessoryNoteMessageView.swift in Sources */,

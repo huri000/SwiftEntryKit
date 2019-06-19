@@ -49,6 +49,12 @@ class EKRootViewController: UIViewController {
             delegate.isResponsiveToTouches = isResponsive
         }
     }
+    
+    private var isHomeIndicatorAutoHidden = false
+    
+    override var prefersHomeIndicatorAutoHidden: Bool {
+        return isHomeIndicatorAutoHidden
+    }
 
     override var shouldAutorotate: Bool {
         if lastAttributes == nil {
@@ -152,6 +158,17 @@ class EKRootViewController: UIViewController {
             isResponsive = false
         default:
             isResponsive = true
+        }
+        
+        if #available(iOS 11.0, *) {
+            switch attributes.homeIndicatorBehaviour {
+            case .alwaysVisible:
+                isHomeIndicatorAutoHidden = false
+                setNeedsUpdateOfHomeIndicatorAutoHidden()
+            case .autoHidden:
+                isHomeIndicatorAutoHidden = true
+                setNeedsUpdateOfHomeIndicatorAutoHidden()
+            }
         }
 
         if previousAttributes?.statusBar != attributes.statusBar {
