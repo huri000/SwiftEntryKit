@@ -4,6 +4,7 @@
 [![Language](http://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 [![Version](https://img.shields.io/cocoapods/v/SwiftEntryKit.svg?style=flat-square)](http://cocoapods.org/pods/SwiftEntryKit)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Accio: Supported](https://img.shields.io/badge/Accio-supported-0A7CF5.svg?style=flat)](https://github.com/JamitLabs/Accio)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 ![](https://travis-ci.com/huri000/SwiftEntryKit.svg?branch=master)
 
@@ -180,6 +181,25 @@ To integrate SwiftEntryKit into your Xcode project using Carthage, specify the f
 ```ogdl
 github "huri000/SwiftEntryKit" == 1.1.1
 ```
+
+### Accio
+
+[Accio](https://github.com/JamitLabs/Accio) is a decentralized dependency manager driven by SwiftPM that works for iOS/tvOS/watchOS/macOS projects.
+
+You can install Accio with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew tap JamitLabs/Accio https://github.com/JamitLabs/Accio.git
+$ brew install accio
+```
+
+To integrate SwiftEntryKit into your Xcode project using Accio, specify the following in your `Package.swift` manifest:
+
+```swift
+.package(url: "https://github.com/huri000/SwiftEntryKit", .exact("1.0.3"))
+```
+
+After specifying `"SwiftEntryKit"` as a dependency of the target in which you want to use it, run `accio install`.
 
 ## Usage
 
