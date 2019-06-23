@@ -12,7 +12,7 @@ let package = Package(
     .library(name: "SwiftEntryKit", targets: ["SwiftEntryKit"])
   ],
   dependencies: [
-    .package(url: "https://github.com/maxxfrazer/QuickLayout", .branch("master"))
+    .package(url: "https://github.com/huri000/QuickLayout", .branch("master"))
   ],
   targets: [
     .target(
