@@ -37,6 +37,6 @@ DerivedData
 
 Carthage/Build
 
-
-
-
+# SwiftPM
+.swiftpm/
+Package.resolved

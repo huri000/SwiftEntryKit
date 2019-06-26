@@ -5,6 +5,8 @@
 //  Created by Daniel Huri on 4/28/18.
 //
 
+import UIKit
+
 class EKStyleView: UIView {
     
     private lazy var borderLayer: CAShapeLayer = {
