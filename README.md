@@ -61,7 +61,7 @@ SwiftEntryKit is a simple and versatile content presenter written in Swift.
 Banners or pop-ups are called *Entries*.
 
 - Entries are displayed inside a separate UIWindow (of type EKWindow), so users are able to navigate the app freely while entries are being displayed in a non intrusive manner.
-- The kit offers beautiful [presets](#presets) that can be themed with your app colors and fonts.
+- The kit offers beautiful [presets](#presets) that can be themed with your own colors and fonts.
 - **Customization**: Entries are highly customizable
   - [x] Can be [positioned](#display-position) either at the top, center, or the bottom of the screen.
   - [x] Can be displayed within or outside the screen safe area.
@@ -70,7 +70,8 @@ Banners or pop-ups are called *Entries*.
   - [x] Transition [animations](#animations) are customizable - entrance, exit and pop (by another entry).
   - [x] The [user interaction](#user-interaction) with the entry or the screen can be intercepted.
   - [x] Entries can be enqueued or override previous entries using the [precedence](#precedence) attribute.
-  - [x] Entries have [display priority](#display-priority) attribute. That means that an entry can be dismissed only be other entry with an equal or higher priority. 
+  - [x] Each entry has a [display priority](#display-priority) attribute. That means that it can be dismissed only by other entry with an equal or higher priority. 
+  - [x] Presets support accessibility.
   - [x] Entries have an optional rubber banding effect while panning.
   - [x] Entries can be optionally dismissed using a simple [swipe gesture](#swiping-and-rubber-banding).
   - [x] Entries can be optionally injected with [lifecycle events](#lifecycle-events): *will* and *did* appear/disappear.
@@ -146,7 +147,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '1.0.2'
+pod 'SwiftEntryKit', '1.0.3'
 ```
 
 Then, run the following command:
@@ -169,7 +170,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 1.0.2
+github "huri000/SwiftEntryKit" == 1.0.3
 ```
 
 ## Usage

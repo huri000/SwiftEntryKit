@@ -32,6 +32,7 @@ public class EKTextField: UIView {
         setupImageView()
         setupTextField()
         setupSeparatorView()
+        textField.accessibilityIdentifier = content.accessibilityIdentifier
     }
     
     required public init?(coder aDecoder: NSCoder) {
