@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DisplayDurationSelectionTableViewCell: SelectionTableViewCell {
+final class DisplayDurationSelectionTableViewCell: SelectionTableViewCell {
     
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)

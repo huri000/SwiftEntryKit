@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SafeAreaSelectionTableViewCell: SelectionTableViewCell {
+final class SafeAreaSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Safe Area Adjustment"

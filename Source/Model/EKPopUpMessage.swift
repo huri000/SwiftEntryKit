@@ -29,7 +29,8 @@ public struct EKPopUpMessage {
         public var position: Position
         
         /** Initializer */
-        public init(image: EKProperty.ImageContent, position: Position = .topToTop(offset: 40)) {
+        public init(image: EKProperty.ImageContent,
+                    position: Position = .topToTop(offset: 40)) {
             self.image = image
             self.position = position
         }
@@ -45,7 +46,11 @@ public struct EKPopUpMessage {
         return themeImage != nil
     }
     
-    public init(themeImage: ThemeImage? = nil, title: EKProperty.LabelContent, description: EKProperty.LabelContent, button: EKProperty.ButtonContent, action: @escaping EKPopUpMessageAction) {
+    public init(themeImage: ThemeImage? = nil,
+                title: EKProperty.LabelContent,
+                description: EKProperty.LabelContent,
+                button: EKProperty.ButtonContent,
+                action: @escaping EKPopUpMessageAction) {
         self.themeImage = themeImage
         self.title = title
         self.description = description

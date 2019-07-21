@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEntryKit
 
-class RoundCornersSelectionTableViewCell: SelectionTableViewCell {
+final class RoundCornersSelectionTableViewCell: SelectionTableViewCell {
     
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)

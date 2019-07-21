@@ -1,10 +1,29 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.1.0
+
+### Support dark mode  (breaking change)
+Fully support dark mode pre iOS 13. New requirments were introduced:
+- `UIColor` was replaced with `EKColor` to allow specifying colors for light and dark modes.
+- `UIBlurEffect.Style` was replacd with `EKAttributes.BackgroundStyle.BlurStyle` to allow specifying visual effects for light and dark modes.
+- `EKAttributes` contains a new attribute named `displayMode: DisplayMode`. `displayMode` has the default value `.inferred`, which means that the display mode will be inferred from the user interface style. If the running iOS version is lower than 13, the display mode will be inferred as light mode.
+- All the presets support the new display mode by allowing to specify `displayMode` for their `EKProperty`
+
+The list of `EKProperty` constructs that contain `displayMode`: 
+- `ButtonContent` - button descriptor
+- `LabelStyle` - label style descriptor
+- `ImageContent` - image view descriptor
+- `TextFieldContent` - text field descriptor
+- `ButtonBarContent`  - button bar descriptor
+
+### Revamp coding style
+The project coding style was revamped to be more friendly and readable.
+
 ## 1.0.4
 
 ### Issues:
-- #191 -  customized components support accessibility.
+- #191 - customized components support accessibility.
 
 ## 1.0.2
 

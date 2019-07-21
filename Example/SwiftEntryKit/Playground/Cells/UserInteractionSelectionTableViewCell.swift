@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEntryKit
 
-class UserInteractionSelectionTableViewCell: SelectionTableViewCell {
+final class UserInteractionSelectionTableViewCell: SelectionTableViewCell {
         
     var focus: Focus = .entry
     

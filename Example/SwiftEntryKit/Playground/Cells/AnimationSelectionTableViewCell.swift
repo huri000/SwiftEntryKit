@@ -8,7 +8,7 @@
 
 import SwiftEntryKit
 
-class AnimationSelectionTableViewCell: SelectionTableViewCell {
+final class AnimationSelectionTableViewCell: SelectionTableViewCell {
     
     enum Action: String {
         case entrance

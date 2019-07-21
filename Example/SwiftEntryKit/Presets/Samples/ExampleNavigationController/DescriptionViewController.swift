@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import SwiftEntryKit
 
 class DescriptionViewController: UIViewController {
 
     private let screenTitle: String
+    @IBOutlet private var label: UILabel!
     
     init(screenTitle: String) {
         self.screenTitle = screenTitle
@@ -24,5 +26,21 @@ class DescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = screenTitle
+        setupColors()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupColors()
+    }
+    
+    private func setupColors() {
+        view.backgroundColor = EKColor.standardBackground.color(
+            for: traitCollection,
+            mode: .inferred
+        )
+        label.textColor = EKColor.standardContent.color(
+            for: traitCollection,
+            mode: .inferred
+        )
     }
 }

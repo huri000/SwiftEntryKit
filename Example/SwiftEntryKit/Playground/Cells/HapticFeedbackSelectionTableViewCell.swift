@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HapticFeedbackSelectionTableViewCell: SelectionTableViewCell {
+final class HapticFeedbackSelectionTableViewCell: SelectionTableViewCell {
     
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)

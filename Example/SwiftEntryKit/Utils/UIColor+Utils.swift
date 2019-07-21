@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftEntryKit
 
 extension UIColor {
     static func by(r: Int, g: Int, b: Int, a: CGFloat = 1) -> UIColor {
@@ -30,77 +31,231 @@ extension UIColor {
         )
     }
     
-    static let darkDefault = UIColor(white: 45.0/255.0, alpha: 1)
-    static let grayText = UIColor(white: 160.0/255.0, alpha: 1)
-    static let facebookDarkBlue = UIColor.by(r: 59, g: 89, b: 152)
+    var ekColor: EKColor {
+        return EKColor(self)
+    }
+    
     static let dimmedLightBackground = UIColor(white: 100.0/255.0, alpha: 0.3)
     static let dimmedDarkBackground = UIColor(white: 50.0/255.0, alpha: 0.3)
+    static let dimmedDarkestBackground = UIColor(white: 0, alpha: 0.5)
+    
     static let pinky = UIColor(rgb: 0xE91E63)
     static let amber = UIColor(rgb: 0xFFC107)
     static let satCyan = UIColor(rgb: 0x00BCD4)
-    static let darkText = UIColor(rgb: 0x212121)
     static let redish = UIColor(rgb: 0xFF5252)
-    static let darkSubText = UIColor(rgb: 0x757575)
     static let greenGrass = UIColor(rgb: 0x4CAF50)
-    static let darkChatMessage = UIColor(red: 48, green: 47, blue: 48)
+    
+    static let chatMessageLightMode = UIColor(red: 48, green: 47, blue: 48)
+    static let chatMessageDarkMode = UIColor(red: 207, green: 208, blue: 207)
+    
+    static let textLightMode = UIColor(red: 33, green: 33, blue: 33)
+    static let textDarkMode = UIColor(red: 222, green: 222, blue: 222)
+    
+    static let subTextLightMode = UIColor(red: 117, green: 117, blue: 117)
+    static let subTextDarkMode = UIColor(red: 138, green: 138, blue: 138)
+    
+    static let musicBackgroundDark = UIColor(red: 36, green: 39, blue: 42)
+    static let musicRedish = UIColor(red: 219, green: 58, blue: 94)
+
+    static let lightNavigationBarBackground = UIColor(red: 251, green: 251, blue: 253)
+    
+    static let darkHeaderBackground = UIColor(red: 25, green: 26, blue: 25)
+    
+    static let darkSegmentedControl = UIColor(red: 55, green: 71, blue: 79)
 }
 
-struct EKColor {
+extension EKColor {
+    
+    static var segmentedControlTint: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .gray,
+                           dark: .gray)
+        } else {
+            return EKColor(.gray)
+        }
+    }
+    
+    static var navigationItemColor: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .gray,
+                           dark: .musicRedish)
+        } else {
+            return EKColor(.gray)
+        }
+    }
+    
+    static var navigationBackgroundColor: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .lightNavigationBarBackground,
+                           dark: .black)
+        } else {
+            return EKColor(.lightNavigationBarBackground)
+        }
+    }
+
+    static var headerBackground: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: Color.BlueGray.c50.with(alpha: 0.95).light,
+                           dark: .darkHeaderBackground)
+        } else {
+            return Color.BlueGray.c50.with(alpha: 0.95)
+        }
+    }
+    
+    static var headerText: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(.white).with(alpha: 0.95)
+        } else {
+            return Color.BlueGray.c900
+        }
+    }
+    
+    static var satCyan: EKColor {
+        return EKColor(.satCyan)
+    }
+    
+    static var amber: EKColor {
+        return EKColor(.amber)
+    }
+    
+    static var pinky: EKColor {
+        return EKColor(.pinky)
+    }
+    
+    static var greenGrass: EKColor {
+        return EKColor(.greenGrass)
+    }
+    
+    static var redish: EKColor {
+        return EKColor(.redish)
+    }
+    
+    static var ratingStar: EKColor {    
+        if #available(iOS 13, *) {
+            return EKColor(light: .amber,
+                           dark: .musicRedish)
+        } else {
+            return .amber
+        }
+    }
+    
+    static var musicBackground: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .white,
+                           dark: .musicBackgroundDark)
+        } else {
+            return EKColor(.white)
+        }
+    }
+    
+    static var musicText: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .black,
+                           dark: .musicRedish)
+        } else {
+            return EKColor(.black)
+        }
+    }
+    
+    static var dimmedDarkBackground: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .dimmedDarkBackground,
+                           dark: .dimmedDarkestBackground)
+        } else {
+            return EKColor(.dimmedDarkBackground)
+        }
+    }
+    
+    static var dimmedLightBackground: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .dimmedLightBackground,
+                           dark: .dimmedDarkestBackground)
+        } else {
+            return EKColor(.dimmedLightBackground)
+        }
+    }
+    
+    static var chatMessage: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .chatMessageLightMode,
+                           dark: .chatMessageLightMode)
+        } else {
+            return EKColor(.chatMessageLightMode)
+        }
+    }
+    
+    static var text: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .textLightMode,
+                           dark: .textDarkMode)
+        } else {
+            return EKColor(.textLightMode)
+        }
+    }
+    
+    static var subText: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: .subTextLightMode,
+                           dark: .subTextDarkMode)
+        } else {
+            return EKColor(.subTextLightMode)
+        }
+    }
+}
+
+struct Color {
     struct BlueGray {
-        static let c50 = UIColor(rgb: 0xeceff1)
-        static let c100 = UIColor(rgb: 0xcfd8dc)
-        static let c200 = UIColor(rgb: 0xb0bec5)
-        static let c300 = UIColor(rgb: 0x90a4ae)
-        static let c400 = UIColor(rgb: 0x78909c)
-        static let c500 = UIColor(rgb: 0x607d8b)
-        static let c600 = UIColor(rgb: 0x546e7a)
-        static let c700 = UIColor(rgb: 0x455a64)
-        static let c800 = UIColor(rgb: 0x37474f)
-        static let c900 = UIColor(rgb: 0x263238)
+        static let c50 = EKColor(rgb: 0xeceff1)
+        static let c100 = EKColor(rgb: 0xcfd8dc)
+        static let c300 = EKColor(rgb: 0x90a4ae)
+        static let c400 = EKColor(rgb: 0x78909c)
+        static let c700 = EKColor(rgb: 0x455a64)
+        static let c800 = EKColor(rgb: 0x37474f)
+        static let c900 = EKColor(rgb: 0x263238)
     }
     
     struct Netflix {
-        static let light = UIColor(rgb: 0x485563)
-        static let dark = UIColor(rgb: 0x29323c)
+        static let light = EKColor(rgb: 0x485563)
+        static let dark = EKColor(rgb: 0x29323c)
     }
     
     struct Gray {
-        static let a800 = UIColor(rgb: 0x424242)
-        static let mid = UIColor(rgb: 0x616161)
-        static let light = UIColor(white: 230.0/255.0, alpha: 1)
+        static let a800 = EKColor(rgb: 0x424242)
+        static let mid = EKColor(rgb: 0x616161)
+        static let light = EKColor(red: 230, green: 230, blue: 230)
     }
     
     struct Purple {
-        static let a300 = UIColor(rgb: 0xba68c8)
-        static let a400 = UIColor(rgb: 0xab47bc)
-        static let a700 = UIColor(rgb: 0xaa00ff)
-        static let deep = UIColor(rgb: 0x673ab7)
+        static let a300 = EKColor(rgb: 0xba68c8)
+        static let a400 = EKColor(rgb: 0xab47bc)
+        static let a700 = EKColor(rgb: 0xaa00ff)
+        static let deep = EKColor(rgb: 0x673ab7)
     }
     
     struct BlueGradient {
-        static let light = UIColor(red: 100, green: 172, blue: 196)
-        static let dark = UIColor(red: 27, green: 47, blue: 144)
+        static let light = EKColor(red: 100, green: 172, blue: 196)
+        static let dark = EKColor(red: 27, green: 47, blue: 144)
     }
     
     struct Yellow {
-        static let a700 = UIColor(rgb: 0xffd600)
+        static let a700 = EKColor(rgb: 0xffd600)
     }
     
     struct Teal {
-        static let a700 = UIColor(rgb: 0x00bfa5)
-        static let a600 = UIColor(rgb: 0x00897b)
+        static let a700 = EKColor(rgb: 0x00bfa5)
+        static let a600 = EKColor(rgb: 0x00897b)
     }
     
     struct Orange {
-        static let a50 = UIColor(rgb: 0xfff3e0)
+        static let a50 = EKColor(rgb: 0xfff3e0)
     }
     
     struct LightBlue {
-        static let a700 = UIColor(rgb: 0x0091ea)
+        static let a700 = EKColor(rgb: 0x0091ea)
     }
     
     struct LightPink {
-        static let first = UIColor(rgb: 0xff9a9e)
-        static let last = UIColor(rgb: 0xfad0c4)
+        static let first = EKColor(rgb: 0xff9a9e)
+        static let last = EKColor(rgb: 0xfad0c4)
     }
 }

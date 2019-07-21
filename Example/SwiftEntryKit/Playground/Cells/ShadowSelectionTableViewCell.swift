@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEntryKit
 
-class ShadowSelectionTableViewCell: SelectionTableViewCell {
+final class ShadowSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Drop Shadow"

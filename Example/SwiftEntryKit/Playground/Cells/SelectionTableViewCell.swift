@@ -58,6 +58,7 @@ class SelectionTableViewCell: SelectionBaseCell {
         setupTitleLabel()
         setupDescriptionLabel()
         setupSegmentedControl()
+        setupInterfaceStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,7 +67,6 @@ class SelectionTableViewCell: SelectionBaseCell {
     
     private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
-        titleLabel.textColor = EKColor.BlueGray.c900
         titleLabel.font = MainFont.bold.with(size: 18)
         titleLabel.layoutToSuperview(.top, offset: 20)
         titleLabel.layoutToSuperview(axis: .horizontally, offset: 20)
@@ -75,7 +75,6 @@ class SelectionTableViewCell: SelectionBaseCell {
     
     private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
-        descriptionLabel.textColor = EKColor.BlueGray.c800
         descriptionLabel.font = MainFont.light.with(size: 15)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 10)
@@ -85,10 +84,19 @@ class SelectionTableViewCell: SelectionBaseCell {
     
     private func setupSegmentedControl() {
         contentView.addSubview(segmentedControl)
-        segmentedControl.tintColor = UIColor(rgb: 0x37474f)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: MainFont.light.with(size: 15)], for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: MainFont.medium.with(size: 15)], for: .selected)
-        segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.font: MainFont.light.with(size: 15)],
+            for: .normal
+        )
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.font: MainFont.medium.with(size: 15)],
+            for: .selected
+        )
+        segmentedControl.addTarget(
+            self,
+            action: #selector(segmentChanged),
+            for: .valueChanged
+        )
         segmentedControl.layout(.top, to: .bottom, of: descriptionLabel, offset: 10)
         segmentedControl.layoutToSuperview(axis: .horizontally, offset: 20)
         segmentedControl.layoutToSuperview(.bottom, offset: -20)
@@ -106,4 +114,45 @@ class SelectionTableViewCell: SelectionBaseCell {
     }
     
     @objc func segmentChanged() {}
+    
+    private func setupInterfaceStyle() {
+        contentView.backgroundColor = EKColor.standardBackground.color(
+            for: traitCollection,
+            mode: PresetsDataSource.displayMode
+        )
+        segmentedControl.tintColor = EKColor.segmentedControlTint.color(
+            for: traitCollection,
+            mode: PresetsDataSource.displayMode
+        )
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor:
+                EKColor.standardContent.color(
+                    for: traitCollection,
+                    mode: PresetsDataSource.displayMode
+                )
+            ],
+            for: .normal
+        )
+        segmentedControl.setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor:
+                EKColor.standardContent.inverted.color(
+                    for: traitCollection,
+                    mode: PresetsDataSource.displayMode
+                )
+            ],
+            for: .selected
+        )
+        titleLabel.textColor = EKColor.standardContent.color(
+            for: traitCollection,
+            mode: PresetsDataSource.displayMode
+        )
+        descriptionLabel.textColor = EKColor.standardContent.with(alpha: 0.8).color(
+            for: traitCollection,
+            mode: PresetsDataSource.displayMode
+        )
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
+    }
 }

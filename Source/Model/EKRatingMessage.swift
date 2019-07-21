@@ -32,7 +32,7 @@ public struct EKRatingMessage {
     
     /** Selection event - Each time the user interacts a rating star */
     public var selection: Selection!
-    
+
     let selectedIndexRef = SelectedIndex()
     
     /** Selected index (if there is one) */
@@ -46,7 +46,11 @@ public struct EKRatingMessage {
     }
     
     /** Initializer */
-    public init(initialTitle: EKProperty.LabelContent, initialDescription: EKProperty.LabelContent, ratingItems: [EKProperty.EKRatingItemContent], buttonBarContent: EKProperty.ButtonBarContent, selection: Selection? = nil) {
+    public init(initialTitle: EKProperty.LabelContent,
+                initialDescription: EKProperty.LabelContent,
+                ratingItems: [EKProperty.EKRatingItemContent],
+                buttonBarContent: EKProperty.ButtonBarContent,
+                selection: Selection? = nil) {
         self.initialTitle = initialTitle
         self.initialDescription = initialDescription
         self.ratingItems = ratingItems

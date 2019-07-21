@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEntryKit
 
-class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
+final class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
     
     private var focus: Focus = .entry
     
@@ -41,7 +41,6 @@ class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "\(focus.rawValue.capitalized) Background Style"
         descriptionValue = "The style of the \(focus.rawValue)'s background can be one of the following options"
-        
         insertSegments(by: ["Clear", "Blur", "Gradient", "Color"])
         selectSegment()
     }
@@ -67,17 +66,21 @@ class BackgroundStyleSelectionTableViewCell: SelectionTableViewCell {
         case 0:
             backgroundStyle = .clear
         case 1:
-            backgroundStyle = .visualEffect(style: .light)
+            backgroundStyle = .visualEffect(style: .standard)
         case 2:
-            let gradient = EKAttributes.BackgroundStyle.Gradient(colors: [EKColor.BlueGray.c100, EKColor.BlueGray.c300], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1))
+            let gradient = EKAttributes.BackgroundStyle.Gradient(
+                colors: [Color.BlueGray.c100, Color.BlueGray.c300],
+                startPoint: .zero,
+                endPoint: CGPoint(x: 1, y: 1)
+            )
             backgroundStyle = .gradient(gradient: gradient)
         case 3:
-            let color: UIColor
+            let color: EKColor
             switch focus {
             case .entry:
                 color = .amber
             case .screen:
-                color = UIColor.black.withAlphaComponent(0.5)
+                color = EKColor.black.with(alpha: 0.5)
             }
             backgroundStyle = .color(color: color)
         default:

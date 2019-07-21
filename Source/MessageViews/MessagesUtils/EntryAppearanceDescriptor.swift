@@ -6,8 +6,6 @@
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
-import CoreGraphics
-
 /**
  An anti-pattern for SwiftEntryKit views to know more about their appearence,
  if necessary, since views don't have access to EKAttributes.

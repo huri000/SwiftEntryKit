@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SwiftEntryKit
 
-class SelectionHeaderView: UITableViewHeaderFooterView {
+final class SelectionHeaderView: UITableViewHeaderFooterView {
 
     var text: String {
         set {
@@ -19,15 +20,35 @@ class SelectionHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    var displayMode = EKAttributes.DisplayMode.inferred {
+        didSet {
+            setupInterfaceStyle()
+        }
+    }
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         backgroundView = UIView()
-        backgroundView?.backgroundColor = EKColor.BlueGray.c50.withAlphaComponent(0.95)
         textLabel?.font = MainFont.bold.with(size: 17)
-        textLabel?.textColor = EKColor.BlueGray.c900
+        setupInterfaceStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupInterfaceStyle() {
+        backgroundView?.backgroundColor = EKColor.headerBackground.color(
+            for: traitCollection,
+            mode: PresetsDataSource.displayMode
+        )
+        textLabel?.textColor = EKColor.standardContent.with(alpha: 0.8).color(
+            for: traitCollection,
+            mode: PresetsDataSource.displayMode
+        )
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
     }
 }

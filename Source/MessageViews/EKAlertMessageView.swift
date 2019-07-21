@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class EKAlertMessageView: EKSimpleMessageView, EntryAppearanceDescriptor {
+final public class EKAlertMessageView: EKSimpleMessageView, EntryAppearanceDescriptor {
     
     // MARK: Props
     var buttonBarView: EKButtonBarView!

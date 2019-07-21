@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class EKFormMessageView: UIView {
+final public class EKFormMessageView: UIView {
     
     private let scrollViewVerticalOffset: CGFloat = 20
     
@@ -19,18 +19,25 @@ public class EKFormMessageView: UIView {
     private var textFieldViews: [EKTextField] = []
     private var buttonBarView: EKButtonBarView!
     
+    private let titleContent: EKProperty.LabelContent
+    
     // MARK: Setup
     
-    public init(with title: EKProperty.LabelContent, textFieldsContent: [EKProperty.TextFieldContent], buttonContent: EKProperty.ButtonContent) {
+    public init(with title: EKProperty.LabelContent,
+                textFieldsContent: [EKProperty.TextFieldContent],
+                buttonContent: EKProperty.ButtonContent) {
+        self.titleContent = title
         self.textFieldsContent = textFieldsContent
         super.init(frame: UIScreen.main.bounds)
         setupScrollView()
-        setupTitleLabel(with: title)
+        setupTitleLabel()
         setupTextFields(with: textFieldsContent)
         setupButton(with: buttonContent)
         setupTapGestureRecognizer()
         scrollView.layoutIfNeeded()
-        set(.height, of: scrollView.contentSize.height + scrollViewVerticalOffset * 2, priority: .defaultHigh)
+        set(.height,
+            of: scrollView.contentSize.height + scrollViewVerticalOffset * 2,
+            priority: .defaultHigh)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -46,7 +53,6 @@ public class EKFormMessageView: UIView {
             textFieldIndex += 1
             return textField
         }
-        
         textFieldViews.first!.layout(.top, to: .bottom, of: titleLabel, offset: 20)
         textFieldViews.spread(.vertically, offset: 5)
         textFieldViews.layoutToSuperview(axis: .horizontally)
@@ -54,7 +60,10 @@ public class EKFormMessageView: UIView {
     
     // Setup tap gesture
     private func setupTapGestureRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapGestureRecognized))
+        let tapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(tapGestureRecognized)
+        )
         tapGestureRecognizer.numberOfTapsRequired = 1
         addGestureRecognizer(tapGestureRecognizer)
     }
@@ -66,12 +75,12 @@ public class EKFormMessageView: UIView {
         scrollView.layoutToSuperview(.width, .height, offset: -scrollViewVerticalOffset * 2)
     }
     
-    private func setupTitleLabel(with content: EKProperty.LabelContent) {
+    private func setupTitleLabel() {
         scrollView.addSubview(titleLabel)
         titleLabel.layoutToSuperview(.top, .width)
         titleLabel.layoutToSuperview(axis: .horizontally)
         titleLabel.forceContentWrap(.vertically)
-        titleLabel.content = content
+        titleLabel.content = titleContent
     }
     
     private func setupButton(with buttonContent: EKProperty.ButtonContent) {
@@ -81,7 +90,11 @@ public class EKFormMessageView: UIView {
             self?.extractTextFieldsContent()
             action?()
         }
-        let buttonsBarContent = EKProperty.ButtonBarContent(with: buttonContent, separatorColor: .clear, expandAnimatedly: true)
+        let buttonsBarContent = EKProperty.ButtonBarContent(
+            with: buttonContent,
+            separatorColor: .clear,
+            expandAnimatedly: true
+        )
         buttonBarView = EKButtonBarView(with: buttonsBarContent)
         buttonBarView.clipsToBounds = true
         scrollView.addSubview(buttonBarView)
@@ -103,6 +116,12 @@ public class EKFormMessageView: UIView {
     public func becomeFirstResponder(with textFieldIndex: Int) {
         textFieldViews[textFieldIndex].makeFirstResponder()
     }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        titleLabel.textColor = titleContent.style.color(for: traitCollection)
+    }
+    
+    // MARK: User Intractions
     
     // Tap Gesture
     @objc func tapGestureRecognized() {

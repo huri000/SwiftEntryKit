@@ -24,10 +24,13 @@ public extension EKAttributes {
         public struct Value {
             public let radius: CGFloat
             public let opacity: Float
-            public let color: UIColor
+            public let color: EKColor
             public let offset: CGSize
             
-            public init(color: UIColor = .black, opacity: Float, radius: CGFloat, offset: CGSize = .zero) {
+            public init(color: EKColor = .black,
+                        opacity: Float,
+                        radius: CGFloat,
+                        offset: CGSize = .zero) {
                 self.color = color
                 self.radius = radius
                 self.offset = offset

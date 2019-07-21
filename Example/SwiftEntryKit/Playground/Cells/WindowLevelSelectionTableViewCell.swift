@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WindowLevelSelectionTableViewCell: SelectionTableViewCell {
+final class WindowLevelSelectionTableViewCell: SelectionTableViewCell {
 
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
