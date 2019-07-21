@@ -1,7 +1,7 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
-## 1.0.3
+## 1.0.4
 
 ### Issues:
 - #191 -  customized components support accessibility.
