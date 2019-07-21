@@ -24,10 +24,18 @@ class EKButtonView: UIView {
         super.init(frame: .zero)
         setupTitleLabel()
         setupButton()
+        setupAcceessibility()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupAcceessibility() {
+        isAccessibilityElement = true
+        accessibilityIdentifier = content.accessibilityIdentifier
+        accessibilityLabel = content.label.text
+        accessibilityTraits = [.button]
     }
     
     private func setupButton() {

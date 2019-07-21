@@ -86,42 +86,92 @@ enum FormStyle {
 
 class FormFieldPresetFactory {
     
-    class func email(placeholderStyle: EKProperty.LabelStyle, textStyle: EKProperty.LabelStyle, separatorColor: UIColor, style: FormStyle) -> EKProperty.TextFieldContent {
-        let emailPlaceholder = EKProperty.LabelContent(text: "Email Address", style: placeholderStyle)
-        return .init(keyboardType: .emailAddress, placeholder: emailPlaceholder, textStyle: textStyle, leadingImage: UIImage(named: "ic_mail" + style.imageSuffix), bottomBorderColor: separatorColor)
+    class func email(placeholderStyle: EKProperty.LabelStyle,
+                     textStyle: EKProperty.LabelStyle,
+                     separatorColor: UIColor,
+                     style: FormStyle) -> EKProperty.TextFieldContent {
+        let emailPlaceholder = EKProperty.LabelContent(text: "Email Address",
+                                                       style: placeholderStyle)
+        return .init(keyboardType: .emailAddress,
+                     placeholder: emailPlaceholder,
+                     textStyle: textStyle,
+                     leadingImage: UIImage(named: "ic_mail" + style.imageSuffix),
+                     bottomBorderColor: separatorColor,
+                     accessibilityIdentifier: "emailTextField")
     }
     
-    class func fullName(placeholderStyle: EKProperty.LabelStyle, textStyle: EKProperty.LabelStyle, separatorColor: UIColor, style: FormStyle) -> EKProperty.TextFieldContent {
-        let fullNamePlaceholder = EKProperty.LabelContent(text: "Full Name", style: placeholderStyle)
-        return .init(keyboardType: .namePhonePad, placeholder: fullNamePlaceholder, textStyle: textStyle, leadingImage: UIImage(named: "ic_user" + style.imageSuffix), bottomBorderColor: separatorColor)
+    class func fullName(placeholderStyle: EKProperty.LabelStyle,
+                        textStyle: EKProperty.LabelStyle,
+                        separatorColor: UIColor,
+                        style: FormStyle) -> EKProperty.TextFieldContent {
+        let fullNamePlaceholder = EKProperty.LabelContent(text: "Full Name",
+                                                          style: placeholderStyle)
+        return .init(keyboardType: .namePhonePad,
+                     placeholder: fullNamePlaceholder,
+                     textStyle: textStyle,
+                     leadingImage: UIImage(named: "ic_user" + style.imageSuffix),
+                     bottomBorderColor: separatorColor,
+                     accessibilityIdentifier: "nameTextField")
     }
     
-    class func mobile(placeholderStyle: EKProperty.LabelStyle, textStyle: EKProperty.LabelStyle, separatorColor: UIColor, style: FormStyle) -> EKProperty.TextFieldContent {
-        let mobilePlaceholder = EKProperty.LabelContent(text: "Mobile Phone", style: placeholderStyle)
-        return .init(keyboardType: .decimalPad, placeholder: mobilePlaceholder, textStyle: textStyle, leadingImage: UIImage(named: "ic_phone" + style.imageSuffix), bottomBorderColor: separatorColor)
+    class func mobile(placeholderStyle: EKProperty.LabelStyle,
+                      textStyle: EKProperty.LabelStyle,
+                      separatorColor: UIColor,
+                      style: FormStyle) -> EKProperty.TextFieldContent {
+        let mobilePlaceholder = EKProperty.LabelContent(text: "Mobile Phone",
+                                                        style: placeholderStyle)
+        return .init(keyboardType: .decimalPad,
+                     placeholder: mobilePlaceholder,
+                     textStyle: textStyle,
+                     leadingImage: UIImage(named: "ic_phone" + style.imageSuffix),
+                     bottomBorderColor: separatorColor,
+                     accessibilityIdentifier: "mobilePhoneTextField")
     }
     
-    class func password(placeholderStyle: EKProperty.LabelStyle, textStyle: EKProperty.LabelStyle, separatorColor: UIColor, style: FormStyle) -> EKProperty.TextFieldContent {
-        let passwordPlaceholder = EKProperty.LabelContent(text: "Password", style: placeholderStyle)
-        return .init(keyboardType: .namePhonePad, placeholder: passwordPlaceholder, textStyle: textStyle, isSecure: true, leadingImage: UIImage(named: "ic_lock" + style.imageSuffix), bottomBorderColor: separatorColor)
+    class func password(placeholderStyle: EKProperty.LabelStyle,
+                        textStyle: EKProperty.LabelStyle,
+                        separatorColor: UIColor,
+                        style: FormStyle) -> EKProperty.TextFieldContent {
+        let passwordPlaceholder = EKProperty.LabelContent(text: "Password",
+                                                          style: placeholderStyle)
+        return .init(keyboardType: .namePhonePad,
+                     placeholder: passwordPlaceholder,
+                     textStyle: textStyle,
+                     isSecure: true,
+                     leadingImage: UIImage(named: "ic_lock" + style.imageSuffix),
+                     bottomBorderColor: separatorColor,
+                     accessibilityIdentifier: "passwordTextField")
     }
     
-    class func fields(by set: TextFieldOptionSet, style: FormStyle) -> [EKProperty.TextFieldContent] {
+    class func fields(by set: TextFieldOptionSet,
+                      style: FormStyle) -> [EKProperty.TextFieldContent] {
         var array: [EKProperty.TextFieldContent] = []
         let placeholderStyle = style.placeholder
         let textStyle = style.text
         let separatorColor = style.separator
         if set.contains(.fullName) {
-            array.append(fullName(placeholderStyle: placeholderStyle, textStyle: textStyle, separatorColor: separatorColor, style: style))
+            array.append(fullName(placeholderStyle: placeholderStyle,
+                                  textStyle: textStyle,
+                                  separatorColor: separatorColor,
+                                  style: style))
         }
         if set.contains(.mobile) {
-            array.append(mobile(placeholderStyle: placeholderStyle, textStyle: textStyle, separatorColor: separatorColor, style: style))
+            array.append(mobile(placeholderStyle: placeholderStyle,
+                                textStyle: textStyle,
+                                separatorColor: separatorColor,
+                                style: style))
         }
         if set.contains(.email) {
-            array.append(email(placeholderStyle: placeholderStyle, textStyle: textStyle, separatorColor: separatorColor, style: style))
+            array.append(email(placeholderStyle: placeholderStyle,
+                               textStyle: textStyle,
+                               separatorColor: separatorColor,
+                               style: style))
         }
         if set.contains(.password) {
-            array.append(password(placeholderStyle: placeholderStyle, textStyle: textStyle, separatorColor: separatorColor, style: style))
+            array.append(password(placeholderStyle: placeholderStyle,
+                                  textStyle: textStyle,
+                                  separatorColor: separatorColor,
+                                  style: style))
         }
         return array
     }

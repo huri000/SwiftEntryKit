@@ -159,11 +159,11 @@ class PresetsViewController: UIViewController {
     
     // Bumps a notification structured entry
     private func showNotificationMessage(attributes: EKAttributes, title: String, desc: String, textColor: UIColor, imageName: String? = nil) {
-        let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 16), color: textColor))
-        let description = EKProperty.LabelContent(text: desc, style: .init(font: MainFont.light.with(size: 14), color: textColor))
+        let title = EKProperty.LabelContent(text: title, style: .init(font: MainFont.medium.with(size: 16), color: textColor), accessibilityIdentifier: "title")
+        let description = EKProperty.LabelContent(text: desc, style: .init(font: MainFont.light.with(size: 14), color: textColor), accessibilityIdentifier: "description")
         var image: EKProperty.ImageContent?
         if let imageName = imageName {
-            image = .init(image: UIImage(named: imageName)!, size: CGSize(width: 35, height: 35))
+            image = .init(image: UIImage(named: imageName)!, size: CGSize(width: 35, height: 35), accessibilityIdentifier: "thumbnail")
         }
         
         let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
@@ -324,7 +324,7 @@ class PresetsViewController: UIViewController {
     private func showSigninForm(attributes: EKAttributes, style: FormStyle) {
         let title = EKProperty.LabelContent(text: "Sign in to your account", style: style.title)
         let textFields = FormFieldPresetFactory.fields(by: [.email, .password], style: style)
-        let button = EKProperty.ButtonContent(label: .init(text: "Continue", style: style.buttonTitle), backgroundColor: style.buttonBackground, highlightedBackgroundColor: style.buttonBackground.withAlphaComponent(0.8)) {
+        let button = EKProperty.ButtonContent(label: .init(text: "Continue", style: style.buttonTitle), backgroundColor: style.buttonBackground, highlightedBackgroundColor: style.buttonBackground.withAlphaComponent(0.8), accessibilityIdentifier: "continueButton") {
             SwiftEntryKit.dismiss()
         }
         let contentView = EKFormMessageView(with: title, textFieldsContent: textFields, buttonContent: button)

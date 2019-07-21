@@ -25,14 +25,23 @@ public struct EKProperty {
         /** Content edge inset */
         public var contentEdgeInset: CGFloat
         
+        /** Accessibility identifier that identifies the button */
+        public var accessibilityIdentifier: String?
+        
         /** Action */
         public var action: Action?
         
-        public init(label: LabelContent, backgroundColor: UIColor, highlightedBackgroundColor: UIColor, contentEdgeInset: CGFloat = 5, action: @escaping Action = {}) {
+        public init(label: LabelContent,
+                    backgroundColor: UIColor,
+                    highlightedBackgroundColor: UIColor,
+                    contentEdgeInset: CGFloat = 5,
+                    accessibilityIdentifier: String? = nil,
+                    action: @escaping Action = {}) {
             self.label = label
             self.backgroundColor = backgroundColor
             self.highlightedBackgroundColor = highlightedBackgroundColor
             self.contentEdgeInset = contentEdgeInset
+            self.accessibilityIdentifier = accessibilityIdentifier
             self.action = action
         }
     }
@@ -46,9 +55,15 @@ public struct EKProperty {
         /** The label's style */
         public var style: LabelStyle
         
-        public init(text: String, style: LabelStyle) {
+        /** The label's accessibility ideentifier */
+        public var accessibilityIdentifier: String?
+        
+        public init(text: String,
+                    style: LabelStyle,
+                    accessibilityIdentifier: String? = nil) {
             self.text = text
             self.style = style
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
     }
     
@@ -67,7 +82,9 @@ public struct EKProperty {
         /** Number of lines */
         public var numberOfLines: Int
         
-        public init(font: UIFont, color: UIColor, alignment: NSTextAlignment = .left, numberOfLines: Int = 0) {
+        public init(font: UIFont, color: UIColor,
+                    alignment: NSTextAlignment = .left,
+                    numberOfLines: Int = 0) {
             self.font = font
             self.color = color
             self.alignment = alignment
@@ -102,42 +119,87 @@ public struct EKProperty {
         /** Repeated-Reversed animation */
         public var animation: TransformAnimation
         
-        public init(imageName: String, animation: TransformAnimation = .none, size: CGSize? = nil, contentMode: UIView.ContentMode = .scaleToFill, makesRound: Bool = false) {
+        /** Image accessibility identifier */
+        public var accessibilityIdentifier: String?
+        
+        public init(imageName: String,
+                    animation: TransformAnimation = .none,
+                    size: CGSize? = nil,
+                    contentMode: UIView.ContentMode = .scaleToFill,
+                    makesRound: Bool = false,
+                    accessibilityIdentifier: String? = nil) {
             let image = UIImage(named: imageName)!
-            self.init(image: image, size: size, contentMode: contentMode, makesRound: makesRound)
+            self.init(image: image,
+                      size: size,
+                      contentMode: contentMode,
+                      makesRound: makesRound,
+                      accessibilityIdentifier: accessibilityIdentifier)
         }
         
-        public init(image: UIImage, animation: TransformAnimation = .none, size: CGSize? = nil, contentMode: UIView.ContentMode = .scaleToFill, makesRound: Bool = false) {
+        public init(image: UIImage,
+                    animation: TransformAnimation = .none,
+                    size: CGSize? = nil,
+                    contentMode: UIView.ContentMode = .scaleToFill,
+                    makesRound: Bool = false,
+                    accessibilityIdentifier: String? = nil) {
             self.images = [image]
             self.size = size
             self.contentMode = contentMode
             self.makesRound = makesRound
             self.animation = animation
             self.imageSequenceAnimationDuration = 0
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
         
-        public init(images: [UIImage], imageSequenceAnimationDuration: TimeInterval = 1, animation: TransformAnimation = .none, size: CGSize? = nil, contentMode: UIView.ContentMode = .scaleToFill, makesRound: Bool = false) {
+        public init(images: [UIImage],
+                    imageSequenceAnimationDuration: TimeInterval = 1,
+                    animation: TransformAnimation = .none,
+                    size: CGSize? = nil,
+                    contentMode: UIView.ContentMode = .scaleToFill,
+                    makesRound: Bool = false,
+                    accessibilityIdentifier: String? = nil) {
             self.images = images
             self.size = size
             self.contentMode = contentMode
             self.makesRound = makesRound
             self.animation = animation
             self.imageSequenceAnimationDuration = imageSequenceAnimationDuration
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
         
-        public init(imagesNames: [String], imageSequenceAnimationDuration: TimeInterval = 1, animation: TransformAnimation = .none, size: CGSize? = nil, contentMode: UIView.ContentMode = .scaleToFill, makesRound: Bool = false) {
+        public init(imagesNames: [String],
+                    imageSequenceAnimationDuration: TimeInterval = 1,
+                    animation: TransformAnimation = .none,
+                    size: CGSize? = nil,
+                    contentMode: UIView.ContentMode = .scaleToFill,
+                    makesRound: Bool = false,
+                    accessibilityIdentifier: String? = nil) {
             let images = imagesNames.map { UIImage(named: $0)! }
-            self.init(images: images, imageSequenceAnimationDuration: imageSequenceAnimationDuration, animation: animation, size: size, contentMode: contentMode, makesRound: makesRound)
+            self.init(images: images,
+                      imageSequenceAnimationDuration: imageSequenceAnimationDuration,
+                      animation: animation,
+                      size: size,
+                      contentMode: contentMode,
+                      makesRound: makesRound,
+                      accessibilityIdentifier: accessibilityIdentifier)
         }
         
         /** Quick thumbail property generator */
-        public static func thumb(with image: UIImage, edgeSize: CGFloat) -> ImageContent {
-            return ImageContent(images: [image], size: CGSize(width: edgeSize, height: edgeSize), contentMode: .scaleAspectFill, makesRound: true)
+        public static func thumb(with image: UIImage,
+                                 edgeSize: CGFloat) -> ImageContent {
+            return ImageContent(images: [image],
+                                size: CGSize(width: edgeSize, height: edgeSize),
+                                contentMode: .scaleAspectFill,
+                                makesRound: true)
         }
         
         /** Quick thumbail property generator */
-        public static func thumb(with imageName: String, edgeSize: CGFloat) -> ImageContent {
-            return ImageContent(imagesNames: [imageName], size: CGSize(width: edgeSize, height: edgeSize), contentMode: .scaleAspectFill, makesRound: true)
+        public static func thumb(with imageName: String,
+                                 edgeSize: CGFloat) -> ImageContent {
+            return ImageContent(imagesNames: [imageName],
+                                size: CGSize(width: edgeSize, height: edgeSize),
+                                contentMode: .scaleAspectFill,
+                                makesRound: true)
         }
     }
     
@@ -156,6 +218,7 @@ public struct EKProperty {
         public var textStyle: LabelStyle
         public var tintColor: UIColor!
         public var bottomBorderColor: UIColor
+        public var accessibilityIdentifier: String?
         let contentWrapper = ContentWrapper()
         public var textContent: String {
             set {
@@ -166,7 +229,14 @@ public struct EKProperty {
             }
         }
         
-        public init(keyboardType: UIKeyboardType = .default, placeholder: LabelContent, tintColor: UIColor? = nil, textStyle: LabelStyle, isSecure: Bool = false, leadingImage: UIImage? = nil, bottomBorderColor: UIColor = .clear) {
+        public init(keyboardType: UIKeyboardType = .default,
+                    placeholder: LabelContent,
+                    tintColor: UIColor? = nil,
+                    textStyle: LabelStyle,
+                    isSecure: Bool = false,
+                    leadingImage: UIImage? = nil,
+                    bottomBorderColor: UIColor = .clear,
+                    accessibilityIdentifier: String? = nil) {
             self.keyboardType = keyboardType
             self.placeholder = placeholder
             self.textStyle = textStyle
@@ -174,6 +244,7 @@ public struct EKProperty {
             self.isSecure = isSecure
             self.leadingImage = leadingImage
             self.bottomBorderColor = bottomBorderColor
+            self.accessibilityIdentifier = accessibilityIdentifier
         }
     }
     
@@ -195,11 +266,23 @@ public struct EKProperty {
         /** The height of each button. All are equally distributed in their axis */
         public var buttonHeight: CGFloat
         
-        public init(with buttonContents: ButtonContent..., separatorColor: UIColor, horizontalDistributionThreshold: Int = 2, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
-            self.init(with: buttonContents, separatorColor: separatorColor, horizontalDistributionThreshold: horizontalDistributionThreshold, buttonHeight: buttonHeight, expandAnimatedly: expandAnimatedly)
+        public init(with buttonContents: ButtonContent...,
+                    separatorColor: UIColor,
+                    horizontalDistributionThreshold: Int = 2,
+                    buttonHeight: CGFloat = 50,
+                    expandAnimatedly: Bool) {
+            self.init(with: buttonContents,
+                      separatorColor: separatorColor,
+                      horizontalDistributionThreshold: horizontalDistributionThreshold,
+                      buttonHeight: buttonHeight,
+                      expandAnimatedly: expandAnimatedly)
         }
         
-        public init(with buttonContents: [ButtonContent], separatorColor: UIColor, horizontalDistributionThreshold: Int = 2, buttonHeight: CGFloat = 50, expandAnimatedly: Bool) {
+        public init(with buttonContents: [ButtonContent],
+                    separatorColor: UIColor,
+                    horizontalDistributionThreshold: Int = 2,
+                    buttonHeight: CGFloat = 50,
+                    expandAnimatedly: Bool) {
             guard horizontalDistributionThreshold > 0 else {
                 fatalError("horizontalDistributionThreshold Must have a positive value!")
             }
@@ -218,7 +301,10 @@ public struct EKProperty {
         public var unselectedImage: EKProperty.ImageContent
         public var selectedImage: EKProperty.ImageContent
         
-        public init(title: EKProperty.LabelContent, description: EKProperty.LabelContent, unselectedImage: EKProperty.ImageContent, selectedImage: EKProperty.ImageContent) {
+        public init(title: EKProperty.LabelContent,
+                    description: EKProperty.LabelContent,
+                    unselectedImage: EKProperty.ImageContent,
+                    selectedImage: EKProperty.ImageContent) {
             self.title = title
             self.description = description
             self.unselectedImage = unselectedImage

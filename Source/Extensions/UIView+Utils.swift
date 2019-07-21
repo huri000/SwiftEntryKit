@@ -25,6 +25,7 @@ extension UILabel {
     var content: EKProperty.LabelContent {
         set {
             text = newValue.text
+            accessibilityIdentifier = newValue.accessibilityIdentifier
             style = newValue.style
         }
         get {
@@ -54,6 +55,7 @@ extension UIImageView {
             animationImages = newValue.images
             animationDuration = newValue.imageSequenceAnimationDuration
             contentMode = newValue.contentMode
+            accessibilityIdentifier = newValue.accessibilityIdentifier
             
             if let size = newValue.size {
                 set(.width, of: size.width)
@@ -101,6 +103,7 @@ extension UITextField {
             isSecureTextEntry = newValue.isSecure
             text = newValue.textContent
             tintColor = newValue.tintColor
+            accessibilityIdentifier = newValue.accessibilityIdentifier
         }
         get {
             fatalError("textFieldContent doesn't have a getter")
