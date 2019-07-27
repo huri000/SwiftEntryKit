@@ -107,16 +107,6 @@ public extension EKColor {
         }
     }
     
-    /** Color that represents standard background. White for light mode, black for dark modee */
-    static var selectedBackground: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: UIColor(white: 0.9, alpha: 1),
-                           dark: UIColor(white: 0.1, alpha: 1))
-        } else {
-            return EKColor(UIColor(white: 0.9, alpha: 1))
-        }
-    }
-    
     /** Color that represents standard content. black for light mode, white for dark mode */
     static var standardContent: EKColor {
         if #available(iOS 13, *) {

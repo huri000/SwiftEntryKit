@@ -157,6 +157,15 @@ extension EKColor {
         }
     }
     
+    static var selectedBackground: EKColor {
+        if #available(iOS 13, *) {
+            return EKColor(light: UIColor(white: 0.9, alpha: 1),
+                           dark: UIColor(white: 0.1, alpha: 1))
+        } else {
+            return EKColor(UIColor(white: 0.9, alpha: 1))
+        }
+    }
+    
     static var dimmedDarkBackground: EKColor {
         if #available(iOS 13, *) {
             return EKColor(light: .dimmedDarkBackground,
