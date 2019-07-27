@@ -10,6 +10,7 @@
 ## What's New?
 ### 🌑 `1.1.0` - let it be dark
 `SwiftEntryKit` is now dark mode ready, and user interface styles are supported pre iOS 13 / Xcode 11!
+
 To know more about it visit [Change Log](https://github.com/huri000/SwiftEntryKit/blob/master/CHANGELOG.md#110), and install the [example project](#example-project-installation).
 ### 🤖 `1.0.4` - automata 
 Accessibility in presets is now supported, enabling all kinds of robotic activity for host projects.
