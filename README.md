@@ -500,13 +500,13 @@ attributes.screenBackground = .clear
 
 Colored entry background and dimmed screen background:
 ```Swift
-attributes.entryBackground = .color(color: .white)
-attributes.screenBackground = .color(color: UIColor(white: 0.5, alpha: 0.5))
+attributes.entryBackground = .color(color: .standardContent)
+attributes.screenBackground = .color(color: EKColor(UIColor(white: 0.5, alpha: 0.5)))
 ```
 
 Gradient entry background (diagonal vector):
 ```Swift
-let colors: [UIColor] = [.red, .green, .blue]
+let colors: [EKColor] = ...
 attributes.entryBackground = .gradient(gradient: .init(colors: colors, startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
 ```
 
@@ -681,7 +681,7 @@ You can use one of the presets that come with SwiftEntryKit, doing these 4 simpl
 ```Swift
 // Generate top floating entry and set some properties
 var attributes = EKAttributes.topFloat
-attributes.entryBackground = .gradient(gradient: .init(colors: [.red, .green], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+attributes.entryBackground = .gradient(gradient: .init(colors: [EKColor(.red), EKColor(.green)], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
 attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.3), scale: .init(from: 1, to: 0.7, duration: 0.7)))
 attributes.shadow = .active(with: .init(color: .black, opacity: 0.5, radius: 10, offset: .zero))
 attributes.statusBar = .dark
