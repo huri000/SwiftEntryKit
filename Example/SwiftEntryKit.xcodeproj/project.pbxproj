@@ -39,6 +39,7 @@
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
 		14A6AAC420CA7208005F3D81 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A6AAC320CA7208005F3D81 /* ExampleViewController.swift */; };
 		14A7B11F22ECEDE8009A4265 /* EKAttributes+DisplayMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A7B11E22ECEDE8009A4265 /* EKAttributes+DisplayMode.swift */; };
+		14A7B12222ECEF68009A4265 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A7B12122ECEF68009A4265 /* UIColor+Utils.swift */; };
 		14B3A50720C1198A002306C4 /* EKRatingMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */; };
 		14B3A51220C16B64002306C4 /* EKRatingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51120C16B64002306C4 /* EKRatingMessage.swift */; };
 		14B3A51420C16BAC002306C4 /* EKAlertMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B3A51320C16BAC002306C4 /* EKAlertMessage.swift */; };
@@ -110,7 +111,6 @@
 		14DF7B6A21BBCD4D0058B2BB /* EKButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DF7B6921BBCD4D0058B2BB /* EKButtonView.swift */; };
 		14E24A1D208B600E00F32B13 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */; };
 		14E59DBE22E49C0D0080AB4F /* EKColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E59DBD22E49C0D0080AB4F /* EKColor.swift */; };
-		14E59DC222E49FC30080AB4F /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E59DC122E49FC30080AB4F /* UIColor+Utils.swift */; };
 		14F36800208B585E001E8F56 /* PresetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FE208B585E001E8F56 /* PresetsViewController.swift */; };
 		14F36801208B585E001E8F56 /* PresetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */; };
 		14F3FD86213A6ED900CA3010 /* EntryCachingHeuristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F3FD85213A6ED900CA3010 /* EntryCachingHeuristic.swift */; };
@@ -238,6 +238,7 @@
 		14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaygroundViewController.swift; sourceTree = "<group>"; };
 		14A6AAC320CA7208005F3D81 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		14A7B11E22ECEDE8009A4265 /* EKAttributes+DisplayMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EKAttributes+DisplayMode.swift"; sourceTree = "<group>"; };
+		14A7B12122ECEF68009A4265 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14B0B95020B7E4FE00D24D8A /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = "../../../Library/Developer/Xcode/DerivedData/QuickLayout-aotxzuhsyjyfzgcifoglldyfgnnw/Build/Products/Debug-iphonesimulator/QuickLayout-iOS/QuickLayout.framework"; sourceTree = "<group>"; };
 		14B3A50620C1198A002306C4 /* EKRatingMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingMessageView.swift; sourceTree = "<group>"; };
 		14B3A51120C16B64002306C4 /* EKRatingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKRatingMessage.swift; sourceTree = "<group>"; };
@@ -312,7 +313,6 @@
 		14DF7B6921BBCD4D0058B2BB /* EKButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EKButtonView.swift; sourceTree = "<group>"; };
 		14E24A1C208B600E00F32B13 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14E59DBD22E49C0D0080AB4F /* EKColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EKColor.swift; sourceTree = "<group>"; };
-		14E59DC122E49FC30080AB4F /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIColor+Utils.swift"; path = "../../../../../../System/Volumes/Data/Users/danielhuri/Documents/SwiftEntryKit/Source/Extensions/UIColor+Utils.swift"; sourceTree = "<group>"; };
 		14F367FE208B585E001E8F56 /* PresetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetsViewController.swift; sourceTree = "<group>"; };
 		14F367FF208B585E001E8F56 /* PresetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetTableViewCell.swift; sourceTree = "<group>"; };
 		14F3FD85213A6ED900CA3010 /* EntryCachingHeuristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCachingHeuristic.swift; sourceTree = "<group>"; };
@@ -474,7 +474,7 @@
 				14B48B2820B81C9700CE3EF4 /* UIEdgeInsets+Utils.swift */,
 				14B48B2920B81C9700CE3EF4 /* UIView+Shadow.swift */,
 				145F56BA20B863220027EB67 /* UIApplication+EKAppearance.swift */,
-				14E59DC122E49FC30080AB4F /* UIColor+Utils.swift */,
+				14A7B12122ECEF68009A4265 /* UIColor+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1060,6 +1060,7 @@
 				14B48B6120B81C9700CE3EF4 /* GradientView.swift in Sources */,
 				14B48B6720B81C9700CE3EF4 /* SwiftEntryKit.swift in Sources */,
 				14B48B5B20B81C9700CE3EF4 /* EKWindow.swift in Sources */,
+				14A7B12222ECEF68009A4265 /* UIColor+Utils.swift in Sources */,
 				14B48B7420B81C9700CE3EF4 /* EKAttributes+Scroll.swift in Sources */,
 				14B48B6C20B81C9700CE3EF4 /* EKAttributes.swift in Sources */,
 				14B48B7020B81C9700CE3EF4 /* EKAttributes+PopBehavior.swift in Sources */,
@@ -1089,7 +1090,6 @@
 				14B48B5D20B81C9700CE3EF4 /* EKWrapperView.swift in Sources */,
 				14B48B6320B81C9700CE3EF4 /* UIView+Utils.swift in Sources */,
 				14B3A51820C16D7A002306C4 /* EKRatingSymbolView.swift in Sources */,
-				14E59DC222E49FC30080AB4F /* UIColor+Utils.swift in Sources */,
 				14B3A51220C16B64002306C4 /* EKRatingMessage.swift in Sources */,
 				14B48B7620B81C9700CE3EF4 /* EKAttributes+WindowLevel.swift in Sources */,
 				14B48B5920B81C9700CE3EF4 /* EKEntryView.swift in Sources */,
