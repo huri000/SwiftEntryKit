@@ -9,7 +9,7 @@
 import UIKit
 import QuickLayout
 
-public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
+final public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
 
     // MARK: Properties
     
@@ -27,7 +27,8 @@ public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
         didSet {
             message.selectedIndex = selectedIndex
             let item = message.ratingItems[selectedIndex]
-            set(title: item.title, description: item.description)
+            set(title: item.title,
+                description: item.description)
         }
     }
     
@@ -41,17 +42,24 @@ public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
         setupMessageContentView()
         setupSymbolsView()
         setupButtonBarView()
-        set(title: message.initialTitle, description: message.initialDescription)
+        set(title: message.initialTitle,
+            description: message.initialDescription)
     }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func set(title: EKProperty.LabelContent, description: EKProperty.LabelContent) {
-        self.messageContentView.titleContent = title
-        self.messageContentView.subtitleContent = description
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.transitionCrossDissolve], animations: {
+    private func set(title: EKProperty.LabelContent,
+                     description: EKProperty.LabelContent) {
+        messageContentView.titleContent = title
+        messageContentView.subtitleContent = description
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0,
+                       options: [.transitionCrossDissolve],
+                       animations: {
             SwiftEntryKit.layoutIfNeeded()
         }, completion: nil)
     }
@@ -60,7 +68,8 @@ public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
         addSubview(messageContentView)
         messageContentView.verticalMargins = 20
         messageContentView.horizontalMargins = 30
-        messageContentView.layoutToSuperview(axis: .horizontally, priority: .must)
+        messageContentView.layoutToSuperview(axis: .horizontally,
+                                             priority: .must)
         messageContentView.layoutToSuperview(.top, offset: 10)
     }
     
@@ -73,7 +82,11 @@ public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
             self.animateIn()
         }
         symbolsView.layoutToSuperview(.centerX)
-        symbolsView.layout(.top, to: .bottom, of: messageContentView, offset: 10, priority: .must)
+        symbolsView.layout(.top,
+                           to: .bottom,
+                           of: messageContentView,
+                           offset: 10,
+                           priority: .must)
     }
 
     private func setupButtonBarView() {
@@ -81,12 +94,16 @@ public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
         buttonBarView.clipsToBounds = true
         buttonBarView.alpha = 0
         addSubview(buttonBarView)
-        buttonBarView.layout(.top, to: .bottom, of: symbolsView, offset: 30)
+        buttonBarView.layout(.top,
+                             to: .bottom,
+                             of: symbolsView,
+                             offset: 30)
         buttonBarView.layoutToSuperview(.bottom)
         buttonBarView.layoutToSuperview(axis: .horizontally)
     }
     
-    // MARK: Internal Animation
+    // MARK: - Internal Animation
+    
     private func animateIn() {
         layoutIfNeeded()
         buttonBarView.expand()

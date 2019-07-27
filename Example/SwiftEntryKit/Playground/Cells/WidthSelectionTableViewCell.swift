@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WidthSelectionTableViewCell: SelectionTableViewCell {
+final class WidthSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Width"

@@ -58,6 +58,9 @@ public struct EKAttributes {
     
     // MARK: Theme & Style Attributes
     
+    /** The display mode of the entry */
+    public var displayMode = DisplayMode.inferred
+    
     /** Describes the entry's background appearance while it shows */
     public var entryBackground = BackgroundStyle.clear
     

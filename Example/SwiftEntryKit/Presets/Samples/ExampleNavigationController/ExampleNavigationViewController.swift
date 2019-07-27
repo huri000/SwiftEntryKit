@@ -7,11 +7,10 @@
 //
 
 import UIKit
+import SwiftEntryKit
 
 class ExampleNavigationViewController: UINavigationController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationBar.tintColor = .gray
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        navigationBar.tintColor = EKColor.navigationItemColor.color(for: traitCollection, mode: .inferred)
     }
 }

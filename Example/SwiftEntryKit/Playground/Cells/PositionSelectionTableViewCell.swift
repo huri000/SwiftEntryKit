@@ -9,7 +9,7 @@
 import UIKit
 import SwiftEntryKit
 
-class PositionSelectionTableViewCell: SelectionTableViewCell {
+final class PositionSelectionTableViewCell: SelectionTableViewCell {
     
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)

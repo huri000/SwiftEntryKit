@@ -30,8 +30,10 @@ public struct EKNotificationMessage {
     
     /** Defines the vertical and horizontal margins */
     public let insets: Insets
-    
-    public init(simpleMessage: EKSimpleMessage, auxiliary: EKProperty.LabelContent? = nil, insets: Insets = .default) {
+        
+    public init(simpleMessage: EKSimpleMessage,
+                auxiliary: EKProperty.LabelContent? = nil,
+                insets: Insets = .default) {
         self.simpleMessage = simpleMessage
         self.auxiliary = auxiliary
         self.insets = insets

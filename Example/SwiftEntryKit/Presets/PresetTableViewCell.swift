@@ -12,7 +12,8 @@ import UIKit
 
 class PresetTableViewCell: UITableViewCell {
 
-    // MARK: Props
+    // MARK: - Properties
+    
     private let thumbImageView = UIImageView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -25,12 +26,20 @@ class PresetTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: Setup
+    var displayMode: EKAttributes.DisplayMode = .inferred {
+        didSet {
+            setupInterfaceStyle()
+        }
+    }
+    
+    // MARK: - Setup
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupImageView()
         setupTitleLabel()
         setupDescriptionLabel()
+        setupInterfaceStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -46,7 +55,6 @@ class PresetTableViewCell: UITableViewCell {
     
     private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
-        titleLabel.textColor = .black
         titleLabel.font = MainFont.medium.with(size: 18)
         titleLabel.numberOfLines = 0
         titleLabel.layout(.left, to: .right, of: thumbImageView, offset: 16)
@@ -56,12 +64,40 @@ class PresetTableViewCell: UITableViewCell {
     
     private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
-        descriptionLabel.textColor = EKColor.Gray.mid
         descriptionLabel.font = MainFont.light.with(size: 14)
         descriptionLabel.numberOfLines = 0
         descriptionLabel.layout(.top, to: .bottom, of: titleLabel, offset: 4)
         descriptionLabel.layout(to: .left, of: titleLabel)
         descriptionLabel.layout(to: .right, of: titleLabel)
         descriptionLabel.layoutToSuperview(.bottom, offset: -16)
+    }
+    
+    private func setupInterfaceStyle() {
+        contentView.backgroundColor = EKColor.standardBackground.color(
+            for: traitCollection,
+            mode: displayMode
+        )
+        titleLabel.textColor = EKColor.standardContent.color(
+            for: traitCollection,
+            mode: displayMode
+        )
+        descriptionLabel.textColor = EKColor.standardContent.with(alpha: 0.8).color(
+            for: traitCollection,
+            mode: displayMode
+        )
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let color: EKColor = highlighted ? .selectedBackground : .standardBackground
+        contentView.backgroundColor = color.color(
+            for: traitCollection,
+            mode: displayMode
+        )
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {}
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
     }
 }

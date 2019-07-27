@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EKButtonView: UIView {
+final class EKButtonView: UIView {
 
     // MARK: - Properties
     
@@ -25,6 +25,7 @@ class EKButtonView: UIView {
         setupTitleLabel()
         setupButton()
         setupAcceessibility()
+        setupInterfaceStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,30 +42,39 @@ class EKButtonView: UIView {
     private func setupButton() {
         addSubview(button)
         button.fillSuperview()
-        button.addTarget(self, action: #selector(buttonTouchUp), for: [.touchUpInside, .touchUpOutside, .touchCancel])
-        button.addTarget(self, action: #selector(buttonTouchDown), for: .touchDown)
-        button.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonTouchUp),
+                         for: [.touchUpInside, .touchUpOutside, .touchCancel])
+        button.addTarget(self, action: #selector(buttonTouchDown),
+                         for: .touchDown)
+        button.addTarget(self, action: #selector(buttonTouchUpInside),
+                         for: .touchUpInside)
     }
     
     private func setupTitleLabel() {
         titleLabel.numberOfLines = content.label.style.numberOfLines
         titleLabel.font = content.label.style.font
-        titleLabel.textColor = content.label.style.color
         titleLabel.text = content.label.text
         titleLabel.textAlignment = .center
         titleLabel.lineBreakMode = .byWordWrapping
-        backgroundColor = content.backgroundColor
         addSubview(titleLabel)
-        titleLabel.layoutToSuperview(axis: .horizontally, offset: content.contentEdgeInset)
-        titleLabel.layoutToSuperview(axis: .vertically, offset: content.contentEdgeInset)
+        titleLabel.layoutToSuperview(axis: .horizontally,
+                                     offset: content.contentEdgeInset)
+        titleLabel.layoutToSuperview(axis: .vertically,
+                                     offset: content.contentEdgeInset)
     }
     
-    private func setBackground(by content: EKProperty.ButtonContent, isHighlighted: Bool) {
+    private func setBackground(by content: EKProperty.ButtonContent,
+                               isHighlighted: Bool) {
         if isHighlighted {
-            backgroundColor = content.highlightedBackgroundColor
+            backgroundColor = content.highlightedBackgroundColor(for: traitCollection)
         } else {
-            backgroundColor = content.backgroundColor
+            backgroundColor = content.backgroundColor(for: traitCollection)
         }
+    }
+    
+    private func setupInterfaceStyle() {
+        backgroundColor = content.backgroundColor(for: traitCollection)
+        titleLabel.textColor = content.label.style.color(for: traitCollection)
     }
     
     // MARK: - Selectors
@@ -79,5 +89,9 @@ class EKButtonView: UIView {
     
     @objc func buttonTouchUp() {
         setBackground(by: content, isHighlighted: false)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
     }
 }

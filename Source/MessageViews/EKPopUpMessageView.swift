@@ -8,9 +8,10 @@
 
 import UIKit
 
-public class EKPopUpMessageView: UIView {
+final public class EKPopUpMessageView: UIView {
 
-    // MARK: Props
+    // MARK: - Properties
+    
     private var imageView: UIImageView!
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -18,7 +19,8 @@ public class EKPopUpMessageView: UIView {
     
     private let message: EKPopUpMessage
     
-    // MARK: Setup
+    // MARK: - Setup
+    
     public init(with message: EKPopUpMessage) {
         self.message = message
         super.init(frame: UIScreen.main.bounds)
@@ -26,6 +28,7 @@ public class EKPopUpMessageView: UIView {
         setupTitleLabel()
         setupDescriptionLabel()
         setupActionButton()
+        setupInterfaceStyle()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -81,11 +84,21 @@ public class EKPopUpMessageView: UIView {
         actionButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         actionButton.layer.cornerRadius = height * 0.5
         actionButton.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
-        
-        let tapColor = buttonAttributes.label.style.color.withAlphaComponent(0.8)
+    }
+    
+    private func setupInterfaceStyle() {
+        titleLabel.textColor = message.title.style.color(for: traitCollection)
+        imageView?.tintColor = message.themeImage?.image.tintColor(for: traitCollection)
+        let tapColor = message.button.highlighedLabelColor(for: traitCollection)
         actionButton.setTitleColor(tapColor, for: .highlighted)
         actionButton.setTitleColor(tapColor, for: .selected)
     }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
+    }
+    
+    // MARK: - User Interaction
     
     @objc func actionButtonPressed() {
         message.action()

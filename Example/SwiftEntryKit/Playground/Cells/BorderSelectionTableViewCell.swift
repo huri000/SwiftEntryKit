@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BorderSelectionTableViewCell: SelectionTableViewCell {
+final class BorderSelectionTableViewCell: SelectionTableViewCell {
 
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)

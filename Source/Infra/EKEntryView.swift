@@ -136,7 +136,10 @@ class EKEntryView: EKStyleView {
     private func applyDropShadow() {
         switch attributes.shadow {
         case .active(with: let value):
-            applyDropShadow(withOffset: value.offset, opacity: value.opacity, radius: value.radius, color: value.color)
+            applyDropShadow(withOffset: value.offset,
+                            opacity: value.opacity,
+                            radius: value.radius,
+                            color: value.color.color(for: traitCollection, mode: attributes.displayMode))
         case .none:
             removeDropShadow()
         }
@@ -144,11 +147,11 @@ class EKEntryView: EKStyleView {
     
     // Apply background
     private func applyBackgroundToContentView() {
-        
         let attributes = content.attributes
         
         let backgroundView = EKBackgroundView()
-        backgroundView.background = attributes.entryBackground
+        backgroundView.style = .init(background: attributes.entryBackground,
+                                     displayMode: attributes.displayMode)
         
         switch attributes.positionConstraints.safeArea {
         case .empty(fillSafeArea: let fillSafeArea) where fillSafeArea: // Safe area filled with color
@@ -172,5 +175,9 @@ class EKEntryView: EKStyleView {
         }
         
         self.backgroundView = backgroundView
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        applyDropShadow()
     }
 }

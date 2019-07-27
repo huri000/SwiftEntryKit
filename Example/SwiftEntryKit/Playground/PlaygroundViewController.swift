@@ -1,5 +1,5 @@
 //
-//  ComposeViewController.swift
+//  PlaygroundViewController.swift
 //  SwiftEntryKit_Example
 //
 //  Created by Daniel Huri on 4/21/18.
@@ -9,25 +9,17 @@
 import UIKit
 import SwiftEntryKit
 
-class PlaygroundViewController: UIViewController {
+final class PlaygroundViewController: UIViewController {
     
-    private let tableView = UITableView()
-    
-    private lazy var attributesWrapper: EntryAttributeWrapper = {
-        var attributes = EKAttributes()
-        attributes.positionConstraints = .fullWidth
-        attributes.hapticFeedbackType = .success
-        attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
-        attributes.entryBackground = .visualEffect(style: .light)
-        return EntryAttributeWrapper(with: attributes)
-    }()
+    // MARK: - Types
     
     struct Cells {
-        
-        static let sectionTitles = ["Display", "Theme & Style", "Interaction", "Size & Position", "Animation"]
-        
+        static let sectionTitles = ["Display",
+                                    "Theme & Style",
+                                    "Interaction",
+                                    "Size & Position",
+                                    "Animation"]
         static let header = SelectionHeaderView.self
-        
         static let cells = [[PositionSelectionTableViewCell.self,
                             WindowLevelSelectionTableViewCell.self,
                             DisplayDurationSelectionTableViewCell.self,
@@ -54,11 +46,37 @@ class PlaygroundViewController: UIViewController {
                             AnimationSelectionTableViewCell.self]]
     }
     
-    // MARK: Lifecycle & Setup
+    // MARK: - Properties
+    
+    private let tableView = UITableView()
+        
+    private lazy var attributesWrapper: EntryAttributeWrapper = {
+        var attributes = EKAttributes()
+        attributes.positionConstraints = .fullWidth
+        attributes.hapticFeedbackType = .success
+        attributes.positionConstraints.safeArea = .empty(fillSafeArea: true)
+        attributes.entryBackground = .visualEffect(style: .standard)
+        return EntryAttributeWrapper(with: attributes)
+    }()
+        
+    // MARK: - Lifecycle & Setup
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupInterfaceStyle()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
+    }
+    
+    private func setupInterfaceStyle() {
+        tableView.backgroundColor = EKColor.standardBackground.color(
+            for: traitCollection,
+            mode: PresetsDataSource.displayMode
+        )
+        tableView.reloadData()
     }
     
     private func setupTableView() {
@@ -68,9 +86,12 @@ class PlaygroundViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
-        tableView.register(Cells.header, forHeaderFooterViewReuseIdentifier: Cells.header.className)
+        tableView.register(Cells.header,
+                           forHeaderFooterViewReuseIdentifier: Cells.header.className)
         Cells.cells.forEach { cells in
-            cells.forEach { tableView.register($0, forCellReuseIdentifier: $0.className) }
+            cells.forEach {
+                tableView.register($0, forCellReuseIdentifier: $0.className)
+            }
         }
         tableView.fillSuperview()
     }
@@ -78,29 +99,49 @@ class PlaygroundViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func play() {
-        let title = EKProperty.LabelContent(text: "Hi there!", style: EKProperty.LabelStyle(font: MainFont.bold.with(size: 16), color: .black))
-        let description = EKProperty.LabelContent(text: "Are you ready for some testing?", style: EKProperty.LabelStyle(font: MainFont.light.with(size: 14), color: .black))
-        let image = EKProperty.ImageContent(image: UIImage(named: "ic_info_outline")!, size: CGSize(width: 30, height: 30))
-        let simpleMessage = EKSimpleMessage(image: image, title: title, description: description)
+        let title = EKProperty.LabelContent(
+            text: "Hi there!",
+            style: EKProperty.LabelStyle(
+                font: MainFont.bold.with(size: 16),
+                color: .black)
+        )
+        let description = EKProperty.LabelContent(
+            text: "Are you ready for some testing?",
+            style: EKProperty.LabelStyle(
+                font: MainFont.light.with(size: 14),
+                color: .black
+            )
+        )
+        let image = EKProperty.ImageContent(
+            image: UIImage(named: "ic_info_outline")!,
+            size: CGSize(width: 30, height: 30)
+        )
+        let simpleMessage = EKSimpleMessage(
+            image: image,
+            title: title,
+            description: description
+        )
         let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-        
         let contentView = EKNotificationMessageView(with: notificationMessage)
-        
         SwiftEntryKit.display(entry: contentView, using: attributesWrapper.attributes)
     }
 }
 
-// MARK: UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
 extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    private func selectionCell(by id: String, and indexPath: IndexPath) -> SelectionBaseCell {
-        return tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! SelectionBaseCell
+    private func selectionCell(by id: String,
+                               and indexPath: IndexPath) -> SelectionBaseCell {
+        return tableView.dequeueReusableCell(withIdentifier: id,
+                                             for: indexPath) as! SelectionBaseCell
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell: SelectionBaseCell
-        cell = selectionCell(by: Cells.cells[indexPath.section][indexPath.row].className, and: indexPath)
+        cell = selectionCell(by: Cells.cells[indexPath.section][indexPath.row].className,
+                             and: indexPath)
         
         switch (indexPath.section, indexPath.row) {
         case (0, 0...3):
@@ -139,7 +180,8 @@ extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: Cells.header.className) as! SelectionHeaderView
         header.text = Cells.sectionTitles[section]
         return header
@@ -149,16 +191,19 @@ extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
         return Cells.cells.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         return Cells.cells[section].count
     }
     
     // iOS 9, 10 support
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView,
+                   estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView,
+                   estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
 }

@@ -11,6 +11,8 @@ import QuickLayout
 
 public class EKMessageContentView: UIView {
     
+    // MARK: Properties
+    
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     
@@ -18,7 +20,7 @@ public class EKMessageContentView: UIView {
     private var topConstraint: NSLayoutConstraint!
     private var bottomConstraint: NSLayoutConstraint!
     private var labelsOffsetConstraint: NSLayoutConstraint!
-    
+        
     public var titleContent: EKProperty.LabelContent! {
         didSet {
             titleLabel.content = titleContent
@@ -105,5 +107,14 @@ public class EKMessageContentView: UIView {
         subtitleLabel.layout(to: .right, of: titleLabel)
         bottomConstraint = subtitleLabel.layoutToSuperview(.bottom, offset: -verticalMargins, priority: .must)
         subtitleLabel.forceContentWrap(.vertically)
+    }
+    
+    private func setupInterfaceStyle() {
+        titleLabel.textColor = titleContent.style.color(for: traitCollection)
+        subtitleLabel.textColor = subtitleContent.style.color(for: traitCollection)
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
     }
 }

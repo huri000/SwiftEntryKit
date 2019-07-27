@@ -15,10 +15,12 @@ import QuickLayout
  1-2 buttons spread horizontally
  3 or more buttons spread vertically
  */
-public class EKButtonBarView: UIView {
+final public class EKButtonBarView: UIView {
     
-    // MARK: Props
+    // MARK: - Properties
+    
     private var buttonViews: [EKButtonView] = []
+    private var separatorViews: [UIView] = []
     
     private let buttonBarContent: EKProperty.ButtonBarContent
     private let spreadAxis: QLAxis
@@ -110,7 +112,7 @@ public class EKButtonBarView: UIView {
         addSubview(topSeparatorView)
         topSeparatorView.set(.height, of: 1)
         topSeparatorView.layoutToSuperview(.left, .right, .top)
-        topSeparatorView.backgroundColor = buttonBarContent.separatorColor
+        separatorViews.append(topSeparatorView)
     }
     
     private func setupSeperatorView(after view: UIView) {
@@ -129,7 +131,7 @@ public class EKButtonBarView: UIView {
         midSepView.layout(sepAttribute, to: buttonAttribute, of: view)
         midSepView.set(relativeEdge, of: 1)
         midSepView.layoutToSuperview(axis: oppositeAxis)
-        midSepView.backgroundColor = buttonBarContent.separatorColor
+        separatorViews.append(midSepView)
     }
     
     private func setupSeparatorViews() {
@@ -137,11 +139,11 @@ public class EKButtonBarView: UIView {
         for button in buttonViews.dropLast() {
             setupSeperatorView(after: button)
         }
+        setupInterfaceStyle()
     }
     
     // Amination
     public func expand() {
-        
         let expansion = {
             self.compressedConstraint.priority = .defaultLow
             self.expandedConstraint.priority = .must
@@ -176,5 +178,15 @@ public class EKButtonBarView: UIView {
         let maskLayer = CAShapeLayer()
         maskLayer.path = path.cgPath
         layer.mask = maskLayer
+    }
+    
+    private func setupInterfaceStyle() {
+        for view in separatorViews {
+            view.backgroundColor = buttonBarContent.separatorColor(for: traitCollection)
+        }
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        setupInterfaceStyle()
     }
 }

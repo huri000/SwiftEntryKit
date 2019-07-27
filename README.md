@@ -7,6 +7,12 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 ![](https://travis-ci.com/huri000/SwiftEntryKit.svg?branch=master)
 
+## What's New?
+### 🌑 `1.1.0` - let it be dark
+`SwiftEntryKit` is now dark mode ready, and dark interface styles are supported pre iOS 13 and Xcode 11!
+### 🤖 `1.0.4` - automata 
+Accessibility in presets is now supported, enabling all kinds of robotic activity for host projects.
+
 * [Overview](#overview)
   * [Features](#features)
 * [Example Project](#example-project)
@@ -32,6 +38,7 @@
     * [Scroll Behavior](#scroll-behavior)
     * [Haptic Feedback](#haptic-feedback)
     * [Lifecycle Events](#lifecycle-events)
+    * [Display Mode](#display-mode)
     * [Background Style](#background-style)
     * [Shadow](#shadow)
     * [Round Corners](#round-corners)
@@ -48,13 +55,12 @@
   * [Dealing With Safe Area](#dealing-with-safe-area)
   * [Dealing With Orientation Change](#dealing-with-orientation-change)
   * [Swift and Objective-C Interoperability](#swift-and-objective-c-interoperability)
-* [Known Issues](#known-issues)
 * [Author](#author)
 * [License](#license)
 
 ## Overview
 
-SwiftEntryKit is a simple and versatile content presenter written in Swift.
+SwiftEntryKit is a simple yet versatile content presenter written in Swift.
 
 ### Features
 
@@ -147,7 +153,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '1.0.4'
+pod 'SwiftEntryKit', '1.1.0'
 ```
 
 Then, run the following command:
@@ -170,7 +176,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 1.0.4
+github "huri000/SwiftEntryKit" == 1.1.0
 ```
 
 ## Usage
@@ -470,6 +476,19 @@ attributes.lifecycleEvents.didDisappear = {
 }
 ```
 
+#### Display Mode
+To allow you to fully support any user interface style, `SwiftEntryKit` introduces two specialized types:
+- `EKColor` describes a color under light and dark modes.
+- `EKAttributes.BackgroundStyle.BlurStyle` describes a blur effect under light and dark modes. 
+
+The following forces `SwiftEntryKit` to display the entry on dark mode.
+```Swift
+attributes.displayMode = .dark
+```
+
+The possible values are: `.light`, `.dark`, `.inferred`.
+The default value is `.inferred`, which means that the entry will be displayed with the current user interface style.
+
 #### Background Style
 The entry and the screen can have various background styles, such as blur, color, gradient and even an image.
 
@@ -633,6 +652,7 @@ public struct EKAttributes
     public var lifecycleEvents: LifecycleEvents
 
     // Theme & Style
+    public var displayMode = DisplayMode.inferred
     public var entryBackground: BackgroundStyle
     public var screenBackground: BackgroundStyle
     public var shadow: Shadow
@@ -853,12 +873,6 @@ Therefore, `SwiftEntryKit` cannot be referenced directly from an Objective-C fil
 Yet, it is pretty easy to integrate SwiftEntryKit into an Objective-C project using a simple *.swift* class that is a sort of adapter between `SwiftEntryKit` and your Objective-C code.
 
 [This project](https://github.com/huri000/ObjcEntryKitExample) demonstrates that using Carthage and CocoaPods.  
-
-## Known Issues
-
-**Unable to find specification for SwiftEntryKit (=X.Y.Z)** - In case you get this error please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/4).
-
-**Unable to use example project** - In case you are unable to install the example project please review [this thread](https://github.com/huri000/SwiftEntryKit/issues/31) and the [Example Project Installation](#example-project-installation) section.
 
 ## Author
 

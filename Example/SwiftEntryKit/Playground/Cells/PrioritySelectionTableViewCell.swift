@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PrioritySelectionTableViewCell: SelectionTableViewCell {
+final class PrioritySelectionTableViewCell: SelectionTableViewCell {
 
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)

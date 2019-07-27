@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MaxWidthSelectionTableViewCell: SelectionTableViewCell {
+final class MaxWidthSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Max Width"

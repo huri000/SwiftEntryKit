@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HeightSelectionTableViewCell: SelectionTableViewCell {
+final class HeightSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Height"

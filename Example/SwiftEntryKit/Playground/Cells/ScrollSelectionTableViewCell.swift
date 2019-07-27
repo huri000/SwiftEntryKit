@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScrollSelectionTableViewCell: SelectionTableViewCell {
+final class ScrollSelectionTableViewCell: SelectionTableViewCell {
     override func configure(attributesWrapper: EntryAttributeWrapper) {
         super.configure(attributesWrapper: attributesWrapper)
         titleValue = "Scroll Behavior"

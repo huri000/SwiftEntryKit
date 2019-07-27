@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
-public class EKTextField: UIView {
+final public class EKTextField: UIView {
+    
+    // MARK: - Properties
     
     static let totalHeight: CGFloat = 45
     
@@ -16,6 +18,7 @@ public class EKTextField: UIView {
     
     private let imageView = UIImageView()
     private let textField = UITextField()
+    private let separatorView = UIView()
     
     public var text: String {
         set {
@@ -25,6 +28,8 @@ public class EKTextField: UIView {
             return textField.text ?? ""
         }
     }
+    
+    // MARK: - Setup
     
     public init(with content: EKProperty.TextFieldContent) {
         self.content = content
@@ -45,6 +50,10 @@ public class EKTextField: UIView {
         imageView.set(.width, .height, of: EKTextField.totalHeight)
         imageView.layoutToSuperview(.leading)
         imageView.image = content.leadingImage
+        imageView.tintColor = content.tintColor.color(
+            for: traitCollection,
+            mode: content.displayMode
+        )
     }
     
     private func setupTextField() {
@@ -57,16 +66,25 @@ public class EKTextField: UIView {
     }
     
     private func setupSeparatorView() {
-        let separatorView = UIView()
         addSubview(separatorView)
-        separatorView.backgroundColor = content.bottomBorderColor
         separatorView.layout(.top, to: .bottom, of: textField)
         separatorView.set(.height, of: 1)
         separatorView.layoutToSuperview(.bottom)
         separatorView.layoutToSuperview(axis: .horizontally, offset: 10)
+        separatorView.backgroundColor = content.bottomBorderColor.color(
+            for: traitCollection,
+            mode: content.displayMode
+        )
     }
     
     public func makeFirstResponder() {
         textField.becomeFirstResponder()
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        separatorView.backgroundColor = content.bottomBorderColor(for: traitCollection)
+        imageView.tintColor = content.tintColor(for: traitCollection)
+        textField.textColor = content.textStyle.color(for: traitCollection)
+        textField.placeholder = content.placeholder
     }
 }

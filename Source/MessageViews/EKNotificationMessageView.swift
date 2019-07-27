@@ -8,13 +8,17 @@
 
 import UIKit
 
-public class EKNotificationMessageView: EKSimpleMessageView {
+final public class EKNotificationMessageView: EKSimpleMessageView {
     
     // MARK: Props
     private var auxLabel: UILabel!
+    private var auxiliaryContent: EKProperty.LabelContent!
+    
+    private let message: EKNotificationMessage
     
     // MARK: Setup
     public init(with message: EKNotificationMessage) {
+        self.message = message
         super.init(with: message.simpleMessage)
         setupAuxLabel(with: message.auxiliary)
         layoutContent(with: message.insets)
@@ -25,6 +29,7 @@ public class EKNotificationMessageView: EKSimpleMessageView {
     }
     
     private func setupAuxLabel(with content: EKProperty.LabelContent?) {
+        auxiliaryContent = content
         guard let content = content else {
             return
         }
@@ -34,7 +39,6 @@ public class EKNotificationMessageView: EKSimpleMessageView {
     }
     
     private func layoutContent(with insets: EKNotificationMessage.Insets) {
-        
         messageContentView.verticalMargins = 0
         messageContentView.horizontalMargins = 0
         messageContentView.labelsOffset = insets.titleToDescription
@@ -58,5 +62,10 @@ public class EKNotificationMessageView: EKSimpleMessageView {
             messageContentView.layoutToSuperview(.right, offset: -insets.contentInsets.right)
         }
         messageContentView.layoutToSuperview(.bottom, offset: -insets.contentInsets.bottom)
+    }
+    
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        auxLabel?.textColor = auxiliaryContent?.style.color(for: traitCollection)
     }
 }
