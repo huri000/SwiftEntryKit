@@ -43,7 +43,7 @@ public class EKSimpleMessageView: UIView {
         addSubview(messageContentView)
     }
     
-    private func setupColors() {
+    private func setupInterfaceStyle() {
         if let image = message.image {
             thumbImageView?.tintColor = image.tint?.color(
                 for: traitCollection,
@@ -53,6 +53,6 @@ public class EKSimpleMessageView: UIView {
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        setupColors()
+        setupInterfaceStyle()
     }
 }

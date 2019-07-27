@@ -25,7 +25,7 @@ final class EKButtonView: UIView {
         setupTitleLabel()
         setupButton()
         setupAcceessibility()
-        setupColors()
+        setupInterfaceStyle()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -72,7 +72,7 @@ final class EKButtonView: UIView {
         }
     }
     
-    private func setupColors() {
+    private func setupInterfaceStyle() {
         backgroundColor = content.backgroundColor(for: traitCollection)
         titleLabel.textColor = content.label.style.color(for: traitCollection)
     }
@@ -92,6 +92,6 @@ final class EKButtonView: UIView {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        setupColors()
+        setupInterfaceStyle()
     }
 }

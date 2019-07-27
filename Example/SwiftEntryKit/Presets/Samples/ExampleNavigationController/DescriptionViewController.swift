@@ -26,14 +26,14 @@ class DescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = screenTitle
-        setupColors()
+        setupInterfaceStyle()
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        setupColors()
+        setupInterfaceStyle()
     }
     
-    private func setupColors() {
+    private func setupInterfaceStyle() {
         view.backgroundColor = EKColor.standardBackground.color(
             for: traitCollection,
             mode: .inferred

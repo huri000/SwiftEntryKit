@@ -162,7 +162,7 @@ extension EKColor {
             return EKColor(light: UIColor(white: 0.9, alpha: 1),
                            dark: UIColor(white: 0.1, alpha: 1))
         } else {
-            return EKColor(UIColor(white: 0.9, alpha: 1))
+            return EKColor(UIColor(white: 0.1, alpha: 1))
         }
     }
     

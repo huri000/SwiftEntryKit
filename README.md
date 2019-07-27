@@ -9,7 +9,7 @@
 
 ## What's New?
 ### 🌑 `1.1.0` - let it be dark
-`SwiftEntryKit` is now dark mode ready, and dark interface styles are supported pre iOS 13!
+`SwiftEntryKit` is now dark mode ready, and dark interface styles are supported pre iOS 13 and Xcode 11!
 ### 🤖 `1.0.4` - automata 
 Accessibility in presets is now supported, enabling all kinds of robotic activity for host projects.
 
@@ -477,11 +477,11 @@ attributes.lifecycleEvents.didDisappear = {
 ```
 
 #### Display Mode
-To fully support any user interface style, `SwiftEntryKit` introduces two new specialized types:
+To allow you to fully support any user interface style, `SwiftEntryKit` introduces two specialized types:
 - `EKColor` describes a color under light and dark modes.
 - `EKAttributes.BackgroundStyle.BlurStyle` describes a blur effect under light and dark modes. 
 
-The following example forces the entry to display on dark mode.
+The following forces `SwiftEntryKit` to display the entry on dark mode.
 ```Swift
 attributes.displayMode = .dark
 ```

@@ -115,13 +115,4 @@ public extension EKColor {
             return .black
         }
     }
-    
-    /** Color that represents secondary standard content */
-    static var secondaryContent: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(.secondaryLabel)
-        } else {
-            return EKColor(red: 230, green: 230, blue: 230)
-        }
-    }
 }

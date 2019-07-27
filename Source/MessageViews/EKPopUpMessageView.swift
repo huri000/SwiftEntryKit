@@ -28,7 +28,7 @@ final public class EKPopUpMessageView: UIView {
         setupTitleLabel()
         setupDescriptionLabel()
         setupActionButton()
-        setupColors()
+        setupInterfaceStyle()
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -86,7 +86,7 @@ final public class EKPopUpMessageView: UIView {
         actionButton.addTarget(self, action: #selector(actionButtonPressed), for: .touchUpInside)
     }
     
-    private func setupColors() {
+    private func setupInterfaceStyle() {
         titleLabel.textColor = message.title.style.color(for: traitCollection)
         imageView?.tintColor = message.themeImage?.image.tintColor(for: traitCollection)
         let tapColor = message.button.highlighedLabelColor(for: traitCollection)
@@ -95,7 +95,7 @@ final public class EKPopUpMessageView: UIView {
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        setupColors()
+        setupInterfaceStyle()
     }
     
     // MARK: - User Interaction

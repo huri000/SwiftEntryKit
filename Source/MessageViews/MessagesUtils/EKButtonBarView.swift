@@ -139,7 +139,7 @@ final public class EKButtonBarView: UIView {
         for button in buttonViews.dropLast() {
             setupSeperatorView(after: button)
         }
-        setupColors()
+        setupInterfaceStyle()
     }
     
     // Amination
@@ -180,13 +180,13 @@ final public class EKButtonBarView: UIView {
         layer.mask = maskLayer
     }
     
-    private func setupColors() {
+    private func setupInterfaceStyle() {
         for view in separatorViews {
             view.backgroundColor = buttonBarContent.separatorColor(for: traitCollection)
         }
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        setupColors()
+        setupInterfaceStyle()
     }
 }

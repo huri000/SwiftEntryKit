@@ -95,6 +95,8 @@ class PresetTableViewCell: UITableViewCell {
         )
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {}
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         setupInterfaceStyle()
     }

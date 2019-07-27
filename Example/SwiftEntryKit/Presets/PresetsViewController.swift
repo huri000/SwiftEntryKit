@@ -106,7 +106,7 @@ class PresetsViewController: UIViewController {
             ],
             for: .selected
         )
-        displayModeSegmentedControl.tintColor = EKColor.standardContent.color(
+        displayModeSegmentedControl.tintColor = EKColor.selectedBackground.color(
             for: traitCollection,
             mode: PresetsDataSource.displayMode
         )
