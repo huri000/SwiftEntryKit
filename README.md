@@ -866,6 +866,12 @@ Orientation Change Demonstration |
 --- |
 ![orientation_change](https://github.com/huri000/assets/blob/master/swift-entrykit/orientation.gif)
 
+### Dark Mode in the Example Project
+
+You can tinker with the display mode using a segmented control on presets screen, forcing light and dark modes.
+All the presets are dark mode ready, but only some in the example project demonstrate dark mode capabilities.
+![light_dark](https://github.com/huri000/assets/blob/master/swift-entrykit/dark-light.gif)
+
 ### Swift and Objective-C Interoperability
 SwiftEntryKit's APIs use the Swift language exclusive syntax (enums, associated values, and more). 
 Therefore, `SwiftEntryKit` cannot be referenced directly from an Objective-C file (*.m*, *.h* or *.mm*).
