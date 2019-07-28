@@ -67,47 +67,26 @@ extension UIColor {
 extension EKColor {
     
     static var segmentedControlTint: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .gray,
-                           dark: .gray)
-        } else {
-            return EKColor(.gray)
-        }
+        return EKColor(.gray)
     }
     
     static var navigationItemColor: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .gray,
-                           dark: .musicRedish)
-        } else {
-            return EKColor(.gray)
-        }
+        return EKColor(light: .gray,
+                       dark: .musicRedish)
     }
     
     static var navigationBackgroundColor: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .lightNavigationBarBackground,
-                           dark: .black)
-        } else {
-            return EKColor(.lightNavigationBarBackground)
-        }
+        return EKColor(light: .lightNavigationBarBackground,
+                       dark: .black)
     }
 
     static var headerBackground: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: Color.BlueGray.c50.with(alpha: 0.95).light,
-                           dark: .darkHeaderBackground)
-        } else {
-            return Color.BlueGray.c50.with(alpha: 0.95)
-        }
+        return EKColor(light: Color.BlueGray.c50.with(alpha: 0.95).light,
+                       dark: .darkHeaderBackground)
     }
     
     static var headerText: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(.white).with(alpha: 0.95)
-        } else {
-            return Color.BlueGray.c900
-        }
+        return EKColor(.white).with(alpha: 0.95)
     }
     
     static var satCyan: EKColor {
@@ -130,85 +109,49 @@ extension EKColor {
         return EKColor(.redish)
     }
     
-    static var ratingStar: EKColor {    
-        if #available(iOS 13, *) {
-            return EKColor(light: .amber,
-                           dark: .musicRedish)
-        } else {
-            return .amber
-        }
+    static var ratingStar: EKColor {
+        return EKColor(light: .amber,
+                       dark: .musicRedish)
     }
     
     static var musicBackground: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .white,
-                           dark: .musicBackgroundDark)
-        } else {
-            return EKColor(.white)
-        }
+        return EKColor(light: .white,
+                       dark: .musicBackgroundDark)
     }
     
     static var musicText: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .black,
-                           dark: .musicRedish)
-        } else {
-            return EKColor(.black)
-        }
+        return EKColor(light: .black,
+                       dark: .musicRedish)
     }
     
     static var selectedBackground: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: UIColor(white: 0.9, alpha: 1),
-                           dark: UIColor(white: 0.1, alpha: 1))
-        } else {
-            return EKColor(UIColor(white: 0.1, alpha: 1))
-        }
+        return EKColor(light: UIColor(white: 0.9, alpha: 1),
+                       dark: UIColor(white: 0.1, alpha: 1))
     }
     
     static var dimmedDarkBackground: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .dimmedDarkBackground,
-                           dark: .dimmedDarkestBackground)
-        } else {
-            return EKColor(.dimmedDarkBackground)
-        }
+        return EKColor(light: .dimmedDarkBackground,
+                       dark: .dimmedDarkestBackground)
     }
     
     static var dimmedLightBackground: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .dimmedLightBackground,
-                           dark: .dimmedDarkestBackground)
-        } else {
-            return EKColor(.dimmedLightBackground)
-        }
+        return EKColor(light: .dimmedLightBackground,
+                       dark: .dimmedDarkestBackground)
     }
     
     static var chatMessage: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .chatMessageLightMode,
-                           dark: .chatMessageLightMode)
-        } else {
-            return EKColor(.chatMessageLightMode)
-        }
+        return EKColor(light: .chatMessageLightMode,
+                       dark: .chatMessageLightMode)
     }
     
     static var text: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .textLightMode,
-                           dark: .textDarkMode)
-        } else {
-            return EKColor(.textLightMode)
-        }
+        return EKColor(light: .textLightMode,
+                       dark: .textDarkMode)
     }
     
     static var subText: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .subTextLightMode,
-                           dark: .subTextDarkMode)
-        } else {
-            return EKColor(.subTextLightMode)
-        }
+        return EKColor(light: .subTextLightMode,
+                       dark: .subTextDarkMode)
     }
 }
 

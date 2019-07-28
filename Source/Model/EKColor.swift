@@ -100,19 +100,11 @@ public extension EKColor {
     
     /** Color that represents standard background. White for light mode, black for dark modee */
     static var standardBackground: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .white, dark: .black)
-        } else {
-            return .white
-        }
+        return EKColor(light: .white, dark: .black)
     }
     
     /** Color that represents standard content. black for light mode, white for dark mode */
     static var standardContent: EKColor {
-        if #available(iOS 13, *) {
-            return EKColor(light: .black, dark: .white)
-        } else {
-            return .black
-        }
+        return EKColor(light: .black, dark: .white)
     }
 }
