@@ -1,6 +1,9 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.1.1
+iOS 13 color fix
+
 ## 1.1.0
 
 ### Support dark mode  (breaking change)
