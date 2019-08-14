@@ -50,10 +50,7 @@ final public class EKTextField: UIView {
         imageView.set(.width, .height, of: EKTextField.totalHeight)
         imageView.layoutToSuperview(.leading)
         imageView.image = content.leadingImage
-        imageView.tintColor = content.tintColor.color(
-            for: traitCollection,
-            mode: content.displayMode
-        )
+        imageView.tintColor = content.tintColor(for: traitCollection)
     }
     
     private func setupTextField() {
