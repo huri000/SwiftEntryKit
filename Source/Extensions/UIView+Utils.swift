@@ -8,6 +8,7 @@
 
 import UIKit
 import QuickLayout
+import UITextView_Placeholder
 
 extension UILabel {
     var style: EKProperty.LabelStyle {
@@ -131,6 +132,41 @@ extension UITextField {
     }
     
     var textFieldContent: EKProperty.TextFieldContent {
+        set {
+            placeholder = newValue.placeholder
+            keyboardType = newValue.keyboardType
+            textColor = newValue.textStyle.color(for: traitCollection)
+            font = newValue.textStyle.font
+            textAlignment = newValue.textStyle.alignment
+            isSecureTextEntry = newValue.isSecure
+            text = newValue.textContent
+            tintColor = newValue.tintColor(for: traitCollection)
+            accessibilityIdentifier = newValue.accessibilityIdentifier
+        }
+        get {
+            fatalError("textFieldContent doesn't have a getter")
+        }
+    }
+}
+
+extension UITextView {
+    
+        var placeholder: EKProperty.LabelContent {
+            set {
+                attributedPlaceholder = NSAttributedString(
+                    string: newValue.text,
+                    attributes: [
+                        .font: newValue.style.font,
+                        .foregroundColor: newValue.style.color(for: traitCollection)
+                    ]
+                )
+            }
+            get {
+                fatalError("placeholder doesn't have a getter")
+            }
+        }
+    
+    var textViewContent: EKProperty.TextViewContent {
         set {
             placeholder = newValue.placeholder
             keyboardType = newValue.keyboardType

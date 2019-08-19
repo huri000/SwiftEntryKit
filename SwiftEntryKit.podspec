@@ -25,4 +25,5 @@ DESC
   s.source_files = 'Source/**/*'
   s.frameworks = 'UIKit'
   s.dependency 'QuickLayout', '3.0.0'
+  s.dependency 'UITextView+Placeholder'
 end

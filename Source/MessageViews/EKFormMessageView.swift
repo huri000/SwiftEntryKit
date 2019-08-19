@@ -16,22 +16,33 @@ final public class EKFormMessageView: UIView {
     private let titleLabel = UILabel()
     private let scrollView = UIScrollView()
     private let textFieldsContent: [EKProperty.TextFieldContent]
+    private let textViewsContent: [EKProperty.TextViewContent]
     private var textFieldViews: [EKTextField] = []
+    private var textViewViews: [EKTextView] = []
     private var buttonBarView: EKButtonBarView!
     
     private let titleContent: EKProperty.LabelContent
     
     // MARK: Setup
     
+    public convenience init(with title: EKProperty.LabelContent,
+                textFieldsContent: [EKProperty.TextFieldContent],
+                buttonContent: EKProperty.ButtonContent) {
+        self.init(with: title, textFieldsContent: textFieldsContent, textViewsContent: [], buttonContent: buttonContent)
+    }
+    
     public init(with title: EKProperty.LabelContent,
                 textFieldsContent: [EKProperty.TextFieldContent],
+                textViewsContent: [EKProperty.TextViewContent],
                 buttonContent: EKProperty.ButtonContent) {
         self.titleContent = title
         self.textFieldsContent = textFieldsContent
+        self.textViewsContent = textViewsContent
         super.init(frame: UIScreen.main.bounds)
         setupScrollView()
         setupTitleLabel()
         setupTextFields(with: textFieldsContent)
+        setupTextViews(with: textViewsContent)
         setupButton(with: buttonContent)
         setupTapGestureRecognizer()
         scrollView.layoutIfNeeded()
@@ -56,6 +67,25 @@ final public class EKFormMessageView: UIView {
         textFieldViews.first!.layout(.top, to: .bottom, of: titleLabel, offset: 20)
         textFieldViews.spread(.vertically, offset: 5)
         textFieldViews.layoutToSuperview(axis: .horizontally)
+    }
+    
+    private func setupTextViews(with textViewsContent: [EKProperty.TextViewContent]) {
+        
+        if textViewsContent.count == 0 {
+            return
+        }
+        
+        var textViewIndex = 0
+        textViewViews = textViewsContent.map { content -> EKTextView in
+            let textView = EKTextView(with: content)
+            scrollView.addSubview(textView)
+            textView.tag = textViewIndex
+            textViewIndex += 1
+            return textView
+        }
+        textViewViews.first!.layout(.top, to: .bottom, of: textFieldViews.last!, offset: 10)
+        textViewViews.spread(.vertically, offset: 5)
+        textViewViews.layoutToSuperview(axis: .horizontally)
     }
     
     // Setup tap gesture
@@ -88,6 +118,7 @@ final public class EKFormMessageView: UIView {
         let action = buttonContent.action
         buttonContent.action = { [weak self] in
             self?.extractTextFieldsContent()
+            self?.extractTextViewsContent()
             action?()
         }
         let buttonsBarContent = EKProperty.ButtonBarContent(
@@ -99,7 +130,11 @@ final public class EKFormMessageView: UIView {
         buttonBarView.clipsToBounds = true
         scrollView.addSubview(buttonBarView)
         buttonBarView.expand()
-        buttonBarView.layout(.top, to: .bottom, of: textFieldViews.last!, offset: 20)
+        if textViewViews.count == 0 {
+            buttonBarView.layout(.top, to: .bottom, of: textFieldViews.last!, offset: 20)
+        } else {
+            buttonBarView.layout(.top, to: .bottom, of: textViewViews.last!, offset: 20)
+        }
         buttonBarView.layoutToSuperview(.centerX)
         buttonBarView.layoutToSuperview(.width, offset: -40)
         buttonBarView.layoutToSuperview(.bottom)
@@ -109,6 +144,16 @@ final public class EKFormMessageView: UIView {
     private func extractTextFieldsContent() {
         for (content, textField) in zip(textFieldsContent, textFieldViews) {
             content.contentWrapper.text = textField.text
+        }
+    }
+    
+    private func extractTextViewsContent() {
+        if textViewsContent.count == 0 {
+            return
+        }
+        
+        for (content, textView) in zip(textViewsContent, textViewViews) {
+            content.contentWrapper.text = textView.text
         }
     }
     

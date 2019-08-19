@@ -390,4 +390,58 @@ public struct EKProperty {
             self.selectedImage = selectedImage
         }
     }
+    
+    /** Text view content **/
+    public struct TextViewContent {
+        
+        // NOTE: Intentionally a reference type
+        class ContentWrapper {
+            var text = ""
+        }
+        
+        public var keyboardType: UIKeyboardType
+        public var isSecure: Bool
+        public var placeholder: LabelContent
+        public var textStyle: LabelStyle
+        public var tintColor: EKColor!
+        public var displayMode: EKAttributes.DisplayMode
+        public var bottomBorderColor: EKColor
+        public var accessibilityIdentifier: String?
+        let contentWrapper = ContentWrapper()
+        public var textContent: String {
+            set {
+                contentWrapper.text = newValue
+            }
+            get {
+                return contentWrapper.text
+            }
+        }
+        
+        public init(keyboardType: UIKeyboardType = .default,
+                    placeholder: LabelContent,
+                    tintColor: EKColor? = nil,
+                    displayMode: EKAttributes.DisplayMode = .inferred,
+                    textStyle: LabelStyle,
+                    isSecure: Bool = false,
+                    bottomBorderColor: EKColor = .clear,
+                    accessibilityIdentifier: String? = nil) {
+            self.keyboardType = keyboardType
+            self.placeholder = placeholder
+            self.textStyle = textStyle
+            self.tintColor = tintColor
+            self.displayMode = displayMode
+            self.isSecure = isSecure
+            self.bottomBorderColor = bottomBorderColor
+            self.accessibilityIdentifier = accessibilityIdentifier
+        }
+        
+        public func tintColor(for traitCollection: UITraitCollection) -> UIColor? {
+            return tintColor?.color(for: traitCollection, mode: displayMode)
+        }
+        
+        public func bottomBorderColor(for traitCollection: UITraitCollection) -> UIColor? {
+            return bottomBorderColor.color(for: traitCollection, mode: displayMode)
+        }
+    }
+
 }
