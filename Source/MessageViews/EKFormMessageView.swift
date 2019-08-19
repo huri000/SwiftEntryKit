@@ -172,4 +172,21 @@ final public class EKFormMessageView: UIView {
     @objc func tapGestureRecognized() {
         endEditing(true)
     }
+    
+    // Textfield delegate
+    public func addDelegate(_ delegate: UITextFieldDelegate?, forTextField accessibilityId: String) {
+        let ekTextField = textFieldViews.first { (object) -> Bool in
+            return object.textField.accessibilityIdentifier == accessibilityId
+        }
+        
+        ekTextField?.set(delegate: delegate)
+    }
+    
+    public func updateText(_ text: String?, forTextField accessibilityId: String) {
+        let ekTextField = textFieldViews.first { (object) -> Bool in
+            return object.textField.accessibilityIdentifier == accessibilityId
+        }
+        
+        ekTextField?.textField.text = text
+    }
 }

@@ -17,7 +17,7 @@ final public class EKTextField: UIView {
     private let content: EKProperty.TextFieldContent
     
     private let imageView = UIImageView()
-    private let textField = UITextField()
+    private (set) var textField = UITextField()
     private let separatorView = UIView()
     
     public var text: String {
@@ -83,5 +83,9 @@ final public class EKTextField: UIView {
         imageView.tintColor = content.tintColor(for: traitCollection)
         textField.textColor = content.textStyle.color(for: traitCollection)
         textField.placeholder = content.placeholder
+    }
+    
+    public func set(delegate: UITextFieldDelegate?) {
+        textField.delegate = delegate
     }
 }
