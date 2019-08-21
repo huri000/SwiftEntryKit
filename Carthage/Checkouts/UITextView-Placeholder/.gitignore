@@ -1,0 +1,11 @@
+.DS_Store
+
+build
+
+**/xcuserdata
+**/xcshareddata
+*.pbxuser
+*.mode1v3
+
+Podfile.lock
+Pods

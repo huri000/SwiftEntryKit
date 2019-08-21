@@ -1,0 +1,21 @@
+language: objective-c
+osx_image: xcode11
+sudo: false
+
+env:
+  global:
+    - PROJECT="UITextView+Placeholder.xcodeproj"
+    - SCHEME="UITextView+Placeholder"
+  matrix:
+    - SDK="iphonesimulator11.4"      DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=11.4"
+    - SDK="iphonesimulator12.4"      DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=12.4"
+    - SDK="iphonesimulator13.0"      DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
+
+script:
+  - xcodebuild clean test
+    -project "$PROJECT"
+    -scheme "$SCHEME"
+    -sdk "$SDK"
+    -destination "$DESTINATION"
+    -configuration Debug
+    CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
