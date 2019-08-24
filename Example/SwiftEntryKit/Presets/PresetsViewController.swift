@@ -397,41 +397,45 @@ class PresetsViewController: UIViewController {
                                          desc: String,
                                          textColor: EKColor,
                                          imageName: String? = nil) {
-        let title = EKProperty.LabelContent(
-            text: title,
-            style: .init(
-                font: MainFont.medium.with(size: 16),
-                color: textColor,
-                displayMode: displayMode
-            ),
-            accessibilityIdentifier: "title"
-        )
-        let description = EKProperty.LabelContent(
-            text: desc,
-            style: .init(
-                font: MainFont.light.with(size: 14),
-                color: textColor,
-                displayMode: displayMode
-            ),
-            accessibilityIdentifier: "description"
-        )
-        var image: EKProperty.ImageContent?
-        if let imageName = imageName {
-            image = EKProperty.ImageContent(
-                image: UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate),
-                displayMode: displayMode,
-                size: CGSize(width: 35, height: 35),
-                tint: textColor,
-                accessibilityIdentifier: "thumbnail"
-            )
+        // Ensure that there are no currently displaying entries at the moment
+        guard SwiftEntryKit.isCurrentlyDisplaying == false else {
+            return
         }
-        let simpleMessage = EKSimpleMessage(
-            image: image,
-            title: title,
-            description: description
-        )
-        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
-        let contentView = EKNotificationMessageView(with: notificationMessage)
+        
+        // MARK: - SwiftEntryKit
+        var attributes = EKAttributes.centerFloat
+        attributes.hapticFeedbackType = .success
+        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
+        attributes.screenInteraction = .dismiss
+        attributes.entryInteraction = .absorbTouches
+        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
+        attributes.roundCorners = .all(radius: 14)
+        attributes.entranceAnimation = .init(translate: .init(duration: 0.7, spring: .init(damping: 0.7, initialVelocity: 0)), scale: .init(from: 0.7, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)))
+        attributes.exitAnimation = .init(translate: .init(duration: 0.2))
+        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.35)))
+        attributes.screenBackground = EKAttributes.BackgroundStyle.color(color: EKColor(UIColor.black.withAlphaComponent(0.30)))
+        attributes.entryBackground = EKAttributes.BackgroundStyle.color(color: .white)
+        attributes.positionConstraints.size = .init(width: .offset(value: 32), height: .intrinsic)
+        attributes.positionConstraints.keyboardRelation = .bind(offset: .init(bottom: 20, screenEdgeResistance: 8))
+        attributes.statusBar = .currentStatusBar
+        attributes.displayDuration = .infinity
+        
+        // Setup the placeholder label
+        let placeholder = EKProperty.LabelContent(text: "What's your email?", style: .init(font: MainFont.bold.with(size: 15), color: EKColor(.lightGray), alignment: .left))
+        // Setup the text field image icon
+        let emailIcon = UIImage(named: "ic_mail_light")
+        
+        // Setup the text field
+        let textField = EKProperty.TextFieldContent(keyboardType: .default, placeholder: placeholder, textStyle: .init(font: MainFont.bold.with(size: 15), color: .black), isSecure: false, leadingImage: emailIcon, bottomBorderColor: EKColor(.groupTableViewBackground))
+        
+        // Alert Title
+        let title = EKProperty.LabelContent(text: "Reset Password", style: .init(font: MainFont.bold.with(size: 15), color: .black, alignment: .center))
+        
+        // Alert Action Button
+        let doneButton = EKProperty.ButtonContent(label: .init(text: "Done", style: .init(font: MainFont.bold.with(size: 15), color: EKColor(.black))), backgroundColor: .clear, highlightedBackgroundColor: EKColor(.groupTableViewBackground)) {
+            // Send a password link to email via EKProperty.TextFieldContent's 'textField' attribute
+        }
+        let contentView = EKFormMessageView(with: title, textFieldsContent: [textField], buttonContent: doneButton)
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
