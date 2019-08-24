@@ -1,6 +1,9 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.1.3
+Fix `SPM` release
+
 ## 1.1.2
 Fix: `EKTextField` crashes once no `tintColor` is provided.  
 

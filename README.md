@@ -9,7 +9,7 @@
 ![](https://travis-ci.com/huri000/SwiftEntryKit.svg?branch=master)
 
 ## What's New?
-### 🌑 `1.1.2` - let there be dark
+### 🌑 `1.1.3` - let there be dark
 `SwiftEntryKit` is now dark mode ready, and user interface styles are supported pre iOS 13 / Xcode 11!
 
 To know more about it, visit [Change Log](https://github.com/huri000/SwiftEntryKit/blob/master/CHANGELOG.md#110), and install the [example project](#example-project-installation).
@@ -156,7 +156,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '1.1.2'
+pod 'SwiftEntryKit', '1.1.3'
 ```
 
 Then, run the following command:
@@ -179,7 +179,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 1.1.2
+github "huri000/SwiftEntryKit" == 1.1.3
 ```
 
 ### Accio
@@ -196,7 +196,7 @@ $ brew install accio
 To integrate SwiftEntryKit into your Xcode project using Accio, specify the following in your `Package.swift` manifest:
 
 ```swift
-.package(url: "https://github.com/huri000/SwiftEntryKit", .exact("1.1.2"))
+.package(url: "https://github.com/huri000/SwiftEntryKit", .exact("1.1.3"))
 ```
 
 After specifying `"SwiftEntryKit"` as a dependency of the target in which you want to use it, run `accio install`.
