@@ -196,7 +196,7 @@ $ brew install accio
 To integrate SwiftEntryKit into your Xcode project using Accio, specify the following in your `Package.swift` manifest:
 
 ```swift
-.package(url: "https://github.com/huri000/SwiftEntryKit", .exact("1.0.3"))
+.package(url: "https://github.com/huri000/SwiftEntryKit", .exact("1.1.2"))
 ```
 
 After specifying `"SwiftEntryKit"` as a dependency of the target in which you want to use it, run `accio install`.
