@@ -11,7 +11,7 @@ import UIKit
 
 /** This view controller offers presets to choose from */
 class PresetsViewController: UIViewController {
-
+    
     enum DisplayModeSegment: Int {
         case light
         case dark
@@ -308,32 +308,32 @@ class PresetsViewController: UIViewController {
         )
         let items = [("💩", "Pooish!"), ("🤨", "Ahhh?!"), ("👍", "OK!"),
                      ("👌", "Tasty!"), ("😋", "Delicius!")].map { texts -> EKProperty.EKRatingItemContent in
-            let itemTitle = EKProperty.LabelContent(
-                text: texts.0,
-                style: .init(
-                    font: MainFont.medium.with(size: 48),
-                    color: .standardContent,
-                    alignment: .center,
-                    displayMode: displayMode
-                )
-            )
-            let itemDescription = EKProperty.LabelContent(
-                text: texts.1,
-                style: .init(
-                    font: MainFont.light.with(size: 24),
-                    color: .standardContent,
-                    alignment: .center,
-                    displayMode: displayMode
-                )
-            )
-            return EKProperty.EKRatingItemContent(
-                title: itemTitle,
-                description: itemDescription,
-                unselectedImage: unselectedImage,
-                selectedImage: selectedImage
-            )
+                        let itemTitle = EKProperty.LabelContent(
+                            text: texts.0,
+                            style: .init(
+                                font: MainFont.medium.with(size: 48),
+                                color: .standardContent,
+                                alignment: .center,
+                                displayMode: displayMode
+                            )
+                        )
+                        let itemDescription = EKProperty.LabelContent(
+                            text: texts.1,
+                            style: .init(
+                                font: MainFont.light.with(size: 24),
+                                color: .standardContent,
+                                alignment: .center,
+                                displayMode: displayMode
+                            )
+                        )
+                        return EKProperty.EKRatingItemContent(
+                            title: itemTitle,
+                            description: itemDescription,
+                            unselectedImage: unselectedImage,
+                            selectedImage: selectedImage
+                        )
         }
-    
+        
         var message: EKRatingMessage!
         let lightFont = MainFont.light.with(size: 20)
         let mediumFont = MainFont.medium.with(size: 20)
@@ -351,9 +351,9 @@ class PresetsViewController: UIViewController {
             backgroundColor: .clear,
             highlightedBackgroundColor: EKColor.standardBackground.with(alpha: 0.2),
             displayMode: displayMode) {
-            SwiftEntryKit.dismiss {
-                // Here you may perform a completion handler
-            }
+                SwiftEntryKit.dismiss {
+                    // Here you may perform a completion handler
+                }
         }
         
         let pinkyColor = EKColor.pinky
@@ -371,7 +371,7 @@ class PresetsViewController: UIViewController {
             backgroundColor: .clear,
             highlightedBackgroundColor: pinkyColor.with(alpha: 0.05),
             displayMode: displayMode) {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         let buttonsBarContent = EKProperty.ButtonBarContent(
             with: closeButton, okButton,
@@ -385,7 +385,7 @@ class PresetsViewController: UIViewController {
             initialDescription: initialDescription,
             ratingItems: items,
             buttonBarContent: buttonsBarContent) { index in
-            // Rating selected - do something
+                // Rating selected - do something
         }
         let contentView = EKRatingMessageView(with: message)
         SwiftEntryKit.display(entry: contentView, using: attributes)
@@ -397,45 +397,41 @@ class PresetsViewController: UIViewController {
                                          desc: String,
                                          textColor: EKColor,
                                          imageName: String? = nil) {
-        // Ensure that there are no currently displaying entries at the moment
-        guard SwiftEntryKit.isCurrentlyDisplaying == false else {
-            return
+        let title = EKProperty.LabelContent(
+            text: title,
+            style: .init(
+                font: MainFont.medium.with(size: 16),
+                color: textColor,
+                displayMode: displayMode
+            ),
+            accessibilityIdentifier: "title"
+        )
+        let description = EKProperty.LabelContent(
+            text: desc,
+            style: .init(
+                font: MainFont.light.with(size: 14),
+                color: textColor,
+                displayMode: displayMode
+            ),
+            accessibilityIdentifier: "description"
+        )
+        var image: EKProperty.ImageContent?
+        if let imageName = imageName {
+            image = EKProperty.ImageContent(
+                image: UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate),
+                displayMode: displayMode,
+                size: CGSize(width: 35, height: 35),
+                tint: textColor,
+                accessibilityIdentifier: "thumbnail"
+            )
         }
-        
-        // MARK: - SwiftEntryKit
-        var attributes = EKAttributes.centerFloat
-        attributes.hapticFeedbackType = .success
-        attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8, offset: .zero))
-        attributes.screenInteraction = .dismiss
-        attributes.entryInteraction = .absorbTouches
-        attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
-        attributes.roundCorners = .all(radius: 14)
-        attributes.entranceAnimation = .init(translate: .init(duration: 0.7, spring: .init(damping: 0.7, initialVelocity: 0)), scale: .init(from: 0.7, to: 1, duration: 0.4, spring: .init(damping: 1, initialVelocity: 0)))
-        attributes.exitAnimation = .init(translate: .init(duration: 0.2))
-        attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.35)))
-        attributes.screenBackground = EKAttributes.BackgroundStyle.color(color: EKColor(UIColor.black.withAlphaComponent(0.30)))
-        attributes.entryBackground = EKAttributes.BackgroundStyle.color(color: .white)
-        attributes.positionConstraints.size = .init(width: .offset(value: 32), height: .intrinsic)
-        attributes.positionConstraints.keyboardRelation = .bind(offset: .init(bottom: 20, screenEdgeResistance: 8))
-        attributes.statusBar = .currentStatusBar
-        attributes.displayDuration = .infinity
-        
-        // Setup the placeholder label
-        let placeholder = EKProperty.LabelContent(text: "What's your email?", style: .init(font: MainFont.bold.with(size: 15), color: EKColor(.lightGray), alignment: .left))
-        // Setup the text field image icon
-        let emailIcon = UIImage(named: "ic_mail_light")
-        
-        // Setup the text field
-        let textField = EKProperty.TextFieldContent(keyboardType: .default, placeholder: placeholder, textStyle: .init(font: MainFont.bold.with(size: 15), color: .black), isSecure: false, leadingImage: emailIcon, bottomBorderColor: EKColor(.groupTableViewBackground))
-        
-        // Alert Title
-        let title = EKProperty.LabelContent(text: "Reset Password", style: .init(font: MainFont.bold.with(size: 15), color: .black, alignment: .center))
-        
-        // Alert Action Button
-        let doneButton = EKProperty.ButtonContent(label: .init(text: "Done", style: .init(font: MainFont.bold.with(size: 15), color: EKColor(.black))), backgroundColor: .clear, highlightedBackgroundColor: EKColor(.groupTableViewBackground)) {
-            // Send a password link to email via EKProperty.TextFieldContent's 'textField' attribute
-        }
-        let contentView = EKFormMessageView(with: title, textFieldsContent: [textField], buttonContent: doneButton)
+        let simpleMessage = EKSimpleMessage(
+            image: image,
+            title: title,
+            description: description
+        )
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        let contentView = EKNotificationMessageView(with: notificationMessage)
         SwiftEntryKit.display(entry: contentView, using: attributes)
     }
     
@@ -573,7 +569,7 @@ class PresetsViewController: UIViewController {
             title: title,
             description: description,
             button: button) {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         let contentView = EKPopUpMessageView(with: message)
         SwiftEntryKit.display(entry: contentView, using: attributes)
@@ -621,7 +617,7 @@ class PresetsViewController: UIViewController {
             label: closeButtonLabel,
             backgroundColor: .clear,
             highlightedBackgroundColor: Color.Gray.a800.with(alpha: 0.05)) {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         let okButtonLabelStyle = EKProperty.LabelStyle(
             font: buttonFont,
@@ -637,22 +633,22 @@ class PresetsViewController: UIViewController {
             backgroundColor: .clear,
             highlightedBackgroundColor: Color.Teal.a600.with(alpha: 0.05),
             displayMode: displayMode) { [unowned self] in
-            var attributes = self.dataSource.bottomAlertAttributes
-            attributes.entryBackground = .color(color: Color.Teal.a600)
-            attributes.entranceAnimation = .init(
-                translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0))
-            )
-            let image = UIImage(named: "ic_success")!
-            let title = "Congratz!"
-            let description = "Your book coupon is 5w1ft3ntr1k1t"
-            self.showPopupMessage(attributes: attributes,
-                                  title: title,
-                                  titleColor: .white,
-                                  description: description,
-                                  descriptionColor: .white,
-                                  buttonTitleColor: .subText,
-                                  buttonBackgroundColor: .white,
-                                  image: image)
+                var attributes = self.dataSource.bottomAlertAttributes
+                attributes.entryBackground = .color(color: Color.Teal.a600)
+                attributes.entranceAnimation = .init(
+                    translate: .init(duration: 0.65, spring: .init(damping: 0.8, initialVelocity: 0))
+                )
+                let image = UIImage(named: "ic_success")!
+                let title = "Congratz!"
+                let description = "Your book coupon is 5w1ft3ntr1k1t"
+                self.showPopupMessage(attributes: attributes,
+                                      title: title,
+                                      titleColor: .white,
+                                      description: description,
+                                      descriptionColor: .white,
+                                      buttonTitleColor: .subText,
+                                      buttonBackgroundColor: .white,
+                                      image: image)
         }
         let buttonsBarContent = EKProperty.ButtonBarContent(
             with: closeButton, okButton,
@@ -721,7 +717,7 @@ class PresetsViewController: UIViewController {
             backgroundColor: .clear,
             highlightedBackgroundColor: Color.Gray.a800.with(alpha: 0.05),
             displayMode: displayMode) {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         let laterButtonLabelStyle = EKProperty.LabelStyle(
             font: buttonFont,
@@ -737,7 +733,7 @@ class PresetsViewController: UIViewController {
             backgroundColor: .clear,
             highlightedBackgroundColor: Color.Teal.a600.with(alpha: 0.05),
             displayMode: displayMode) {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         let okButtonLabelStyle = EKProperty.LabelStyle(
             font: buttonFont,
@@ -753,7 +749,7 @@ class PresetsViewController: UIViewController {
             backgroundColor: .clear,
             highlightedBackgroundColor: Color.Teal.a600.with(alpha: 0.05),
             displayMode: displayMode) {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         // Generate the content
         let buttonsBarContent = EKProperty.ButtonBarContent(
@@ -810,7 +806,7 @@ class PresetsViewController: UIViewController {
             highlightedBackgroundColor: style.buttonBackground.with(alpha: 0.8),
             displayMode: displayMode,
             accessibilityIdentifier: "continueButton") {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         let contentView = EKFormMessageView(
             with: title,
@@ -840,7 +836,7 @@ class PresetsViewController: UIViewController {
             backgroundColor: style.buttonBackground,
             highlightedBackgroundColor: style.buttonBackground.with(alpha: 0.8),
             displayMode: displayMode) {
-            SwiftEntryKit.dismiss()
+                SwiftEntryKit.dismiss()
         }
         let contentView = EKFormMessageView(
             with: title,
