@@ -133,7 +133,7 @@ The Playground Screen | Top Toast Sample
 - Xcode 9 or any higher version.
 - Swift 4.0 or any higher version.
 - The library has not been tested with iOS 8.x.y or a lower version.
-- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) - A lightwight library written in Swift that is used to easily layout views programmatically.
+- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) - A lightweight library written in Swift that is used to easily layout views programmatically.
 
 ## Installation
 
@@ -276,7 +276,7 @@ attributes.position = .bottom
 The default value of `position` is `.top`.
 
 #### Precedence
-The precedence attribute of an entry describes the manner in which entries are pushed in. It offers 2 approaches for managing the presentation priority of multiple simultanious entries.
+The precedence attribute of an entry describes the manner in which entries are pushed in. It offers 2 approaches for managing the presentation priority of multiple simultaneous entries.
 
 ##### Override
 If the [display priority](#display-priority) is equal or higher than the currently displayed entry, override it.
@@ -618,7 +618,7 @@ The entry is being popped animatedly:
 attributes.popBehavior = .animated(animation: .init(translate: .init(duration: 0.2)))
 ```
 
-The entry is being overriden (Disappears promptly):
+The entry is being overridden (Disappears promptly):
 ```Swift
 attributes.popBehavior = .overridden
 ```
@@ -908,7 +908,7 @@ Daniel Huri, huri000@gmail.com
 
 ## Thank You
 
-Thanks Lily Azar, lilushkaa@gmail.com for those aweome preset icons. 
+Thanks Lily Azar, lilushkaa@gmail.com for those awesome preset icons. 
 
 ## Credits
 
