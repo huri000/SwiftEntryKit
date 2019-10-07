@@ -1,6 +1,9 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.1.4
+Fixes: #231 (iPad + iOS13) entries background is not interactable. 
+
 ## 1.1.3
 Fix `SPM` release
 
