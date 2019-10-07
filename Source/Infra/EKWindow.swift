@@ -26,9 +26,15 @@ class EKWindow: UIWindow {
         if isAbleToReceiveTouches {
             return super.hitTest(point, with: event)
         }
-        if let view = super.hitTest(point, with: event), view != self {
+        
+        guard let rootVC = EKWindowProvider.shared.rootVC else {
+            return nil
+        }
+        
+        if let view = rootVC.view.hitTest(point, with: event) {
             return view
         }
+        
         return nil
     }
 }
