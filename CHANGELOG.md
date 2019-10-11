@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.0
+Adjustment for iOS projects are are using `SwiftUI` as their default setup in their `plist`.
+
+
 ## 1.1.4
 Fixes: #231 (iPad + iOS13) entries background is not interactable. 
 

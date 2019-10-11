@@ -38,7 +38,11 @@ public extension EKAttributes {
         public var appearance: Appearance {
             switch self {
             case .dark:
-                return (true, .default)
+                if #available(iOS 13, *) {
+                    return (true, .darkContent)
+                } else {
+                    return (true, .default)
+                }
             case .light:
                 return (true, .lightContent)
             case .inferred:
@@ -74,10 +78,12 @@ public extension EKAttributes {
         }
         
         // Accessors
+        // TODO: Use `statusBarManager` of the window scene on iOS 13
         private static var currentStyle: UIStatusBarStyle {
             return UIApplication.shared.statusBarStyle
         }
         
+        // TODO: Use `statusBarManager` of the window scene on iOS 13
         private static var isCurrentVisible: Bool {
             return !UIApplication.shared.isStatusBarHidden
         }

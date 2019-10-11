@@ -44,7 +44,11 @@ class PresetsViewController: UIViewController {
         case .dark:
             return .lightContent
         case .light:
-            return .default
+            if #available(iOS 13, *) {
+                return .darkContent
+            } else {
+                return .default
+            }
         case .inferred:
             return super.preferredStatusBarStyle
         }
