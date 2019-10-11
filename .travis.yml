@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode11.2
+osx_image: xcode10.2
 cache: cocoapods
 podfile: Example/Podfile
 
@@ -11,11 +11,11 @@ env:
 # travis cache isn't kept between builds
 before_install:
   - rvm use system
-  - sudo gem install cocoapods -v '1.8.3'
+  - sudo gem install cocoapods -v '1.6.1'  
   - pod repo update
 
 script:
 - set -o pipefail
 - carthage update --use-submodules
-- xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone X" -configuration Debug | xcpretty
+- xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' -configuration Debug | xcpretty
 - bash <(curl -s https://codecov.io/bash) -J 'SwiftEntryKit'
