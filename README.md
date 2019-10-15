@@ -693,7 +693,7 @@ public struct EKAttributes
 
 You can use one of the presets that come with SwiftEntryKit, doing these 4 simple steps:
 
-1. Create your *EKAttributes* struct and set your preferrable properties.
+1. Create your *EKAttributes* struct and set your preferable properties.
 2. Create *EKNotificationMessage* struct (The Content) and set the content.
 3. Create *EKNotificationMessageView* (The View) and inject *EKNotificationMessage* struct to it.
 4. Display the entry using *SwiftEntryKit* class method.
