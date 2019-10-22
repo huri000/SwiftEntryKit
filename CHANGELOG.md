@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.1
+Expose `EKWindow` publicly as `UIWindow`.
+Add a warning for misuse of `EKAttributes.PopBehavior`.
+
 ## 1.2.0
 Adjustment for iOS projects are are using `SwiftUI` as their default setup in their `plist`.
 
