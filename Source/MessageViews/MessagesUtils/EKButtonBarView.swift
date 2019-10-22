@@ -152,15 +152,13 @@ final public class EKButtonBarView: UIView {
              Sometimes it's easier to just use frames instead of AutoLayout for
              hierarch complexity considerations. Here the animation influences almost the
              entire view hierarchy. */
-            self.window?.layoutIfNeeded()
-//            SwiftEntryKit.layoutIfNeeded()
+            self.window?.main_layoutIfNeeded()
         }
         
         alpha = 1
         if buttonBarContent.expandAnimatedly {
             let damping: CGFloat = buttonBarContent.content.count <= 2 ? 0.4 : 0.8
-            self.window?.layoutIfNeeded()
-//            SwiftEntryKit.layoutIfNeeded()
+            self.window?.main_layoutIfNeeded()
             UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 0, options: [.beginFromCurrentState, .allowUserInteraction, .layoutSubviews, .allowAnimatedContent], animations: {
                 expansion()
             }, completion: nil)

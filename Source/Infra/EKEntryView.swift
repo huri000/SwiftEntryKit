@@ -81,8 +81,7 @@ class EKEntryView: EKStyleView {
         
         let previousHeight = set(.height, of: frame.height, priority: .must)
         let nextHeight = set(.height, of: view.frame.height, priority: .defaultLow)
-        self.window?.layoutIfNeeded()
-//        SwiftEntryKit.layoutIfNeeded()
+        self.window?.main_layoutIfNeeded()
         
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .layoutSubviews], animations: {
             
@@ -90,8 +89,7 @@ class EKEntryView: EKStyleView {
             nextHeight.priority = .must
             
             previousView!.alpha = 0
-            self.window?.layoutIfNeeded()
-//            SwiftEntryKit.layoutIfNeeded()
+            self.window?.main_layoutIfNeeded()
             
         }, completion: { (finished) in
             

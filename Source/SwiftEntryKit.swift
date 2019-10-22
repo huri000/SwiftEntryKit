@@ -145,20 +145,41 @@ public final class SwiftEntryKit {
             self.windowProvider.dismiss(descriptor, with: completion)
         }
     }
-    
-    /**
-     Layout the view hierarchy that is rooted in the window.
-     - In case you use complex animations, you can call it to refresh the AutoLayout mechanism on the entire view hierarchy.
-     - A thread-safe method - Can be invoked from any thread.
-     - A class method - Should be called on the class.
-     */
-    public func layoutIfNeeded() {
-        if Thread.isMainThread {
-            windowProvider.layoutIfNeeded()
-        } else {
-            DispatchQueue.main.async {
-                self.windowProvider.layoutIfNeeded()
-            }
-        }
-    }
 }
+
+extension SwiftEntryKit {
+    
+    public static var isCurrentlyDisplaying: Bool {
+       return shared.isCurrentlyDisplaying
+    }
+    
+    public static func isCurrentlyDisplaying(entryNamed name: String? = nil) -> Bool {
+        return shared.isCurrentlyDisplaying(entryNamed: name)
+    }
+    
+    public static var isQueueEmpty: Bool {
+       return shared.queueContains()
+    }
+     
+    public static func queueContains(entryNamed name: String? = nil) -> Bool {
+        return shared.queueContains(entryNamed: name)
+    }
+    
+    public static func display(entry view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool = false, rollbackWindow: RollbackWindow = .main) {
+        shared.display(entry: view, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
+    }
+    
+    public static func display(entry viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool = false, rollbackWindow: RollbackWindow = .main) {
+        shared.display(entry: viewController, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
+    }
+    
+    public static func transform(to view: UIView) {
+        shared.transform(to: view)
+    }
+    
+    public static func dismiss(_ descriptor: EntryDismissalDescriptor = .displayed, with completion: DismissCompletionHandler? = nil) {
+        shared.dismiss(descriptor, with: completion)
+    }   
+}
+
+
