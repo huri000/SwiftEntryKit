@@ -120,7 +120,7 @@ class EKContentView: UIView {
         
         // Define a spacer to catch top / bottom offsets
         var spacerView: UIView!
-        let safeAreaInsets = EKWindowProvider.safeAreaInsets
+        let safeAreaInsets = EKWindowProvider.safeAreaInsets(window)
         let overrideSafeArea = attributes.positionConstraints.safeArea.isOverridden
         
         if !overrideSafeArea && safeAreaInsets.hasVerticalInsets && !attributes.position.isCenter {
