@@ -81,8 +81,7 @@ class EKEntryView: EKStyleView {
         
         let previousHeight = set(.height, of: frame.height, priority: .must)
         let nextHeight = set(.height, of: view.frame.height, priority: .defaultLow)
-
-        SwiftEntryKit.layoutIfNeeded()
+        self.window?.main_layoutIfNeeded()
         
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [.beginFromCurrentState, .layoutSubviews], animations: {
             
@@ -90,8 +89,7 @@ class EKEntryView: EKStyleView {
             nextHeight.priority = .must
             
             previousView!.alpha = 0
-
-            SwiftEntryKit.layoutIfNeeded()
+            self.window?.main_layoutIfNeeded()
             
         }, completion: { (finished) in
             
@@ -162,9 +160,9 @@ class EKEntryView: EKStyleView {
             var bottomInset: CGFloat = 0
             switch attributes.position {
             case .top:
-                topInset = -EKWindowProvider.safeAreaInsets.top
+                topInset = -EKWindowProvider.safeAreaInsets(window).top
             case .bottom, .center:
-                bottomInset = EKWindowProvider.safeAreaInsets.bottom
+                bottomInset = EKWindowProvider.safeAreaInsets(window).bottom
             }
             
             backgroundView.layoutToSuperview(.top, offset: topInset)

@@ -60,7 +60,7 @@ final public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
                        initialSpringVelocity: 0,
                        options: [.transitionCrossDissolve],
                        animations: {
-            SwiftEntryKit.layoutIfNeeded()
+                        self.window?.main_layoutIfNeeded()
         }, completion: nil)
     }
     

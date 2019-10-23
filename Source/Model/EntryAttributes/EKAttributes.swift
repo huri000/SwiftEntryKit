@@ -88,11 +88,7 @@ public struct EKAttributes {
     public var exitAnimation = Animation.translation
     
     /** Describes the previous entry behaviour when a new entry with higher display-priority shows */
-    public var popBehavior = PopBehavior.animated(animation: .translation) {
-        didSet {
-            popBehavior.validate()
-        }
-    }
+    public var popBehavior = PopBehavior.animated(animation: .translation)
 
     /** Init with default attributes */
     public init() {}

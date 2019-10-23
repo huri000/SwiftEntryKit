@@ -147,3 +147,16 @@ extension UITextField {
         }
     }
 }
+
+extension UIWindow {
+    
+    func main_layoutIfNeeded() {
+        if Thread.isMainThread {
+            layoutIfNeeded()
+        } else {
+            DispatchQueue.main.async {
+                self.layoutIfNeeded()
+            }
+        }
+    }
+}
