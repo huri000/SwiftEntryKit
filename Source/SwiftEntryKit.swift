@@ -48,6 +48,16 @@ public final class SwiftEntryKit {
     private init() {}
     
     /**
+     Returns the window that displays the entry.
+     **Warning**: the returned `UIWindow` instance is `nil` in case
+     no entry is currently displayed.
+     This can be used
+     */
+    public class var window: UIWindow? {
+        return EKWindowProvider.shared.entryWindow
+    }
+    
+    /**
      Returns true if **any** entry is currently displayed.
      - Not thread safe - should be called from the main queue only in order to receive a reliable result.
      - Convenience computed variable. Using it is the same as invoking **isCurrentlyDisplaying() -> Bool** (witohut the name of the entry).

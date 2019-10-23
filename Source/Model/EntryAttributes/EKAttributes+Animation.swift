@@ -24,10 +24,10 @@ protocol EKRangeAnimation: EKAnimation {
 public extension EKAttributes {
     
     /** Describes an animation that can be performed on the entry */
-    struct Animation {
+    struct Animation: Equatable {
     
         /** Describes properties for a spring animation that can be performed on the entry */
-        public struct Spring {
+        public struct Spring: Equatable {
             
             /** The dampic of the spring animation */
             public var damping: CGFloat
@@ -43,7 +43,7 @@ public extension EKAttributes {
         }
 
         /** Describes an animation with range */
-        public struct RangeAnimation: EKRangeAnimation {
+        public struct RangeAnimation: EKRangeAnimation, Equatable {
             
             /** The duration of the range animation */
             public var duration: TimeInterval
@@ -71,10 +71,10 @@ public extension EKAttributes {
         }
         
         /** Describes translation animation */
-        public struct Translate: EKAnimation {
+        public struct Translate: EKAnimation, Equatable {
             
             /** Describes the anchor position */
-            public enum AnchorPosition {
+            public enum AnchorPosition: Equatable {
                 
                 /** Top position - the entry shows from top or exits towards the top */
                 case top
