@@ -156,7 +156,7 @@ source 'https://github.com/cocoapods/specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'SwiftEntryKit', '1.2.1'
+pod 'SwiftEntryKit', '1.2.2'
 ```
 
 Then, run the following command:
@@ -179,7 +179,7 @@ $ brew install carthage
 To integrate SwiftEntryKit into your Xcode project using Carthage, specify the following in your `Cartfile`:
 
 ```ogdl
-github "huri000/SwiftEntryKit" == 1.2.1
+github "huri000/SwiftEntryKit" == 1.2.2
 ```
 
 ### Accio
@@ -196,7 +196,7 @@ $ brew install accio
 To integrate SwiftEntryKit into your Xcode project using Accio, specify the following in your `Package.swift` manifest:
 
 ```swift
-.package(url: "https://github.com/huri000/SwiftEntryKit", .exact("1.2.1"))
+.package(url: "https://github.com/huri000/SwiftEntryKit", .exact("1.2.2"))
 ```
 
 After specifying `"SwiftEntryKit"` as a dependency of the target in which you want to use it, run `accio install`.
