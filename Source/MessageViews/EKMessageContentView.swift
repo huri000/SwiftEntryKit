@@ -110,8 +110,8 @@ public class EKMessageContentView: UIView {
     }
     
     private func setupInterfaceStyle() {
-        titleLabel.textColor = titleContent.style.color(for: traitCollection)
-        subtitleLabel.textColor = subtitleContent.style.color(for: traitCollection)
+        titleLabel.textColor = titleContent?.style.color(for: traitCollection)
+        subtitleLabel.textColor = subtitleContent?.style.color(for: traitCollection)
     }
     
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
