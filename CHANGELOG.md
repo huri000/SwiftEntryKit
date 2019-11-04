@@ -1,6 +1,9 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.2
+Fix #253 - force unwrap for `EKMessageContentView`'s `subtitleContent` when `nil` is provided.
+
 ## 1.2.1
 Expose `EKWindow` publicly as `UIWindow`.
 Add a warning for misuse of `EKAttributes.PopBehavior`.
