@@ -27,7 +27,7 @@ final public class EKRatingSymbolsContainerView: UIView {
                                               selection: internalSelection)
             itemView.tag = index
             addSubview(itemView)
-            itemView.set(.width, .height, of: 50)
+            itemView.set(.width, .height, of: 32)
             symbolsArray.append(itemView)
         }
         symbolsArray.layoutToSuperview(axis: .vertically, priority: .must)
