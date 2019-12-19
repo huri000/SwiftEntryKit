@@ -379,15 +379,18 @@ public struct EKProperty {
         public var description: EKProperty.LabelContent
         public var unselectedImage: EKProperty.ImageContent
         public var selectedImage: EKProperty.ImageContent
-    
+        public var size: CGSize
+        
         public init(title: EKProperty.LabelContent,
                     description: EKProperty.LabelContent,
                     unselectedImage: EKProperty.ImageContent,
-                    selectedImage: EKProperty.ImageContent) {
+                    selectedImage: EKProperty.ImageContent,
+                    size: CGSize = CGSize(width: 50, height: 50)) {
             self.title = title
             self.description = description
             self.unselectedImage = unselectedImage
             self.selectedImage = selectedImage
+            self.size = size
         }
     }
 }
