@@ -34,7 +34,7 @@ final public class EKRatingSymbolsContainerView: UIView {
         symbolsArray.layoutToSuperview(axis: .vertically, priority: .must)
         symbolsArray.spread(.horizontally, stretchEdgesToSuperview: true)
         
-        select()
+        select(index: message.selectedIndex)
     }
     
     private func select(index: Int? = nil) {
