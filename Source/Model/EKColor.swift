@@ -98,7 +98,7 @@ public extension EKColor {
         return EKColor(.clear)
     }
     
-    /** Color that represents standard background. White for light mode, black for dark modee */
+    /** Color that represents standard background. White for light mode, black for dark mode */
     static var standardBackground: EKColor {
         return EKColor(light: .white, dark: .black)
     }
