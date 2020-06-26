@@ -534,7 +534,7 @@ attributes.entryBackground = .gradient(gradient: .init(colors: colors, startPoin
 
 Visual Effect entry background:
 ```Swift
-attributes.entryBackground = .visualEffect(style: .light)
+attributes.entryBackground = .visualEffect(style: .dark)
 ```
 
 The default value of `entryBackground` and `screenBackground` is `.clear`. 
