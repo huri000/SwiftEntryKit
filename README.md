@@ -8,7 +8,7 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 ![](https://travis-ci.com/huri000/SwiftEntryKit.svg?branch=master)
 
-💰 Donations can be made [here](#donations).
+ 🤗 Donations can be made [here](#donations).
 
 ## Table of Contents
 
