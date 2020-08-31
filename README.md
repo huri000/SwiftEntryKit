@@ -906,7 +906,7 @@ Daniel Huri, huri000@gmail.com
 
 ## Donations
 
-Donations can be made by sending Bitcoin or Ether to the following addresses.
+Donations can be made by sending either Bitcoin or Ether to the following addresses.
 
 | BTC | ETH |
 | :---: | :---: | 
