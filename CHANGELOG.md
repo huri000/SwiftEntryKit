@@ -1,6 +1,16 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.4
+
+### Fixes
+- Remove scene from window: https://github.com/huri000/SwiftEntryKit/pull/299
+- Added size option for EKRatingSymbolsContainerView: https://github.com/huri000/SwiftEntryKit/pull/266
+- Access the foreground active window using connectedScenes: https://github.com/huri000/SwiftEntryKit/pull/257
+
+### Chore
+- Fix CI: https://github.com/huri000/SwiftEntryKit/pull/300
+
 ## 1.2.3
 Fix #253 - force unwrap for `EKMessageContentView`'s `subtitleContent` when `nil` is provided.
 
