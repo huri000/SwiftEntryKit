@@ -147,6 +147,9 @@ final class EKWindowProvider: EntryPresenterDelegate {
     
     /** Clear all entries immediately and display to the rollback window */
     func displayRollbackWindow() {
+        if #available(iOS 13.0, *) {
+            entryWindow.windowScene = nil
+        }
         entryWindow = nil
         entryView = nil
         switch rollbackWindow! {
