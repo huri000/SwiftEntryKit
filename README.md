@@ -8,13 +8,9 @@
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 ![](https://travis-ci.com/huri000/SwiftEntryKit.svg?branch=master)
 
-## What's New?
-### 🌑 `1.1.4` - let there be dark
-`SwiftEntryKit` is now dark mode ready, and user interface styles are supported pre iOS 13 / Xcode 11!
+💰 Donations can be made [here](#donations).
 
-To know more about it, visit [Change Log](https://github.com/huri000/SwiftEntryKit/blob/master/CHANGELOG.md#110), and install the [example project](#example-project-installation).
-### 🤖 `1.0.4` - automata 
-Accessibility in presets is now supported, enabling all kinds of robotic activity for host projects.
+## Table of Contents
 
 * [Overview](#overview)
   * [Features](#features)
@@ -59,6 +55,7 @@ Accessibility in presets is now supported, enabling all kinds of robotic activit
   * [Dealing With Orientation Change](#dealing-with-orientation-change)
   * [Swift and Objective-C Interoperability](#swift-and-objective-c-interoperability)
 * [Author](#author)
+* [Donations](#donations)
 * [License](#license)
 
 ## Overview
@@ -852,9 +849,9 @@ attributes.scroll = .enabled(swipeable: true, pullbackAnimation: .jolt)
 
 The *PullbackAnimation* values (duration, damping & initialSpringVelocity) can be customized as well.
 
-Swipe | Jolt
---- | ---
-![swipe_example](https://github.com/huri000/assets/blob/master/swift-entrykit/swipe.gif) | ![band_example](https://github.com/huri000/assets/blob/master/swift-entrykit/rubber_band.gif)
+Swipe | Jolt |
+--- | --- |
+![swipe_example](https://github.com/huri000/assets/blob/master/swift-entrykit/swipe.gif) | ![band_example](https://github.com/huri000/assets/blob/master/swift-entrykit/rubber_band.gif) |
 
 ### Dealing with safe area:
 *EKAttributes.PositionConstraints.SafeArea* may be used to override the safe area with the entry's content, or to fill the safe area with a background color (like [Toasts](https://github.com/huri000/assets/blob/master/swift-entrykit/toasts.gif) do), or even leave the safe area empty (Like [Floats](https://github.com/huri000/assets/blob/master/swift-entrykit/floats.gif) do).
@@ -892,6 +889,7 @@ Orientation Change Demonstration |
 
 You can tinker with the display mode using a segmented control on presets screen, forcing light and dark modes.
 All the presets are dark mode ready, but only some in the example project demonstrate dark mode capabilities.
+
 ![light_dark](https://github.com/huri000/assets/blob/master/swift-entrykit/dark-light.gif)
 
 ### Swift and Objective-C Interoperability
@@ -905,6 +903,15 @@ Yet, it is pretty easy to integrate SwiftEntryKit into an Objective-C project us
 ## Author
 
 Daniel Huri, huri000@gmail.com
+
+## Donations
+
+Donations can be made by sending Bitcoin or Ether to the following addresses.
+
+| BTC | ETH |
+| :---: | :---: | 
+| 134TiBiUvVNt7Na5KXEFBSChLdgVDw1Hnr | 0xAe6616181FCdde4793AE749Ce21Cd5Af9333A3E2 |
+| ![btc_address](https://github.com/huri000/assets/blob/master/donate/btc-address.png) | ![eth_address](https://github.com/huri000/assets/blob/master/donate/eth-address.png) |
 
 ## Thank You
 
