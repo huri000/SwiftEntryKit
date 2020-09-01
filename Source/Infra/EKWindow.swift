@@ -25,6 +25,7 @@ class EKWindow: UIWindow {
         }
         backgroundColor = .clear
         rootViewController = rootVC
+        accessibilityViewIsModal = true
     }
     
     required init?(coder aDecoder: NSCoder) {

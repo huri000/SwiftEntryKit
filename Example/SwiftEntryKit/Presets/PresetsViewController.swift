@@ -544,7 +544,8 @@ class PresetsViewController: UIViewController {
                 color: titleColor,
                 alignment: .center,
                 displayMode: displayMode
-            )
+            ),
+            accessibilityIdentifier: "title"
         )
         let description = EKProperty.LabelContent(
             text: description,
@@ -553,7 +554,8 @@ class PresetsViewController: UIViewController {
                 color: descriptionColor,
                 alignment: .center,
                 displayMode: displayMode
-            )
+            ),
+            accessibilityIdentifier: "description"
         )
         let button = EKProperty.ButtonContent(
             label: .init(
@@ -566,7 +568,8 @@ class PresetsViewController: UIViewController {
             ),
             backgroundColor: buttonBackgroundColor,
             highlightedBackgroundColor: buttonTitleColor.with(alpha: 0.05),
-            displayMode: displayMode
+            displayMode: displayMode,
+            accessibilityIdentifier: "button"
         )
         let message = EKPopUpMessage(
             themeImage: themeImage,
@@ -586,7 +589,8 @@ class PresetsViewController: UIViewController {
                 font: MainFont.medium.with(size: 15),
                 color: .black,
                 displayMode: displayMode
-            )
+            ),
+            accessibilityIdentifier: "title"
         )
         let description = EKProperty.LabelContent(
             text: "Get your coupon for a free book now",
@@ -594,13 +598,15 @@ class PresetsViewController: UIViewController {
                 font: MainFont.light.with(size: 13),
                 color: .black,
                 displayMode: displayMode
-            )
+            ),
+            accessibilityIdentifier: "description"
         )
         let image = EKProperty.ImageContent(
             imageName: "ic_books",
             displayMode: displayMode,
             size: CGSize(width: 35, height: 35),
-            contentMode: .scaleAspectFit
+            contentMode: .scaleAspectFit,
+            accessibilityIdentifier: "image"
         )
         let simpleMessage = EKSimpleMessage(
             image: image,
@@ -620,7 +626,8 @@ class PresetsViewController: UIViewController {
         let closeButton = EKProperty.ButtonContent(
             label: closeButtonLabel,
             backgroundColor: .clear,
-            highlightedBackgroundColor: Color.Gray.a800.with(alpha: 0.05)) {
+            highlightedBackgroundColor: Color.Gray.a800.with(alpha: 0.05),
+            accessibilityIdentifier: "close-button") {
                 SwiftEntryKit.dismiss()
         }
         let okButtonLabelStyle = EKProperty.LabelStyle(
@@ -636,7 +643,8 @@ class PresetsViewController: UIViewController {
             label: okButtonLabel,
             backgroundColor: .clear,
             highlightedBackgroundColor: Color.Teal.a600.with(alpha: 0.05),
-            displayMode: displayMode) { [unowned self] in
+            displayMode: displayMode,
+            accessibilityIdentifier: "ok-button") { [unowned self] in
                 var attributes = self.dataSource.bottomAlertAttributes
                 attributes.entryBackground = .color(color: Color.Teal.a600)
                 attributes.entranceAnimation = .init(
@@ -645,14 +653,16 @@ class PresetsViewController: UIViewController {
                 let image = UIImage(named: "ic_success")!
                 let title = "Congratz!"
                 let description = "Your book coupon is 5w1ft3ntr1k1t"
-                self.showPopupMessage(attributes: attributes,
-                                      title: title,
-                                      titleColor: .white,
-                                      description: description,
-                                      descriptionColor: .white,
-                                      buttonTitleColor: .subText,
-                                      buttonBackgroundColor: .white,
-                                      image: image)
+                self.showPopupMessage(
+                    attributes: attributes,
+                    title: title,
+                    titleColor: .white,
+                    description: description,
+                    descriptionColor: .white,
+                    buttonTitleColor: .subText,
+                    buttonBackgroundColor: .white,
+                    image: image
+                )
         }
         let buttonsBarContent = EKProperty.ButtonBarContent(
             with: closeButton, okButton,

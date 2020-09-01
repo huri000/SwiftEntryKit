@@ -43,6 +43,7 @@ extension UIButton {
             setTitle(newValue.label.text, for: .normal)
             setTitleColor(newValue.label.style.color(for: traitCollection), for: .normal)
             titleLabel?.font = newValue.label.style.font
+            accessibilityIdentifier = newValue.accessibilityIdentifier
             backgroundColor = newValue.backgroundColor.color(
                 for: traitCollection,
                 mode: newValue.displayMode
