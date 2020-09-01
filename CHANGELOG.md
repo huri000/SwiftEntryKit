@@ -1,6 +1,13 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.5
+
+### Accessibility
+
+- https://github.com/huri000/SwiftEntryKit/issues/222
+- https://github.com/huri000/SwiftEntryKit/issues/294
+
 ## 1.2.4
 
 ### Fixes
