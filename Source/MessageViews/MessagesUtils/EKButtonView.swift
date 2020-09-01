@@ -33,10 +33,10 @@ final class EKButtonView: UIView {
     }
     
     private func setupAcceessibility() {
-        isAccessibilityElement = true
-        accessibilityIdentifier = content.accessibilityIdentifier
-        accessibilityLabel = content.label.text
-        accessibilityTraits = [.button]
+        isAccessibilityElement = false
+        button.isAccessibilityElement = true
+        button.accessibilityIdentifier = content.accessibilityIdentifier
+        button.accessibilityLabel = content.label.text
     }
     
     private func setupButton() {
