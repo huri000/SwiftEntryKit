@@ -288,7 +288,7 @@ public struct EKProperty {
             }
         }
         
-        public init(delegate: UITextFieldDelegate,
+        public init(delegate: UITextFieldDelegate? = nil,
                     keyboardType: UIKeyboardType = .default,
                     placeholder: LabelContent,
                     tintColor: EKColor? = nil,
