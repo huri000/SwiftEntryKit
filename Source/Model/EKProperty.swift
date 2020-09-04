@@ -299,7 +299,6 @@ public struct EKProperty {
                     bottomBorderColor: EKColor = .clear,
                     accessibilityIdentifier: String? = nil) {
             self.delegate = delegate
-
             self.keyboardType = keyboardType
             self.placeholder = placeholder
             self.textStyle = textStyle
