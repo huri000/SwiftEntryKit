@@ -1,6 +1,13 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.6
+
+### Fixes
+
+Setting key window correctly:
+See https://github.com/huri000/SwiftEntryKit/issues/308 and https://github.com/huri000/SwiftEntryKit/pull/309.
+
 ## 1.2.5
 
 ### Accessibility
