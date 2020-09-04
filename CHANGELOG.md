@@ -3,6 +3,10 @@ Any notable changes to this project will be documented in this file.
 
 ## 1.2.6
 
+### Features
+
+https://github.com/huri000/SwiftEntryKit/pull/307
+
 ### Fixes
 
 Setting key window correctly:
