@@ -268,7 +268,7 @@ public struct EKProperty {
             var text = ""
         }
         
-        public var delegate: UITextFieldDelegate?
+        public weak var delegate: UITextFieldDelegate?
         public var keyboardType: UIKeyboardType
         public var isSecure: Bool
         public var leadingImage: UIImage!
