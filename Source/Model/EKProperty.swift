@@ -268,6 +268,7 @@ public struct EKProperty {
             var text = ""
         }
         
+        public weak var delegate: UITextFieldDelegate?
         public var keyboardType: UIKeyboardType
         public var isSecure: Bool
         public var leadingImage: UIImage!
@@ -287,7 +288,8 @@ public struct EKProperty {
             }
         }
         
-        public init(keyboardType: UIKeyboardType = .default,
+        public init(delegate: UITextFieldDelegate? = nil,
+                    keyboardType: UIKeyboardType = .default,
                     placeholder: LabelContent,
                     tintColor: EKColor? = nil,
                     displayMode: EKAttributes.DisplayMode = .inferred,
@@ -296,6 +298,7 @@ public struct EKProperty {
                     leadingImage: UIImage? = nil,
                     bottomBorderColor: EKColor = .clear,
                     accessibilityIdentifier: String? = nil) {
+            self.delegate = delegate
             self.keyboardType = keyboardType
             self.placeholder = placeholder
             self.textStyle = textStyle
@@ -379,15 +382,18 @@ public struct EKProperty {
         public var description: EKProperty.LabelContent
         public var unselectedImage: EKProperty.ImageContent
         public var selectedImage: EKProperty.ImageContent
-    
+        public var size: CGSize
+        
         public init(title: EKProperty.LabelContent,
                     description: EKProperty.LabelContent,
                     unselectedImage: EKProperty.ImageContent,
-                    selectedImage: EKProperty.ImageContent) {
+                    selectedImage: EKProperty.ImageContent,
+                    size: CGSize = CGSize(width: 50, height: 50)) {
             self.title = title
             self.description = description
             self.unselectedImage = unselectedImage
             self.selectedImage = selectedImage
+            self.size = size
         }
     }
 }

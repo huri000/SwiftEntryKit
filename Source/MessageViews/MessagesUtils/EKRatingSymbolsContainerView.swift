@@ -27,13 +27,14 @@ final public class EKRatingSymbolsContainerView: UIView {
                                               selection: internalSelection)
             itemView.tag = index
             addSubview(itemView)
-            itemView.set(.width, .height, of: 50)
+            itemView.set(.height, of: item.size.height)
+            itemView.set(.width, of: item.size.width)
             symbolsArray.append(itemView)
         }
         symbolsArray.layoutToSuperview(axis: .vertically, priority: .must)
         symbolsArray.spread(.horizontally, stretchEdgesToSuperview: true)
         
-        select()
+        select(index: message.selectedIndex)
     }
     
     private func select(index: Int? = nil) {

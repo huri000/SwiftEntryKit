@@ -1,6 +1,6 @@
 {
   "name": "SwiftEntryKit",
-  "version": "1.2.3",
+  "version": "1.2.6",
   "summary": "A simple banner and pop-up displayer for iOS. Written in Swift.",
   "platforms": {
     "ios": "9.0"
@@ -18,7 +18,7 @@
   },
   "source": {
     "git": "https://github.com/huri000/SwiftEntryKit.git",
-    "tag": "1.2.3"
+    "tag": "1.2.6"
   },
   "source_files": "Source/**/*",
   "frameworks": "UIKit",

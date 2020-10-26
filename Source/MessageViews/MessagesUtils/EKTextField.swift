@@ -56,6 +56,7 @@ final public class EKTextField: UIView {
     private func setupTextField() {
         addSubview(textField)
         textField.textFieldContent = content
+        textField.delegate = content.delegate
         textField.set(.height, of: EKTextField.totalHeight)
         textField.layout(.leading, to: .trailing, of: imageView)
         textField.layoutToSuperview(.top, .trailing)

@@ -33,6 +33,9 @@ final class EKWindowProvider: EntryPresenterDelegate {
     
     /** A window to go back to when the last entry has been dismissed */
     private var rollbackWindow: SwiftEntryKit.RollbackWindow!
+    
+    /** The main rollback window to be used internally in case `rollbackWindow`'s value is `.main` */
+    private weak var mainRollbackWindow: UIWindow?
 
     /** Entry queueing heuristic  */
     private let entryQueue = EKAttributes.Precedence.QueueingHeuristic.value.heuristic
@@ -77,6 +80,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
         if entryWindow == nil {
             entryVC = EKRootViewController(with: self)
             entryWindow = EKWindow(with: entryVC)
+            mainRollbackWindow = UIApplication.shared.keyWindow
         } else {
             entryVC = rootVC!
         }
@@ -154,7 +158,11 @@ final class EKWindowProvider: EntryPresenterDelegate {
         entryView = nil
         switch rollbackWindow! {
         case .main:
-            UIApplication.shared.keyWindow?.makeKeyAndVisible()
+            if let mainRollbackWindow = mainRollbackWindow {
+                mainRollbackWindow.makeKeyAndVisible()
+            } else {
+                UIApplication.shared.keyWindow?.makeKeyAndVisible()
+            }
         case .custom(window: let window):
             window.makeKeyAndVisible()
         }
@@ -201,7 +209,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
         entryWindow?.layoutIfNeeded()
     }
     
-    /** Privately using to prepare the root view controller and show the entry immediately */
+    /** Privately used to prepare the root view controller and show the entry immediately */
     private func show(entryView: EKEntryView, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
         guard let entryVC = prepare(for: entryView.attributes, presentInsideKeyWindow: presentInsideKeyWindow) else {
             return
