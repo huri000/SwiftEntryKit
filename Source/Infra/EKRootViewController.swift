@@ -59,7 +59,7 @@ class EKRootViewController: UIViewController {
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         guard let lastAttributes = lastAttributes else {
-            return super.supportedInterfaceOrientations
+            return .all
         }
         switch lastAttributes.positionConstraints.rotation.supportedInterfaceOrientations {
         case .standard:
