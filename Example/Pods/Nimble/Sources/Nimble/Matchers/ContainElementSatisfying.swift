@@ -1,7 +1,6 @@
-import Foundation
-
-public func containElementSatisfying<S: Sequence, T>(_ predicate: @escaping ((T) -> Bool), _ predicateDescription: String = "") -> Predicate<S> where S.Iterator.Element == T {
-
+public func containElementSatisfying<S: Sequence>(
+    _ predicate: @escaping ((S.Element) -> Bool), _ predicateDescription: String = ""
+) -> Predicate<S> {
     return Predicate.define { actualExpression in
         let message: ExpectationMessage
         if predicateDescription == "" {
@@ -24,35 +23,39 @@ public func containElementSatisfying<S: Sequence, T>(_ predicate: @escaping ((T)
     }
 }
 
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-    extension NMBObjCMatcher {
-        @objc public class func containElementSatisfyingMatcher(_ predicate: @escaping ((NSObject) -> Bool)) -> NMBObjCMatcher {
-            return NMBObjCMatcher(canMatchNil: false) { actualExpression, failureMessage in
-                let value = try actualExpression.evaluate()
-                guard let enumeration = value as? NSFastEnumeration else {
-                    // swiftlint:disable:next line_length
-                    failureMessage.postfixMessage = "containElementSatisfying must be provided an NSFastEnumeration object"
-                    failureMessage.actualValue = nil
-                    failureMessage.expected = ""
-                    failureMessage.to = ""
-                    return false
-                }
+#if canImport(Darwin)
+import class Foundation.NSObject
+import struct Foundation.NSFastEnumerationIterator
+import protocol Foundation.NSFastEnumeration
 
-                var iterator = NSFastEnumerationIterator(enumeration)
-                while let item = iterator.next() {
-                    guard let object = item as? NSObject else {
-                        continue
-                    }
-
-                    if predicate(object) {
-                        return true
-                    }
-                }
-
-                failureMessage.actualValue = nil
-                failureMessage.postfixMessage = "find object in collection that satisfies predicate"
-                return false
+extension NMBPredicate {
+    @objc public class func containElementSatisfyingMatcher(_ predicate: @escaping ((NSObject) -> Bool)) -> NMBPredicate {
+        return NMBPredicate { actualExpression in
+            let value = try actualExpression.evaluate()
+            guard let enumeration = value as? NSFastEnumeration else {
+                let message = ExpectationMessage.fail(
+                    "containElementSatisfying must be provided an NSFastEnumeration object"
+                )
+                return NMBPredicateResult(status: .fail, message: message.toObjectiveC())
             }
+
+            let message = ExpectationMessage
+                .expectedTo("find object in collection that satisfies predicate")
+                .toObjectiveC()
+
+            var iterator = NSFastEnumerationIterator(enumeration)
+            while let item = iterator.next() {
+                guard let object = item as? NSObject else {
+                    continue
+                }
+
+                if predicate(object) {
+                    return NMBPredicateResult(status: .matches, message: message)
+                }
+            }
+
+            return NMBPredicateResult(status: .doesNotMatch, message: message)
         }
     }
+}
 #endif

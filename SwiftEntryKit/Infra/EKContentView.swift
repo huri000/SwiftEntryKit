@@ -465,10 +465,10 @@ extension EKContentView {
             guard let rawValue = rawValue else {
                 return nil
             }
-            duration = rawValue[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
-            curve = UIView.AnimationOptions(rawValue: rawValue[UIResponder.keyboardAnimationCurveUserInfoKey] as! UInt)
-            begin = (rawValue[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
-            end = (rawValue[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            duration = rawValue[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+            curve = UIView.AnimationOptions(rawValue: rawValue[UIKeyboardAnimationCurveUserInfoKey] as! UInt)
+            begin = (rawValue[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+            end = (rawValue[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         }
         
         var height: CGFloat {
@@ -482,10 +482,10 @@ extension EKContentView {
         }
         
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardDidHide(_:)), name: UIResponder.keyboardDidHideNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidHide(_:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillChangeFrame(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
 
     private func animate(by userInfo: [AnyHashable: Any]?, entrance: Bool) {

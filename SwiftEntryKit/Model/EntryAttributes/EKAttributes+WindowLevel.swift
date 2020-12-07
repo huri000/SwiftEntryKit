@@ -29,11 +29,11 @@ public extension EKAttributes {
         public var value: UIWindow.Level {
             switch self {
             case .alerts:
-                return UIWindow.Level.alert
+                return UIWindowLevelAlert
             case .statusBar:
-                return UIWindow.Level.statusBar
+                return UIWindowLevelStatusBar
             case .normal:
-                return UIWindow.Level.normal
+                return UIWindowLevelNormal
             case .custom(level: let level):
                 return level
             }

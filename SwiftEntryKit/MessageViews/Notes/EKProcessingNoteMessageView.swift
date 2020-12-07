@@ -37,7 +37,7 @@ public class EKProcessingNoteMessageView: EKAccessoryNoteMessageView {
     
     private func setup(with content: EKProperty.LabelContent, activityIndicator: UIActivityIndicatorView.Style, setProcessing: Bool = true) {
         activityIndicatorView = UIActivityIndicatorView()
-        activityIndicatorView.style = activityIndicator
+        activityIndicatorView.activityIndicatorViewStyle = activityIndicator
         isProcessing = setProcessing
         accessoryView = activityIndicatorView
         super.setup(with: content)
