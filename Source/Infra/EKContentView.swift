@@ -669,6 +669,7 @@ extension EKContentView {
     }
     
     private func calculateLogarithmicOffset(forOffset offset: CGFloat, currentTranslation: CGFloat) {
+        guard verticalLimit != 0 else { return }
         if attributes.position.isTop {
             inConstraint.constant = verticalLimit * (1 + log10(offset / verticalLimit))
         } else {
