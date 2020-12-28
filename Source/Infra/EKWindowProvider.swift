@@ -169,11 +169,21 @@ final class EKWindowProvider: EntryPresenterDelegate {
     }
     
     /** Display a pending entry if there is any inside the queue */
-    func displayPendingEntryIfNeeded() {
+    func displayPendingEntryOrRollbackWindow(dismissCompletionHandler: SwiftEntryKit.DismissCompletionHandler?) {
         if let next = entryQueue.dequeue() {
+            
+            // Execute dismiss handler if needed before dequeuing (potentially) another entry
+            dismissCompletionHandler?()
+            
+            // Show the next entry in queue
             show(entryView: next.view, presentInsideKeyWindow: next.presentInsideKeyWindow, rollbackWindow: next.rollbackWindow)
         } else {
+            
+            // Display the rollback window
             displayRollbackWindow()
+            
+            // As a last step, invoke the dismissal method
+            dismissCompletionHandler?()
         }
     }
     
