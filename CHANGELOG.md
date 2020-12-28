@@ -1,6 +1,15 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.7
+
+### Fixes
+
+#324 - iOS 14.2 keyWindow is always EKWindow
+#277 - EKContentView.panGestureRecognized(gr:) crash 
+
+https://github.com/huri000/SwiftEntryKit/pull/307
+
 ## 1.2.6
 
 ### Features
