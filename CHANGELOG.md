@@ -5,8 +5,8 @@ Any notable changes to this project will be documented in this file.
 
 ### Fixes
 
-#324 - iOS 14.2 keyWindow is always EKWindow
-#277 - EKContentView.panGestureRecognized(gr:) crash 
+- #324 - iOS 14.2 keyWindow is always EKWindow
+- #277 - EKContentView.panGestureRecognized(gr:) crash 
 
 ## 1.2.6
 
