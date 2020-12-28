@@ -12,7 +12,7 @@ import QuickLayout
 protocol EntryContentViewDelegate: class {
     func changeToActive(withAttributes attributes: EKAttributes)
     func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool)
-    func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool)
+    func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool, dismissCompletionHandler: SwiftEntryKit.DismissCompletionHandler?)
 }
 
 class EKContentView: UIView {
@@ -473,16 +473,16 @@ class EKContentView: UIView {
         }
         
         // Execute didDisappear action if needed
-        contentView.content.attributes.lifecycleEvents.didDisappear?()
-        
-        // Execute dismiss handler if needed
-        dismissHandler?()
-        
+        let didDisappear = contentView.content.attributes.lifecycleEvents.didDisappear
+
         // Remove the view from its superview and in a case of a view controller, from its parent controller.
         super.removeFromSuperview()
         contentView.content.viewController?.removeFromParent()
         
-        entryDelegate.didFinishDisplaying(entry: contentView, keepWindowActive: keepWindow)
+        entryDelegate.didFinishDisplaying(entry: contentView, keepWindowActive: keepWindow, dismissCompletionHandler: dismissHandler)
+        
+        // Lastly, perform the Dismiss Completion Handler as the entry is no longer displayed
+        didDisappear?()
     }
     
     deinit {
