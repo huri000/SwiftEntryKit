@@ -65,6 +65,18 @@ final class EKWindowProvider: EntryPresenterDelegate {
         entryVC.setStatusBarStyle(for: attributes)
 
         entryWindow.windowLevel = attributes.windowLevel.value
+        
+        if #available(iOS 13.0, *) {
+            switch attributes.displayMode {
+            case .inferred:
+                entryWindow.overrideUserInterfaceStyle = .unspecified
+            case .light:
+                entryWindow.overrideUserInterfaceStyle = .light
+            case .dark:
+                entryWindow.overrideUserInterfaceStyle = .dark
+            }
+        }
+        
         if presentInsideKeyWindow {
             entryWindow.makeKeyAndVisible()
         } else {
