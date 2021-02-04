@@ -111,7 +111,7 @@ public extension EKAttributes {
              Additionally, the top edge of the screen can have a resistance offset which the entry isn't able to cross.
              The resistance is mostly used when the device orientation changes and the entry's frame crosses the screen bounds.
              Current isn't supported with center entry position.*/
-            case bindWhenResponder(offset: Offset)
+            case bind(offset: Offset)
 
             /** Bind the entry's bottom to the keyboard's top with an offset.
              Additionally, the top edge of the screen can have a resistance offset which the entry isn't able to cross.
@@ -125,7 +125,7 @@ public extension EKAttributes {
             /** Returns true if the entry is bound to the keyboard */
             public var isBound: Bool {
                 switch self {
-                  case .bindWhenResponder(offset: _), .bindAlways(offset: _):
+                  case .bind(offset: _), .bindAlways(offset: _):
                     return true
                 case .unbind:
                     return false
@@ -136,7 +136,7 @@ public extension EKAttributes {
                 switch self {
                     case .bindAlways(offset: let offset):
                       return offset
-                    case .bindWhenResponder(offset: let offset):
+                    case .bind(offset: let offset):
                       return offset
                     default: return nil
                 }

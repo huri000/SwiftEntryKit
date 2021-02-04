@@ -167,7 +167,7 @@ class EKContentView: UIView {
         
         // Setup keyboard constraints
         switch attributes.positionConstraints.keyboardRelation {
-        case .bindWhenResponder(offset: let offset):
+        case .bind(offset: let offset):
             fallthrough
         case .bindAlways(offset: let offset):
             if let screenEdgeResistance = offset.screenEdgeResistance {
@@ -600,7 +600,7 @@ extension EKContentView {
       switch attributes.positionConstraints.keyboardRelation {
         case .unbind: return false
         case .bindAlways(offset: _): return true
-        case .bindWhenResponder(offset: _): return containsFirstResponder
+        case .bind(offset: _): return containsFirstResponder
       }
     }
 }
