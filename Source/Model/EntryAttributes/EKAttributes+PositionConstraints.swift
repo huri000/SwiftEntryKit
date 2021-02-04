@@ -107,11 +107,17 @@ public extension EKAttributes {
                 }
             }
             
-            /** Bind the entry's bottom to the keyboard's top with an offset.
+            /** Bind the entry's bottom to the keyboard's top with an offset when keyboard contains first reponder
              Additionally, the top edge of the screen can have a resistance offset which the entry isn't able to cross.
              The resistance is mostly used when the device orientation changes and the entry's frame crosses the screen bounds.
              Current isn't supported with center entry position.*/
             case bind(offset: Offset)
+
+            /** Bind the entry's bottom to the keyboard's top with an offset.
+             Additionally, the top edge of the screen can have a resistance offset which the entry isn't able to cross.
+             The resistance is mostly used when the device orientation changes and the entry's frame crosses the screen bounds.
+             Current isn't supported with center entry position.*/
+            case bindAlways(offset: Offset)
             
             /** Entry is unbound to the keyboard. It's location doesn't change. */
             case unbind
@@ -119,10 +125,20 @@ public extension EKAttributes {
             /** Returns true if the entry is bound to the keyboard */
             public var isBound: Bool {
                 switch self {
-                case .bind(offset: _):
+                  case .bind(offset: _), .bindAlways(offset: _):
                     return true
                 case .unbind:
                     return false
+                }
+            }
+
+            var offset: Offset? {
+                switch self {
+                    case .bindAlways(offset: let offset):
+                      return offset
+                    case .bind(offset: let offset):
+                      return offset
+                    default: return nil
                 }
             }
         }
