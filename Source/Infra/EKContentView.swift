@@ -222,6 +222,8 @@ class EKContentView: UIView {
         switch attributes.positionConstraints.size.width {
         case .offset(value: let offset):
             layoutToSuperview(axis: .horizontally, offset: offset, priority: .must)
+        case .relative(value: let offset):
+            layout(to: .centerX, of: superview!, relation: .equal, offset: offset, priority: .must)
         case .ratio(value: let ratio):
             layoutToSuperview(.width, ratio: ratio, priority: .must)
         case .constant(value: let constant):
@@ -234,6 +236,8 @@ class EKContentView: UIView {
         switch attributes.positionConstraints.size.height {
         case .offset(value: let offset):
             layoutToSuperview(.height, offset: -offset * 2, priority: .must)
+        case .relative(value: _):
+            break
         case .ratio(value: let ratio):
             layoutToSuperview(.height, ratio: ratio, priority: .must)
         case .constant(value: let constant):
@@ -250,6 +254,8 @@ class EKContentView: UIView {
         case .offset(value: let offset):
             layout(to: .left, of: superview!, relation: .greaterThanOrEqual, offset: offset)
             layout(to: .right, of: superview!, relation: .lessThanOrEqual, offset: -offset)
+        case .relative(value: _):
+            break
         case .ratio(value: let ratio):
             layoutToSuperview(.centerX)
             layout(to: .width, of: superview!, relation: .lessThanOrEqual, ratio: ratio)
@@ -264,6 +270,8 @@ class EKContentView: UIView {
         switch attributes.positionConstraints.maxSize.height {
         case .offset(value: let offset):
             layout(to: .height, of: superview!, relation: .lessThanOrEqual, offset: -offset * 2)
+        case .relative(value: _):
+            break
         case .ratio(value: let ratio):
             layout(to: .height, of: superview!, relation: .lessThanOrEqual, ratio: ratio)
         case .constant(value: let constant):
@@ -276,7 +284,7 @@ class EKContentView: UIView {
     
     // Setup layout constraints according to EKAttributes.PositionConstraints
     private func setupLayoutConstraints() {
-        layoutToSuperview(.centerX)
+        //layoutToSuperview(.centerX)
         setupSize()
         setupMaxSize()
     }
