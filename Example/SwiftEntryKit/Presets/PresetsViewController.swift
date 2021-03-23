@@ -1043,6 +1043,8 @@ extension PresetsViewController {
             showCustomNibView(attributes: attributes)
         case 2:
             showCustomViewController(attributes: attributes)
+        case 3:
+            showCustomViewController(attributes: attributes)
         default:
             break
         }

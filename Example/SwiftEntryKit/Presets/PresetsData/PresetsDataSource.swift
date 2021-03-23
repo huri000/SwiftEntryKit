@@ -1157,6 +1157,84 @@ struct PresetsDataSource {
             thumb: descriptionThumb
         )
         presets.append(description)
+        
+        // Preset IV
+        attributes = .bottomFloat
+        attributes.displayMode = displayMode
+        attributes.hapticFeedbackType = .success
+        attributes.displayDuration = 3
+        attributes.screenBackground = .clear
+        attributes.entryBackground = .clear
+        attributes.screenInteraction = .forward
+        attributes.entryInteraction = .absorbTouches
+        attributes.entranceAnimation = .init(
+            translate: .init(
+                duration: 0.5,
+                spring: .init(damping: 0.9, initialVelocity: 0)
+            ),
+            scale: .init(
+                from: 0.8,
+                to: 1,
+                duration: 0.5,
+                spring: .init(damping: 0.8, initialVelocity: 0)
+            ),
+            fade: .init(
+                from: 0.7,
+                to: 1,
+                duration: 0.3
+            )
+        )
+        attributes.exitAnimation = .init(
+            translate: .init(duration: 0.5),
+            scale: .init(
+                from: 1,
+                to: 0.8,
+                duration: 0.5
+            ),
+            fade: .init(
+                from: 1,
+                to: 0,
+                duration: 0.5
+            )
+        )
+        attributes.popBehavior = .animated(
+            animation: .init(
+                translate: .init(
+                    duration: 0.3
+                ),
+                scale: .init(
+                    from: 1,
+                    to: 0.8,
+                    duration: 0.3
+                )
+            )
+        )
+        attributes.shadow = .active(
+            with: .init(
+                color: .black,
+                opacity: 0.3,
+                radius: 6
+            )
+        )
+        attributes.positionConstraints.verticalOffset = 10
+        attributes.positionConstraints.size = .init(
+            width: .relative(value: 30),
+            height: .intrinsic
+        )
+        attributes.positionConstraints.maxSize = .init(
+            width: .constant(value: UIScreen.main.minEdge),
+            height: .intrinsic
+        )
+        attributes.statusBar = .dark
+        descriptionString = "Customized UIViewController that is using an injected view with relative horizontal offset"
+        descriptionThumb = ThumbDesc.bottomFloat.rawValue
+        description = .init(
+            with: attributes,
+            title: "Horizontal offset View Controller",
+            description: descriptionString,
+            thumb: descriptionThumb
+        )
+        presets.append(description)
         dataSource.append(("Custom", presets))
     }
 }
