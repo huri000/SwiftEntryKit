@@ -11,7 +11,7 @@ public class EKSimpleMessageView: UIView {
 
     // MARK: Props
     var thumbImageView: UIImageView!
-    let messageContentView = EKMessageContentView()
+    public let messageContentView = EKMessageContentView()
     private let message: EKSimpleMessage
     
     // MARK: Setup
