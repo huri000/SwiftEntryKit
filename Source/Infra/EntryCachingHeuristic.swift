@@ -14,7 +14,7 @@ struct CachedEntry {
     let rollbackWindow: SwiftEntryKit.RollbackWindow
 }
 
-protocol EntryCachingHeuristic: class {
+protocol EntryCachingHeuristic: AnyObject {
     var entries: [CachedEntry] { set get }
     var isEmpty: Bool { get }
     

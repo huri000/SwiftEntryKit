@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EntryPresenterDelegate: class {
+protocol EntryPresenterDelegate: AnyObject {
     var isResponsiveToTouches: Bool { set get }
     func displayPendingEntryOrRollbackWindow(dismissCompletionHandler: SwiftEntryKit.DismissCompletionHandler?)
 }
