@@ -33,7 +33,7 @@
 		147A9A6520926C5D00A49D7A /* HeightSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147A9A6420926C5D00A49D7A /* HeightSelectionTableViewCell.swift */; };
 		1496D952209CC2AF002CBB22 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496D951209CC2AF002CBB22 /* UIView+Nib.swift */; };
 		1496D956209CC6EF002CBB22 /* Object+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1496D955209CC6EF002CBB22 /* Object+ClassName.swift */; };
-		149D0A0B20AF07EE000AA6C4 /* AttributesCreationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF407820AEEA6E00C744D1 /* AttributesCreationTests.swift */; };
+		149D0A0B20AF07EE000AA6C4 /* AttributesCreationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14CF407820AEEA6E00C744D1 /* AttributesCreationTest.swift */; };
 		149D0A1220AF1EE7000AA6C4 /* FormFieldPresetFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 149D0A1120AF1EE7000AA6C4 /* FormFieldPresetFactory.swift */; };
 		14A1AB3520930120001CA5B4 /* PresetsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A1AB3420930120001CA5B4 /* PresetsDataSource.swift */; };
 		14A40C63208B7AA800B79474 /* PlaygroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A40C62208B7AA800B79474 /* PlaygroundViewController.swift */; };
@@ -305,7 +305,7 @@
 		14C89501208E83AA003D8CE3 /* WindowLevelSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowLevelSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14C89503208E870C003D8CE3 /* DisplayDurationSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayDurationSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14CF407720AEC75F00C744D1 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
-		14CF407820AEEA6E00C744D1 /* AttributesCreationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesCreationTests.swift; sourceTree = "<group>"; };
+		14CF407820AEEA6E00C744D1 /* AttributesCreationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributesCreationTest.swift; sourceTree = "<group>"; };
 		14D18CCC2090FE970019AE7F /* SafeAreaSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CCE209105290019AE7F /* WidthSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		14D18CD1209118DA0019AE7F /* NibExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibExampleView.swift; sourceTree = "<group>"; };
@@ -680,7 +680,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				14CF407820AEEA6E00C744D1 /* AttributesCreationTests.swift */,
+				14CF407820AEEA6E00C744D1 /* AttributesCreationTest.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -982,22 +982,18 @@
 		};
 		CD4B589DB2562F36EE3949B2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1147,7 +1143,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				149D0A0B20AF07EE000AA6C4 /* AttributesCreationTests.swift in Sources */,
+				149D0A0B20AF07EE000AA6C4 /* AttributesCreationTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

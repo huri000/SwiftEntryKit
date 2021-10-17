@@ -8,6 +8,4 @@ target 'SwiftEntryKitTests' do
     platform :ios, '9.0'
     use_frameworks!
     pod 'SwiftEntryKit', :path => '../'
-    pod 'Quick', '2.0.0'
-    pod 'Nimble', '8.0.1'
 end
