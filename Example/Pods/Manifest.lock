@@ -1,31 +1,16 @@
 PODS:
-  - Nimble (8.0.1)
-  - Quick (2.0.0)
-  - QuickLayout (3.0.0)
-  - SwiftEntryKit (1.2.7):
-    - QuickLayout (= 3.0.0)
+  - SwiftEntryKit (2.0.0)
 
 DEPENDENCIES:
-  - Nimble (= 8.0.1)
-  - Quick (= 2.0.0)
   - SwiftEntryKit (from `../`)
-
-SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - Nimble
-    - Quick
-    - QuickLayout
 
 EXTERNAL SOURCES:
   SwiftEntryKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
-  Quick: ce1276c7c27ba2da3cb2fd0cde053c3648b3b22d
-  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
-  SwiftEntryKit: 537c92699d6034efb1ef9c32b11e0b37c97aa589
+  SwiftEntryKit: 61b5fa36f34a97dd8013e48a7345bc4c4720be9a
 
-PODFILE CHECKSUM: cfefcd17a3b135cb5b254a0b85e280fd33f2919e
+PODFILE CHECKSUM: 4a9dcc9519c6952cf55c5e7ca9ec3d298a97d96d
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.2

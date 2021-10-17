@@ -11,13 +11,9 @@ let package = Package(
   products: [
     .library(name: "SwiftEntryKit", targets: ["SwiftEntryKit"])
   ],
-  dependencies: [
-    .package(url: "https://github.com/huri000/QuickLayout", .exact("3.0.1"))
-  ],
   targets: [
     .target(
       name: "SwiftEntryKit",
-      dependencies: ["QuickLayout"],
       path: "Source"
     )
   ],

@@ -5,9 +5,6 @@
       location = "group:SwiftEntryKit.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../Carthage/Checkouts/QuickLayout/Example/QuickLayout.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

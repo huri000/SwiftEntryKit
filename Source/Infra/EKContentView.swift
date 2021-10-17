@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import QuickLayout
 
-protocol EntryContentViewDelegate: class {
+protocol EntryContentViewDelegate: AnyObject {
     func changeToActive(withAttributes attributes: EKAttributes)
     func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool)
     func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool, dismissCompletionHandler: SwiftEntryKit.DismissCompletionHandler?)

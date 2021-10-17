@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 2.0.0
+
+- Embed QuickLayout's source files within SwiftEntryKit 
+
 ## 1.2.7
 
 ### Fixes
