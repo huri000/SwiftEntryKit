@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuickLayout
 
 extension UILabel {
     var style: EKProperty.LabelStyle {

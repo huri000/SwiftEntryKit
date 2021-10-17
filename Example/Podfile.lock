@@ -1,22 +1,15 @@
 PODS:
-  - QuickLayout (3.0.2)
-  - SwiftEntryKit (1.2.8):
-    - QuickLayout (= 3.0.2)
+  - SwiftEntryKit (1.2.8)
 
 DEPENDENCIES:
   - SwiftEntryKit (from `../`)
-
-SPEC REPOS:
-  trunk:
-    - QuickLayout
 
 EXTERNAL SOURCES:
   SwiftEntryKit:
     :path: "../"
 
 SPEC CHECKSUMS:
-  QuickLayout: 2aa4fb0cef29991df762bd941a077e7e77a6493c
-  SwiftEntryKit: 4e0bf84077d57a6a5bf418b544b134ef9b82444f
+  SwiftEntryKit: 7e8fd81513fe9566e6d056e4d62942459ff956b2
 
 PODFILE CHECKSUM: 4a9dcc9519c6952cf55c5e7ca9ec3d298a97d96d
 

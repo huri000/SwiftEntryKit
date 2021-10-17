@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuickLayout
 
 /**
  Dynamic button bar view

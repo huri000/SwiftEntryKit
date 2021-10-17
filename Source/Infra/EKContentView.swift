@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuickLayout
 
 protocol EntryContentViewDelegate: AnyObject {
     func changeToActive(withAttributes attributes: EKAttributes)

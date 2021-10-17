@@ -7,7 +7,6 @@
 //
 
 import SwiftEntryKit
-import QuickLayout
 import UIKit
 
 class PresetTableViewCell: UITableViewCell {

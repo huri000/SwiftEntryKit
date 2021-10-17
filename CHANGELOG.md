@@ -1,9 +1,9 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
-## 1.2.8
+## 2.0.0
 
-- Update dependency version QuickLayout to 3.0.2
+- Embed QuickLayout's source files within SwiftEntryKit 
 
 ## 1.2.7
 

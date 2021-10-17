@@ -24,5 +24,4 @@ DESC
   s.source           = { :git => 'https://github.com/huri000/SwiftEntryKit.git', :tag => s.version.to_s }
   s.source_files = 'Source/**/*'
   s.frameworks = 'UIKit'
-  s.dependency 'QuickLayout', '3.0.2'
 end

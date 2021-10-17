@@ -123,55 +123,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1430768120B5E3C00069BA1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 607FACD01AFB9204008FA782;
-			remoteInfo = QuickLayoutiOSDemo;
-		};
-		1430768320B5E3C00069BA1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1484F17D20A7486A00EA19A8;
-			remoteInfo = QuickLayoutTvOSDemo;
-		};
-		1430768520B5E3C00069BA1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 14A7002520A782F5000E2F3A;
-			remoteInfo = QuickLayoutMacOSDemo;
-		};
-		1430768720B5E3C00069BA1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 14F9FB7E20A70FC300F37D02;
-			remoteInfo = QuickLayout;
-		};
-		1430768920B5E3C00069BA1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 14D20A03209F7426009436E4;
-			remoteInfo = QuickLayoutiOSTests;
-		};
-		1430768B20B5E3C00069BA1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 14CAF61420A8DF5C00E89417;
-			remoteInfo = QuickLayoutTvOSTests;
-		};
-		1430768D20B5E3C00069BA1B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 14CAF61B20A8E7CD00E89417;
-			remoteInfo = QuickLayoutMacOSTests;
-		};
 		143C6A2320B54E4A00F7DD89 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 607FACC81AFB9204008FA782 /* Project object */;
@@ -209,7 +160,6 @@
 		142D4946223C1F5A00020ABF /* ContactsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
 		142D4949223C204700020ABF /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		142D494A223C204700020ABF /* DescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionViewController.xib; sourceTree = "<group>"; };
-		1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickLayout.xcodeproj; path = ../Carthage/Checkouts/QuickLayout/Example/QuickLayout.xcodeproj; sourceTree = "<group>"; };
 		1430769C20B5E5970069BA1B /* QuickLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLayout.framework; path = ../Carthage/Build/iOS/QuickLayout.framework; sourceTree = "<group>"; };
 		14333AE2208FA09E00DCFC7B /* PresetDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetDescription.swift; sourceTree = "<group>"; };
 		143C6A1E20B54E4A00F7DD89 /* SwiftEntryKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftEntryKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -372,20 +322,6 @@
 				142D494A223C204700020ABF /* DescriptionViewController.xib */,
 			);
 			path = ExampleNavigationController;
-			sourceTree = "<group>";
-		};
-		1430767820B5E3C00069BA1B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1430768220B5E3C00069BA1B /* QuickLayoutDemo.app */,
-				1430768420B5E3C00069BA1B /* QuickLayoutDemo.app */,
-				1430768620B5E3C00069BA1B /* QuickLayoutDemo.app */,
-				1430768820B5E3C00069BA1B /* QuickLayout.framework */,
-				1430768A20B5E3C00069BA1B /* QuickLayoutiOSTests.xctest */,
-				1430768C20B5E3C00069BA1B /* QuickLayoutTvOSTests.xctest */,
-				1430768E20B5E3C00069BA1B /* QuickLayoutMacOSTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		143C6A1F20B54E4A00F7DD89 /* SwiftEntryKit */ = {
@@ -631,7 +567,6 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* DemoApp */,
 				607FACE81AFB9204008FA782 /* Tests */,
@@ -839,12 +774,6 @@
 			mainGroup = 607FACC71AFB9204008FA782;
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 1430767820B5E3C00069BA1B /* Products */;
-					ProjectRef = 1430767720B5E3C00069BA1B /* QuickLayout.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				607FACCF1AFB9204008FA782 /* SwiftEntryKitDemo */,
@@ -853,58 +782,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		1430768220B5E3C00069BA1B /* QuickLayoutDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = QuickLayoutDemo.app;
-			remoteRef = 1430768120B5E3C00069BA1B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1430768420B5E3C00069BA1B /* QuickLayoutDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = QuickLayoutDemo.app;
-			remoteRef = 1430768320B5E3C00069BA1B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1430768620B5E3C00069BA1B /* QuickLayoutDemo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = QuickLayoutDemo.app;
-			remoteRef = 1430768520B5E3C00069BA1B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1430768820B5E3C00069BA1B /* QuickLayout.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = QuickLayout.framework;
-			remoteRef = 1430768720B5E3C00069BA1B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1430768A20B5E3C00069BA1B /* QuickLayoutiOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QuickLayoutiOSTests.xctest;
-			remoteRef = 1430768920B5E3C00069BA1B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1430768C20B5E3C00069BA1B /* QuickLayoutTvOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QuickLayoutTvOSTests.xctest;
-			remoteRef = 1430768B20B5E3C00069BA1B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1430768E20B5E3C00069BA1B /* QuickLayoutMacOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = QuickLayoutMacOSTests.xctest;
-			remoteRef = 1430768D20B5E3C00069BA1B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		143C6A1C20B54E4A00F7DD89 /* Resources */ = {
@@ -944,12 +821,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftEntryKitDemo/Pods-SwiftEntryKitDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 1;
@@ -986,12 +861,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftEntryKitTests/Pods-SwiftEntryKitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/QuickLayout/QuickLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEntryKit/SwiftEntryKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/QuickLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEntryKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1369,7 +1242,7 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickLayout\"",
+					"$(SRCROOT)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftEntryKit\"",
 				);
 				INFOPLIST_FILE = SwiftEntryKit/DemoAppInfo.plist;
@@ -1394,7 +1267,7 @@
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickLayout\"",
+					"$(SRCROOT)",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftEntryKit\"",
 				);
 				INFOPLIST_FILE = SwiftEntryKit/DemoAppInfo.plist;
@@ -1420,9 +1293,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Nimble\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Quick\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickLayout\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftEntryKit\"",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1449,9 +1319,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Nimble\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Quick\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/QuickLayout\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftEntryKit\"",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;

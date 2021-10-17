@@ -91,17 +91,15 @@ The example project contains various presets and examples you can use and modify
 ### Example Project Installation 
 
 You can either use the terminal or git client such as Source Tree.
-*The zip file doesn't contain a necessary dependency ([QuickLayout](https://github.com/huri000/QuickLayout)).*
 
 #### Terminal Users
-Run `git clone` with `--recurse-submodules`, to include QuickLayout as submodule, likewise:
 
 ```bash
-$ git clone --recurse-submodules https://github.com/huri000/SwiftEntryKit.git
+$ git clone https://github.com/huri000/SwiftEntryKit.git
 ```
 
 #### Git Client (Source Tree)
-Cloning from https://github.com/huri000/SwiftEntryKit.git also setups QuickLayout as submodule.
+Clone https://github.com/huri000/SwiftEntryKit.git 
 
 ### Presets
 
@@ -130,7 +128,6 @@ The Playground Screen | Top Toast Sample
 - Xcode 9 or any higher version.
 - Swift 4.0 or any higher version.
 - The library has not been tested with iOS 8.x.y or a lower version.
-- SwiftEntryKit leans heavily on [QuickLayout](https://github.com/huri000/QuickLayout) - A lightweight library written in Swift that is used to easily layout views programmatically.
 
 ## Installation
 

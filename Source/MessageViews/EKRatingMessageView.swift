@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import QuickLayout
 
 final public class EKRatingMessageView: UIView, EntryAppearanceDescriptor {
 

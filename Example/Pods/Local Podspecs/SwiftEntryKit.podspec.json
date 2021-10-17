@@ -22,10 +22,5 @@
   },
   "source_files": "Source/**/*",
   "frameworks": "UIKit",
-  "dependencies": {
-    "QuickLayout": [
-      "3.0.2"
-    ]
-  },
   "swift_version": "5.0"
 }
