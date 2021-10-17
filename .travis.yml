@@ -17,6 +17,6 @@ before_install:
 
 script:
 - set -o pipefail
-- carthage update --use-submodules
+- carthage update --use-xcframeworks
 - xcodebuild clean build test -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=13.6,name=iPhone 11' -configuration Debug | xcpretty
 - bash <(curl -s https://codecov.io/bash) -J 'SwiftEntryKit'
