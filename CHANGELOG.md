@@ -1,6 +1,10 @@
 # Change Log
 Any notable changes to this project will be documented in this file.
 
+## 1.2.8
+
+- Update dependency version QuickLayout to 3.0.2
+
 ## 1.2.7
 
 ### Fixes
