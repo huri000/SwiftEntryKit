@@ -6,16 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
 public typealias QLAttribute = NSLayoutConstraint.Attribute
 public typealias QLRelation = NSLayoutConstraint.Relation
-
-#if os(OSX)
-import AppKit
-public typealias QLView = NSView
-public typealias QLPriority = NSLayoutConstraint.Priority
-#else
-import UIKit
 public typealias QLView = UIView
 public typealias QLPriority = UILayoutPriority
-#endif

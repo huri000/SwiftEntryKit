@@ -6,11 +6,7 @@
 //
 
 import Foundation
-#if os(OSX)
-import AppKit
-#else
 import UIKit
-#endif
 
 // MARK: Multiple Views in Array
 public extension Array where Element: QLView {

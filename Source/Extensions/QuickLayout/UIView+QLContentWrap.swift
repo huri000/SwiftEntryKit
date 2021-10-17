@@ -6,11 +6,8 @@
 //
 
 import Foundation
-#if os(OSX)
-import AppKit
-#else
 import UIKit
-#endif
+
 
 // MARK: Content Compression Resistance & Content Hugging Priority
 public extension QLView {
