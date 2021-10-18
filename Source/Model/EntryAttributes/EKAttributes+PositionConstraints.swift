@@ -47,6 +47,8 @@ public extension EKAttributes {
             /** Unspecified edge length */
             case intrinsic
             
+            case relative(value: CGFloat)
+            
             /** Edge totally filled */
             public static var fill: Edge {
                 return .offset(value: 0)

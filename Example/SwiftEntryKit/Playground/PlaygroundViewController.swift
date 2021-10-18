@@ -173,6 +173,9 @@ extension PlaygroundViewController: UITableViewDelegate, UITableViewDataSource {
         case (4, 2):
             let cell = cell as! AnimationSelectionTableViewCell
             cell.configure(attributesWrapper: attributesWrapper, action: .pop)
+        case (4, 3):
+            let cell = cell as! AnimationSelectionTableViewCell
+            cell.configure(attributesWrapper: attributesWrapper, action: .exit)
         default:
             fatalError()
         }
