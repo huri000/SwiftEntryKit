@@ -167,6 +167,8 @@ class EKContentView: UIView {
         // Setup keyboard constraints
         switch attributes.positionConstraints.keyboardRelation {
         case .bind(offset: let offset):
+            fallthrough
+        case .bindAlways(offset: let offset):
             if let screenEdgeResistance = offset.screenEdgeResistance {
                 resistanceConstraint = layoutToSuperview(.top, relation: .greaterThanOrEqual, offset: screenEdgeResistance, priority: .defaultLow)
             }
@@ -541,9 +543,12 @@ extension EKContentView {
 
     private func animate(by userInfo: [AnyHashable: Any]?, entrance: Bool) {
         
-        // Guard that the entry is bound to the keyboard
-        guard case .bind(offset: let offset) = attributes.positionConstraints.keyboardRelation else {
-            return
+        // Guard that the entry is bound to the keyboard and has offset
+        guard 
+            attributes.positionConstraints.keyboardRelation.isBound, 
+            let offset =  attributes.positionConstraints.keyboardRelation.offset 
+            else {
+                return
         }
         
         // Convert the user info into keyboard attributes
@@ -568,7 +573,7 @@ extension EKContentView {
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
-        guard containsFirstResponder else {
+        guard shouldAnimateOnKeyboardChanges() else {
             return
         }
         keyboardState = .visible
@@ -584,10 +589,18 @@ extension EKContentView {
     }
     
     @objc func keyboardWillChangeFrame(_ notification: Notification) {
-        guard containsFirstResponder else {
+        guard shouldAnimateOnKeyboardChanges() else {
             return
         }
         animate(by: notification.userInfo, entrance: true)
+    }
+  
+    private func shouldAnimateOnKeyboardChanges() -> Bool {
+      switch attributes.positionConstraints.keyboardRelation {
+        case .unbind: return false
+        case .bindAlways(offset: _): return true
+        case .bind(offset: _): return containsFirstResponder
+      }
     }
 }
 
