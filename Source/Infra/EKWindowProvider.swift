@@ -8,21 +8,18 @@
 
 import UIKit
 
-final class EKWindowProvider: EntryPresenterDelegate {
-    
+final class EKWindowProvider: EntryPresenterDelegate, EntryViewDelegate {
+
     /** The artificial safe area insets */
-    static var safeAreaInsets: UIEdgeInsets {
+    var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
-            return EKWindowProvider.shared.entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
+            return entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
         } else {
             let statusBarMaxY = UIApplication.shared.statusBarFrame.maxY
             return UIEdgeInsets(top: statusBarMaxY, left: 0, bottom: 10, right: 0)
         }
     }
-    
-    /** Single access point */
-    static let shared = EKWindowProvider()
-    
+
     /** Current entry window */
     var entryWindow: EKWindow!
     
@@ -43,7 +40,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
     private weak var entryView: EKEntryView!
 
     /** Cannot be instantiated, customized, inherited */
-    private init() {}
+    init() {}
     
     var isResponsiveToTouches: Bool {
         set {
@@ -139,13 +136,13 @@ final class EKWindowProvider: EntryPresenterDelegate {
     
     /** Display a view using attributes */
     func display(view: UIView, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        let entryView = EKEntryView(newEntry: .init(view: view, attributes: attributes))
+        let entryView = EKEntryView(newEntry: .init(view: view, attributes: attributes), delegate: self)
         display(entryView: entryView, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
     }
 
     /** Display a view controller using attributes */
     func display(viewController: UIViewController, using attributes: EKAttributes, presentInsideKeyWindow: Bool, rollbackWindow: SwiftEntryKit.RollbackWindow) {
-        let entryView = EKEntryView(newEntry: .init(viewController: viewController, attributes: attributes))
+        let entryView = EKEntryView(newEntry: .init(viewController: viewController, attributes: attributes), delegate: self)
         display(entryView: entryView, using: attributes, presentInsideKeyWindow: presentInsideKeyWindow, rollbackWindow: rollbackWindow)
     }
     

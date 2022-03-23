@@ -11,6 +11,7 @@ import UIKit
 protocol EntryPresenterDelegate: AnyObject {
     var isResponsiveToTouches: Bool { set get }
     func displayPendingEntryOrRollbackWindow(dismissCompletionHandler: SwiftEntryKit.DismissCompletionHandler?)
+    var safeAreaInsets: UIEdgeInsets { get }
 }
 
 class EKRootViewController: UIViewController {
@@ -213,7 +214,10 @@ extension EKRootViewController {
 // MARK: - EntryScrollViewDelegate
 
 extension EKRootViewController: EntryContentViewDelegate {
-    
+    var safeAreaInsets: UIEdgeInsets {
+        delegate.safeAreaInsets
+    }
+
     func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool, dismissCompletionHandler: SwiftEntryKit.DismissCompletionHandler?) {
         guard !isDisplaying else {
             return

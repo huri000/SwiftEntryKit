@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol EntryViewDelegate: AnyObject {
+    var safeAreaInsets: UIEdgeInsets { get }
+}
+
 class EKEntryView: EKStyleView {
     
     struct Content {
@@ -28,6 +32,8 @@ class EKEntryView: EKStyleView {
     }
     
     // MARK: Props
+
+    private weak var delegate: EntryViewDelegate!
     
     /** Background view */
     private var backgroundView: EKBackgroundView!
@@ -53,8 +59,9 @@ class EKEntryView: EKStyleView {
     }()
 
     // MARK: Setup
-    init(newEntry content: Content) {
+    init(newEntry content: Content, delegate: EntryViewDelegate) {
         self.content = content
+        self.delegate = delegate
         super.init(frame: UIScreen.main.bounds)
         setupContentView()
         applyDropShadow()
@@ -161,9 +168,9 @@ class EKEntryView: EKStyleView {
             var bottomInset: CGFloat = 0
             switch attributes.position {
             case .top:
-                topInset = -EKWindowProvider.safeAreaInsets.top
+                topInset = -delegate.safeAreaInsets.top
             case .bottom, .center:
-                bottomInset = EKWindowProvider.safeAreaInsets.bottom
+                bottomInset = delegate.safeAreaInsets.bottom
             }
             
             backgroundView.layoutToSuperview(.top, offset: topInset)
