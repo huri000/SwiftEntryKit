@@ -77,7 +77,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
     /** Boilerplate generic setup for entry-window and root-view-controller  */
     private func setupWindowAndRootVC() -> EKRootViewController {
         let entryVC: EKRootViewController
-        if entryWindow == nil {
+        if entryWindow == nil || rootVC == nil {
             entryVC = EKRootViewController(with: self)
             entryWindow = EKWindow(with: entryVC)
             mainRollbackWindow = UIApplication.shared.keyWindow
