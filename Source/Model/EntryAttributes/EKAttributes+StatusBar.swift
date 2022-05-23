@@ -22,6 +22,9 @@ public extension EKAttributes {
         /** Hidden. Doesn't apply to iPhone X */
         case hidden
         
+        /** Visible with explicit default style */
+        case `default`
+        
         /** Visible with explicit dark style */
         case dark
         
@@ -37,6 +40,8 @@ public extension EKAttributes {
          Note: See *Appearance* */
         public var appearance: Appearance {
             switch self {
+            case .`default`:
+                return (true, .default)
             case .dark:
                 if #available(iOS 13, *) {
                     return (true, .darkContent)
@@ -62,8 +67,10 @@ public extension EKAttributes {
             switch appearance.style {
             case .lightContent:
                 return .light
-            default:
+            case .darkContent:
                 return .dark
+            default:
+                return .`default`
             }
         }
         
