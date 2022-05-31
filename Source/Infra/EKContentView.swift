@@ -12,6 +12,7 @@ protocol EntryContentViewDelegate: AnyObject {
     func changeToActive(withAttributes attributes: EKAttributes)
     func changeToInactive(withAttributes attributes: EKAttributes, pushOut: Bool)
     func didFinishDisplaying(entry: EKEntryView, keepWindowActive: Bool, dismissCompletionHandler: SwiftEntryKit.DismissCompletionHandler?)
+    var safeAreaInsets: UIEdgeInsets { get }
 }
 
 class EKContentView: UIView {
@@ -119,7 +120,7 @@ class EKContentView: UIView {
         
         // Define a spacer to catch top / bottom offsets
         var spacerView: UIView!
-        let safeAreaInsets = EKWindowProvider.safeAreaInsets
+        let safeAreaInsets = entryDelegate.safeAreaInsets
         let overrideSafeArea = attributes.positionConstraints.safeArea.isOverridden
         
         if !overrideSafeArea && safeAreaInsets.hasVerticalInsets && !attributes.position.isCenter {

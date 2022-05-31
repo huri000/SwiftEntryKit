@@ -9,7 +9,7 @@
 import UIKit
 
 class EKWindow: UIWindow {
-    
+
     var isAbleToReceiveTouches = false
     
     init(with rootVC: UIViewController) {
@@ -37,7 +37,7 @@ class EKWindow: UIWindow {
             return super.hitTest(point, with: event)
         }
         
-        guard let rootVC = EKWindowProvider.shared.rootVC else {
+        guard let rootVC = rootViewController as? EKRootViewController else {
             return nil
         }
         
