@@ -636,7 +636,22 @@ extension EKContentView {
                 let velocity = gr.velocity(in: superview!).y
                 swipeEnded(withVelocity: velocity)
             case .changed:
-                inConstraint.constant += translation
+                var targetConstant = inConstraint.constant + translation
+                if !attributes.scroll.isEdgeCrossingEnabled {
+                    switch attributes.position {
+                    case .top:
+                        let inset = EKWindowProvider.safeAreaInsets.top
+                        if targetConstant > inset {
+                            targetConstant = inset
+                        }
+                    case .bottom, .center:
+                        let inset = EKWindowProvider.safeAreaInsets.bottom
+                        if targetConstant < -inset {
+                            targetConstant = -inset
+                        }
+                    }
+                }
+                inConstraint.constant = targetConstant
             default:
                 break
             }
