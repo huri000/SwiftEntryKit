@@ -393,7 +393,7 @@ Autorotation - whether the entry autorotates along with the orientation of the d
 attributes.positionConstraints.rotation.isEnabled = false
 ```
 
-Keyboard Releation - used to bind an entry to the keyboard once the keyboard is displayed.
+Keyboard Relation - used to bind an entry to the keyboard once the keyboard is displayed.
 
 ```Swift
 let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10, screenEdgeResistance: 20)
