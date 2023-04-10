@@ -54,6 +54,9 @@ class EKRootViewController: UIViewController {
         if lastAttributes == nil {
             return true
         }
+        if lastAttributes.positionConstraints.rotation.isFollowChildren, let childrenVC = self.children.last {
+            return childrenVC.shouldAutorotate
+        }
         return lastAttributes.positionConstraints.rotation.isEnabled
     }
     
@@ -61,12 +64,22 @@ class EKRootViewController: UIViewController {
         guard let lastAttributes = lastAttributes else {
             return super.supportedInterfaceOrientations
         }
+        if lastAttributes.positionConstraints.rotation.isFollowChildren, let childrenVC = self.children.last {
+            return childrenVC.supportedInterfaceOrientations
+        }
         switch lastAttributes.positionConstraints.rotation.supportedInterfaceOrientations {
         case .standard:
             return super.supportedInterfaceOrientations
         case .all:
             return .all
         }
+    }
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        if let childrenVC = self.children.last {
+            return childrenVC.preferredInterfaceOrientationForPresentation
+        }
+        return super.preferredInterfaceOrientationForPresentation
     }
     
     // Previous status bar style

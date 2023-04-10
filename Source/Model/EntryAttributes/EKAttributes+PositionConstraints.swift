@@ -146,6 +146,9 @@ public extension EKAttributes {
             /** The screen autorotates with accordance to this option */
             public var supportedInterfaceOrientations = SupportedInterfaceOrientation.standard
             
+            /** 如果为真,则方向由弹出的控制器决定 */
+            public var isFollowChildren = true
+            
             public init() {}
         }
         
