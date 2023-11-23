@@ -13,15 +13,68 @@ final class EKWindowProvider: EntryPresenterDelegate {
     /** The artificial safe area insets */
     static var safeAreaInsets: UIEdgeInsets {
         if #available(iOS 11.0, *) {
-            return EKWindowProvider.shared.entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
+            return EKWindowProvider.provider(for: .normal).entryWindow?.rootViewController?.view?.safeAreaInsets ?? UIApplication.shared.keyWindow?.rootViewController?.view.safeAreaInsets ?? .zero
         } else {
             let statusBarMaxY = UIApplication.shared.statusBarFrame.maxY
             return UIEdgeInsets(top: statusBarMaxY, left: 0, bottom: 10, right: 0)
         }
     }
     
+    private static var providers: [UIWindow.Level: EKWindowProvider] = [:]
     /** Single access point */
-    static let shared = EKWindowProvider()
+    static func provider(for level: UIWindow.Level) -> EKWindowProvider {
+        if let provider = providers[level] {
+            return provider
+        } else {
+            let provider = EKWindowProvider(level: level)
+            providers[level] = provider
+            return provider
+        }
+    }
+    
+    static var topMostProvider: EKWindowProvider? {
+        if let topMostLevel = providers.keys.sorted(by: { $0 > $1 }).first {
+            return provider(for: topMostLevel)
+        }
+        return nil
+    }
+    
+    static func isCurrentlyDisplaying(entryNamed name: String? = nil) -> Bool {
+        for provider in providers.values
+        where provider.isCurrentlyDisplaying(entryNamed: name) {
+            return true
+        }
+        return false
+    }
+    
+    static func queueContains(entryNamed name: String? = nil) -> Bool {
+        for provider in providers.values
+        where provider.queueContains(entryNamed: name) {
+            return true
+        }
+        return false
+    }
+    
+    static func dismiss(_ descriptor: SwiftEntryKit.EntryDismissalDescriptor, with completion: SwiftEntryKit.DismissCompletionHandler? = nil) {
+        
+        switch descriptor {
+        case .displayed:
+            topMostProvider?.rootVC?.animateOutLastEntry(completionHandler: completion)
+        default:
+            let dispatchGroup = DispatchGroup()
+            for provider in providers.values {
+                dispatchGroup.enter()
+                provider.dismiss(descriptor) {
+                    dispatchGroup.leave()
+                }
+            }
+            dispatchGroup.notify(queue: .main, execute: completion ?? {})
+        }
+    }
+    
+    static func layoutIfNeeded() {
+        providers.values.forEach { $0.layoutIfNeeded() }
+    }
     
     /** Current entry window */
     var entryWindow: EKWindow!
@@ -41,9 +94,13 @@ final class EKWindowProvider: EntryPresenterDelegate {
     private let entryQueue = EKAttributes.Precedence.QueueingHeuristic.value.heuristic
     
     private weak var entryView: EKEntryView!
+    
+    private let windowLevel: UIWindow.Level
 
     /** Cannot be instantiated, customized, inherited */
-    private init() {}
+    private init(level: UIWindow.Level) {
+        windowLevel = level
+    }
     
     var isResponsiveToTouches: Bool {
         set {
@@ -64,7 +121,6 @@ final class EKWindowProvider: EntryPresenterDelegate {
         }
         entryVC.setStatusBarStyle(for: attributes)
 
-        entryWindow.windowLevel = attributes.windowLevel.value
         if presentInsideKeyWindow {
             entryWindow.makeKeyAndVisible()
         } else {
@@ -79,7 +135,7 @@ final class EKWindowProvider: EntryPresenterDelegate {
         let entryVC: EKRootViewController
         if entryWindow == nil {
             entryVC = EKRootViewController(with: self)
-            entryWindow = EKWindow(with: entryVC)
+            entryWindow = EKWindow(with: entryVC, level: windowLevel)
             mainRollbackWindow = UIApplication.shared.keyWindow
         } else {
             entryVC = rootVC!
@@ -151,6 +207,9 @@ final class EKWindowProvider: EntryPresenterDelegate {
     
     /** Clear all entries immediately and display to the rollback window */
     func displayRollbackWindow() {
+        defer {
+            EKWindowProvider.providers.removeValue(forKey: windowLevel)
+        }
         if #available(iOS 13.0, *) {
             entryWindow.windowScene = nil
         }
